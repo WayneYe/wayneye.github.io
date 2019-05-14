@@ -1,1 +1,179 @@
-theme: jekyll-theme-hacker
+name: "Wayne Ye"
+title: Wayne's Geek Life
+email: xiaotianpop@gmail.com
+keyword: "Wayne Ye,WayneYe.com,Geek,Programming,C#,ASP.NET,GO,Python,Ruby,Rails,Cucumber,JavaScript,nodejs,HTML5,SOLID,AWS,Microservices"
+description: "I am a software engineer, solutions architect and also a geek, I've immersed in software/web development over 14 years, with solid experience in a dozen languages: C#/ASP.NET, Python, Ruby/RoR, JavaScript/nodejs. I am an AWS Certified Solutions Architect (2017-2019), PMP and CodeProject MVP."
+url: "http://wayneye.com"
+SEOTitle: Wayne's Geek Life
+locale: "en-US"
+header-img: img/Banner.jpg
+baseurl: ""
+repository: WayneYe/wayneye.github.io
+
+author:
+  name             : "Wayne Ye"
+  avatar           : "img/me.jpg"
+  bio              : "I am a software engineer, solutions architect and also a geek, I've immersed in software/web development over 14 years, with solid experience in a dozen languages: C#/ASP.NET, Python, Ruby/RoR, JavaScript/nodejs. I am an AWS Certified Solutions Architect (2017-2019), PMP and CodeProject MVP."
+  location         : "San Francisco"
+  email            :
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: mailto:admin@wayneye.com
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      url: "https://wayneye.com"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/wayneye"
+    - label: "Facebook"
+      icon: "fab fa-fw fa-facebook-square"
+      url: "https://facebook.com/WayneYeDotCom"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/WayneYe/"
+
+#theme: jekyll-theme-hacker
+theme: minimal-mistakes-jekyll
+minimal_mistakes_skin: "air" # "default" "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum" "sunrise"
+
+excerpt_separator: <!--more-->
+
+
+plugins:
+  - jekyll-sitemap
+  - jekyll-avatar
+  - jemoji
+  - jekyll-include-cache
+  - jekyll-seo-tag
+
+defaults:
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+  -
+    scope:
+      path: "/album"
+      type: "posts"   # TODO
+    values:
+      layout: "default"
+      comments: true
+
+comments:
+  provider: "facebook"
+  facebook:
+    appid: # optional
+    num_posts: 5 # 5 (default)
+    colorscheme: light # "light" (default), "dark"
+
+
+# SEO Stuff
+google:
+  #search_engine_id       : # YOUR_SEARCH_ENGINE_ID
+  #instant_search         : # false (default), true
+# SEO Related
+#google_site_verification :
+#bing_site_verification   :
+#yandex_site_verification :
+#naver_site_verification  :
+
+# Reading Files
+include:
+  - .htaccess
+  - _pages
+exclude:
+  - "*.sublime-project"
+  - "*.sublime-workspace"
+  - vendor
+  - .asset-cache
+  - .bundle
+  - .jekyll-assets-cache
+  - .sass-cache
+  - assets/js/plugins
+  - assets/js/_main.js
+  - assets/js/vendor
+  - Capfile
+  - CHANGELOG
+  - config
+  - Gemfile
+  - Gruntfile.js
+  - gulpfile.js
+  - LICENSE
+  - log
+  - node_modules
+  - package.json
+  - Rakefile
+  - README
+  - tmp
+  - /docs # ignore Minimal Mistakes /docs
+  - /test # ignore Minimal Mistakes /test
+keep_files:
+  - .git
+  - .svn
+encoding: "utf-8"
+markdown_ext: "markdown,mkdown,mkdn,mkd,md"
+
+
+# Conversion
+markdown: kramdown
+highlighter: rouge
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
+
+
+# Markdown Processing
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
+
+
+# Sass/SCSS
+sass:
+  sass_dir: _sass
+  style: compressed # http://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
+
+
+# Outputting
+permalink: /:categories/:title/
+paginate: 5 # amount of posts to show
+paginate_path: /page:num/
+timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+
+footer:
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: mailto:admin@wayneye.com
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      url: "https://wayneye.com"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/wayneye"
+    - label: "Facebook"
+      icon: "fab fa-fw fa-facebook-square"
+      url: "https://facebook.com/WayneYeDotCom"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/WayneYe/"

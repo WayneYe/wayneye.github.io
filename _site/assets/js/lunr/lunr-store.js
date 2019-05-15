@@ -1,8 +1,8 @@
 var store = [{
         "title": "Storage+Media home server for less than $300",
-        "excerpt":"Background I have been researched and watched many NAS options to setup a home storage+media server during the past year, and so far there was no perfect answer, either lacking features/performance, or way too expensive... An Intel Celeron CPU + 1GB mem with a customized Linux (in other words: closed...","categories": [],
-        "tags": [],
-        "url": "http://wayneye.com/Storage-Media-Home-Server-Less-Than-300/",
+        "excerpt":"Background I have been researched and watched many NAS options to setup a home storage+media server during the past year, and so far there was no perfect answer, either lacking features/performance, or way too expensive... An Intel Celeron CPU + 1GB mem with a customized Linux (in other words: closed...","categories": ["Geek"],
+        "tags": ["Geek"],
+        "url": "http://wayneye.com/Storage-Media-home-server-for-less-than-300",
         "teaser":null},{
         "title": "Passing AWS Certified Solutions Architect",
         "excerpt":"3 years of AWS hands on experience, two months of preparation, 30 hours of course learning, 300+ exam practices, this was the work I’ve done to pass the AWS Certified Solutions Architect - Associate, my exam result is below: Overall Score: 81% Topic Level Scoring: 1.0 Designing highly available, cost efficient,...","categories": ["Technology"],

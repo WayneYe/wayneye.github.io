@@ -53,7 +53,7 @@ defaults:
       path: "" # an empty string here means all files in the project
       type: posts
     values:
-      layout: single
+      layout: posts
       author_profile: true
       read_time: true
       comments: true

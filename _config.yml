@@ -6,14 +6,18 @@ description: "I am a software engineer, solutions architect and also a geek, I'v
 url: "http://wayneye.com"
 SEOTitle: Wayne's Geek Life
 locale: "en-US"
-header-img: img/Banner.jpg
+header-img: assets/images/Banner.jpg
+#head_scripts:
+  #- https://code.jquery.com/jquery-3.2.1.min.js
+  #- /assets/js/your-custom-head-script.js
 baseurl: ""
+#logo: "assets/images/88x88.png"
 repository: WayneYe/wayneye.github.io
 
 author:
   name             : "Wayne Ye"
-  avatar           : "img/me.jpg"
-  bio              : "I am a software engineer, solutions architect and also a geek, I've immersed in software/web development over 14 years, with solid experience in a dozen languages: C#/ASP.NET, Python, Ruby/RoR, JavaScript/nodejs. I am an AWS Certified Solutions Architect (2017-2019), PMP and CodeProject MVP."
+  avatar           : "assets/images/me.jpg"
+  bio              : "I am a software engineer, technical lead and also a geek, I've immersed in software/web development for 14 years, I hack using these languages: Python, Golang, JavaScript/nodejs, Ruby/RoR, C#. I am an AWS Certified Solutions Architect (2017-2019), PMP and CodeProject MVP."
   location         : "San Francisco"
   email            :
   links:
@@ -53,7 +57,8 @@ defaults:
       path: "" # an empty string here means all files in the project
       type: posts
     values:
-      layout: posts
+      layout: single
+      classes: wide
       author_profile: true
       read_time: true
       comments: true

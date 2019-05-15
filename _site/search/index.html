@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Wayne's Geek Life</title>
+<!-- begin _includes/seo.html --><title>Search - Wayne’s Geek Life</title>
 <meta name="description" content="I am a software engineer, solutions architect and also a geek, I’ve immersed in software/web development over 14 years, with solid experience in a dozen languages: C#/ASP.NET, Python, Ruby/RoR, JavaScript/nodejs. I am an AWS Certified Solutions Architect (2017-2019), PMP and CodeProject MVP.">
 
 
@@ -17,8 +17,8 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Wayne's Geek Life">
-<meta property="og:title" content="Wayne’s Geek Life">
-<meta property="og:url" content="http://wayneye.com/">
+<meta property="og:title" content="Search">
+<meta property="og:url" content="http://wayneye.com/search/">
 
 
 
@@ -32,7 +32,7 @@
 
 
 
-<link rel="canonical" href="http://wayneye.com/">
+<link rel="canonical" href="http://wayneye.com/search/">
 
 
 
@@ -86,7 +86,7 @@
 
   </head>
 
-  <body class="layout--home">
+  <body class="layout--search">
 
     <!--[if lt IE 9]>
 <div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
@@ -257,105 +257,14 @@
 
   <div class="archive">
     
-      <h1 id="page-title" class="page__title"></h1>
+      <h1 id="page-title" class="page__title">Search</h1>
     
+
     
-
-<h3 class="archive__subtitle">Recent posts</h3>
-
-
-  
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/technology/Master-AWS-Development-Published/" rel="permalink">Master AWS Development Published
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  less than 1 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">In June 2018, PacktPub contacted me
-
-</p>
-  </article>
+<input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+        <div id="results" class="results"></div></div>
 </div>
 
-
-  
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/technology/passing-aws-certified-solutions-architect/" rel="permalink">Passing AWS Certified Solutions Architect
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  1 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">
-
-</p>
-  </article>
-</div>
-
-
-  
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/Storage-Media-home-server-for-less-than-300" rel="permalink">Storage+Media home server for less than $300
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  1 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Background
-I have been researched and watched many NAS options to setup a home storage+media server during the past year, and so far there was no perfect ans...</p>
-  </article>
-</div>
-
-
-
-
-
-
-  </div>
-</div>
     </div>
 
     
@@ -410,6 +319,10 @@ I have been researched and watched many NAS options to setup a home storage+medi
 
 
 
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
 
 
 

@@ -21,6 +21,7 @@ title: {1}
 categories: {2}
 tags: {3}
 permalink: {4}
+# canonical_url: {5}
 
 {5}
 """

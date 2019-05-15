@@ -13,4 +13,4 @@ var store = [{
         "excerpt":"In June 2018, PacktPub contacted me   It is now published at: https://www.packtpub.com/virtualization-and-cloud/mastering-aws-development-video  ","categories": ["Technology"],
         "tags": ["AWS","Technology"],
         "url": "http://wayneye.com/technology/Master-AWS-Development-Published/",
-        "teaser":null}]
+        "teaser":"https://image.ibb.co/jsUja5/AWS_CSA_Associate.png"}]

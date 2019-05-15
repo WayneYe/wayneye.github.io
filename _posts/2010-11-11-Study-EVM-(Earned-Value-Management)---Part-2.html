@@ -1,0 +1,51 @@
+---
+title: Study EVM (Earned Value Management) - Part 2
+categories:
+  - Project-Mgmt
+tags:
+  - Project-Mgmt
+permalink: Study-EVM-Part-2
+---
+
+<p>Once the CPI/SPI were calculated at some time-stamp, project manager should be deeper analyses, he need to predict the future cost:</p>
+
+<p><strong>ETC (Estimate To Completion)</strong></p>
+
+<p>Then EAC (Estimate At Completion) = AC + ETC</p>
+
+<p>How to calculate ETC based on current situation (EV/AC/PV and SPI&amp;CPI), there are usually three methods:</p>
+
+<ol>
+  <li><strong>Regardless of current Schedule/Cost Performance Index
+      <br /></strong>This way is simple, I don’t care what’s happened, <strong>EAC = BAC + EAC – AC</strong>, in other words, project team is confident to finish the project below estimated cost. </li>
+
+  <li><strong>Estimated based on current CPI
+      <br /></strong>This way is straight-forward, review current CPI and estimate future cost based on it:
+
+    <br /><strong>EAC = AC + (BAC -EV)/CPI = BAC / CPI
+      <br /></strong></li>
+
+  <li><strong>Consider both CPI/SPI impact</strong>
+
+    <br />I think this way the rationalist one, it consider both SPI and CPI, in additional, PM could give a “<strong>weight</strong>” to SPI or CPI according to his/her experience and judgement, so the formula is:
+
+    <br /><strong>EAC&#160; = (BAC – EV) / (CPI * SPI)</strong></li>
+</ol>
+
+<p>No matter which method PM chooses, as long as the calculated/predicted <strong>EAC is not acceptable</strong>, then it is an “<strong>early warning</strong>” to the team.</p>
+
+<p>Even more, PM need calculate TCPI, the content below as copied from <a href="http://en.wikipedia.org/wiki/Earned_value_management">EVM on Wikipedia</a>, it is very clear for me.</p>
+
+<blockquote>
+  <p>The To Complete Performance Index (TCPI) provides a projection of the anticipated performance required to achieve either the BAC or the EAC.</p>
+</blockquote>
+<p>For the TCPI based on BAC (describing the performance required to meet the original BAC budgeted total):<img style="background-color: white;" class="BlogImage" alt="TCPI_{BAC} = { BAC - EV \over BAC - AC }" src="http://upload.wikimedia.org/math/5/5/d/55d902909bba737fe762d4a0e08f3680.png" /></p>
+
+<p>or for the TCPI based on EAC (describing the performance required to meet a new, revised budget total EAC):
+<img style="background-color: white;" class="BlogImage" alt="TCPI_{EAC} = { BAC - EV \over EAC - AC }" src="http://upload.wikimedia.org/math/f/9/4/f9464ad8d231f1068009c1098d57f2b2.png" /></p>
+
+<p><strong>Independent estimate at completion (IEAC)</strong></p>
+
+<p>The IEAC is a metric to project total cost using the performance to date to project overall performance. This can be compared to the EAC, which is the manager’s projection.</p><img style="background-color: white;" class="BlogImage" alt="IEAC = \sum AC + { \left( BAC - \sum EV \right) \over CPI }" src="http://upload.wikimedia.org/math/b/4/9/b49bab309431a0deb8d34096a5c146e2.png" />
+
+<p>Wish I success, again!&#160; +U!</p>

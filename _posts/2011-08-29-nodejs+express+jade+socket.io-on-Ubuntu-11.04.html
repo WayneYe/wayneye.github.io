@@ -1,0 +1,68 @@
+---
+title: nodejs+express+jade+socket.io on Ubuntu 11.04
+categories:
+  - Hack
+tags:
+  - Hack
+permalink: nodejs-express-jade-socketio-On-Ubuntu
+---
+
+<h3>Introduction</h3>
+<p><a title="socket.io" href="socket.io" target="_blank">socket.io</a>&nbsp;is a brilliant project which perfectly supports <a href="http://www.w3.org/TR/websockets/" target="_blank">HTML5 WebSocket</a>, in additional, it can fall back to flash or long polling when the client web browser does not support WebSocket, I explored it today on Ubuntu, I summarized the process in this post.</p>
+<p>&nbsp;</p>
+<h3>Install nodejs</h3>
+<p>I used nodejs v0.4.11, the latest stable version, by mannually compile/make/install.</p>
+<p><code>sudo curl http://nodejs.org/dist/node-v0.4.11.tar.gz -o ~/Desktop/WayneDevLab/node.tar </code></p>
+<p><code>sudo tar -xf node.tar cd node-v0.4.11</code></p>
+<p><code>./configure</code></p>
+<p><code>make </code></p>
+<p><code>sudo make install</code></p> 
+
+<p>In the "./configure" step above if it prompted "libssl-dev" not found, please install libssl-dev (<code>sudo apt-get install libssl-dev</code>) which is required by node for hosting HTTPs server.</p>
+<h3>Install npm</h3>
+<p><code>curl http://npmjs.org/install.sh | sh</code></p>
+<h3>Install express</h3>
+<p><a title="expressjs" href="http://expressjs.com/">express</a>&nbsp;is an insanely fast and high performance server-side JavaScript web development framework built on node, hosting a real web server based on node will be much harder without it:)</p>
+<pre>$ npm install -g express<br />$ express /tmp/foo &amp;&amp; cd /tmp/foo<br />$ npm install -d<span style="white-space: normal;">&nbsp;</span></pre>
+<h3>Install socket.io</h3>
+<p><code>npm install socket.io</code></p>
+<h3>Setting up the Web server!!</h3>
+<p>I've modified my app.js as below:</p>
+<pre class="source" style="font-family: '[object HTMLOptionElement]', Consolas, 'Lucida Console', 'Courier New'; color: #dcdccc; background-color: #3f3f3f;"> <span style="color: #efefaf; font-weight: bold;">var</span> <span style="color: #dcdccc;">express</span> <span style="color: #dcdccc;">=</span> <span style="color: #dcdccc;">require</span>(<span style="color: #cc9393;">'express'</span>);<br /> <br /> <span style="color: #efefaf; font-weight: bold;">var</span> <span style="color: #dcdccc;">app</span> <span style="color: #dcdccc;">=</span> <span style="color: #dcdccc;">module</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">exports</span> <span style="color: #dcdccc;">=</span> <span style="color: #dcdccc;">express</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">createServer</span><span style="color: #dcdccc;">(),</span> <br /> &nbsp;&nbsp;&nbsp; <span style="color: #dcdccc;">io</span> <span style="color: #dcdccc;">=</span> <span style="color: #dcdccc;">require</span>(<span style="color: #cc9393;">'socket.io'</span><span style="color: #dcdccc;">).</span><span style="color: #dcdccc;">listen</span>(<span style="color: #dcdccc;">app</span>);<br /> <br /> <span style="color: #7f9f7f;">// Configuration</span><br /> <span style="color: #dcdccc;">app</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">configure</span>(<span style="color: #efefaf; font-weight: bold;">function</span><span style="color: #dcdccc;">(){</span><br /> &nbsp; <span style="color: #dcdccc;">app</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">set</span>(<span style="color: #cc9393;">'views'</span><span style="color: #dcdccc;">,</span> <span style="color: #dcdccc;">__dirname</span> <span style="color: #dcdccc;">+</span> <span style="color: #cc9393;">'/views'</span>);<br /> &nbsp; <span style="color: #dcdccc;">app</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">set</span>(<span style="color: #cc9393;">'view engine'</span><span style="color: #dcdccc;">,</span> <span style="color: #cc9393;">'jade'</span>);<br /> &nbsp; <span style="color: #dcdccc;">app</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">set</span>(<span style="color: #cc9393;">'view options'</span><span style="color: #dcdccc;">,</span> <span style="color: #dcdccc;">{</span><span style="color: #dcdccc;">layout</span><span style="color: #dcdccc;">:</span> <span style="color: #e3ceab;">false</span><span style="color: #dcdccc;">});</span><br /> &nbsp; <span style="color: #dcdccc;">app</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">use</span>(<span style="color: #dcdccc;">express</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">bodyParser</span>());<br /> &nbsp; <span style="color: #dcdccc;">app</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">use</span>(<span style="color: #dcdccc;">express</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">methodOverride</span>());<br /> &nbsp; <span style="color: #dcdccc;">app</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">use</span>(<span style="color: #dcdccc;">app</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">router</span>);<br /> &nbsp; <span style="color: #dcdccc;">app</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">use</span>(<span style="color: #dcdccc;">express</span><span style="color: #dcdccc;">.</span><span style="color: #e3ceab;">static</span>(<span style="color: #dcdccc;">__dirname</span> <span style="color: #dcdccc;">+</span> <span style="color: #cc9393;">'/public'</span>));<br /> <span style="color: #dcdccc;">});</span><br /> <br /> <span style="color: #dcdccc;">app</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">configure</span>(<span style="color: #cc9393;">'development'</span><span style="color: #dcdccc;">,</span> <span style="color: #efefaf; font-weight: bold;">function</span><span style="color: #dcdccc;">(){</span><br /> &nbsp; <span style="color: #dcdccc;">app</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">use</span>(<span style="color: #dcdccc;">express</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">errorHandler</span><span style="color: #dcdccc;">({</span> <span style="color: #dcdccc;">dumpExceptions</span><span style="color: #dcdccc;">:</span> <span style="color: #e3ceab;">true</span><span style="color: #dcdccc;">,</span> <span style="color: #dcdccc;">showStack</span><span style="color: #dcdccc;">:</span> <span style="color: #e3ceab;">true</span> <span style="color: #dcdccc;">}));</span> <br /> <span style="color: #dcdccc;">});</span><br /> <br /> <span style="color: #dcdccc;">app</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">configure</span>(<span style="color: #cc9393;">'production'</span><span style="color: #dcdccc;">,</span> <span style="color: #efefaf; font-weight: bold;">function</span><span style="color: #dcdccc;">(){</span><br /> &nbsp; <span style="color: #dcdccc;">app</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">use</span>(<span style="color: #dcdccc;">express</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">errorHandler</span>()); <br /> <span style="color: #dcdccc;">});</span><br /> <br /> <span style="color: #7f9f7f;">// Routes</span><br /> <br /> <span style="color: #dcdccc;">app</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">get</span>(<span style="color: #cc9393;">'/'</span><span style="color: #dcdccc;">,</span> <span style="color: #efefaf; font-weight: bold;">function</span>(<span style="color: #dcdccc;">req</span><span style="color: #dcdccc;">,</span> <span style="color: #dcdccc;">res</span><span style="color: #dcdccc;">){</span><br /> &nbsp; <span style="color: #dcdccc;">res</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">render</span>(<span style="color: #cc9393;">'index'</span><span style="color: #dcdccc;">,</span> <span style="color: #dcdccc;">{</span><br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #dcdccc;">title</span><span style="color: #dcdccc;">:</span> <span style="color: #cc9393;">'Wayne Express Hello World'</span><span style="color: #dcdccc;">,</span><br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #dcdccc;">youAreUsingJade</span><span style="color: #dcdccc;">:</span> <span style="color: #e3ceab;">true</span><span style="color: #dcdccc;">,</span><br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #dcdccc;">domain</span><span style="color: #dcdccc;">:</span> <span style="color: #cc9393;">'192.168.1.4'</span><br /> &nbsp; <span style="color: #dcdccc;">});</span><br /> <span style="color: #dcdccc;">});</span><br /> <br /> <span style="color: #dcdccc;">app</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">listen</span>(<span style="color: #8cd0d3;">3000</span>);<br /> <span style="color: #dcdccc;">console</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">log</span>(<span style="color: #cc9393;">"Express server listening on port %d in %s mode"</span><span style="color: #dcdccc;">,</span> <span style="color: #dcdccc;">app</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">address</span><span style="color: #dcdccc;">().</span><span style="color: #dcdccc;">port</span><span style="color: #dcdccc;">,</span> <span style="color: #dcdccc;">app</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">settings</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">env</span>);<br /> <br /> <span style="color: #dcdccc;">io</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">sockets</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">on</span>(<span style="color: #cc9393;">'connection'</span><span style="color: #dcdccc;">,</span> <span style="color: #efefaf; font-weight: bold;">function</span> (<span style="color: #dcdccc;">socket</span>) <span style="color: #dcdccc;">{</span><br /> &nbsp; <span style="color: #dcdccc;">socket</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">emit</span>(<span style="color: #cc9393;">'news'</span><span style="color: #dcdccc;">,</span> <span style="color: #dcdccc;">{</span> <span style="color: #dcdccc;">hello</span><span style="color: #dcdccc;">:</span> <span style="color: #cc9393;">'world'</span> <span style="color: #dcdccc;">});</span><br /> &nbsp; <span style="color: #dcdccc;">socket</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">on</span>(<span style="color: #cc9393;">'my other event'</span><span style="color: #dcdccc;">,</span> <span style="color: #efefaf; font-weight: bold;">function</span> (<span style="color: #dcdccc;">data</span>) <span style="color: #dcdccc;">{</span><br /> &nbsp;&nbsp;&nbsp; <span style="color: #dcdccc;">console</span><span style="color: #dcdccc;">.</span><span style="color: #dcdccc;">log</span>(<span style="color: #dcdccc;">data</span>);<br /> &nbsp; <span style="color: #dcdccc;">});</span><br /> <span style="color: #dcdccc;">});</span></pre>
+<p>And below is my index.jade:</p>
+<pre>!!! 5
+html(lang="en")
+  head
+    title= title
+    script(src='http://'+ domain + ':3000/socket.io/socket.io.js')
+    script(type='text/javascript')
+      var socket;
+      socket =  io.connect('http://192.168.1.4:3000');
+
+      socket.on('news', function (data) {
+       console.log(data);
+       socket.emit('my other event', { my: 'data' });
+             });
+  body
+    h1 Wayne WebSocket Demo using Socket.io
+    #container
+      - if (youAreUsingJade)
+        p You are amazing
+      - else
+        p Get on it!
+
+    p Powered By a(href='http://socket.io') Socket.io
+
+    footer Copyright&copy;2011 http://wayneye.com
+</pre>
+<h3>Testing everything up</h3>
+<p>Start the server by:</p>
+<p>
+<code>$ node app.js</code></p>
+<p>It works:)</p>
+<p>I tested the combination above by using google Chromoum Dev 12 and Dev 15, they seperately adhere WebSocket protocol <a title="76" href="http://tools.ietf.org/html/draft-hixie-thewebsocketprotocol-76">draft-hixie-thewebsocketprotocol-76</a>&nbsp;and <a title="hybi10" href="http://tools.ietf.org/html/draft-ietf-hybi-thewebsocketprotocol-10" target="_blank">draft-ietf-hybi-thewebsocketprotocol-10</a>, the connection details for hybi10 is showing below:</p>
+<p><img title="socket.io" src="https://byfiles.storage.live.com/y1pTUHjX2huuUrB64zVgNJ6w9cGtfZ_xXEmZm9LG2Xx6u9s-vZN2EHA2i8FdhYrnF3rODiuaq3hN-U/Wayne%20socket.io.png?psid=1" alt="socket.io" width="640" /></p>
+<p>socket.io will print out useful information on console when running:</p>
+<p><img title="socket.io console" src="https://byfiles.storage.live.com/y1p81UPa6dAmB6gfas8xMw8rMHjBxOxb6B-e3P3t5rX5Iox-_VBQ7sbGE79MC_kG5pEipy_z1BQ-h4/console.png?psid=1" alt="socket.io console" width="640" /></p>
+<p>&nbsp;</p>
+<p>Wish that helps:)</p>

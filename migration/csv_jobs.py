@@ -14,7 +14,7 @@ categories:
   - {1}
 tags:
   - {1}
-{2}
+permalink: {2}
 ---
 
 {3}
@@ -37,11 +37,11 @@ with open('/Users/yewe/Documents/blogs.csv', 'r') as csv_file:
             category = row[1]
             title = row[2]
             url_safe_title = title.replace(' ', '-').replace('/', '-').replace('"', '')
-            permalink = 'permalink: '.format(row[3]) if row[3].strip() else url_safe_title
+            permalink = row[3] if row[3].strip() else url_safe_title
             content = row[4]
             date_str = row[5]
             date_str = date_str[0:date_str.index(' ')]
-            blog_file = '/Users/yewe/projects/wayneye.github.io/_posts/' + date_str + '-' +  + '.html'
+            blog_file = '/Users/yewe/projects/wayneye.github.io/_posts/' + date_str + '-' + url_safe_title + '.html'
             blog_content = BLOG_CONTENT.format(title, category, permalink, content)
             with open(blog_file, 'w') as w:
                 w.write(blog_content)

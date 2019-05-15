@@ -1,0 +1,165 @@
+---
+title: AJAX Cross-Origin HTTP request
+categories:
+  - Hack
+tags:
+  - Hack
+permalink: Ajax-Cross-Origin-HTTP-request
+---
+
+<div>
+<h3>Background</h3>
+<p><strong>Cross-Origin Request Sharing - CORS</strong> (A.K.A.<strong> Cross-Domain AJAX request</strong>) is an issue that most web developers might encounter,&nbsp;according to <a href="http://en.wikipedia.org/wiki/Same_origin_policy" target="_blank">Same-Origin-Policy</a>, browsers restrict client JavaScript in a security sandbox, usually JS cannot directly communicate with a remote server from a different domain. In the past developers created many tricky ways to achieve Cross-Domain resource request, most commonly using ways are:</p>
+<ol>
+<li>Use Flash/Silverlight or server side as a "proxy" to communicate with remote.</li>
+<li><a href="http://en.wikipedia.org/wiki/JSON#JSONP" target="_blank">JSON With Padding (JSONP)</a>.</li>
+<li>Embeds remote server in an iframe and communicate through fragment or window.name, refer <a href="http://jectbd.com/?p=611" target="_blank">here</a>.</li>
+</ol>
+<p>And so on..</p>
+<p>Those tricky ways have more or less some issues, for example JSONP might result in security hole if developers simply "eval" it, and #3 above, although it works, both domains should build strict contract between each other, it neither flexible nor elegant IMHO:)</p>
+<p>W3C had introduced&nbsp;<a href="http://www.w3.org/TR/cors/" target="_blank">Cross-Origin Resource Sharing (CORS)</a>&nbsp;as a standard solution to provide a safe, flexible and a recommended standard way to solve this issue.&nbsp;</p>
+<h3>Mechanism</h3>
+<p>From a high level we can simply deem CORS is a contract between client AJAX call from domain A and a page hosted on domain B, a tipical Cross-Origin request/response would be:</p>
+<p><strong>DomainA&nbsp;AJAX request headers</strong></p>
+<blockquote>Host DomainB.com<br />User-Agent Mozilla/5.0 (Windows NT 6.1; WOW64; rv:2.0) Gecko/20100101 Firefox/4.0<br />Accept text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8,application/json<br />Accept-Language en-us;<br />Accept-Encoding gzip, deflate<br />Keep-Alive 115<br /><strong><span style="color: #3366ff;">Origin http://DomainA.com&nbsp;</span></strong></blockquote>
+<p><strong>DomainB response headers</strong></p>
+<blockquote>Cache-Control private<br />Content-Type application/json; charset=utf-8<br /><strong><span style="color: #3366ff;">Access-Control-Allow-Origin DomainA.com</span></strong><br />Content-Length 87<br />Proxy-Connection Keep-Alive<br />Connection Keep-Alive</blockquote>
+<p>The<span style="color: #3366ff;"> blue parts</span> I marked above were the kernal facts, "<span style="color: #3366ff;">Origin</span>" request header "indicates where the <a href="http://www.w3.org/TR/cors/#cross-origin-request" target="_blank">cross-origin request</a> or <a href="http://www.w3.org/TR/cors/#preflight-request" target="_blank">preflight request</a> originates from", the "<span style="color: #3366ff;">Access-Control-Allow-Origin</span>" response header indicates this page allows remote request from DomainA (if the value is * indicate allows remote requests from any domain).</p>
+$More$
+<p>As I mentioned above, W3 recommended browser to implement a "<strong><span style="color: #3366ff;"><a href="http://www.w3.org/TR/cors/#preflight-request" target="_blank">preflight request</a></span></strong>" before submiting the actually Cross-Origin HTTP request, in a nutshell it is an HTTP "<strong>OPTIONS</strong>" request:</p>
+<blockquote>
+<p>OPTIONS DomainB.com/foo.aspx HTTP/1.1</p>
+</blockquote>
+<p>If foo.aspx supports OPTIONS HTTP verb, it might return response like below:</p>
+<blockquote>HTTP/1.1 200 OK<br />Date: Wed, 01 Mar 2011 15:38:19 GMT<br />Access-Control-Allow-Origin: http://DomainB.com<br />Access-Control-Allow-Methods: POST, GET, OPTIONS, HEAD<br />Access-Control-Allow-Headers: X-Requested-With<br />Access-Control-Max-Age: 1728000<br />Connection: Keep-Alive<br />Content-Type: application/json</blockquote>
+<p>Only if the response contains "<span>Access-Control-Allow-Origin</span>" AND its value is "*" or contain the domain who submitted the CORS request, by satisfying this mandtory condition browser will submit the actual Cross-Domain request, and cache the result in "<a href="http://www.w3.org/TR/cors/#preflight-result-cache" target="_blank">Preflight-Result-Cache</a>".</p>
+<h3>Implementation</h3>
+<p>Let's take a look at server side code samples below (ASP.NET and PHP):</p>
+<p>ASP.NET (C#)</p>
+<pre style="color: #000020; background: #f6f8ff;"><span style="color: #200080; font-weight: bold;">protected</span> <span style="color: #200080; font-weight: bold;">void</span> Page_Load<span style="color: #308080;">(</span><span style="color: #200080; font-weight: bold;">object</span> sender<span style="color: #308080;">,</span> EventArgs e<span style="color: #308080;">)</span>
+<span style="color: #406080;">{</span>
+    String data <span style="color: #308080;">=</span> String<span style="color: #308080;">.</span>Empty<span style="color: #406080;">;</span>
+    String returnJSONStr <span style="color: #308080;">=</span> String<span style="color: #308080;">.</span>Empty<span style="color: #406080;">;</span>
+
+    <span style="color: #200080; font-weight: bold;">switch</span> <span style="color: #308080;">(</span>Request<span style="color: #308080;">.</span>HttpMethod<span style="color: #308080;">)</span>
+    <span style="color: #406080;">{</span>
+        <span style="color: #200080; font-weight: bold;">case</span> <span style="color: #800000;">"</span><span style="color: #1060b6;">GET</span><span style="color: #800000;">"</span><span style="color: #308080;">:</span>
+            data <span style="color: #308080;">=</span> Request<span style="color: #308080;">.</span>QueryString<span style="color: #308080;">[</span><span style="color: #800000;">"</span><span style="color: #1060b6;">Data</span><span style="color: #800000;">"</span><span style="color: #308080;">]</span><span style="color: #406080;">;</span>
+            returnJSONStr <span style="color: #308080;">=</span> <span style="color: #800000;">"</span><span style="color: #1060b6;">{\"Data\":\"Hi remote friend, you tried to passed me data: *</span><span style="color: #800000;">"</span> <span style="color: #308080;">+</span> data <span style="color: #308080;">+</span> <span style="color: #800000;">"</span><span style="color: #1060b6;">* through HTTP GET.\"}</span><span style="color: #800000;">"</span><span style="color: #406080;">;</span>
+            <span style="color: #200080; font-weight: bold;">break</span><span style="color: #406080;">;</span>
+        <span style="color: #200080; font-weight: bold;">case</span> <span style="color: #800000;">"</span><span style="color: #1060b6;">POST</span><span style="color: #800000;">"</span><span style="color: #308080;">:</span>
+            data <span style="color: #308080;">=</span> Request<span style="color: #308080;">.</span>Form<span style="color: #308080;">[</span><span style="color: #800000;">"</span><span style="color: #1060b6;">Data</span><span style="color: #800000;">"</span><span style="color: #308080;">]</span><span style="color: #406080;">;</span>
+            returnJSONStr <span style="color: #308080;">=</span> <span style="color: #800000;">"</span><span style="color: #1060b6;">{\"Data\":\"Hi remote friend, you tried to POST some mock data: *</span><span style="color: #800000;">"</span> <span style="color: #308080;">+</span> data <span style="color: #308080;">+</span> <span style="color: #800000;">"</span><span style="color: #1060b6;">* to me.\"}</span><span style="color: #800000;">"</span><span style="color: #406080;">;</span>
+            <span style="color: #200080; font-weight: bold;">break</span><span style="color: #406080;">;</span>
+        <span style="color: #200080; font-weight: bold;">case</span> <span style="color: #800000;">"</span><span style="color: #1060b6;">OPTIONS</span><span style="color: #800000;">"</span><span style="color: #308080;">:</span>
+            <span style="color: #200080; font-weight: bold;">break</span><span style="color: #406080;">;</span>
+        <span style="color: #200080; font-weight: bold;">default</span><span style="color: #308080;">:</span>
+            returnBadRequestResponse<span style="color: #308080;">(</span><span style="color: #308080;">)</span><span style="color: #406080;">;</span>
+            <span style="color: #200080; font-weight: bold;">break</span><span style="color: #406080;">;</span>
+    <span style="color: #406080;">}</span>
+
+    <span style="color: #200080; font-weight: bold;">if</span> <span style="color: #308080;">(</span>String<span style="color: #308080;">.</span>IsNullOrEmpty<span style="color: #308080;">(</span>data<span style="color: #308080;">)</span><span style="color: #308080;">)</span>
+        returnBadRequestResponse<span style="color: #308080;">(</span><span style="color: #308080;">)</span><span style="color: #406080;">;</span>
+    <span style="color: #200080; font-weight: bold;">else</span>
+    <span style="color: #406080;">{</span>
+        Response<span style="color: #308080;">.</span>AddHeader<span style="color: #308080;">(</span><span style="color: #800000;">"</span><span style="color: #1060b6;">Access-Control-Allow-Origin</span><span style="color: #800000;">"</span><span style="color: #308080;">,</span> <span style="color: #800000;">"</span><span style="color: #1060b6;">*</span><span style="color: #800000;">"</span><span style="color: #308080;">)</span><span style="color: #406080;">;</span>
+        Response<span style="color: #308080;">.</span>ContentType <span style="color: #308080;">=</span> <span style="color: #800000;">"</span><span style="color: #1060b6;">application/json</span><span style="color: #800000;">"</span><span style="color: #406080;">;</span>
+        Response<span style="color: #308080;">.</span>Write<span style="color: #308080;">(</span>returnJSONStr<span style="color: #308080;">)</span><span style="color: #406080;">;</span>
+    <span style="color: #406080;">}</span>
+<span style="color: #406080;">}</span>
+
+<span style="color: #200080; font-weight: bold;">private</span> <span style="color: #200080; font-weight: bold;">void</span> returnBadRequestResponse<span style="color: #308080;">(</span><span style="color: #308080;">)</span>
+<span style="color: #406080;">{</span>
+    Response<span style="color: #308080;">.</span>StatusCode <span style="color: #308080;">=</span> <span style="color: #008c00;">400</span><span style="color: #406080;">;</span>
+    Response<span style="color: #308080;">.</span>ContentType <span style="color: #308080;">=</span> <span style="color: #800000;">"</span><span style="color: #1060b6;">application/json</span><span style="color: #800000;">"</span><span style="color: #406080;">;</span>
+    Response<span style="color: #308080;">.</span>Write<span style="color: #308080;">(</span><span style="color: #800000;">"</span><span style="color: #1060b6;">{\"Error\":\"Bad HTTP request type!\"}</span><span style="color: #800000;">"</span><span style="color: #308080;">)</span><span style="color: #406080;">;</span>
+<span style="color: #406080;">}</span>
+</pre>
+<p>PHP:</p>
+<pre style="color: #000000; background: #ffffff;"><span style="color: #a65700; background: #ffffe8;">&lt;?php</span>
+<span style="color: #800000; background: #ffffe8; font-weight: bold;">if</span><span style="color: #808030; background: #ffffe8;">(</span><span style="color: #800000; background: #ffffe8; font-weight: bold;">isset</span><span style="color: #808030; background: #ffffe8;">(</span><span style="color: #000000; background: #ffffe8;">$</span><span style="color: #808030; background: #ffffe8;">[</span><span style="color: #0000e6; background: #ffffe8;">"Data"</span><span style="color: #808030; background: #ffffe8;">]</span><span style="color: #808030; background: #ffffe8;">)</span><span style="color: #808030; background: #ffffe8;">)</span>
+<span style="color: #800080; background: #ffffe8;">{</span>
+<span style="color: #000000; background: #ffffe8;">$method</span><span style="color: #808030; background: #ffffe8;">=</span><span style="color: #000000; background: #ffffe8;">$_SERVER</span><span style="color: #808030; background: #ffffe8;">[</span><span style="color: #0000e6; background: #ffffe8;">'REQUEST_METHOD'</span><span style="color: #808030; background: #ffffe8;">]</span><span style="color: #800080; background: #ffffe8;">;</span>
+<span style="color: #000000; background: #ffffe8;">$data</span><span style="color: #808030; background: #ffffe8;">=</span><span style="color: #0000e6; background: #ffffe8;">""</span><span style="color: #800080; background: #ffffe8;">;</span>
+<span style="color: #800000; background: #ffffe8; font-weight: bold;"> if</span><span style="color: #808030; background: #ffffe8;">(</span><span style="color: #000000; background: #ffffe8;">$method</span><span style="color: #808030; background: #ffffe8;">=</span><span style="color: #808030; background: #ffffe8;">=</span><span style="color: #0000e6; background: #ffffe8;">"POST"</span><span style="color: #808030; background: #ffffe8;">)</span>
+<span style="color: #800080; background: #ffffe8;">{</span>
+<span style="color: #000000; background: #ffffe8;">$data</span><span style="color: #808030; background: #ffffe8;">=</span><span style="color: #000000; background: #ffffe8;">$_POST</span><span style="color: #808030; background: #ffffe8;">[</span><span style="color: #0000e6; background: #ffffe8;">"Data"</span><span style="color: #808030; background: #ffffe8;">]</span><span style="color: #800080; background: #ffffe8;">;</span>
+
+<span style="color: #000000; background: #ffffe8;">$fakeData</span><span style="color: #808030; background: #ffffe8;">=</span><span style="color: #800000; background: #ffffe8; font-weight: bold;">new</span><span style="color: #000000; background: #ffffe8;"> FakeData</span><span style="color: #808030; background: #ffffe8;">(</span><span style="color: #808030; background: #ffffe8;">)</span><span style="color: #800080; background: #ffffe8;">;</span>
+<span style="color: #000000; background: #ffffe8;">$fakeData</span><span style="color: #808030; background: #ffffe8;">-&gt;</span><span style="color: #000000; background: #ffffe8;">Data</span><span style="color: #808030; background: #ffffe8;">=</span><span style="color: #0000e6; background: #ffffe8;">"Hi remote friend, you tried to POST some mock data: *"</span><span style="color: #808030; background: #ffffe8;">+</span><span style="color: #400000; background: #ffffe8;">data</span><span style="color: #808030; background: #ffffe8;">+</span><span style="color: #0000e6; background: #ffffe8;">"* to me."</span><span style="color: #800080; background: #ffffe8;">;</span>
+<span style="color: #000000; background: #ffffe8;">$fakeData</span><span style="color: #808030; background: #ffffe8;">-&gt;</span><span style="color: #000000; background: #ffffe8;">Time</span><span style="color: #808030; background: #ffffe8;">=</span><span style="color: #800000; background: #ffffe8; font-weight: bold;">new</span><span style="color: #000000; background: #ffffe8;"> DateTime</span><span style="color: #808030; background: #ffffe8;">(</span><span style="color: #0000e6; background: #ffffe8;">"now"</span><span style="color: #808030; background: #ffffe8;">)</span><span style="color: #800080; background: #ffffe8;">;</span>
+<span style="color: #800080; background: #ffffe8;">}</span>
+<span style="color: #800000; background: #ffffe8; font-weight: bold;"> else</span><span style="color: #800000; background: #ffffe8; font-weight: bold;">if</span><span style="color: #808030; background: #ffffe8;">(</span><span style="color: #000000; background: #ffffe8;">$method</span><span style="color: #808030; background: #ffffe8;">=</span><span style="color: #808030; background: #ffffe8;">=</span><span style="color: #0000e6; background: #ffffe8;">"GET"</span><span style="color: #808030; background: #ffffe8;">)</span>
+<span style="color: #800080; background: #ffffe8;">{</span>
+<span style="color: #000000; background: #ffffe8;">$fakeData</span><span style="color: #808030; background: #ffffe8;">=</span><span style="color: #800000; background: #ffffe8; font-weight: bold;">new</span><span style="color: #000000; background: #ffffe8;"> FakeData</span><span style="color: #808030; background: #ffffe8;">(</span><span style="color: #808030; background: #ffffe8;">)</span><span style="color: #800080; background: #ffffe8;">;</span>
+<span style="color: #000000; background: #ffffe8;">$fakeData</span><span style="color: #808030; background: #ffffe8;">-&gt;</span><span style="color: #000000; background: #ffffe8;">Data</span><span style="color: #808030; background: #ffffe8;">=</span><span style="color: #0000e6; background: #ffffe8;">"Hi remote friend, you tried to passed me data: *"</span><span style="color: #808030; background: #ffffe8;">+</span><span style="color: #400000; background: #ffffe8;">data</span><span style="color: #808030; background: #ffffe8;">+</span><span style="color: #0000e6; background: #ffffe8;">"* through HTTP GET."</span><span style="color: #800080; background: #ffffe8;">;</span>
+<span style="color: #000000; background: #ffffe8;">$fakeData</span><span style="color: #808030; background: #ffffe8;">-&gt;</span><span style="color: #000000; background: #ffffe8;">Time</span><span style="color: #808030; background: #ffffe8;">=</span><span style="color: #800000; background: #ffffe8; font-weight: bold;">new</span><span style="color: #000000; background: #ffffe8;"> DateTime</span><span style="color: #808030; background: #ffffe8;">(</span><span style="color: #0000e6; background: #ffffe8;">"now"</span><span style="color: #808030; background: #ffffe8;">)</span><span style="color: #800080; background: #ffffe8;">;</span>
+<span style="color: #800080; background: #ffffe8;">}</span>
+<span style="color: #800000; background: #ffffe8; font-weight: bold;"> else</span>
+<span style="color: #800080; background: #ffffe8;">{</span>
+<span style="color: #000000; background: #ffffe8;">RaiseError</span><span style="color: #808030; background: #ffffe8;">(</span><span style="color: #808030; background: #ffffe8;">)</span><span style="color: #800080; background: #ffffe8;">;</span>
+<span style="color: #800080; background: #ffffe8;">}</span>
+
+<span style="color: #400000; background: #ffffe8;">header</span><span style="color: #808030; background: #ffffe8;">(</span><span style="color: #0000e6; background: #ffffe8;">'Content-type: application/json'</span><span style="color: #808030; background: #ffffe8;">)</span><span style="color: #800080; background: #ffffe8;">;</span>
+<span style="color: #000000; background: #ffffe8;">$jsonStr</span><span style="color: #808030; background: #ffffe8;">=</span><span style="color: #000000; background: #ffffe8;"> json_encode</span><span style="color: #808030; background: #ffffe8;">(</span><span style="color: #000000; background: #ffffe8;">$fakeData</span><span style="color: #808030; background: #ffffe8;">)</span><span style="color: #800080; background: #ffffe8;">;</span>
+<span style="color: #800000; background: #ffffe8; font-weight: bold;"> echo</span><span style="color: #808030; background: #ffffe8;">(</span><span style="color: #000000; background: #ffffe8;">$jsonStr</span><span style="color: #808030; background: #ffffe8;">)</span><span style="color: #800080; background: #ffffe8;">;</span>
+<span style="color: #800080; background: #ffffe8;">}</span>
+<span style="color: #800000; background: #ffffe8; font-weight: bold;">else</span>
+<span style="color: #800080; background: #ffffe8;">{</span>
+<span style="color: #000000; background: #ffffe8;">RaiseError</span><span style="color: #808030; background: #ffffe8;">(</span><span style="color: #808030; background: #ffffe8;">)</span><span style="color: #800080; background: #ffffe8;">;</span>
+<span style="color: #800080; background: #ffffe8;">}</span>
+
+<span style="color: #800000; background: #ffffe8; font-weight: bold;">function</span><span style="color: #000000; background: #ffffe8;"> RaiseError</span><span style="color: #808030; background: #ffffe8;">(</span><span style="color: #808030; background: #ffffe8;">)</span>
+<span style="color: #800080; background: #ffffe8;">{</span>
+<span style="color: #000000; background: #ffffe8;">http_send_status</span><span style="color: #808030; background: #ffffe8;">(</span><span style="color: #008c00; background: #ffffe8;">405</span><span style="color: #808030; background: #ffffe8;">)</span><span style="color: #800080; background: #ffffe8;">;</span>
+<span style="color: #400000; background: #ffffe8;">header</span><span style="color: #808030; background: #ffffe8;">(</span><span style="color: #0000e6; background: #ffffe8;">"Status: 405 Method Not Allowed"</span><span style="color: #808030; background: #ffffe8;">)</span><span style="color: #800080; background: #ffffe8;">;</span>
+<span style="color: #800080; background: #ffffe8;">}</span>
+
+<span style="color: #696969; background: #ffffe8;">/*Classes definition*/</span>
+<span style="color: #800000; background: #ffffe8; font-weight: bold;">class</span><span style="color: #000000; background: #ffffe8;"> FakeData</span>
+<span style="color: #800080; background: #ffffe8;">{</span>
+<span style="color: #800000; background: #ffffe8; font-weight: bold;">public </span><span style="color: #000000; background: #ffffe8;">$Data</span><span style="color: #800080; background: #ffffe8;">;</span>
+<span style="color: #800000; background: #ffffe8; font-weight: bold;">public </span><span style="color: #000000; background: #ffffe8;">$Time</span><span style="color: #800080; background: #ffffe8;">;</span>
+<span style="color: #800080; background: #ffffe8;">}</span>
+<span style="color: #a65700; background: #ffffe8;">?&gt;</span>
+</pre>
+<p>Then client AJax call code:</p>
+<pre style="color: #000020; background: #f6f8ff;"><span style="color: #200080; font-weight: bold;">var</span> cor <span style="color: #308080;">=</span> <span style="color: #0f4d75;">null</span><span style="color: #406080;">;</span> <span style="color: #595979;">// cor stands for Cross-Origin request</span>
+
+<span style="color: #200080; font-weight: bold;">if</span> <span style="color: #308080;">(</span>window<span style="color: #308080;">.</span>XMLHttpRequest<span style="color: #308080;">)</span> <span style="color: #406080;">{</span>
+    cor <span style="color: #308080;">=</span> <span style="color: #200080; font-weight: bold;">new</span> XMLHttpRequest<span style="color: #308080;">(</span><span style="color: #308080;">)</span><span style="color: #406080;">;</span>
+<span style="color: #406080;">}</span>
+<span style="color: #200080; font-weight: bold;">//else</span> <span style="color: #200080; font-weight: bold;">if</span> <span style="color: #308080;">(</span>window<span style="color: #308080;">.</span>XDomainRequest<span style="color: #308080;">)</span> <span style="color: #406080;">{</span>
+    //cor <span style="color: #308080;">=</span> <span style="color: #200080; font-weight: bold;">new</span> XDomainRequest<span style="color: #308080;">(</span><span style="color: #308080;">)</span><span style="color: #406080;">;</span>
+<span style="color: #406080;">//}</span>
+<span style="color: #200080; font-weight: bold;">else</span> <span style="color: #406080;">{</span>
+    alert<span style="color: #308080;">(</span><span style="color: #1060b6;">"Your browser does not support Cross-Origin request!"</span><span style="color: #308080;">)</span><span style="color: #406080;">;</span>
+    <span style="color: #200080; font-weight: bold;">return</span><span style="color: #406080;">;</span>
+<span style="color: #406080;">}</span>
+
+cor<span style="color: #308080;">.</span>onreadystatechange <span style="color: #308080;">=</span> <span style="color: #200080; font-weight: bold;">function</span> <span style="color: #308080;">(</span><span style="color: #308080;">)</span> <span style="color: #406080;">{</span>
+    <span style="color: #200080; font-weight: bold;">if</span> <span style="color: #308080;">(</span>cor<span style="color: #308080;">.</span>readyState <span style="color: #308080;">==</span> <span style="color: #008c00;">4</span><span style="color: #308080;">)</span> <span style="color: #406080;">{</span>
+        document<span style="color: #308080;">.</span>getElementById<span style="color: #308080;">(</span><span style="color: #1060b6;">'lbl'</span><span style="color: #308080;">)</span><span style="color: #308080;">.</span>innerHTML <span style="color: #308080;">=</span> cor<span style="color: #308080;">.</span>responseText<span style="color: #406080;">;</span>
+    <span style="color: #406080;">}</span>
+<span style="color: #406080;">}</span><span style="color: #406080;">;</span>
+
+<span style="color: #200080; font-weight: bold;">var</span> data <span style="color: #308080;">=</span> <span style="color: #1060b6;">'Some fake data'</span><span style="color: #406080;">;</span>
+<span style="color: #200080; font-weight: bold;">if</span> <span style="color: #308080;">(</span>method <span style="color: #308080;">==</span> <span style="color: #1060b6;">'POST'</span><span style="color: #308080;">)</span> <span style="color: #406080;">{</span>
+    cor<span style="color: #308080;">.</span>open<span style="color: #308080;">(</span><span style="color: #1060b6;">'POST'</span><span style="color: #308080;">,</span> <span style="color: #1060b6;">'http://WayneYe.com/Demo/CORSDemo/CORSDemoServer.aspx'</span><span style="color: #308080;">,</span> <span style="color: #0f4d75;">true</span><span style="color: #308080;">)</span><span style="color: #406080;">;</span>
+    cor<span style="color: #308080;">.</span>withCredential <span style="color: #308080;">=</span> <span style="color: #1060b6;">"true"</span><span style="color: #406080;">;</span>
+    cor<span style="color: #308080;">.</span>setRequestHeader<span style="color: #308080;">(</span><span style="color: #1060b6;">'Content-Type'</span><span style="color: #308080;">,</span> <span style="color: #1060b6;">'application/x-www-form-urlencoded'</span><span style="color: #308080;">)</span><span style="color: #406080;">;</span>
+    cor<span style="color: #308080;">.</span>send<span style="color: #308080;">(</span><span style="color: #1060b6;">'Data='</span> <span style="color: #308080;">+</span> data<span style="color: #308080;">)</span><span style="color: #406080;">;</span>
+<span style="color: #406080;">}</span>
+<span style="color: #200080; font-weight: bold;">else</span> <span style="color: #200080; font-weight: bold;">if</span> <span style="color: #308080;">(</span>method <span style="color: #308080;">==</span> <span style="color: #1060b6;">'GET'</span><span style="color: #308080;">)</span> <span style="color: #406080;">{</span>
+    cor<span style="color: #308080;">.</span>open<span style="color: #308080;">(</span><span style="color: #1060b6;">'GET'</span><span style="color: #308080;">,</span> <span style="color: #1060b6;">'http://WayneYe.com/Demo/CORSDemo/CORSDemoServer.aspx?Data='</span> <span style="color: #308080;">+</span> data<span style="color: #308080;">,</span> <span style="color: #0f4d75;">true</span><span style="color: #308080;">)</span><span style="color: #406080;">;</span>
+    cor<span style="color: #308080;">.</span>withCredential <span style="color: #308080;">=</span> <span style="color: #1060b6;">"true"</span><span style="color: #406080;">;</span>
+    cor<span style="color: #308080;">.</span>send<span style="color: #308080;">(</span><span style="color: #0f4d75;">null</span><span style="color: #308080;">)</span><span style="color: #406080;">;</span>
+<span style="color: #406080;">}</span>
+</pre>
+<p>&nbsp;The JS code works for all mainstream browsers (IE8+, FF 3.6+, Chrome 8+), I didn&rsquo;t use <a href="http://msdn.microsoft.com/en-us/library/cc288060%28v=vs.85%29.aspx" target="_blank"><strong>XDomainObject</strong></a>&nbsp;which introduced in IE8 because XMLHttpRequest is already supported by IE8+, FF and Chrome, Safari, in additional XDR seems have a lot of restrictions (refer: <a href="http://blogs.msdn.com/b/ieinternals/archive/2010/05/13/xdomainrequest-restrictions-limitations-and-workarounds.aspx" target="_blank">http://blogs.msdn.com/b/ieinternals/archive/2010/05/13/xdomainrequest-restrictions-limitations-and-workarounds.aspx</a>).</p>
+<h3>Conclusion</h3>
+<p>Cross-Origin Resource Sharing provides a safe, flexible and a standard way for web developers to achieve Cross-Origin communication, maybe it is time to forget those tricky or inelegant ways like&nbsp;JSONP, Flash/Silverlight/server bridge or even window.name and so on:)</p>
+<h3>References</h3>
+</div>
+<div><strong>Cross-Origin Resource Sharing</strong> <br /><a title="http://www.w3.org/TR/cors/" href="http://www.w3.org/TR/cors/">http://www.w3.org/TR/cors/</a> <br /><a title="http://dev.w3.org/2006/waf/access-control/" href="http://dev.w3.org/2006/waf/access-control/">http://dev.w3.org/2006/waf/access-control/</a><strong> <br /></strong> <br /> <strong>HTTP access control </strong><br /><a href="https://developer.mozilla.org/En/HTTP_access_control">https://developer.mozilla.org/En/HTTP_access_control</a></div>
+<div><br /> <strong>IIS Verbs configuration</strong><br /><a href="http://www.iis.net/ConfigReference/system.webServer/security/requestFiltering/verbs">http://www.iis.net/ConfigReference/system.webServer/security/requestFiltering/verbs</a></div>

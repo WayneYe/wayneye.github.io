@@ -1,0 +1,50 @@
+---
+title: Observation on CDN
+categories:
+  - Hack
+tags:
+  - Hack
+permalink: Observation-On-CDN
+---
+
+  <h3>Motivation</h3>
+  <p>
+    Leveraging CDN (<a href="http://en.wikipedia.org/wiki/Content_Delivery_Network" target="_blank">Content Delivery Network</a>) to speed up static files loading time is one of the most important fact which affects a website's loading time, CDN was emphasized in many articles related with improving website's performance, for example:
+    <ul>
+      <li><a href="http://www.nczonline.net/blog/2011/11/29/how-content-delivery-networks-cdns-work/">Nicholas C. Zakas - How content delivery networks (CDNs) work</a></li>
+      <li><a href="http://www.cloudcomputinglive.com/blog/uncategorized/why-the-cdn-industry-is-so-important">Why the CDN industry is so important</a></li>
+      <li><a href="http://www.globinch.com/importance-of-using-cdn-to-speed-up-website/">Importance of Using CDN to Speed Up Website</a></li>
+      <li><a href="http://developer.yahoo.com/performance/rules.html" target="_blank">Best Practices for Speeding Up Your Web Site</a></li>
+    </ul>
+  </p>
+$More$
+  <h3>Free JavaScript CDN providers</h3>
+  <p>Majority of the largest websites (Facebook, Twitter, Yahoo, Google, etc.) on the planet have their own CDN solution, while for a small website or a web application used by a small number of people, it is not very possible to setup your own CDN, luckily there are free CDN services who can provide famous javaScript/CSS library mirrors all around the world, below are free ones I've used:
+    <ul>
+      <li>Google CDN - <a href="https://developers.google.com/speed/libraries/devguide">https://developers.google.com/speed/libraries/devguide</a></li>
+      <li>Microsoft CDN - <a href="http://www.asp.net/ajaxlibrary/cdn.ashx">http://www.asp.net/ajaxlibrary/cdn.ashx</a></li>
+      <li>CDNJS - <a href="http://cdnjs.com/">http://cdnjs.com/</a> </li>
+      <li>CDN for twitter bootstrap - <a href="http://www.bootstrapcdn.com/">http://www.bootstrapcdn.com/</a></li>
+    </ul>
+  </p>
+
+  <h3>Which one I should use?</h3>
+  <p>
+    First of all, <a href="http://sysadminsjourney.com/content/2011/04/19/selecting-right-cdn-your-website/">Selecting the Right CDN for YOUR Website</a>! Features like 100% up time, reverse proxy ability, public cache header and gzip text content and very important, but anyway speed is one of the most important "feature", generally speaking, different CDN providers might behave different performance in different area, <a href="http://royal.pingdom.com/2012/07/24/best-cdn-for-jquery-in-2012/">The best CDN for jQuery in 2012</a> is research comparing speed between Google, Microsoft and Media Template (jQuery official CDN).
+
+    Personally I'd prefer jQuery's official CDN if I use jQuery (when I don't use?), and CDNJS for less-famous JS libraries. 
+  </p>
+
+  <h3>Best practices</h3>
+  <p>
+  IMHO, the following one are the most important points to serve static files efficiently:
+  <ul>
+    <li>Gzip static text content</li>
+    <li><a href="https://developers.google.com/speed/docs/best-practices/caching">HTTP cache header</a></li>
+    <li><a href="http://guides.rubyonrails.org/asset_pipeline.html#what-is-fingerprinting-and-why-should-i-care">Fingerprinting</a></li>
+    <li>CDN</li>
+  </ul>
+  All of above are mentioned in Yahoo's <a href="http://developer.yahoo.com/performance/rules.html">Best Practices for Speeding Up Your Web Site</a>, and google also has <a href="https://developers.google.com/speed/docs/best-practices/caching">a great article</a> talking about best practice of HTTP caching.
+  
+  </p>
+

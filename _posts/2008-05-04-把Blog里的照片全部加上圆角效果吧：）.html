@@ -1,0 +1,46 @@
+---
+title: 把Blog里的照片全部加上圆角效果吧：）
+categories:
+  - Hack
+tags:
+  - Hack
+permalink: 把Blog里的照片全部加上圆角效果吧：）
+---
+
+前几天在网上找到这么个酷酷的玩意，用JS给图片加上各种各样的圆角效果，官方主页：<br />
+
+<p><a href="http://www.netzgesta.de/corner/" 
+
+target="_blank">http://www.netzgesta.de/corner/</a></p>
+
+<p>看后顿时觉得很酷，今天周末，有时间来搞搞这个：）</p>
+
+<p>读了官网的说明后发现很简单，下载corner.js（<a href="http://wayneye.cn/JS/corner.js">本地下载
+
+</a>），然后页面include后直接使用class="自己挑一个喜欢的class"就ok了。</p>
+
+<p>那么这里有个问题，如果你的Blog上线已有时日（比如鄙博）,难道要手动更新你之前所有Blog里的图片代码给它们加上
+
+class？？</p>
+<p>呵呵，这点事根本不能称之为问题：）当然是加段JS脚本给动态注册className喽，鄙播采用了Div+Css架构以及
+
+MasterPage，所有的Blog都包含于一个名为“ContentPlaceHolder”对Div中$More$，那么好办了:</p>
+<p>
+<ul><li>1. 得到此Div的Dom</li><li>2. 遍历其下所有Tag为img的东西</li><li>3. 设置
+
+className</li></ul><br />打完收工。<br /><br />完整代码如下：</p>
+
+<p>
+<pre>
+// Set Corner to image
+    var divBlogArtitle = document.getElementById('BlogArticle');
+    
+    var imgs = divBlogArtitle.getElementsByTagName('img');
+    
+    for (var i = 0; i< imgs.length; i++)
+        imgs[i].className = 'corner iradius20 ishadow33';
+</pre></p>
+
+<p>
+需要注意的是，这段代码要加在页面尾部已确保图片文件都下载完成后再设置class。
+</p>

@@ -1,0 +1,200 @@
+---
+title: Cache Reverse Proxy - Varnish
+categories:
+  - Hack
+tags:
+  - Hack
+permalink: Cache-Reverse-Proxy-Varnish
+---
+
+<h2>Introduction</h2>
+<p>Varnish is an <a href="http://en.wikipedia.org/wiki/Varnish_%28software%29">HTTP accelerator</a>, the official page is: <a href="https://www.varnish-cache.org/">https://www.varnish-cache.org/</a>.</p>
+<p>Varnish stands in front of the web application server to be a cache reverse proxy (also can be a load balancer), it can simply cache all the static resources in memory, and can also be powerfully configed using VCL (Varnish Configuration Language, a DSL for Varnish configuration) to cache dynamic content, in addition, Varnish implements ESI (<a href="http://en.wikipedia.org/wiki/Edge_Side_Includes">Edge Side Include</a>) standards to provide ability to cache static parts of the page.</p>
+$More$
+<p>A web server uses Varnish can easily handle more than <strong>10,000 requests/s</strong> on a single node, as a comparison, an Apache web server can handle about 1000 requests/s, thus it is extremely suitable and strongly recommended for "content-heavy dynamic websites" with high concurrency visits.</p>
+<figure><img alt="Varnish landscope" src="http://blog.mgm-tp.com/wp-content/uploads/2012/01/Setup-with-Varnish-as-Web-Cache.png" /> <figcaption>Varnish landscape (Shamelessly stole from <a href="http://blog.mgm-tp.com/2012/01/varnish-web-cache/" target="_blank">MGM Tech blog)</a></figcaption></figure>
+<p>Varnish Software has made a <a href="http://www.youtube.com/watch?v=x7t2Sp174eI">vivid video</a> to demonstrate what is Varnish and how it makes the web fly.</p>
+<h2>Installation</h2>
+<p>There are two ways of installing it, package manager or compiling from the source.</p>
+<h4>Install by package manager</h4>
+<p>For Linux distributions, follow the guide on <a href="https://www.varnish-cache.org/releases">Varnish Official Download page</a>, for Mac, simply run <code>brew install varnish</code>.</p>
+<h4>Compiling from source</h4>
+<p>Varnish relies on latest version GNU M4, autoconf, automake and libtool, so download them from <a href="http://mirrors.kernel.org/gnu/">GNU mirrors</a> and compile/make them one by one:</p>
+<p>For each ["M4", "autoconf", "automake", "libtool"] do:</p>
+<pre>  <code>
+curl -O http://mirrors.kernel.org/gnu/m4/m4-latest.tar.gz
+cd m4-1.4.16/
+./configure --prefix=/usr/local
+make &amp;&amp; sudo make install</code>
+</pre>
+<p>Then download source from <a href="https://www.varnish-cache.org/releases">Varnish Official Download page</a>, and install Varnish:</p>
+<pre>    <code>
+cd varnish-3.0.3
+$ ./autogen.sh$ ./configure
+make
+sudo make install</code>
+  </pre>
+<p>For me, I miraculously forgot the existence of Homebrew and spent 1 hour in compiling from source...</p>
+<h2>Make it work!</h2>
+<p>I have a Rails 3 website running at http://localhost:3000, I can simply run:</p>
+<pre>  <code>sudo varnishd -a :80 -b http://localhost:3000 -s file,/tmp,500M -T localhost:6082</code>
+</pre>
+<p>Arguments explanation (we can always run <code>varnishd --help</code>):</p>
+<ul>
+<li>-a Binding address</li>
+<li>-b Backend server addr</li>
+<li>-s Backend storage specification</li>
+<li>-T Telnet addr(Management interface), e.g. -T localhost:6082</li>
+<li>-F Run in Foreground, see runtime log from the terminal</li>
+</ul>
+<p>This will cache all GET/HEAD requests for the all the resources, we can simply setup a Varnish in front of our static file server, to benefit huge performance improve.</p>
+<p>However, we need deal with two typical scenarios since our website is dynamic:</p>
+<ol>
+<li>Some resources should be cached, however they could be updated sometime, then the cache needs rebuilt. Simply run varnish in the above way will NOT achieve this!</li>
+<li>Most of my website functionalities require user logging in. If I simply run a varnish, then there is no security at all, all the sensitive data was cached by Varnish, this is not acceptable!</li>
+</ol>
+<p>I've investigated how to config VCL to achieve No.1, for No.2, it can be done by ESI, I will cover that later.</p>
+<h2>VCL basics</h2>
+<p>When Varnish got installed, it generates a default.vcl under <code>/etc/sysconfig/varnish</code> or <code>/etc/default/varnish</code> for Linux distros and <code>/usr/local/etc/varnish/</code> for Mac, all the content inside all commented out and let you modify.</p>
+<p>VCL has a number of functions, each of them is invoked at specified stage of the HTTP transaction, the process is below (shamelessly stole from: <a href="http://blog.mgm-tp.com/2012/01/varnish-web-cache/" target="_blank">MGM Tech blog</a>:</p>
+<figure><img alt="Varnish Request Processing flow" src="http://blog.mgm-tp.com/wp-content/uploads/2012/01/Varnish-Request-Processing-480x310.png" /> <figcaption>Varnish Request Processing flow</figcaption></figure>
+<p>There are several important built-in objects which can be accessed in functions:</p>
+<p class="p1"><strong><em>req</em></strong></p>
+<p class="p2">The request object. When Varnish has received the request the req object is created and populated. Most of the work you do in vcl_recv you do on or with the req object.</p>
+<p class="p1"><strong><em>beresp</em></strong></p>
+<p class="p2">The backend respons object. It contains the headers of the object comming from the backend. Most of the work you do in vcl_fetch you do on the beresp object.</p>
+<p class="p1"><strong><em>obj</em></strong></p>
+<p class="p2">The cached object. Mostly a read only object that resides in memory. obj.ttl is writable, the rest is read only.<span class="s1">&nbsp;</span></p>
+<p>I have a resource exposed by Rails: <code>http://localhost/doc</code>, I expect it can be cached by Varnish, and can refresh the cache when someone POST to update it; To achieve my goal, I need cache the resource for all GET/HEAD requests, however, when a update request comes in - POST request, Varnish should purge the object which has been cached, this is done by three steps:</p>
+<ol>
+<li>Set default backend in VCL: <br />
+<pre>     
+     <code>
+backend default {
+  .host = "127.0.0.1";
+  .port = "3000";
+}</code>
+    </pre>
+</li>
+<li>Tell Varnish to purge cache when this is an HTTP POST request AND server said "no cache":
+<pre>    <code>
+sub vcl_fetch {
+  if (req.request == "POST" &amp;&amp; beresp.http.Cache-Control == "no-cache") {
+      ban("req.url == " + req.url);
+  }
+  return (deliver);
+} </code>
+  </pre>
+</li>
+<li>Rerun Varnish and tell it to use this VCL configuration.
+<pre>      <code>sudo varnishd -a :80 -s file,/tmp,500M -T localhost:6082 -F -f /usr/local/etc/varnish/default.vcl</code>
+    </pre>
+</li>
+</ol>
+<blockquote><code>ban</code> is a new action added in Varnish 3.0, there used to be <code>purge</code> and <code>purge_url</code> actions before but how they are replaced by <code>ban</code>, purge now can only be used without arguments.</blockquote>
+<p>Finally I update "<code>edit</code>" action of the resource controller:</p>
+<div class="source" style="font-family: '[object HTMLOptionElement]', Consolas, 'Lucida Console', 'Courier New'; color: #f6f3e8; background-color: #242424;"><span style="color: #f6f3e8;">response</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">header</span><span style="color: #f6f3e8;">[</span><span style="color: #95e454; font-style: italic;">"Cache-Control"</span><span style="color: #f6f3e8;">]</span> <span style="color: #f6f3e8;">=</span> <span style="color: #95e454; font-style: italic;">"no-cache"</span></div>
+<p>Now if I update the resource:</p>
+<pre>  <code>HTTP/1.1 POST http://localhost/doc </code>
+</pre>
+<p>Varnish will firstly passby the request to backend, and after it got updated inside Rails, the controller returns "<code>Cache-Control: no-cache</code>" header, my VCL will then purge (ban) the requested url, so that next time a GET request comes in, Varnish will reload the resource from backend and <strong>the cached is re-built</strong>!</p>
+<p>Below are some VCL examples I collected online:</p>
+<h4>Honor the Cache-Control header!</h4>
+<pre>  <code>
+#Without this block Varnish would attempt to guess whether the response was cacheable and result in unexpected caching
+if(obj.http.Pragma ~ "no-cache" ||
+    obj.http.Cache-Control ~ "no-cache" ||
+    obj.http.Cache-Control ~ "private") {
+    return(pass);
+} </code>
+</pre>
+<h4>Force refresh</h4>
+<p>Always look up backend if a client fires a "Force refresh request", e.g. CMD-Shift-R in Mac or &lt;Ctrl&gt;+F5 in IE.</p>
+<pre>  <code>
+if (req.http.Cache-Control ~ "no-cache" &amp;&amp; client.ip ~ editors) {
+    set req.hash_always_miss = true;
+} </code>
+</pre>
+<h4>Remove cookie headers for images</h4>
+<pre>  <code>
+sub vcl_fetch {
+  if (req.url ~ "\.(png|gif|jpg)$") {
+    unset beresp.http.set-cookie;
+    set beresp.ttl = 1h;
+  }
+}</code>
+</pre>
+<h4>Pass sensitive data to the backend</h4>
+<p>For basic HTTP authentication:</p>
+<pre>  <code>
+if (req.http.Authorization) {
+    # Not cacheable by default #
+    return(pass);
+} </code>
+</pre>
+<p>For JavaEE web application:</p>
+<pre>  <code>
+sub vcl_recv {
+    if (req.http.cookie ~ "JSESSIONID") {
+        std.log("found jsessionid in request, passing to backend server");  # import std;
+
+        return (pass);
+    }
+}</code>
+</pre>
+<blockquote>Tip for debug VCL: add <code>std</code>module in vcl file:
+<pre>    
+        <code>import std;</code>
+    </pre>
+<p>So that we can print some useful log in VCL:</p>
+<pre><code>std.syslog(888, "Purge cache for: " + req.url);</code></pre>
+</blockquote>
+<h2>Cache invalidation</h2>
+<p>The VCL below will setup a access control list named "purgers" and expose an HTTP PURGE interface:</p>
+<pre>    <code>
+acl purgers { "127.0.0.1"; }
+
+sub vcl_recv {
+    if (req.request == "PURGE") {
+        if (!client.ip ~ purgers) {
+            error 405 "Method not allowed";
+        }
+        return (lookup);
+    }
+}
+sub vcl_fetch {
+    std.syslog(888, "vcl_fetch!!!!!!!!!!!!!!!");
+    if (req.request == "POST" &amp;&amp; beresp.http.Cache-Control == "no-cache") {
+        std.syslog(888, "Purge cache for: " + req.url);
+        ban("req.url == " + req.url);
+    }
+    return (deliver);
+}
+sub vcl_hit {
+    if (req.request == "PURGE") {
+        purge;
+        error 200 "Purged";
+    }
+}
+sub vcl_miss {
+    if (req.request == "PURGE") { 
+        purge;
+        error 200 "Purged";
+    }
+}
+sub vcl_pass {
+    if (req.request == "PURGE") {
+        error 502 "PURGE on a passed object";
+    }
+} </code>
+</pre>
+<p>So when an HTTP PURGE request: <code>curl -X PURGE http://localhost/doc</code> is sent from "purgers", Varnish will purge the cache.</p>
+<h2>References</h2>
+<p class="p1"><span class="s1"><a href="https://www.varnish-cache.org/trac/wiki/Introduction">https://www.varnish-cache.org/trac/wiki/Introduction</a></span></p>
+<p class="p1"><span class="s1"><a href="https://www.varnish-cache.org/docs/3.0/tutorial/vcl.html">https://www.varnish-cache.org/docs/3.0/tutorial/vcl.html</a></span></p>
+<p class="p1"><span class="s1"><a href="https://www.varnish-software.com/static/book/VCL_functions.html">https://www.varnish-software.com/static/book/VCL_functions.html</a></span></p>
+<p class="p1"><a href="http://blog.mgm-tp.com/2012/01/varnish-web-cache/">http://blog.mgm-tp.com/2012/01/varnish-web-cache/</a></p>
+<p class="p1"><span class="s1"><a href="http://www.anchor.com.au/hosting/dedicated/CreatingHighPerformanceDynamicWebSitesWithTheVarnishHttpAccelerator">http://www.anchor.com.au/hosting/dedicated/CreatingHighPerformanceDynamicWebSitesWithTheVarnishHttpAccelerator</a></span></p>
+<p class="p1"><span class="s1"><a href="https://www.varnish-cache.org/trac/wiki/VCLExampleEnableForceRefresh">https://www.varnish-cache.org/trac/wiki/VCLExampleEnableForceRefresh</a></span></p>
+<p class="p1"><span class="s1"><a href="https://www.varnish-software.com/blog/vac-203-high-performance-cache-invalidation-api-aka-super-fast-purger">VAC 2.0.3 with high performance cache invalidation API (aka the Super Fast Purger)</a></span></p>
+<p class="p1"><span class="s1"><a href="http://en.wikipedia.org/wiki/Edge_Side_Includes">http://en.wikipedia.org/wiki/Edge_Side_Includes</a></span></p>

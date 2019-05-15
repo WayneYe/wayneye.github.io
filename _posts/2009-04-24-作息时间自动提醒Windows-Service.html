@@ -1,0 +1,34 @@
+---
+title: 作息时间自动提醒Windows Service
+categories:
+  - Hack
+tags:
+  - Hack
+permalink: Personal-Schedule-Windows-Service
+---
+
+<p>经济危机真真切切的影响到了几乎每一个人，09年过去三分之一多一点了，生活不太规律，确实太忙的说，工作换了，房子也换了，又做回了张江男，觉得自己再不好好努力会Out的。。。都奔三儿而去了。。。于是乎，为了勉励自己，做了这么个东东。</p>
+<p><img title="WSNSVC" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="475" alt="WSNSVC" src="https://a1r0ka.bay.livefilestore.com/y1mD6Kt2muV15s0gB3-mjxP7Wc4jaJsSm5xiCF75azDU1vttwkA_H9nrbJEU4LAqR_i7DvDM_QX4--f17CS2MW0JNn-Px4Ojn_wmWMyf9EameEvHi90UpQkN7vn_JzQ6lrqb_TSuRPTjrj9dnIISyGFSQ/WSNSVC_thumb[1].jpg" width="417" border="0"></p>
+<p>一个Windows Service，里面跑一个Timer，每隔10秒check一下当前时间，一旦发现时间吻合，则调用Microsoft Speech Technology? 发声提醒，超级简单，不过。。。以后要么得一直戴着心爱的森海塞尔，要么只能用音箱了。。。</p>
+<p><strong>服务描述：<br>Notify Wayne to follow the schedule established by himself. If this service is disabled, Wayne may waste a lot of time...</strong></p>
+<p><strong>项目层级：<br></strong><img title="SolutionHierarchy" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="366" alt="SolutionHierarchy" src="https://a1r0ka.bay.livefilestore.com/y1myARFNSs9HtPEkWNhLJtAPYbQUf3yRaNWdhWDTYz6QsW9bKfIjI8faJN_G8bGmfHxjUN5uePnITft3XyOOWkFVD9onxHYh2CsS1TZkzYNR2OiCrA5sZMW7goCQGrkHMSiXKz7l5U9ayquLzQ7CvcF5A/SolutionHierarchy_thumb[1].jpg" width="292" border="0">&nbsp;</p>
+<ul>
+<li>WayneScheduleService.cs Windows Service后台代码 $More$
+<li>ScheduleItemsReader.cs Linq读取ScheduleItems 
+<li>SoundNotifier.cs 执行发声提醒 
+<li>ServiceLogManager.cs 打Log</li></ul>
+<p><strong>主要程序代码：</strong></p>
+<p>调用程序发声的代码：<br>&nbsp;&nbsp;&nbsp;&nbsp; public static class SoundNotifier<br>&nbsp;&nbsp;&nbsp; {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public static void Phonate(String sentence)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SpeechSynthesizer speaker = new SpeechSynthesizer();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CultureInfo cnCulture = CultureInfo.GetCultureInfo("en-US"); </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PromptBuilder pb = new PromptBuilder(CultureInfo.CurrentCulture);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pb.StartVoice(VoiceGender.Female, VoiceAge.Adult);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pb.StartStyle(new PromptStyle(PromptVolume.ExtraLoud)); 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pb.StartSentence();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pb.AppendText(sentence, PromptEmphasis.Strong);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pb.EndSentence(); 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pb.EndStyle();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pb.EndVoice(); 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; speaker.Speak(pb);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp; } 
+<p>晚间作息时间弄在XML里，根据情况自行配置（搞烦了全删掉。。。）：<br>&lt;?xml version="1.0" encoding="utf-8" ?&gt;<br>&lt;WayneScheduleItems&gt;<br>&nbsp; &lt;ScheduleItem TriggerHour="18" TriggerMinute="20" Content="Hi! Wayne! Dinner Time!" /&gt;<br>&nbsp; &lt;ScheduleItem TriggerHour="19" TriggerMinute="0" Content="Hi! Wayne! It is time to learn technologies and programming skills!" /&gt;<br>&nbsp; &lt;ScheduleItem TriggerHour="20" TriggerMinute="30" Content="Hi! Wayne! Take a rest, entertainment, gaming, exercise and wash." /&gt;<br>&nbsp; &lt;ScheduleItem TriggerHour="22" TriggerMinute="0" Content="Well, read/write Emails, read some news." /&gt;<br>&nbsp; &lt;ScheduleItem TriggerHour="23" TriggerMinute="0" Content="Wayne, go to bed, sleep! Good night!" /&gt;<br>&lt;/WayneScheduleItems&gt;</p>
+<p>使用Linq读取XML里的ScheduleItems：<br>List&lt;ScheduleItem&gt; scheduleItems = new List&lt;ScheduleItem&gt;(); </p>
+<p>IEnumerable&lt;XElement&gt; scheduleItemsCollection = from scheduleItem in XElement.Load(ScheduleItemsXmlLocation).Descendants("ScheduleItem") select scheduleItem; 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; foreach (XElement ele in scheduleItemsCollection)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ScheduleItem scheduleItem = new ScheduleItem();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; scheduleItem.TriggerHour = ushort.Parse(ele.Attribute("TriggerHour").Value);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; scheduleItem.TriggerMinute = ushort.Parse(ele.Attribute("TriggerMinute").Value);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; scheduleItem.Content = ele.Attribute("Content").Value; </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; scheduleItems.Add(scheduleItem);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return scheduleItems; 
+<p>最后是Timer：<br>const double WorkInterval = 10000d;<br>m_Timer = new Timer(WorkInterval);<br>m_Timer.Enabled = true;<br>m_Timer.Elapsed += new ElapsedEventHandler(OnTimerElapse);
+<p><a href="http://cid-734274473cc13a10.skydrive.live.com/self.aspx/Public/WayneScheduleNotifier.zip" target="_blank"><strong>源代码下载</strong></a><br>Note: 由于使用Linq的缘故只能运行于Donet 3.5，由于使用Microsoft Speech Technology? ，仅支持XP以上操作系统（在XP中还有点问题，比如不支持女声，并且不支持中文）。 
+

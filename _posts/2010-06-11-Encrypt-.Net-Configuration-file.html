@@ -1,0 +1,47 @@
+---
+title: Encrypt .Net Configuration file
+categories:
+  - Hack
+tags:
+  - Hack
+permalink: Encrypt-DotNet-Configuration-File
+---
+
+<p>Under some scenarios the developers want to encrypt some sections inside app.config or web.config file, this article <a href="http://msdn.microsoft.com/en-us/library/ms998283.aspx">How To: Encrypt Configuration Sections in ASP.NET 2.0 Using RSA</a> describes how to do so clearly, Scott Guthrie also posted one: <a href="http://weblogs.asp.net/scottgu/archive/2006/01/09/434893.aspx">Encrypting Web.Config Values in ASP.NET 2.0</a>.</p>
+
+<p>However, in the posts above they uses <strong>aspnet_regiis.exe</strong> and seems it doesn’t directly support app.config, if we want to encrypt app.config for Windows Form or WPF applications, while I tried use it to encrypt my app.config file, it generates a web.config which means my Winform definitely can’t use it, <strong>even if I copy the encrypted appSettings section from this generated web.config to my own app.config</strong>(ConfigurationManager.AppSettings[EncryptedKeyName] is<strong> null</strong> after I did that).</p>
+
+<p><img class="BlogImage" title="ConfigEncrypt" alt="Config Encrypt" src="http://wayneye.files.wordpress.com/2010/10/configencrypt.png?w=600&amp;h=405" width="600" height="405" /></p>
+$More$
+<p><img class="BlogImage" title="EncryptedWebConfig" alt="Encrypted WebConfig" src="http://wayneye.files.wordpress.com/2010/10/encryptedwebconfig.png?w=600&amp;h=383" width="600" height="383" /></p>
+
+<p>After several minutes google search and testing I found the code below is simple and very straight forward to achieve this:</p>
+
+<pre style="background: #f6f8ff; color: #000020">Configuration config <span style="color: #308080">=</span> ConfigurationManager<span style="color: #308080">.</span>OpenExeConfiguration<span style="color: #308080">(</span>ConfigurationUserLevel<span style="color: #308080">.</span>None<span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+SectionInformation appSettingsSecInfo <span style="color: #308080">=</span> config<span style="color: #308080">.</span>GetSection<span style="color: #308080">(</span><span style="color: #800000">&quot;</span><span style="color: #1060b6">appSettings</span><span style="color: #800000">&quot;</span><span style="color: #308080">)</span><span style="color: #308080">.</span>SectionInformation<span style="color: #406080">;</span>
+<span style="color: #200080; font-weight: bold">if</span> <span style="color: #308080">(</span><span style="color: #308080">!</span>appSettingsSecInfo<span style="color: #308080">.</span>IsProtected<span style="color: #308080">)</span>
+<span style="color: #406080">{</span>
+    Console<span style="color: #308080">.</span>WriteLine<span style="color: #308080">(</span><span style="color: #800000">&quot;</span><span style="color: #1060b6">The configuration file has NOT been protected!</span><span style="color: #800000">&quot;</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+    <span style="color: #595979">// Encrypt this section by using security provider (RsaProtectedConfigurationProvider or DpapiProtectedConfigurationProvider).</span>
+    appSettingsSecInfo<span style="color: #308080">.</span>ProtectSection<span style="color: #308080">(</span><span style="color: #800000">&quot;</span><span style="color: #1060b6">RsaProtectedConfigurationProvider</span><span style="color: #800000">&quot;</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+    appSettingsSecInfo<span style="color: #308080">.</span>ForceSave <span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">true</span><span style="color: #406080">;</span>
+
+    config<span style="color: #308080">.</span>Save<span style="color: #308080">(</span>ConfigurationSaveMode<span style="color: #308080">.</span>Full<span style="color: #308080">)</span><span style="color: #406080">;</span>
+<span style="color: #406080">}</span></pre>
+
+<p>This code snippet will do the encryption job and works for both app.config/web.config, here is the MSDN definition page for SectionInformation.ProtectSection:
+  <br /><a href="http://msdn.microsoft.com/en-us/library/system.configuration.sectioninformation.protectsection.aspx">http://msdn.microsoft.com/en-us/library/system.configuration.sectioninformation.protectsection.aspx</a></p>
+
+<H3>References:</H3>
+
+  <p>Overview of Protected Configuration:</p>
+
+  <p><a href="http://msdn.microsoft.com/en-us/library/hh8x3tas.aspx">http://msdn.microsoft.com/en-us/library/hh8x3tas.aspx</a></p>
+
+<p>RsaProtectedConfigurationProvider Class:
+  <br /><a href="http://msdn.microsoft.com/en-us/library/system.configuration.rsaprotectedconfigurationprovider.aspx">http://msdn.microsoft.com/en-us/library/system.configuration.rsaprotectedconfigurationprovider.aspx</a></p>
+
+<p>DpapiProtectedConfigurationProvider Class:
+  <br /><a href="http://msdn.microsoft.com/en-us/library/system.configuration.dpapiprotectedconfigurationprovider.aspx">http://msdn.microsoft.com/en-us/library/system.configuration.dpapiprotectedconfigurationprovider.aspx</a></p>

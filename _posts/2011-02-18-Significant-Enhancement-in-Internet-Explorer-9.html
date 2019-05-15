@@ -1,0 +1,380 @@
+---
+title: Significant Enhancement in Internet Explorer 9
+categories:
+  - Hack
+tags:
+  - Hack
+permalink: Significant-Enhancement-In-InternetExplorer9
+---
+
+<h3>Background</h3>
+
+<p>Microsoft announced Internet Explorer 9 Release Candidate on&#160; Feb 10<sup>th</sup>, 2011, RC indicates except bug fixing, there would not have big changes before the final RTM. Since I've been keeping a watchful eye on IE9 from its very first preview version, I would like to write a post about its significant enhancement from <strong>a developer's point of view</strong>, I intend to summarize most significant enhancement points of IE9 listed below:</p>
+
+<ul>
+  <li><strong>Enhanced performance</strong> </li>
+</ul>
+
+<ol>
+  <ol>
+    <li>The New Chakra JavaScript Engine </li>
+
+    <li>Hardware Acceleration </li>
+  </ol>
+</ol>
+
+<ul>
+  <li><strong>Enhanced </strong><strong>Web Standard Support </strong></li>
+</ul>
+
+<ol>
+  <ol>
+    <li>HTML5 (huge number of new attributes support and Web Storage support) </li>
+
+    <li>CSS3 (border-radius, ::selection pseudo-element, ) </li>
+
+    <li>W3 standard Geolocaltion API </li>
+  </ol>
+</ol>
+
+<ul>
+  <li><strong>Windows 7 Integration</strong> </li>
+</ul>
+
+<ol>
+  <ol>
+    <li>Website customizable TaskBar Jumplist. </li>
+  </ol>
+</ol>
+
+<p>By achieving new features above, IE9 will absolutely be <strong>the fastest and best Web Standard support version in the entire IE history</strong>.&#160;&#160; </p>
+
+<h3>Walk through IE9 Enhancements</h3>
+
+<h4>New JavaScript Engine – Chakra</h4>
+
+<p>IE9 team must be persistently working so hard on improving Chakra's performance, I picked following two paragraph&#160; from Chakra Page on Wikipedia:</p>
+
+<blockquote>
+  <p>Microsoft's development of the engine was in response to evolving competing browsers, on which IE8 was lagging behind in terms of <a href="http://en.wikipedia.org/wiki/JavaScript">JavaScript</a> processing speed.<sup><a href="http://en.wikipedia.org/wiki/Chakra_(JScript_engine)#cite_note-2">[3]</a></sup> <a href="http://en.wikipedia.org/wiki/WebKit#SunSpider">SunSpider</a> tests performed on November 18, 2009 showed the <a href="http://en.wikipedia.org/wiki/Professional_Developers_Conference">PDC</a> version of IE9 executing scripts much faster than IE8, but slower than respectively <a href="http://en.wikipedia.org/wiki/Mozilla_Firefox_3.6">Firefox 3.6</a>, <a href="http://en.wikipedia.org/wiki/Google_Chrome">Chrome</a> 4, and <a href="http://en.wikipedia.org/wiki/WebKit">WebKit</a> Nightly.<sup><a href="http://en.wikipedia.org/wiki/Chakra_(JScript_engine)#cite_note-EarlyDevLook-3">[4]</a></sup> The same test performed on March 15, 2010 showed the first IE9 Platform Preview (using the then-current version of Chakra) to be faster than Firefox (with <a href="http://en.wikipedia.org/wiki/SpiderMonkey_(JavaScript_engine)">SpiderMonkey</a>), but slower than respectively <a href="http://en.wikipedia.org/wiki/Safari_(web_browser)">Safari</a> (with <a href="http://en.wikipedia.org/wiki/WebKit#JavaScriptCore">SquirrelFish Extreme</a>), Chrome (with <a href="http://en.wikipedia.org/wiki/V8_(JavaScript_engine)">V8</a>), and <a href="http://en.wikipedia.org/wiki/Opera_(web_browser)">Opera</a> (with <a href="http://en.wikipedia.org/wiki/Presto_(layout_engine)">Carakan</a>)</p>
+</blockquote>
+
+<blockquote>
+  <p>On February 8, 2011, the test showed the IE9 Release Candidate (using the current version of Chakra) to be faster than Safari, Firefox (with <a href="http://en.wikipedia.org/wiki/SpiderMonkey_(JavaScript_engine)#TraceMonkey">TraceMonkey</a>), Opera, and Chrome.</p>
+</blockquote>
+$More$
+<p>You can image there was a "steep curve" done by Chakra to catch up the competitors in the market: V8, TraceMonkey, etc.</p>
+
+<p><img class="BlogImage" src="http://ie.microsoft.com/testdrive/benchmarks/sunspider/SunSpiderResultsPPB8RC.png" width="625" height="441" /></p>
+
+<p><strong>WebKit SunSpider version 0.9.1 results generated February 8th 2011 </strong>(From slowest to fastest)</p>
+
+<p>
+  <table border="1" cellspacing="0" cellpadding="2" width="300"><tbody>
+      <tr>
+        <th style="text-align: left">Detailed Results</th>
+
+        <th style="text-align: center">Average (ms)</th>
+      </tr>
+
+      <tr>
+        <td><strong>IE8</strong></td>
+
+        <td style="text-align: center"><strong>3746</strong></td>
+      </tr>
+
+      <tr>
+        <td>Firefox 3.6.13</td>
+
+        <td style="text-align: center">753</td>
+      </tr>
+
+      <tr>
+        <td>Safari 5.0.3</td>
+
+        <td style="text-align: center">310</td>
+      </tr>
+
+      <tr>
+        <td>Firefox 4.0 Beta 11</td>
+
+        <td style="text-align: center">254</td>
+      </tr>
+
+      <tr>
+        <td>Chrome 10 Developer</td>
+
+        <td style="text-align: center">248</td>
+      </tr>
+
+      <tr>
+        <td>Opera 11</td>
+
+        <td style="text-align: center">240</td>
+      </tr>
+
+      <tr>
+        <td>Chrome 9</td>
+
+        <td style="text-align: center">238</td>
+      </tr>
+
+      <tr>
+        <td><font color="#0080ff"><strong>IE9 Release Candidate</strong></font></td>
+
+        <td style="text-align: center"><font color="#0080ff"><strong>209</strong></font></td>
+      </tr>
+    </tbody></table>
+</p>
+
+<p>IE9 is cutting edge in all modern Web Browsers in WebKit SunSpider test.</p>
+
+<h4>Hardware Acceleration</h4>
+
+<p>In general, the "Hardware" is the <strong>GPU</strong>, from the page <a href="http://www.beautyoftheweb.com/#/highlights/all-around-fast" target="_blank">All Around Fast</a>, they said:</p>
+
+<blockquote>
+  <p>Today's websites and browsers only use about 10% of the processing power your PC has to offer. Internet Explorer 9 <strong>unlocks the other 90%</strong>. With Internet Explorer 9, we're tapping into your graphics processor through Windows to harness the full potential of your PC. It makes HD video smoother, colors truer, graphics clearer, and websites more responsive.</p>
+</blockquote>
+
+<p>More specific, on <a href="http://msdn.microsoft.com/en-US/ie/ff468705.aspx#_cfgraphics" target="_blank">IE9 Guide for Developers</a> they described:</p>
+
+<blockquote>
+  <p>Internet Explorer 9 uses the DirectX family of Windows application programming interfaces (APIs) to enable several advances for web developers. We have moved all graphics and text rendering from the CPU to the graphics card by using Direct2D and DirectWrite. </p>
+</blockquote>
+
+<p>Well, how faster IE9 does by utilizing GPU's power? Please take a look at <a href="http://www.beautyoftheweb.com/assets/videos/IE9_Performance_Video_H264.mp4" target="_blank">this Video</a>.</p>
+
+<h4>HTML5</h4>
+
+<p>By running an HTML 5 support test at <a href="http://html5test.com" target="_blank">http://html5test.com</a>, IE9 RC scored 116, it is a pool score comparing to most other modern browsers (refer table below), however, much much better than IE 8 and below… </p>
+
+<p>HTML5 Standard support test (From best to worst)</p>
+
+<table border="1" cellspacing="0" cellpadding="2" width="300"><tbody>
+    <tr>
+      <td valign="top" width="170">Web Browser</td>
+
+      <td style="text-align: center" valign="top" width="128">HTML5 Test Score</td>
+    </tr>
+
+    <tr>
+      <td valign="top" width="170">Google Chrome 10.0 Dev </td>
+
+      <td style="text-align: center" valign="top" width="128">244</td>
+    </tr>
+
+    <tr>
+      <td valign="top" width="170">Firefox 4.0 Beta 11</td>
+
+      <td style="text-align: center" valign="top" width="128">197</td>
+    </tr>
+
+    <tr>
+      <td valign="top" width="170">Opera 11</td>
+
+      <td style="text-align: center" valign="top" width="128">177</td>
+    </tr>
+
+    <tr>
+      <td valign="top" width="170">Safari</td>
+
+      <td style="text-align: center" valign="top" width="128">165</td>
+    </tr>
+
+    <tr>
+      <td valign="top" width="170"><strong><font color="#0080ff">IE9</font></strong></td>
+
+      <td style="text-align: center" valign="top" width="128"><strong><font color="#0080ff">116</font></strong></td>
+    </tr>
+
+    <tr>
+      <td valign="top" width="170">IE8</td>
+
+      <td style="text-align: center" valign="top" width="128">37</td>
+    </tr>
+
+    <tr>
+      <td valign="top" width="170">IE6</td>
+
+      <td style="text-align: center" valign="top" width="128">12</td>
+    </tr>
+  </tbody></table>
+
+<p>IE9 RC now support a lot of brand new HTML5 attributes like <a href="http://www.w3.org/TR/html5/semantics.html#the-header-element" target="_blank">header</a>, <a href="http://www.w3.org/TR/html5/semantics.html#the-aside-element" target="_blank">aside</a>, <a href="http://www.w3.org/TR/html5/semantics.html#the-nav-element" target="_blank">nav</a>, <a href="http://www.w3.org/TR/html5/semantics.html#the-section-element" target="_blank">section</a>, <a href="http://www.w3.org/TR/html5/semantics.html#the-footer-element" target="_blank">footer</a>, and <a href="http://www.w3.org/TR/html5/the-canvas-element.html#the-canvas-element" target="_blank">HTML5 canvas</a>, for more details you can refer <a href="http://html5test.com" target="_blank">HTML5Test</a> or <a href="http://msdn.microsoft.com/en-US/ie/ff468705.aspx" target="_blank">Internet Explorer 9 Guide for Developers</a>.</p>
+
+<h4>Web Storage</h4>
+
+<p>Web Storage is a brand new HTTP state storage strategy implemented by <a href="http://www.w3.org/TR/webstorage/#the-sessionstorage-attribute" target="_blank">Session Storage</a> and <a href="http://www.w3.org/TR/webstorage/#the-localstorage-attribute" target="_blank">Local Storage</a>, they are 100% stored in the client by a concrete browser, it is obvious bandwidth is saved and security risks are reduced by doing this. IMHO, this is one of the greatest improvement of HTML5! I will write another post delve deep into Web Storage to explain my opinion.</p>
+
+<p>Now IE9 RC has completely supported sessionStorage and localStorage, Invoke sessionStorage and localStorage in JavaScript is fairly easy, sample code showing below:</p>
+
+<pre style="background: #f6f8ff; color: #000020">localStorage<span style="color: #308080">.</span><span style="color: #406080">{</span>key<span style="color: #406080">}</span> <span style="color: #308080">=</span> strValue<span style="color: #406080">;</span>
+<span style="color: #200080; font-weight: bold">var</span> localVal <span style="color: #308080">=</span> localStorage<span style="color: #308080">.</span><span style="color: #406080">{</span>key<span style="color: #406080">}</span><span style="color: #406080">;</span>
+
+sessionStorage<span style="color: #308080">.</span><span style="color: #406080">{</span>key<span style="color: #406080">}</span> <span style="color: #308080">=</span> strValue<span style="color: #406080">;</span>
+<span style="color: #200080; font-weight: bold">var</span> sessionVal <span style="color: #308080">=</span> sessionStorage<span style="color: #308080">.</span><span style="color: #406080">{</span>key<span style="color: #406080">}</span><span style="color: #406080">;</span></pre>
+
+<h4>CSS3</h4>
+
+<p>IE9 RC brought great CSS3 support such as font-face, namespace, border-radius, ::selection pseudo element, <a href="http://tools.css3.info/selectors-test/test.html" target="_blank">especially CSS3 selector</a>, IE9 RC "Passed 574 out of 574 CSS3 selector tests", whereas Chrome 10.0 Dev passed 558.</p>
+
+<p>I write a IE9 CSS3 support page which demonstrates font-face, border-radius, ::selection and selectors, HTML5 source code pasted below, please feel free to have a try<img style="background-image:url(http://wayneye.com/Images/winLiveEmotions.gif);background-position:-0px -0px;width:19px;height:19px;" alt="Smile" src="http://wayneye.com/Images/invis.gif"></p>
+
+<pre style="background: #f6f8ff; color: #000020"><span style="color: #004a43">&lt;!DOCTYPE html&gt;</span>
+<span style="color: #0057a6">&lt;</span><span style="color: #200080; font-weight: bold">html</span><span style="color: #474796"> </span><span style="color: #074726">lang</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;en&quot;</span><span style="color: #0057a6">&gt;</span>
+<span style="color: #0057a6">&lt;</span><span style="color: #200080; font-weight: bold">head</span><span style="color: #0057a6">&gt;</span>
+    <span style="color: #0057a6">&lt;</span><span style="color: #200080; font-weight: bold">meta</span><span style="color: #474796"> </span><span style="color: #074726">charset</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;utf-8&quot;</span><span style="color: #474796"> </span><span style="color: #0057a6">/&gt;</span>
+    <span style="color: #0057a6">&lt;</span><span style="color: #200080; font-weight: bold">meta</span><span style="color: #474796"> </span><span style="color: #074726">name</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;application-name&quot;</span><span style="color: #474796"> </span><span style="color: #074726">content</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;Wayne IE9 CSS3 Support Demo&quot;</span><span style="color: #474796"> </span><span style="color: #0057a6">/&gt;</span>
+    <span style="color: #0057a6">&lt;</span><span style="color: #200080; font-weight: bold">title</span><span style="color: #0057a6">&gt;</span>Wayne IE9 CSS3 Support Demo<span style="color: #0057a6">&lt;/</span><span style="color: #200080; font-weight: bold">title</span><span style="color: #0057a6">&gt;</span>
+    <span style="color: #0057a6">&lt;</span><span style="color: #200080; font-weight: bold">style</span><span style="color: #0057a6"> type=&quot;text/css&quot;&gt;</span>
+        <span style="color: #406080">@</span><span style="color: #004a43">font-face</span>
+        <span style="color: #406080">{</span>
+            <span style="color: #7779bb; font-weight: bold">font-family</span><span style="color: #308080">:</span> <span style="color: #800000">&quot;</span><span style="color: #1060b6">Blue Highway</span><span style="color: #800000">&quot;</span><span style="color: #406080">;</span>
+            <span style="color: #7779bb; font-weight: bold">src</span><span style="color: #308080">:</span> <span style="color: #400000">url</span><span style="color: #308080">(</span><span style="color: #0066ee">http</span><span style="color: #406080">:</span><span style="color: #200080; font-weight: bold">//</span><span style="color: #5555dd">www.princexml.com</span><span style="color: #40015a">/fonts/larabie/bluehigh.ttf</span><span style="color: #308080">)</span> format(<span style="color: #800000">&quot;</span><span style="color: #1060b6">truetype</span><span style="color: #800000">&quot;</span>)<span style="color: #406080">;</span>
+        <span style="color: #406080">}</span>
+        <span style="color: #200080; font-weight: bold">body</span>
+        <span style="color: #406080">{</span>
+            <span style="color: #7779bb; font-weight: bold">background-color</span><span style="color: #308080">:</span> rgba(<span style="color: #008c00">100</span><span style="color: #308080">,</span><span style="color: #008c00">50</span><span style="color: #308080">,</span><span style="color: #008c00">0</span><span style="color: #308080">,</span><span style="color: #008c00">5</span><span style="color: #308080">,</span><span style="color: #008c00">0.5</span>)<span style="color: #406080">;</span>
+            <span style="color: #7779bb; font-weight: bold">font-size</span><span style="color: #308080">:</span> <span style="color: #008c00">16</span><span style="color: #006600">px</span><span style="color: #406080">;</span>
+            <span style="color: #7779bb; font-weight: bold">font-family</span><span style="color: #308080">:</span> <span style="color: #800000">&quot;</span><span style="color: #1060b6">Blue Highway</span><span style="color: #800000">&quot;</span> <span style="color: #308080">,</span>Arial<span style="color: #308080">,</span>Tahoma<span style="color: #406080">;</span>
+        <span style="color: #406080">}</span>
+        
+        <span style="color: #308080">.</span>elementWithRoundedConor
+        <span style="color: #406080">{</span>
+            <span style="color: #7779bb; font-weight: bold">width</span><span style="color: #308080">:</span> <span style="color: #008c00">150</span><span style="color: #006600">px</span><span style="color: #406080">;</span>
+            <span style="color: #7779bb; font-weight: bold">height</span><span style="color: #308080">:</span> <span style="color: #008c00">100</span><span style="color: #006600">px</span><span style="color: #406080">;</span>
+            <span style="color: #7779bb; font-weight: bold">padding</span><span style="color: #308080">:</span> <span style="color: #008c00">10</span><span style="color: #006600">px</span><span style="color: #406080">;</span>
+            <span style="color: #7779bb; font-weight: bold">margin</span><span style="color: #308080">:</span> <span style="color: #008c00">0</span> <span style="color: #074726">auto</span><span style="color: #406080">;</span>
+            <span style="color: #7779bb; font-weight: bold">border</span><span style="color: #308080">:</span> <span style="color: #008c00">3</span><span style="color: #006600">px</span> <span style="color: #074726">dotted</span> <span style="color: #008c00">#</span><span style="color: #008000">666</span><span style="color: #406080">;</span>
+            border-radius<span style="color: #308080">:</span> <span style="color: #008c00">10</span><span style="color: #006600">px</span> <span style="color: #008c00">10</span><span style="color: #006600">px</span> <span style="color: #008c00">10</span><span style="color: #006600">px</span> <span style="color: #008c00">10</span><span style="color: #006600">px</span><span style="color: #406080">;</span>
+        <span style="color: #406080">}</span>
+        <span style="color: #308080">:</span><span style="color: #406080">:</span>selection
+        <span style="color: #406080">{</span>
+            <span style="color: #7779bb; font-weight: bold">background-color</span><span style="color: #308080">:</span> <span style="color: #008c00">#</span><span style="color: #008000">E1E87A</span><span style="color: #406080">;</span>
+            <span style="color: #7779bb; font-weight: bold">color</span><span style="color: #308080">:</span> <span style="color: #007d45">Black</span><span style="color: #406080">;</span>
+        <span style="color: #406080">}</span>
+        
+        <span style="color: #595979">/*CSS3 selector*/</span>
+        <span style="color: #200080; font-weight: bold">img</span><span style="color: #308080">[</span><span style="color: #074726">alt</span>*<span style="color: #308080">=</span><span style="color: #800000">&quot;</span><span style="color: #1060b6">ie9</span><span style="color: #800000">&quot;</span><span style="color: #308080">]</span> <span style="color: #595979">/*all div elements that have a alt attribute value containing &quot;ie9&quot;*/</span>
+        <span style="color: #406080">{</span>
+            <span style="color: #7779bb; font-weight: bold">border</span><span style="color: #308080">:</span> <span style="color: #008c00">3</span><span style="color: #006600">px</span> <span style="color: #074726">solid</span> <span style="color: #008c00">#</span><span style="color: #008000">4169E1</span><span style="color: #406080">;</span>
+        <span style="color: #406080">}</span>
+    <span style="color: #0057a6">&lt;/</span><span style="color: #200080; font-weight: bold">style</span><span style="color: #0057a6">&gt;</span>
+<span style="color: #0057a6">&lt;/</span><span style="color: #200080; font-weight: bold">head</span><span style="color: #0057a6">&gt;</span>
+<span style="color: #0057a6">&lt;</span><span style="color: #200080; font-weight: bold">body</span><span style="color: #0057a6">&gt;</span>
+    <span style="color: #0057a6">&lt;</span><span style="color: #333385">header</span><span style="color: #474796"> role</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;banner&quot;</span><span style="color: #0057a6">&gt;</span><span style="color: #0057a6">&lt;/</span><span style="color: #333385">header</span><span style="color: #0057a6">&gt;</span>
+    <span style="color: #0057a6">&lt;</span><span style="color: #333385">aside</span><span style="color: #0057a6">&gt;</span>CSS3 border-radius demo:<span style="color: #0057a6">&lt;/</span><span style="color: #333385">aside</span><span style="color: #0057a6">&gt;</span>
+    <span style="color: #0057a6">&lt;</span><span style="color: #200080; font-weight: bold">div</span><span style="color: #474796"> </span><span style="color: #074726">class</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;elementWithRoundedConor&quot;</span><span style="color: #0057a6">&gt;</span>
+        Some text<span style="color: #008c00">....</span>
+    <span style="color: #0057a6">&lt;/</span><span style="color: #200080; font-weight: bold">div</span><span style="color: #0057a6">&gt;</span>
+    <span style="color: #0057a6">&lt;</span><span style="color: #333385">aside</span><span style="color: #0057a6">&gt;</span>CSS3 selector demo:<span style="color: #0057a6">&lt;/</span><span style="color: #333385">aside</span><span style="color: #0057a6">&gt;</span>
+    <span style="color: #0057a6">&lt;</span><span style="color: #200080; font-weight: bold">img</span><span style="color: #474796"> </span><span style="color: #074726">src</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;http://i1-news.softpedia-static.com/images/news2/The-New-Internet-Explorer-9-IE9-Logo-2.png&quot;</span><span style="color: #474796"> </span><span style="color: #074726">alt</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;ie9test&quot;</span><span style="color: #474796"> </span><span style="color: #0057a6">/&gt;</span>
+    <span style="color: #0057a6">&lt;</span><span style="color: #200080; font-weight: bold">img</span><span style="color: #474796"> </span><span style="color: #074726">src</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;http://mozcom-cdn.mozilla.net/img/home/download-logo.png&quot;</span><span style="color: #474796"> </span><span style="color: #074726">alt</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;FireFox&quot;</span><span style="color: #474796"> </span><span style="color: #0057a6">/&gt;</span>
+    <span style="color: #0057a6">&lt;</span><span style="color: #200080; font-weight: bold">img</span><span style="color: #474796"> </span><span style="color: #074726">src</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;http://i1-news.softpedia-static.com/images/news2/The-New-Internet-Explorer-9-IE9-Logo-2.png&quot;</span><span style="color: #474796"> </span><span style="color: #074726">alt</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;ie9logo&quot;</span><span style="color: #474796"> </span><span style="color: #0057a6">/&gt;</span>
+    <span style="color: #0057a6">&lt;</span><span style="color: #333385">footer</span><span style="color: #474796"> role</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;copyrightInfo&quot;</span><span style="color: #0057a6">&gt;</span>
+    <span style="color: #0057a6">&lt;</span><span style="color: #200080; font-weight: bold">p</span><span style="color: #0057a6">&gt;</span><span style="color: #074726">&amp;</span><span style="color: #074726">nbsp</span><span style="color: #074726">;</span><span style="color: #0057a6">&lt;/</span><span style="color: #200080; font-weight: bold">p</span><span style="color: #0057a6">&gt;</span>
+        <span style="color: #074726">&amp;</span><span style="color: #074726">copy</span><span style="color: #074726">;</span>WayneYe http://WayneYe<span style="color: #008c00">.</span>com <span style="color: #008c00">2011</span>
+    <span style="color: #0057a6">&lt;/</span><span style="color: #333385">footer</span><span style="color: #0057a6">&gt;</span>
+
+<span style="color: #0057a6">&lt;/</span><span style="color: #200080; font-weight: bold">body</span><span style="color: #0057a6">&gt;</span>
+<span style="color: #0057a6">&lt;/</span><span style="color: #200080; font-weight: bold">html</span><span style="color: #0057a6">&gt;</span></pre>
+
+<h4>Geolocation API</h4>
+
+<p>One month ago I wrote a blog talking about invoking W3 standard Geolocation API and Google map to track end user's Geolocation (<a href="http://wayneye.com/Blog/IPAddress-To-Geolocation/">http://wayneye.com/Blog/IPAddress-To-Geolocation/</a>, it described how to implement W3 standard way to track Geolocation with sample JS code), at that time I was using IE9 Beta2 which doesn't support it, now it is excited for me IE9 RC has completely supported Geolocation API! See screenshot below:</p>
+
+<p><img  class="BlogImage" src="http://ns5gpg.bay.livefilestore.com/y1pq6juqM9GilACLSpvYU4zGI5uGZNAtMJc-S4o9e_pppqxk2lixQ8kX7WfA5OPZdoRO-OVQ1SvbEmSufF_MWODd1hIRLYv4nO1/WayneYeGeoTrack.png?psid=1" /></p>
+
+<p>By clicking "Allow once", your Geolocation will be collected by the browser and pass to Google map.</p>
+
+<p><img class="BlogImage" src="http://ns5gpg.bay.livefilestore.com/y1pAZ0uzU-x1aCIzszRl1ORYSx-NgvHGVhJeCeNf8co4aAnH1dTBRzFy1X9WdaDvrcJxEMQufMtPJ_7Zlz1mYoUkTYbsTJV0w-d/geoTrack.png?psid=1" /></p>
+
+<h4>Windows 7 Integration</h4>
+
+<p>This is really a highlight feature and it is really funny<img style="background-image:url(http://wayneye.com/Images/winLiveEmotions.gif);background-position:-0px -0px;width:19px;height:19px;" alt="Smile" src="http://wayneye.com/Images/invis.gif">, see screenshot below: </p>
+
+<p><img class="BlogImage"  src="http://ns5gpg.bay.livefilestore.com/y1pEMYGYA5Tj78GeAEhcqcAorwQOEGMOG-sTyo1ecHrwc16Joq4XFEVH3FId6xxpvCS9yJQ20c5FctiP9rEf4dLSuTf2Q6Oe134/WayneYeJumpList.png?psid=1" /></p>
+
+<p>The implementation is easy, add similar meta attributes below and IE9 will register Jumplist on your Windows.</p>
+
+<p style="text-indent:0;"><span style="color: #0057a6">&lt;</span><span style="color: #200080; font-weight: bold">meta</span><span style="color: #474796"> </span><span style="color: #074726">name</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;application-name&quot;</span><span style="color: #474796"> </span><span style="color: #074726">content</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;Wayne's Geek Life - Infinite passion on programming&quot;</span><span style="color: #474796"> </span><span style="color: #0057a6">/&gt;</span> 
+
+  <br /><span style="color: #0057a6">&lt;</span><span style="color: #200080; font-weight: bold">meta</span><span style="color: #474796"> </span><span style="color: #074726">name</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;msapplication-tooltip&quot;</span><span style="color: #474796"> </span><span style="color: #074726">content</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;See what Wayne is blogging and sharing:)&quot;</span><span style="color: #474796"> </span><span style="color: #0057a6">/&gt;</span> 
+
+  <br /><span style="color: #0057a6">&lt;</span><span style="color: #200080; font-weight: bold">meta</span><span style="color: #474796"> </span><span style="color: #074726">name</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;msapplication-starturl&quot;</span><span style="color: #474796"> </span><span style="color: #074726">content</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;http://WayneYe.com/&quot;</span><span style="color: #474796"> </span><span style="color: #0057a6">/&gt;</span> 
+
+  <br /><span style="color: #0057a6">&lt;</span><span style="color: #200080; font-weight: bold">meta</span><span style="color: #474796"> </span><span style="color: #074726">name</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;msapplication-navbutton-color&quot;</span><span style="color: #474796"> </span><span style="color: #074726">content</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;#5f6dbd&quot;</span><span style="color: #474796"> </span><span style="color: #0057a6">/&gt;</span> 
+
+  <br /><span style="color: #0057a6">&lt;</span><span style="color: #200080; font-weight: bold">meta</span><span style="color: #474796"> </span><span style="color: #074726">name</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;msapplication-window&quot;</span><span style="color: #474796"> </span><span style="color: #074726">content</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;width=960;height=600&quot;</span><span style="color: #0057a6">/&gt;</span> 
+
+  <br /><span style="color: #0057a6">&lt;</span><span style="color: #200080; font-weight: bold">meta</span><span style="color: #474796"> </span><span style="color: #074726">name</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;msapplication-task&quot;</span><span style="color: #474796"> </span><span style="color: #074726">content</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;name=Home;action-uri=http://WayneYe.com;icon-uri=http://WayneYe.com/favicon.ico&quot;</span><span style="color: #474796"> </span><span style="color: #0057a6">/&gt;</span> 
+
+  <br /><span style="color: #0057a6">&lt;</span><span style="color: #200080; font-weight: bold">meta</span><span style="color: #474796"> </span><span style="color: #074726">name</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;msapplication-task&quot;</span><span style="color: #474796"> </span><span style="color: #074726">content</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;name=Album;action-uri=http://WayneYe.com/Album;icon-uri=http://WayneYe.com/favicon.ico&quot;</span><span style="color: #474796"> </span><span style="color: #0057a6">/&gt;</span> 
+
+  <br /><span style="color: #0057a6">&lt;</span><span style="color: #200080; font-weight: bold">meta</span><span style="color: #474796"> </span><span style="color: #074726">name</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;msapplication-task&quot;</span><span style="color: #474796"> </span><span style="color: #074726">content</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;name=Video;action-uri=http://WayneYe.com/Video;icon-uri=http://WayneYe.com/favicon.ico&quot;</span><span style="color: #474796"> </span><span style="color: #0057a6">/&gt;</span> 
+
+  <br /><span style="color: #0057a6">&lt;</span><span style="color: #200080; font-weight: bold">meta</span><span style="color: #474796"> </span><span style="color: #074726">name</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;msapplication-task&quot;</span><span style="color: #474796"> </span><span style="color: #074726">content</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;name=History;action-uri=http://WayneYe.com/History;icon-uri=http://WayneYe.com/favicon.ico&quot;</span><span style="color: #474796"> </span><span style="color: #0057a6">/&gt;</span> 
+
+  <br /><span style="color: #0057a6">&lt;</span><span style="color: #200080; font-weight: bold">meta</span><span style="color: #474796"> </span><span style="color: #074726">name</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;msapplication-task&quot;</span><span style="color: #474796"> </span><span style="color: #074726">content</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;name=Visit Record;action-uri=http://WayneYe.com/VisitRecord;icon-uri=http://WayneYe.com/favicon.ico&quot;</span><span style="color: #474796"> </span><span style="color: #0057a6">/&gt;</span> 
+
+  <br /><span style="color: #0057a6">&lt;</span><span style="color: #200080; font-weight: bold">meta</span><span style="color: #474796"> </span><span style="color: #074726">name</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;msapplication-task&quot;</span><span style="color: #474796"> </span><span style="color: #074726">content</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;name=About Wayne;action-uri=http://WayneYe.com/About;icon-uri=http://WayneYe.com/favicon.ico&quot;</span><span style="color: #474796"> </span><span style="color: #0057a6">/&gt;</span> </p>
+Microsoft's official guide <a href="http://msdn.microsoft.com/library/gg491727(v=VS.85).aspx" target="_blank">How to Create a Basic Pinned Site</a>. 
+
+<h3>Conclusion</h3>
+
+<p>IE9 RC has made a great enhancement on JavaScript execution performance and much better Web Standard (HTML5, CSS3, Geolocation API) support, even more, a seamless integration with Windows 7 Taskbar Jumplist. However, there are still a number of pities, personally I wish IE 9 will going to implement follow HTML5 features:</p>
+
+<ul>
+  <li>HTML5 form input elements (&lt;input type="email/range/url/time/color etc.") now are completely not supported by IE9.</li>
+
+  <li><a href="http://www.w3.org/TR/workers/" target="_blank">Web Workers</a> which supports long-running scripts that are not interrupted by scripts that respond to clicks or other user interactions.</li>
+
+  <li><a href="http://dev.w3.org/html5/eventsource/" target="_blank">Server-Side events</a> (SSE) is standardized as part of HTML5, which allow servers initiate data transmission towards clients once an initial client connection has been established.</li>
+</ul>
+
+<h3>References</h3>
+
+<br /><strong>The New JavaScript Engine in Internet Explorer 9 
+    <br /></strong><a title="http://blogs.msdn.com/b/ie/archive/2010/03/18/the-new-javascript-engine-in-internet-explorer-9.aspx" href="http://blogs.msdn.com/b/ie/archive/2010/03/18/the-new-javascript-engine-in-internet-explorer-9.aspx">http://blogs.msdn.com/b/ie/archive/2010/03/18/the-new-javascript-engine-in-internet-explorer-9.aspx</a>
+<br />
+<br /><strong>Internet Explorer 9 Guide for Developers</strong> 
+  <br /><a href="http://msdn.microsoft.com/en-US/ie/ff468705.aspx" target="_blank">http://msdn.microsoft.com/en-US/ie/ff468705.aspx</a>
+<br /><br />
+<strong>HTML5 Spec
+    <br /></strong><a href="http://dev.w3.org/html5/spec/Overview.html">http://dev.w3.org/html5/spec/Overview.html</a>
+
+<br /><br /><strong>W3 Geolocation API Specification 
+    <br /></strong><a href="http://dev.w3.org/geo/api/spec-source.html">http://dev.w3.org/geo/api/spec-source.html</a>
+
+<br /><br /><strong>HTML5 Doctor</strong>
+
+  <br /><a title="http://html5doctor.com/" href="http://html5doctor.com/">http://html5doctor.com/</a>
+
+<h3>Appendix</h3>
+
+<p>I also want to take this opportunity to share two personal tips on developing cross-browser web application related with Internet Explorer.</p>
+
+<p>1. Define "X-UA-Compatible" meta attribute to tell Internet Explorer what "Browse Mode" it should use, example below:</p>
+
+<pre style="background: #f6f8ff; color: #000020"><span style="color: #0057a6">&lt;</span><span style="color: #200080; font-weight: bold">meta</span> <span style="color: #074726">http-equiv</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;</span><span style="color: #1060b6">X-UA-Compatible</span><span style="color: #1060b6">&quot;</span> <span style="color: #074726">content</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;</span><span style="color: #1060b6">IE=edge;FF=3;OtherUA=4</span><span style="color: #1060b6">&quot;</span> <span style="color: #0057a6">/&gt;</span> <span style="color: #595979">&lt;!--</span><span style="color: #595979">IE will try to use the highest mode available.</span><span style="color: #595979">--&gt;</span>
+<span style="color: #0057a6">&lt;</span><span style="color: #200080; font-weight: bold">meta</span> <span style="color: #074726">http-equiv</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;</span><span style="color: #1060b6">X-UA-Compatible</span><span style="color: #1060b6">&quot;</span> <span style="color: #074726">content</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;</span><span style="color: #1060b6">IE=7;FF=3;OtherUA=4</span><span style="color: #1060b6">&quot;</span> <span style="color: #0057a6">/&gt;</span> <span style="color: #595979">&lt;!--</span><span style="color: #595979">IE 7 browse mode.</span><span style="color: #595979">--&gt;</span>
+<span style="color: #0057a6">&lt;</span><span style="color: #200080; font-weight: bold">meta</span> <span style="color: #074726">http-equiv</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;</span><span style="color: #1060b6">X-UA-Compatible</span><span style="color: #1060b6">&quot;</span> <span style="color: #074726">content</span><span style="color: #308080">=</span><span style="color: #1060b6">&quot;</span><span style="color: #1060b6">IE=EmulateIE7;FF=3;OtherUA=4</span><span style="color: #1060b6">&quot;</span> <span style="color: #0057a6">/&gt;</span> <span style="color: #595979">&lt;!--</span><span style="color: #595979">EmulateIE7 browse mode.</span><span style="color: #595979">--&gt;</span></pre>
+
+<p>Please refer more details on MSDN article: <a href="http://msdn.microsoft.com/en-us/library/cc196984(v=vs.85).aspx" target="_blank"><strong>compatible Property</strong></a> and <strong><a href="http://msdn.microsoft.com/en-us/library/cc288325(v=vs.85).aspx" target="_blank">Defining Document Compatibility</a>.</strong></p>
+
+<p>2. Conditional comments to distinguish specific IE version</p>
+
+<pre style="background: #f6f8ff; color: #000020"><span style="color: #595979">&lt;!--</span><span style="color: #595979">[if lte IE 6]&gt;</span>
+<span style="color: #595979">&#160;&#160;&#160; HTML code only for IE6 and under, for example, add a special CSS file only</span>
+<span style="color: #595979">&#160;&#160;&#160; for IE6(or under); Or, display a information panel to inform user IE6 is </span>
+<span style="color: #595979">&#160;&#160;&#160; seriously outdated:)</span>
+<span style="color: #595979">&lt;![endif]</span><span style="color: #595979">--&gt;</span></pre>
+
+<p>&quot;<strong>lte</strong>" indicates "<strong>less-than or equal</strong>" which I always use, you can also use "[if !IE]", "[if IE 7]", etc.,&#160; see complete usage in MSDN article: <strong><a href="http://msdn.microsoft.com/en-us/library/ms537512(v=vs.85).aspx" target="_blank">About Conditional Comments</a>.</strong></p>
+
+<h3></h3>
+
+<p><strong>Happy Coding<img style="background-image:url(http://wayneye.com/Images/winLiveEmotions.gif);background-position:-0px -0px;width:19px;height:19px;" alt="Smile" src="http://wayneye.com/Images/invis.gif"></strong></p>
+
+<p>Also posted at:&nbsp;<em><a href="http://www.codeproject.com/KB/HTML/IE9-RC-Enhancement.aspx" target="_blank">http://www.codeproject.com/KB/HTML/IE9-RC-Enhancement.aspx</a></em></p>

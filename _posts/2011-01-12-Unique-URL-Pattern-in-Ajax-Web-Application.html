@@ -1,0 +1,50 @@
+---
+title: Unique URL Pattern in Ajax Web Application
+categories:
+  - Hack
+tags:
+  - Hack
+permalink: Unique-URL-Pattern-In-Ajax
+---
+
+<p>Testing: Can I really edit this?</p>
+<h3>Background</h3>
+Few days ago one of my friend asked me how does Gmail change its URL while user operates inside it without page refreshing, I've no idea about that at that time, he then shared a link <a href="http://ajaxpatterns.org/Unique_URLs" target="_blank">Ajax Pattern - Unique URLs</a> which deep dives into this topic, as the article mentioned: Unique URL make your website's link "Bookmarkable, Linkable, Type-In-Able", plus <strong>Sharable </strong>IMHO, easy to be shared to Social network which is extremely important nowadays.
+<h3>Implementation</h3>
+The key technology to achieve the ""Unique URL" goal could be summarized into two points:
+<ol>
+	<li>If the content in the page has been updated by Ajax significantly enough, update the URL (<code>location.hash</code>) as well.</li>
+<pre style="color:#000020;background:#f6f8ff;width:600px;"><span style="color:#595979;">// Ajax rendering all blog entries in page number 5</span>
+location<span style="color:#308080;">.</span>hash <span style="color:#308080;">=</span> <span style="color:#1060b6;">'Blogs&amp;Page5'</span><span style="color:#406080;">;</span></pre>
+	<li>Every time the Ajax page loads, JS should<strong> understand the$More$ URL </strong>and <strong>render related content </strong>as well.</li>
+<pre style="color:#000020;background:#f6f8ff;width:600px;"><span style="color:#0057a6;">&lt;</span><span style="color:#200080;font-weight:bold;">body</span><span style="color:#474796;"> </span><span style="color:#074726;">onload</span><span style="color:#308080;">=</span><span style="color:#1060b6;">"restoreAjaxContent()"</span><span style="color:#0057a6;">&gt;</span>
+<span style="color:#0057a6;">&lt;</span><span style="color:#200080;font-weight:bold;">script type="text/javascript"</span><span style="color:#0057a6;">&gt;</span>
+<span style="color:#200080;font-weight:bold;">function</span> restoreAjaxContent<span style="color:#308080;">(</span><span style="color:#308080;">)</span><span style="color:#406080;">{</span>
+    <span style="color:#200080;font-weight:bold;">var</span> urlHash <span style="color:#308080;">=</span> location<span style="color:#308080;">.</span>hash<span style="color:#406080;">;</span>
+    <span style="color:#200080;font-weight:bold;">var</span> curPageNo <span style="color:#308080;">=</span> urlHash<span style="color:#308080;">.</span><span style="color:#200080;font-weight:bold;">replace</span><span style="color:#308080;">(</span><span style="color:#1060b6;">'Blogs&amp;Page'</span><span style="color:#308080;">,</span><span style="color:#1060b6;">''</span><span style="color:#308080;">)</span><span style="color:#406080;">;</span>
+    <span style="color:#595979;">// Safe parse curPageNo into number, handles wrong parameters (Ignored for here)</span>
+    <span style="color:#595979;">// Display loading text/image on the page (optional but better UX).</span>
+    <span style="color:#595979;">// Ajax rendering all blog entries in page number curPageNo.</span>
+<span style="color:#406080;">}</span>
+<span style="color:#0057a6;">&lt;/</span><span style="color:#200080;font-weight:bold;">script</span><span style="color:#0057a6;">&gt;</span>
+<span style="color:#0057a6;">&lt;/</span><span style="color:#200080;font-weight:bold;">body</span><span style="color:#0057a6;">&gt;</span></pre>
+</ol>
+What I want to emphasize is the hash value, i.e. the content behind # is originally expected an HTML element's name attribute used for In-Page navigation, it is completely the contract between client <strong>Browse</strong>r,<strong> HTML content </strong>and <strong>JavaScript</strong>, server side cannot get the information directly except we explicitly pass the value to the server side (hidden post, URL query string, Ajax etc), therefore,if some user access the unique URL, your website's client side JS should parse the hash and retrieve relevant data from server side.
+<p><strong>Advantage</strong><p/>
+<ol>
+	<li><span style="color:#3366ff;">Better user experience.</span>
+<br />Every time user accesses the unique URL Ajax page, the fixed part of this page loaded first, and then loads the main content <strong>asynchronously, </strong>if the main content is large enough, for example, contains images or rich media content, the "<strong>async loading</strong>" is much better than the page loading blocked by downloading those images/medias.
+For instance, originally loading one specific page requires 2 seconds totally, after applying the this "<strong>async loading</strong>",  the fixed part cost <strong>0.4 seconds</strong> to be loaded and the main content costs <strong>1.8 seconds</strong>, from <strong>user's point of view</strong>,  usually the <strong>latter case</strong> would be better because the user see your page is partially loaded within a short period (0.4) which feels good enough, plus a graceful loading/splash screen, eventually the UX got improved significantly!<br /></li><br />
+	<li><span style="color:#3366ff;">Better SEO support (Performance Aspect)</span>
+<br />The page rendering speed is an important fact for a search engine's crawler, by applying "async loading", the crawler will deem the page it is crawling has a good loading speed - <strong>0.4 seconds</strong>.<br /></li><br />
+	<li><span style="color:#3366ff;">Easy to support W3 web standard</span>
+<br />This is sort of kidding:) Since your main content is Ajax loaded, W3 validator (so does Search Engine) won't validate the main content which is very possible does not strictly adhere all the standard rules.<br /></li>
+</ol>
+<strong>Disadvantage</strong>
+<ol>
+	<li><span style="color:#333333;"><span style="color:#99cc00;">Main content cannot be indexed by Search engines</span>
+</span><br />All main content is loaded by JavaScript, Search engine won't crawler those content, this is a serious problem! However, it is easy to walk around, builds a <strong>traditional page without Ajax, </strong>store it into <a href="http://sitemap.org" target="_blank">sitemap.xml</a> and submit to search engine Web Master tool.<br /></li><br />
+	<li><span style="color:#99cc00;">Harder to development and to maintain</span>
+<br />Client JavaScript/Ajax development is more complex and less convenient comparing to server side technology like ASP.NET, JAVA EE or PHP.  Although there are jQuery (write less, do more), Prototype.js (make develop JS in a more OO way), DoJo and so on, it still might not be very happy while a developer is struggling with mixed HTML/CSS/JavaScript:)<br /></li><br />
+</ol>
+P.S. I spent two days in updating my blog (<a href="http://WayneYe.com" target="_blank">http://WayneYe.com</a>), revised the paging style from traditional into the Ajax Unique URL pattern above, it is no doing Ajax paging and update URL like "<a href="http://wayneye.com/#Blogs&amp;Page5">http://wayneye.com/#Blogs&amp;Page5</a>", it definitely "<strong>Bookmarkable, Linkable, Type-In-Able and Sharable</strong>", plus a loading panel and content fades in effect, I believe its UX is much better than before.

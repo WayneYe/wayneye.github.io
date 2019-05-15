@@ -1,0 +1,313 @@
+---
+title: A complete Impersonation Demo in C#.NET
+categories:
+  - Hack
+tags:
+  - Hack
+permalink: DotNet-Impersonation-Demo
+---
+
+<p>Under some scenarios we need impersonate another Windows account and do some work under that user’s session, for example:</p>
+
+<ul>
+<li>An enterprise ASP.NET web application provides server administrators’ ability to access the server under some specific privilege set; Server admin input their NT account information (<strong>domain\account + password</strong>) on the page, we need get WinNT <a href="http://msdn.microsoft.com/en-us/library/Aa374909.aspx">Access Token</a> and then impersonate this server user, so that we acquire its specific privilege and do the things <strong>ONLY THIS ACCOUNT CAN DO.</strong> </li>
+<li>We developed a Windows Service which needs internet access periodically, but a specific user sets an <strong>Sock5 proxy</strong> to access internet, then your Windows Service needs to know the Socks proxy information so that it could access internet, you must impersonate this user and read the settings. 
+</li>
+</ul>
+  <h3>Impersonation definition</h3>
+
+  <p>Definition copied from: <a href="http://msdn.microsoft.com/en-us/library/aa376391(VS.85).aspx">http://msdn.microsoft.com/en-us/library/aa376391(VS.85).aspx</a></p>
+
+  <blockquote>
+    <p><strong>Impersonation is the ability of a thread to execute using different security information than the process that owns the thread. Typically, a thread in a server application impersonates a client. This allows the server thread to act on behalf of that client to access objects on the server or validate access to the client’s own objects.</strong></p>
+  </blockquote>
+
+  <p>I read many articles and blogs and wrote an <strong>ImpersonateHelper</strong> class to do impersonation work, during the investigating I noticed that very few articles/blogs refer a complete impersonation process, so I decided to write one that refer as more details as I can, and actually my code was a code snippet combination came from 10+ sources<img style="background-image:url(http://wayneye.com/Images/winLiveEmotions.gif);background-position:-0px -0px;width:19px;height:19px;" alt="Smile" src="http://wayneye.com/Images/invis.gif" />.</p>
+
+  <h3>Functionality</h3>
+
+  <p>I create a local user: <strong>TempUser</strong> which belongs to “Administrators” (make sure log on TempUser at least once), I logged on as my own account and I am going to impersonate <strong>TempUser</strong> and do two things:</p>
+$More$
+  <ol>
+    <li>Create a folder “C:\TempFolder”, modify its default privilege, ONLY <strong>TempUser</strong> has full control of it, I will create a text file under this folder after impersonating to <strong>prove impersonation is successfully</strong>. </li>
+
+      <br /><img title="Tempfolder1" border="0" alt="Tempfolder1" src="http://wayneye.files.wordpress.com/2010/10/tempfolder1_thumb.png?w=527&amp;h=543" width="527" height="543" /> 
+
+      <p><strong>Notes</strong>: After setting <strong>TempUser</strong> as the only owner, my current account cannot access this folder except privilege promotion (I disabled UAC, if UAC is enabled, a prompt window will pop up and as for Admin confirm). 
+
+        <br />
+
+        <br /><img title="Tempfolder2" border="0" alt="Tempfolder2" src="http://wayneye.files.wordpress.com/2010/10/tempfolder2_thumb.png?w=370&amp;h=195" width="370" height="195" /></p>
+
+      <p>In additional, I tried to access this folder programmatically <strong>under my account</strong>, <strong>UnauthorizedAccessException</strong>will be thrown! 
+
+        <br />
+
+        <br /><img title="Unauthorized" border="0" alt="Unauthorized" src="http://wayneye.files.wordpress.com/2010/10/unauthorized_thumb.png?w=495&amp;h=319" width="495" height="319" /></p>
+
+    <li>I will access <strong>TempUser’s</strong> <strong>HKEY_CURRENT_USER</strong> and do registry key creation, reading and deleting. </li>
+</ol>
+      <h3>Code Snippet</h3>
+We need invoke three very famous Win32 API: <a href="http://msdn.microsoft.com/en-us/library/aa378184(VS.85).aspx">LogonUser</a>, <a href="http://msdn.microsoft.com/en-us/library/aa446616(VS.85).aspx">DuplicateToken</a> and <a href="http://msdn.microsoft.com/en-us/library/aa379317(VS.85).aspx">RevertToSelf</a>. 
+
+  <pre style="background: #f6f8ff; color: #000020"><span style="color: #308080">[</span>DllImport<span style="color: #308080">(</span><span style="color: #800000">&quot;</span><span style="color: #1060b6">advapi32.dll</span><span style="color: #800000">&quot;</span><span style="color: #308080">)</span><span style="color: #308080">]</span>
+<span style="color: #200080; font-weight: bold">public</span> <span style="color: #200080; font-weight: bold">static</span> <span style="color: #200080; font-weight: bold">extern</span> <span style="color: #200080; font-weight: bold">int</span> LogonUser<span style="color: #308080">(</span>String lpszUserName<span style="color: #308080">,</span>
+    String lpszDomain<span style="color: #308080">,</span>
+    String lpszPassword<span style="color: #308080">,</span>
+    <span style="color: #200080; font-weight: bold">int</span> dwLogonType<span style="color: #308080">,</span>
+    <span style="color: #200080; font-weight: bold">int</span> dwLogonProvider<span style="color: #308080">,</span>
+    <span style="color: #200080; font-weight: bold">ref</span> IntPtr phToken<span style="color: #308080">)</span><span style="color: #406080">;</span>
+<span style="color: #308080">[</span>DllImport<span style="color: #308080">(</span><span style="color: #800000">&quot;</span><span style="color: #1060b6">advapi32.dll</span><span style="color: #800000">&quot;</span><span style="color: #308080">,</span> CharSet <span style="color: #308080">=</span> CharSet<span style="color: #308080">.</span>Auto<span style="color: #308080">,</span> SetLastError <span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">true</span><span style="color: #308080">)</span><span style="color: #308080">]</span>
+<span style="color: #200080; font-weight: bold">public</span> <span style="color: #200080; font-weight: bold">static</span> <span style="color: #200080; font-weight: bold">extern</span> <span style="color: #200080; font-weight: bold">int</span> DuplicateToken<span style="color: #308080">(</span>IntPtr hToken<span style="color: #308080">,</span> <span style="color: #200080; font-weight: bold">int</span> impersonationLevel<span style="color: #308080">,</span> <span style="color: #200080; font-weight: bold">ref</span> IntPtr hNewToken<span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+<span style="color: #595979">///A process should call the RevertToSelf function after finishing any </span>
+<span style="color: #595979">///impersonation begun by using the DdeImpersonateClient, ImpersonateDdeClientWindow, </span>
+<span style="color: #595979">///ImpersonateLoggedOnUser, ImpersonateNamedPipeClient, ImpersonateSelf, </span>
+<span style="color: #595979">///ImpersonateAnonymousToken or SetThreadToken function.</span>
+<span style="color: #595979">///If RevertToSelf fails, your application continues to run in the context of the </span>
+<span style="color: #595979">///client, which is not appropriate. You should shut down the process if RevertToSelf fails.</span>
+<span style="color: #595979">///RevertToSelf Function: http://msdn.microsoft.com/en-us/library/aa379317(VS.85).aspx</span>
+<span style="color: #595979">///A boolean value indicates the function succeeded or not.</span>
+<span style="color: #308080">[</span>DllImport<span style="color: #308080">(</span><span style="color: #800000">&quot;</span><span style="color: #1060b6">advapi32.dll</span><span style="color: #800000">&quot;</span><span style="color: #308080">,</span> CharSet <span style="color: #308080">=</span> CharSet<span style="color: #308080">.</span>Auto<span style="color: #308080">,</span> SetLastError <span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">true</span><span style="color: #308080">)</span><span style="color: #308080">]</span>
+<span style="color: #200080; font-weight: bold">public</span> <span style="color: #200080; font-weight: bold">static</span> <span style="color: #200080; font-weight: bold">extern</span> <span style="color: #200080; font-weight: bold">bool</span> RevertToSelf<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+<span style="color: #308080">[</span>DllImport<span style="color: #308080">(</span><span style="color: #800000">&quot;</span><span style="color: #1060b6">kernel32.dll</span><span style="color: #800000">&quot;</span><span style="color: #308080">,</span> CharSet <span style="color: #308080">=</span> CharSet<span style="color: #308080">.</span>Auto<span style="color: #308080">,</span> SetLastError <span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">true</span><span style="color: #308080">)</span><span style="color: #308080">]</span>
+<span style="color: #200080; font-weight: bold">public</span> <span style="color: #200080; font-weight: bold">static</span> <span style="color: #200080; font-weight: bold">extern</span> <span style="color: #200080; font-weight: bold">bool</span> CloseHandle<span style="color: #308080">(</span>IntPtr handle<span style="color: #308080">)</span><span style="color: #406080">;</span></pre>
+
+  <p><strong>An important notes</strong>: in order to access HKCU, we need invoke another Win32 API: <a href="http://msdn.microsoft.com/en-us/library/bb762281(VS.85).aspx">LoadUserProfile</a>,<strong> to acquire the handle of HKCU under TempUser</strong>, code below, as I highlighted line 45 and 49, after invoking LoadUserProfile, hProfile will be set handle to HKCU:</p>
+
+  <pre style="background: #f6f8ff; color: #000020"><span style="color: #308080">[</span>StructLayout<span style="color: #308080">(</span>LayoutKind<span style="color: #308080">.</span>Sequential<span style="color: #308080">)</span><span style="color: #308080">]</span>
+<span style="color: #200080; font-weight: bold">public</span> <span style="color: #200080; font-weight: bold">struct</span> ProfileInfo
+<span style="color: #406080">{</span>
+    <span style="color: #595979">///</span>
+    <span style="color: #595979">/// Specifies the size of the structure, in bytes.</span>
+    <span style="color: #595979">///</span>
+    <span style="color: #200080; font-weight: bold">public</span> <span style="color: #200080; font-weight: bold">int</span> dwSize<span style="color: #406080">;</span>
+
+    <span style="color: #595979">///</span>
+    <span style="color: #595979">/// This member can be one of the following flags: PI_NOUI or PI_APPLYPOLICY</span>
+    <span style="color: #595979">///</span>
+    <span style="color: #200080; font-weight: bold">public</span> <span style="color: #200080; font-weight: bold">int</span> dwFlags<span style="color: #406080">;</span>
+
+    <span style="color: #595979">///</span>
+    <span style="color: #595979">/// Pointer to the name of the user.</span>
+    <span style="color: #595979">/// This member is used as the base name of the directory in which to store a new profile.</span>
+    <span style="color: #595979">///</span>
+    <span style="color: #200080; font-weight: bold">public</span> <span style="color: #200080; font-weight: bold">string</span> lpUserName<span style="color: #406080">;</span>
+
+    <span style="color: #595979">///</span>
+    <span style="color: #595979">/// Pointer to the roaming user profile path.</span>
+    <span style="color: #595979">/// If the user does not have a roaming profile, this member can be NULL.</span>
+    <span style="color: #595979">///</span>
+    <span style="color: #200080; font-weight: bold">public</span> <span style="color: #200080; font-weight: bold">string</span> lpProfilePath<span style="color: #406080">;</span>
+
+    <span style="color: #595979">///</span>
+    <span style="color: #595979">/// Pointer to the default user profile path. This member can be NULL.</span>
+    <span style="color: #595979">///</span>
+    <span style="color: #200080; font-weight: bold">public</span> <span style="color: #200080; font-weight: bold">string</span> lpDefaultPath<span style="color: #406080">;</span>
+
+    <span style="color: #595979">///</span>
+    <span style="color: #595979">/// Pointer to the name of the validating domain controller, in NetBIOS format.</span>
+    <span style="color: #595979">/// If this member is NULL, the Windows NT 4.0-style policy will not be applied.</span>
+    <span style="color: #595979">///</span>
+    <span style="color: #200080; font-weight: bold">public</span> <span style="color: #200080; font-weight: bold">string</span> lpServerName<span style="color: #406080">;</span>
+
+    <span style="color: #595979">///</span>
+    <span style="color: #595979">/// Pointer to the path of the Windows NT 4.0-style policy file. This member can be NULL.</span>
+    <span style="color: #595979">///</span>
+    <span style="color: #200080; font-weight: bold">public</span> <span style="color: #200080; font-weight: bold">string</span> lpPolicyPath<span style="color: #406080">;</span>
+
+    <span style="color: #595979">///</span>
+    <span style="color: #595979">/// Handle to the HKEY_CURRENT_USER registry key.</span>
+    <span style="color: #595979">///</span>
+    <span style="color: #200080; font-weight: bold">public</span> IntPtr hProfile<span style="color: #406080">;</span>
+<span style="color: #406080">}</span>
+
+    <span style="color: #308080">[</span>DllImport<span style="color: #308080">(</span><span style="color: #800000">&quot;</span><span style="color: #1060b6">userenv.dll</span><span style="color: #800000">&quot;</span><span style="color: #308080">,</span> SetLastError <span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">true</span><span style="color: #308080">,</span> CharSet <span style="color: #308080">=</span> CharSet<span style="color: #308080">.</span>Auto<span style="color: #308080">)</span><span style="color: #308080">]</span>
+    <span style="color: #200080; font-weight: bold">public</span> <span style="color: #200080; font-weight: bold">static</span> <span style="color: #200080; font-weight: bold">extern</span> <span style="color: #200080; font-weight: bold">bool</span> LoadUserProfile<span style="color: #308080">(</span>IntPtr hToken<span style="color: #308080">,</span> <span style="color: #200080; font-weight: bold">ref</span> ProfileInfo lpProfileInfo<span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+    <span style="color: #308080">[</span>DllImport<span style="color: #308080">(</span><span style="color: #800000">&quot;</span><span style="color: #1060b6">Userenv.dll</span><span style="color: #800000">&quot;</span><span style="color: #308080">,</span> CallingConvention <span style="color: #308080">=</span> CallingConvention<span style="color: #308080">.</span>Winapi<span style="color: #308080">,</span> SetLastError <span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">true</span><span style="color: #308080">,</span> CharSet <span style="color: #308080">=</span> CharSet<span style="color: #308080">.</span>Auto<span style="color: #308080">)</span><span style="color: #308080">]</span>
+    <span style="color: #200080; font-weight: bold">public</span> <span style="color: #200080; font-weight: bold">static</span> <span style="color: #200080; font-weight: bold">extern</span> <span style="color: #200080; font-weight: bold">bool</span> UnloadUserProfile<span style="color: #308080">(</span>IntPtr hToken<span style="color: #308080">,</span> IntPtr lpProfileInfo<span style="color: #308080">)</span><span style="color: #406080">;</span></pre>
+
+  <p><strong>Code to execute impersonation</strong>:</p>
+
+  <pre style="background: #f6f8ff; color: #000020">WindowsIdentity m_ImpersonatedUser<span style="color: #406080">;</span>
+            IntPtr token <span style="color: #308080">=</span> IntPtr<span style="color: #308080">.</span>Zero<span style="color: #406080">;</span>
+            IntPtr tokenDuplicate <span style="color: #308080">=</span> IntPtr<span style="color: #308080">.</span>Zero<span style="color: #406080">;</span>
+            <span style="color: #200080; font-weight: bold">const</span> <span style="color: #200080; font-weight: bold">int</span> SecurityImpersonation <span style="color: #308080">=</span> <span style="color: #008c00">2</span><span style="color: #406080">;</span>
+            <span style="color: #200080; font-weight: bold">const</span> <span style="color: #200080; font-weight: bold">int</span> TokenType <span style="color: #308080">=</span> <span style="color: #008c00">1</span><span style="color: #406080">;</span>
+
+            <span style="color: #200080; font-weight: bold">try</span>
+            <span style="color: #406080">{</span>
+                <span style="color: #200080; font-weight: bold">if</span> <span style="color: #308080">(</span>RevertToSelf<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #308080">)</span>
+                <span style="color: #406080">{</span>
+                    Console<span style="color: #308080">.</span>WriteLine<span style="color: #308080">(</span><span style="color: #800000">&quot;</span><span style="color: #1060b6">Before impersonation: </span><span style="color: #800000">&quot;</span> <span style="color: #308080">+</span>
+                                      WindowsIdentity<span style="color: #308080">.</span>GetCurrent<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #308080">.</span>Name<span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+                    String userName <span style="color: #308080">=</span> <span style="color: #800000">&quot;</span><span style="color: #1060b6">TempUser</span><span style="color: #800000">&quot;</span><span style="color: #406080">;</span>
+                    IntPtr password <span style="color: #308080">=</span> GetPassword<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+                    <span style="color: #200080; font-weight: bold">if</span> <span style="color: #308080">(</span>LogonUser<span style="color: #308080">(</span>userName<span style="color: #308080">,</span> Environment<span style="color: #308080">.</span>MachineName<span style="color: #308080">,</span> <span style="color: #800000">&quot;</span><span style="color: #1060b6">!@#$QWERasdf</span><span style="color: #800000">&quot;</span><span style="color: #308080">,</span> LOGON32_LOGON_INTERACTIVE<span style="color: #308080">,</span>
+                                  LOGON32_PROVIDER_DEFAULT<span style="color: #308080">,</span> <span style="color: #200080; font-weight: bold">ref</span> token<span style="color: #308080">)</span> <span style="color: #308080">!</span><span style="color: #308080">=</span> <span style="color: #008c00">0</span><span style="color: #308080">)</span>
+                    <span style="color: #406080">{</span>
+                        <span style="color: #200080; font-weight: bold">if</span> <span style="color: #308080">(</span>DuplicateToken<span style="color: #308080">(</span>token<span style="color: #308080">,</span> SecurityImpersonation<span style="color: #308080">,</span> <span style="color: #200080; font-weight: bold">ref</span> tokenDuplicate<span style="color: #308080">)</span> <span style="color: #308080">!</span><span style="color: #308080">=</span> <span style="color: #008c00">0</span><span style="color: #308080">)</span>
+                        <span style="color: #406080">{</span>
+                            m_ImpersonatedUser <span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">new</span> WindowsIdentity<span style="color: #308080">(</span>tokenDuplicate<span style="color: #308080">)</span><span style="color: #406080">;</span>
+                            <span style="color: #200080; font-weight: bold">using</span> <span style="color: #308080">(</span>m_ImpersonationContext <span style="color: #308080">=</span> m_ImpersonatedUser<span style="color: #308080">.</span>Impersonate<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #308080">)</span>
+                            <span style="color: #406080">{</span>
+                                <span style="color: #200080; font-weight: bold">if</span> <span style="color: #308080">(</span>m_ImpersonationContext <span style="color: #308080">!</span><span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">null</span><span style="color: #308080">)</span>
+                                <span style="color: #406080">{</span>
+                                    Console<span style="color: #308080">.</span>WriteLine<span style="color: #308080">(</span><span style="color: #800000">&quot;</span><span style="color: #1060b6">After Impersonation succeeded: </span><span style="color: #800000">&quot;</span> <span style="color: #308080">+</span> Environment<span style="color: #308080">.</span>NewLine <span style="color: #308080">+</span>
+                                                      <span style="color: #800000">&quot;</span><span style="color: #1060b6">User Name: </span><span style="color: #800000">&quot;</span> <span style="color: #308080">+</span>
+                                                      WindowsIdentity<span style="color: #308080">.</span>GetCurrent<span style="color: #308080">(</span>TokenAccessLevels<span style="color: #308080">.</span>MaximumAllowed<span style="color: #308080">)</span><span style="color: #308080">.</span>Name <span style="color: #308080">+</span>
+                                                      Environment<span style="color: #308080">.</span>NewLine <span style="color: #308080">+</span>
+                                                      <span style="color: #800000">&quot;</span><span style="color: #1060b6">SID: </span><span style="color: #800000">&quot;</span> <span style="color: #308080">+</span>
+                                                      WindowsIdentity<span style="color: #308080">.</span>GetCurrent<span style="color: #308080">(</span>TokenAccessLevels<span style="color: #308080">.</span>MaximumAllowed<span style="color: #308080">)</span><span style="color: #308080">.</span>User<span style="color: #308080">.</span>
+                                                          Value<span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+                                    #region LoadUserProfile
+                                    <span style="color: #595979">// Load user profile</span>
+                                    ProfileInfo profileInfo <span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">new</span> ProfileInfo<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+                                    profileInfo<span style="color: #308080">.</span>dwSize <span style="color: #308080">=</span> Marshal<span style="color: #308080">.</span>SizeOf<span style="color: #308080">(</span>profileInfo<span style="color: #308080">)</span><span style="color: #406080">;</span>
+                                    profileInfo<span style="color: #308080">.</span>lpUserName <span style="color: #308080">=</span> userName<span style="color: #406080">;</span>
+                                    profileInfo<span style="color: #308080">.</span>dwFlags <span style="color: #308080">=</span> <span style="color: #008c00">1</span><span style="color: #406080">;</span>
+                                    Boolean loadSuccess <span style="color: #308080">=</span> LoadUserProfile<span style="color: #308080">(</span>tokenDuplicate<span style="color: #308080">,</span> <span style="color: #200080; font-weight: bold">ref</span> profileInfo<span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+                                    <span style="color: #200080; font-weight: bold">if</span> <span style="color: #308080">(</span><span style="color: #308080">!</span>loadSuccess<span style="color: #308080">)</span>
+                                    <span style="color: #406080">{</span>
+                                        Console<span style="color: #308080">.</span>WriteLine<span style="color: #308080">(</span><span style="color: #800000">&quot;</span><span style="color: #1060b6">LoadUserProfile() failed with error code: </span><span style="color: #800000">&quot;</span> <span style="color: #308080">+</span>
+                                                          Marshal<span style="color: #308080">.</span>GetLastWin32Error<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+                                        <span style="color: #200080; font-weight: bold">throw</span> <span style="color: #200080; font-weight: bold">new</span> Win32Exception<span style="color: #308080">(</span>Marshal<span style="color: #308080">.</span>GetLastWin32Error<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+                                    <span style="color: #406080">}</span>
+
+                                    <span style="color: #200080; font-weight: bold">if</span> <span style="color: #308080">(</span>profileInfo<span style="color: #308080">.</span>hProfile <span style="color: #308080">=</span><span style="color: #308080">=</span> IntPtr<span style="color: #308080">.</span>Zero<span style="color: #308080">)</span>
+                                    <span style="color: #406080">{</span>
+                                        Console<span style="color: #308080">.</span>WriteLine<span style="color: #308080">(</span>
+                                            <span style="color: #800000">&quot;</span><span style="color: #1060b6">LoadUserProfile() failed - HKCU handle was not loaded. Error code: </span><span style="color: #800000">&quot;</span> <span style="color: #308080">+</span>
+                                            Marshal<span style="color: #308080">.</span>GetLastWin32Error<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+                                        <span style="color: #200080; font-weight: bold">throw</span> <span style="color: #200080; font-weight: bold">new</span> Win32Exception<span style="color: #308080">(</span>Marshal<span style="color: #308080">.</span>GetLastWin32Error<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+                                    <span style="color: #406080">}</span>
+                                    #endregion
+
+                                    CloseHandle<span style="color: #308080">(</span>token<span style="color: #308080">)</span><span style="color: #406080">;</span>
+                                    CloseHandle<span style="color: #308080">(</span>tokenDuplicate<span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+                                    <span style="color: #595979">// Do tasks after impersonating successfully</span>
+                                    AccessFileSystem<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+                                    <span style="color: #595979">// Access HKCU after loading user's profile</span>
+                                    AccessHkcuRegistry<span style="color: #308080">(</span>profileInfo<span style="color: #308080">.</span>hProfile<span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+                                    <span style="color: #595979">// Unload user profile</span>
+                                    <span style="color: #595979">// MSDN remarks http://msdn.microsoft.com/en-us/library/bb762282(VS.85).aspx</span>
+                                    <span style="color: #595979">// Before calling UnloadUserProfile you should ensure that all handles to keys that you have opened in the</span>
+                                    <span style="color: #595979">// user's registry hive are closed. If you do not close all open registry handles, the user's profile fails</span>
+                                    <span style="color: #595979">// to unload. For more information, see Registry Key Security and Access Rights and Registry Hives.</span>
+                                    UnloadUserProfile<span style="color: #308080">(</span>tokenDuplicate<span style="color: #308080">,</span> profileInfo<span style="color: #308080">.</span>hProfile<span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+                                    <span style="color: #595979">// Undo impersonation</span>
+                                    m_ImpersonationContext<span style="color: #308080">.</span>Undo<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+                                <span style="color: #406080">}</span>
+                            <span style="color: #406080">}</span>
+                        <span style="color: #406080">}</span>
+                        <span style="color: #200080; font-weight: bold">else</span>
+                        <span style="color: #406080">{</span>
+                            Console<span style="color: #308080">.</span>WriteLine<span style="color: #308080">(</span><span style="color: #800000">&quot;</span><span style="color: #1060b6">DuplicateToken() failed with error code: </span><span style="color: #800000">&quot;</span> <span style="color: #308080">+</span> Marshal<span style="color: #308080">.</span>GetLastWin32Error<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+                            <span style="color: #200080; font-weight: bold">throw</span> <span style="color: #200080; font-weight: bold">new</span> Win32Exception<span style="color: #308080">(</span>Marshal<span style="color: #308080">.</span>GetLastWin32Error<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+                        <span style="color: #406080">}</span>
+                    <span style="color: #406080">}</span>
+                <span style="color: #406080">}</span>
+            <span style="color: #406080">}</span>
+            <span style="color: #200080; font-weight: bold">catch</span> <span style="color: #308080">(</span>Win32Exception we<span style="color: #308080">)</span>
+            <span style="color: #406080">{</span>
+                <span style="color: #200080; font-weight: bold">throw</span> we<span style="color: #406080">;</span>
+            <span style="color: #406080">}</span>
+            <span style="color: #200080; font-weight: bold">catch</span>
+            <span style="color: #406080">{</span>
+                <span style="color: #200080; font-weight: bold">throw</span> <span style="color: #200080; font-weight: bold">new</span> Win32Exception<span style="color: #308080">(</span>Marshal<span style="color: #308080">.</span>GetLastWin32Error<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+            <span style="color: #406080">}</span>
+            <span style="color: #200080; font-weight: bold">finally</span>
+            <span style="color: #406080">{</span>
+                <span style="color: #200080; font-weight: bold">if</span> <span style="color: #308080">(</span>token <span style="color: #308080">!</span><span style="color: #308080">=</span> IntPtr<span style="color: #308080">.</span>Zero<span style="color: #308080">)</span> CloseHandle<span style="color: #308080">(</span>token<span style="color: #308080">)</span><span style="color: #406080">;</span>
+                <span style="color: #200080; font-weight: bold">if</span> <span style="color: #308080">(</span>tokenDuplicate <span style="color: #308080">!</span><span style="color: #308080">=</span> IntPtr<span style="color: #308080">.</span>Zero<span style="color: #308080">)</span> CloseHandle<span style="color: #308080">(</span>tokenDuplicate<span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+                Console<span style="color: #308080">.</span>WriteLine<span style="color: #308080">(</span><span style="color: #800000">&quot;</span><span style="color: #1060b6">After finished impersonation: </span><span style="color: #800000">&quot;</span> <span style="color: #308080">+</span> WindowsIdentity<span style="color: #308080">.</span>GetCurrent<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #308080">.</span>Name<span style="color: #308080">)</span><span style="color: #406080">;</span>
+            <span style="color: #406080">}</span></pre>
+
+  <p><strong>AccessFileSystem method</strong></p>
+
+  <pre style="background: #f6f8ff; color: #000020"><span style="color: #200080; font-weight: bold">private</span> <span style="color: #200080; font-weight: bold">static</span> <span style="color: #200080; font-weight: bold">void</span> AccessHkcuRegistry<span style="color: #308080">(</span>IntPtr hkcuHandle<span style="color: #308080">)</span>
+<span style="color: #406080">{</span>
+    <span style="color: #595979">// Access registry HKCU</span>
+    <span style="color: #200080; font-weight: bold">using</span> <span style="color: #308080">(</span>SafeRegistryHandle safeHandle <span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">new</span> SafeRegistryHandle<span style="color: #308080">(</span>hkcuHandle<span style="color: #308080">,</span> <span style="color: #200080; font-weight: bold">true</span><span style="color: #308080">)</span><span style="color: #308080">)</span>
+    <span style="color: #406080">{</span>
+        <span style="color: #200080; font-weight: bold">using</span> <span style="color: #308080">(</span>RegistryKey tempUserHKCU <span style="color: #308080">=</span> RegistryKey<span style="color: #308080">.</span>FromHandle<span style="color: #308080">(</span>safeHandle<span style="color: #308080">)</span><span style="color: #308080">)</span>
+        <span style="color: #406080">{</span>
+            <span style="color: #595979">// Unum all sub keys under tempuser's HKCU</span>
+            String<span style="color: #308080">[</span><span style="color: #308080">]</span> keys <span style="color: #308080">=</span> tempUserHKCU<span style="color: #308080">.</span>GetSubKeyNames<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+            <span style="color: #595979">// Create a new sub key under tempuser's HKCU</span>
+            <span style="color: #200080; font-weight: bold">using</span> <span style="color: #308080">(</span>RegistryKey tempKeyByWayne <span style="color: #308080">=</span> tempUserHKCU<span style="color: #308080">.</span>CreateSubKey<span style="color: #308080">(</span><span style="color: #800000">&quot;</span><span style="color: #1060b6">TempKeyByWayne</span><span style="color: #800000">&quot;</span><span style="color: #308080">)</span><span style="color: #308080">)</span>
+            <span style="color: #406080">{</span>
+                <span style="color: #595979">// Ensure priviledge</span>
+                <span style="color: #595979">//RegistrySecurity registrySecurity = new RegistrySecurity();</span>
+                <span style="color: #595979">//RegistryAccessRule accessRule = new RegistryAccessRule(Environment.MachineName + &quot;\\&quot; + userName,</span>
+                <span style="color: #595979">//                                                       RegistryRights.TakeOwnership,</span>
+                <span style="color: #595979">//                                                       InheritanceFlags.ContainerInherit,</span>
+                <span style="color: #595979">//                                                       PropagationFlags.None,</span>
+                <span style="color: #595979">//                                                       AccessControlType.Allow);</span>
+                <span style="color: #595979">//registrySecurity.SetAccessRule(accessRule);</span>
+                <span style="color: #595979">//tempKeyByWayne.SetAccessControl(registrySecurity);</span>
+
+                <span style="color: #595979">// Create a new String value under created TempKeyByWayne subkey</span>
+                tempKeyByWayne<span style="color: #308080">.</span>SetValue<span style="color: #308080">(</span><span style="color: #800000">&quot;</span><span style="color: #1060b6">StrType</span><span style="color: #800000">&quot;</span><span style="color: #308080">,</span> <span style="color: #800000">&quot;</span><span style="color: #1060b6">TempContent</span><span style="color: #800000">&quot;</span><span style="color: #308080">,</span> RegistryValueKind<span style="color: #308080">.</span>String<span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+                <span style="color: #595979">// Read the value</span>
+                <span style="color: #200080; font-weight: bold">using</span> <span style="color: #308080">(</span>RegistryKey regKey <span style="color: #308080">=</span> tempUserHKCU<span style="color: #308080">.</span>OpenSubKey<span style="color: #308080">(</span><span style="color: #800000">&quot;</span><span style="color: #1060b6">TempKeyByWayne</span><span style="color: #800000">&quot;</span><span style="color: #308080">)</span><span style="color: #308080">)</span>
+                <span style="color: #406080">{</span>
+                    String valueContent <span style="color: #308080">=</span> regKey<span style="color: #308080">.</span>GetValue<span style="color: #308080">(</span><span style="color: #800000">&quot;</span><span style="color: #1060b6">StrType</span><span style="color: #800000">&quot;</span><span style="color: #308080">)</span> <span style="color: #200080; font-weight: bold">as</span> String<span style="color: #406080">;</span>
+                    Console<span style="color: #308080">.</span>WriteLine<span style="color: #308080">(</span>valueContent<span style="color: #308080">)</span><span style="color: #406080">;</span>
+                <span style="color: #406080">}</span>
+
+                <span style="color: #595979">// Delete created TempKeyByWayne subkey</span>
+                tempUserHKCU<span style="color: #308080">.</span>DeleteSubKey<span style="color: #308080">(</span><span style="color: #800000">&quot;</span><span style="color: #1060b6">TempKeyByWayne</span><span style="color: #800000">&quot;</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+                tempKeyByWayne<span style="color: #308080">.</span>Close<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+            <span style="color: #406080">}</span>
+        <span style="color: #406080">}</span>
+    <span style="color: #406080">}</span>
+<span style="color: #406080">}</span></pre>
+
+  <h3>Impersonation result and verification</h3>
+
+  <p>Temp.txt was created. 
+    <br /><img title="TempFolder" border="0" alt="TempFolder" src="http://wayneye.files.wordpress.com/2010/10/tempfolder_thumb.png?w=558&amp;h=476" width="558" height="476" /></p>
+
+  <p>“TempKeyByWayne” was created under HKCU. 
+    <br /><img title="Registry" border="0" alt="Registry" src="http://wayneye.files.wordpress.com/2010/10/registry_thumb.png?w=608&amp;h=472" width="608" height="472" /></p>
+
+  <h3>Complete source code download</h3>
+
+  <p><img alt="" src="http://wayneye.files.wordpress.com/2010/10/icon_csharp.gif?w=32&amp;h=32&amp;h=32" width="32" height="32" />ImpersonateHelper.cs</p>
+
+  <h3>References</h3>
+<strong>How to implement impersonation in an ASP.NET application</strong> 
+
+    <br /><a href="http://support.microsoft.com/kb/306158">http://support.microsoft.com/kb/306158</a> 
+
+    <br /><strong>LogonUser Win32 API</strong> 
+
+    <br /><a href="http://msdn.microsoft.com/en-us/library/aa378184(VS.85).aspx">http://msdn.microsoft.com/en-us/library/aa378184(VS.85).aspx</a> 
+
+    <br /><strong>How to spawn a process that runs under the context of the impersonated user in Microsoft ASP.NET pages </strong>
+
+    <br /><a href="http://support.microsoft.com/kb/889251">http://support.microsoft.com/kb/889251</a> 
+
+    <br /><strong>ASP.NET Impersonation</strong> 
+
+    <br /><a href="http://msdn.microsoft.com/en-us/library/xh507fc5(v=VS.100).aspx">http://msdn.microsoft.com/en-us/library/xh507fc5(v=VS.100).aspx</a> 
+
+    <br /><strong>Safely Impersonating Another User</strong> 
+
+    <br /><a href="http://blogs.msdn.com/b/shawnfa/archive/2005/03/22/400749.aspx">http://blogs.msdn.com/b/shawnfa/archive/2005/03/22/400749.aspx</a>
+
+ 

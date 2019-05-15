@@ -12,7 +12,7 @@ permalink: Encrypt-DotNet-Configuration-File
 <p>However, in the posts above they uses <strong>aspnet_regiis.exe</strong> and seems it doesn’t directly support app.config, if we want to encrypt app.config for Windows Form or WPF applications, while I tried use it to encrypt my app.config file, it generates a web.config which means my Winform definitely can’t use it, <strong>even if I copy the encrypted appSettings section from this generated web.config to my own app.config</strong>(ConfigurationManager.AppSettings[EncryptedKeyName] is<strong> null</strong> after I did that).</p>
 
 <p><img class="BlogImage" title="ConfigEncrypt" alt="Config Encrypt" src="http://wayneye.files.wordpress.com/2010/10/configencrypt.png?w=600&amp;h=405" width="600" height="405" /></p>
-$More$
+<!--more-->
 <p><img class="BlogImage" title="EncryptedWebConfig" alt="Encrypted WebConfig" src="http://wayneye.files.wordpress.com/2010/10/encryptedwebconfig.png?w=600&amp;h=383" width="600" height="383" /></p>
 
 <p>After several minutes google search and testing I found the code below is simple and very straight forward to achieve this:</p>

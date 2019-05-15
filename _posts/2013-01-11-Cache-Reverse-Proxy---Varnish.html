@@ -10,7 +10,7 @@ permalink: Cache-Reverse-Proxy-Varnish
 <h2>Introduction</h2>
 <p>Varnish is an <a href="http://en.wikipedia.org/wiki/Varnish_%28software%29">HTTP accelerator</a>, the official page is: <a href="https://www.varnish-cache.org/">https://www.varnish-cache.org/</a>.</p>
 <p>Varnish stands in front of the web application server to be a cache reverse proxy (also can be a load balancer), it can simply cache all the static resources in memory, and can also be powerfully configed using VCL (Varnish Configuration Language, a DSL for Varnish configuration) to cache dynamic content, in addition, Varnish implements ESI (<a href="http://en.wikipedia.org/wiki/Edge_Side_Includes">Edge Side Include</a>) standards to provide ability to cache static parts of the page.</p>
-$More$
+<!--more-->
 <p>A web server uses Varnish can easily handle more than <strong>10,000 requests/s</strong> on a single node, as a comparison, an Apache web server can handle about 1000 requests/s, thus it is extremely suitable and strongly recommended for "content-heavy dynamic websites" with high concurrency visits.</p>
 <figure><img alt="Varnish landscope" src="http://blog.mgm-tp.com/wp-content/uploads/2012/01/Setup-with-Varnish-as-Web-Cache.png" /> <figcaption>Varnish landscape (Shamelessly stole from <a href="http://blog.mgm-tp.com/2012/01/varnish-web-cache/" target="_blank">MGM Tech blog)</a></figcaption></figure>
 <p>Varnish Software has made a <a href="http://www.youtube.com/watch?v=x7t2Sp174eI">vivid video</a> to demonstrate what is Varnish and how it makes the web fly.</p>

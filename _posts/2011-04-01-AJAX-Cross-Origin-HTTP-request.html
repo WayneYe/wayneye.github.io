@@ -25,7 +25,7 @@ permalink: Ajax-Cross-Origin-HTTP-request
 <p><strong>DomainB response headers</strong></p>
 <blockquote>Cache-Control private<br />Content-Type application/json; charset=utf-8<br /><strong><span style="color: #3366ff;">Access-Control-Allow-Origin DomainA.com</span></strong><br />Content-Length 87<br />Proxy-Connection Keep-Alive<br />Connection Keep-Alive</blockquote>
 <p>The<span style="color: #3366ff;"> blue parts</span> I marked above were the kernal facts, "<span style="color: #3366ff;">Origin</span>" request header "indicates where the <a href="http://www.w3.org/TR/cors/#cross-origin-request" target="_blank">cross-origin request</a> or <a href="http://www.w3.org/TR/cors/#preflight-request" target="_blank">preflight request</a> originates from", the "<span style="color: #3366ff;">Access-Control-Allow-Origin</span>" response header indicates this page allows remote request from DomainA (if the value is * indicate allows remote requests from any domain).</p>
-$More$
+<!--more-->
 <p>As I mentioned above, W3 recommended browser to implement a "<strong><span style="color: #3366ff;"><a href="http://www.w3.org/TR/cors/#preflight-request" target="_blank">preflight request</a></span></strong>" before submiting the actually Cross-Origin HTTP request, in a nutshell it is an HTTP "<strong>OPTIONS</strong>" request:</p>
 <blockquote>
 <p>OPTIONS DomainB.com/foo.aspx HTTP/1.1</p>

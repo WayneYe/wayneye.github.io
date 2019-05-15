@@ -16,7 +16,7 @@ The key technology to achieve the ""Unique URL" goal could be summarized into tw
 	<li>If the content in the page has been updated by Ajax significantly enough, update the URL (<code>location.hash</code>) as well.</li>
 <pre style="color:#000020;background:#f6f8ff;width:600px;"><span style="color:#595979;">// Ajax rendering all blog entries in page number 5</span>
 location<span style="color:#308080;">.</span>hash <span style="color:#308080;">=</span> <span style="color:#1060b6;">'Blogs&amp;Page5'</span><span style="color:#406080;">;</span></pre>
-	<li>Every time the Ajax page loads, JS should<strong> understand the$More$ URL </strong>and <strong>render related content </strong>as well.</li>
+	<li>Every time the Ajax page loads, JS should<strong> understand the<!--more--> URL </strong>and <strong>render related content </strong>as well.</li>
 <pre style="color:#000020;background:#f6f8ff;width:600px;"><span style="color:#0057a6;">&lt;</span><span style="color:#200080;font-weight:bold;">body</span><span style="color:#474796;"> </span><span style="color:#074726;">onload</span><span style="color:#308080;">=</span><span style="color:#1060b6;">"restoreAjaxContent()"</span><span style="color:#0057a6;">&gt;</span>
 <span style="color:#0057a6;">&lt;</span><span style="color:#200080;font-weight:bold;">script type="text/javascript"</span><span style="color:#0057a6;">&gt;</span>
 <span style="color:#200080;font-weight:bold;">function</span> restoreAjaxContent<span style="color:#308080;">(</span><span style="color:#308080;">)</span><span style="color:#406080;">{</span>

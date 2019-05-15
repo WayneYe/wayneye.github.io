@@ -47,6 +47,7 @@ excerpt_separator: <!--more-->
 plugins:
   - jekyll-sitemap
   - jekyll-avatar
+  - jekyll-archives
   - jemoji
   - jekyll-include-cache
   - jekyll-seo-tag
@@ -85,6 +86,23 @@ comments:
     num_posts: 5 # 5 (default)
     colorscheme: light # "light" (default), "dark"
 
+# https://github.com/jekyll/jekyll-archives
+jekyll-archives:
+  enabled:
+   - categories
+   - tags
+  layouts:
+    category: archive-taxonomy
+    tag: archive-taxonomy
+  permalinks:
+    category: /categories/:name/
+    tag: /tags/:name/
+category_archive:
+  type: liquid
+  path: /categories/
+tag_archive:
+  type: liquid
+  path: /tags/
 
 # SEO Stuff
 google:

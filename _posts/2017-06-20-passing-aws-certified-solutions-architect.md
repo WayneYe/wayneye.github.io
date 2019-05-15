@@ -1,7 +1,10 @@
 ---
 title:  "Passing AWS Certified Solutions Architect"
-categories: [Technology]
-tags: [AWS, Technology]
+categories:
+  - Self-Improvement
+tags:
+  - AWS
+  - Technology
 ---
 
 ![](https://image.ibb.co/jsUja5/AWS_CSA_Associate.png)
@@ -9,7 +12,7 @@ tags: [AWS, Technology]
 3 years of AWS hands on experience, two months of preparation, 30 hours of course learning, 300+ exam practices, this was the work I've done to pass the **AWS Certified Solutions Architect - Associate**, my exam result is below:
 <!--more-->
 
-> Overall Score: 81%  
+> Overall Score: 81%
 >   
 > Topic Level Scoring:  
 > 1.0 Designing highly available, cost efficient, fault tolerant, scalable systems: 81%  

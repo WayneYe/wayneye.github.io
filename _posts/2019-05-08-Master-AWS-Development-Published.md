@@ -1,8 +1,10 @@
 ---
 title:  "Master AWS Development Published"
-categories: [Technology]
-tags: [AWS, Technology]
-layout: archive
+categories: 
+  - Self-Improvement
+tags:
+  - AWS
+  - Technology
 header:
   teaser: https://image.ibb.co/jsUja5/AWS_CSA_Associate.png
 ---

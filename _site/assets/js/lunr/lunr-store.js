@@ -10,7 +10,7 @@ var store = [{
         "url": "http://wayneye.com/self-improvement/passing-aws-certified-solutions-architect/",
         "teaser":null},{
         "title": "Master AWS Development Published",
-        "excerpt":"In June 2018, PacktPub contacted me   It is now published at: https://www.packtpub.com/virtualization-and-cloud/mastering-aws-development-video  ","categories": ["Self-Improvement"],
+        "excerpt":"The motivation In June 2018, PacktPub contacted me and asked my interest for recording a video course, they provided a few topics like AWS, Python, Docker, etc, I knew it would be a pretty cool thing to do but it couldn’t be very challenging as well, The journey It is...","categories": ["Self-Improvement"],
         "tags": ["AWS","Technology"],
         "url": "http://wayneye.com/self-improvement/Master-AWS-Development-Published/",
-        "teaser":"https://image.ibb.co/jsUja5/AWS_CSA_Associate.png"}]
+        "teaser":null}]

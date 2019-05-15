@@ -9,9 +9,9 @@ main:
   - title: "Search"
     url: /search/
   - title: "Album"
-    url: http://wayneye.com/album
+    url: /album/
   - title: "About"
-    url: http://wayneye.com/AboutMe
+    url: /about/
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
   # - title: "Sample Posts"

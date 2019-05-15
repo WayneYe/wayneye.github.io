@@ -4,26 +4,20 @@
 import csv
 import os
 from pprint import pprint
-# 'Blog_ID',
-# 'Author',
-# 'Title',
-# 'Permalink',
-# 'Category_ID',
-# 'Content',
-# 'Read_Times',
-# 'Post_Date',
-# 'Visibility',
-# 'Record_State'
+
+# Author,Category_Name,Title,Permalink,Content,Post_Date
 
 
-BLOG_CONTENT = """
-title: {1}
-categories: {2}
-tags: {3}
-permalink: {4}
-# canonical_url: {5}
+BLOG_CONTENT = """---
+title: {0}
+categories:
+  - {1}
+tags:
+  - {1}
+{2}
+---
 
-{5}
+{3}
 """
 
 blogs = []
@@ -33,19 +27,24 @@ with open('/Users/yewe/Documents/blogs.csv', 'r') as csv_file:
     counter = 0
     for row in csv_reader:
         # print('{}: {}'.format(row[0], row[1]))
-        if row[0] == 'Blog_ID':
+        if row[0] == 'Author':
             pprint(row)
         else:
-            counter += 1
-            if counter == 3:
-                break
+            # counter += 1
+            # if counter == 3:
+                # break
 
-            if row[8] == '1' and row[9] == 'A':
-                date_str = row[7]
-                date_str = [0:date_str.index(' ')]
-                title = row[2]
-                blog_file = '/Users/yewe/projects/wayneye.github.io/_posts/' + date_str + '-' + title + '.md'
-                pprint(row)
+            category = row[1]
+            title = row[2]
+            url_safe_title = title.replace(' ', '-').replace('/', '-').replace('"', '')
+            permalink = 'permalink: '.format(row[3]) if row[3].strip() else url_safe_title
+            content = row[4]
+            date_str = row[5]
+            date_str = date_str[0:date_str.index(' ')]
+            blog_file = '/Users/yewe/projects/wayneye.github.io/_posts/' + date_str + '-' +  + '.html'
+            blog_content = BLOG_CONTENT.format(title, category, permalink, content)
+            with open(blog_file, 'w') as w:
+                w.write(blog_content)
             # blogs.append(['Service Name', 'Subscribers Count'])
     # pprint(blogs)
 

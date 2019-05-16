@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Wayne's Geek Life">
 <meta property="og:title" content="Atomic Operation in C#.Net">
-<meta property="og:url" content="https://wayneye.com/Atomic-Operation-In-Csharp">
+<meta property="og:url" content="http://localhost:4000/Atomic-Operation-In-Csharp">
 
 
   <meta property="og:description" content="IntroductionAtomic Operation is named academic to Linearizability,&nbsp;Atomicity is a guarantee of isolation from concurrent processes, it can be enfored by hardware level build on Cache&nbsp;Coherence protocol, or software level exclusive lock. In this blog post, I am going to explore a few number of mechanisms to achieve atomic operation in .Net.What are Atomic operations and what are not?In C# Specification, the stamement about atomic operation is:&ldquo;Reads and writes of the following data types shall be atomic: bool, char, byte, sbyte, short, ushort, uint, int, float, and reference types.&rdquo; Also: &ldquo;&hellip;there is no guarantee of atomic read-modify-write, such as in the case of increment or decrement.&rdquo;.Threading In C#&nbsp;by Joseph Albahari described:&quot;Read/write on a field of 32-bit or less is always atomic, operations on 64-bit are guaranteed to be atomic only in 64-bit OS, statements that combine more than one read/write operation are never atomic.&quot;For example, following operations are guaranteed to be atomic operations: int i = 3; // Always atomic long l = Int64.MaxValue; // Atomic in 64-bit enviroment, non-atomic on 32-bit environmentCode like below are never atomic: int i = 0; int j += i;&nbsp; // Non-atomic, read and write operation i++;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Non-atomic, read and write operationAnd I am trying to document atomic operation in a lower level in the section below.EssenceComsidering two threads (or two processes) are running simultaneously: T1 and T2, there is a field stored in memory, T1 reads its value and do some calculation on the value and finally write the new value back to memory, during the period T2 was actually doing exact same task - i.e. read/calculate/write value back, so possibly one operation on this field overrides another - in other word:&nbsp;the later executed thread (T2) might override the earlier executed one (T1) because when it read the field&#39;s value another thread was just manipulating on it, and after T1 finished writing the new value back to memory, T2 writes back.So a simple example is the increament/decrement operation, as I showed above, it is NOT an atomic operation, it requires both read and write, if many thread simultaneously doing increment on one field, it will very possible cause race condition (the more threads, the more increment operation going to do, the more possibility race condition happen).Atomicity exampleI wrote a Winform application, it do simple work:Create 10 threads at runtime and simultaneously operates on a private interger, there is a volatile counter with initial value 0, every thread finishes its work will:Print information on UI.Increment the counterCheck whether the counter reachs 10, if yes, print CalculatingFinished method which will print the final result.And I wish UI won&#39;t block during the calculation, otherwise I can simply join every created thread. My code skeleton is showing below: private const int MaxThraedCount = 10; private Thread[] m_Workers = new Thread[MaxThraedCount]; private volatile int m_Counter = 0; private Int32 x = 0;  protected void btn_DoWork_Click(object sender, EventArgs e) { &nbsp;&nbsp;&nbsp; ShowStatus(&quot;Starting...&quot;);  &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; MaxThraedCount; i++) &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m_Workers[i] = new Thread(IncreaseNumber) { Name = &quot;Thread &quot; + (i + 1) }; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m_Workers[i].Start(); &nbsp;&nbsp;&nbsp; } }  void IncreaseNumber() { &nbsp;&nbsp;&nbsp; try &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 10000; i++) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Different strategy to increment x &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ShowStatus(String.Format(&quot;{0} finished at {1}&quot;, Thread.CurrentThread.Name, m_Watcher.Elapsed.TotalMilliseconds)); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Increases Counter and decides whether or not sets the finish signal &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m_Counter++; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (m_Counter == MaxThraedCount) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Print finish information on UI &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CalculatingFinished(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m_Counter = 0; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp; catch (Exception ex) &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw; &nbsp;&nbsp;&nbsp; } }  public void ShowStatus(string info) { &nbsp;&nbsp;&nbsp; this.InvokeAction(() =&gt; listInfo.Items.Add(info)); }  private void CalculatingFinished() { &nbsp;&nbsp;&nbsp; ShowStatus(&quot;\r\nAll Done at: &quot; + m_Watcher.Elapsed.TotalMilliseconds); &nbsp;&nbsp;&nbsp; ShowStatus(&quot;The result: &quot; + x.ToString()); }I highlighted &quot;// Different strategy to increment x&quot;, and will try a few number of ways to achieve atomicity using FCL libriries.Let&#39;s first see the non-atomic routine - simple do x++ in each thread:&nbsp; for (int i = 0; i &lt; 10000; i++) { &nbsp;&nbsp;&nbsp; x++; }Since x++&nbsp;is NOT atomicity, in additional, I made a large loop - 10 thousand times, in my experience, I NEVER get the correct result, the screenshot is below:Analysis and solutionsTo solve the issue and ensure atomicity, by more than 2 weeks brokenly study&nbsp;I found the following feasible ways (in theory, not considering performance):Interlocked.IncrementApply exclusive lock (or&nbsp;Moniter.Enter) outside the for loop.AutoResetEvent to ensure threads doing task one by one.&nbsp;Create a temp integer in each thread and once finish add temp onto x under an exclusive lock.ReaderWriterLockSlim.Parallel.For coordinate with Interlocked.Increment.&nbsp;All of above can achieve atomic operation on incresing x&#39;s value, and got expected result:In fact I did try other ways such as using MemoryBarrier, Thread.VolatileRead/VolatileWrite - StackOverFlow question link, but failed, if dear readers know there is way to use them to achieve the goal please kindly guide me. &nbsp;Demonstration codeIn this section I will listed key code for implementing the 5 solutions above.Solution #1:&nbsp;Interlocked.Increment for (int i = 0; i &lt; 10000; i++) &nbsp;&nbsp;&nbsp; Interlocked.Increment(ref x);Solution #2:&nbsp;Apply exclusive lock (Moniter) outside the for loop. private readonly string m_Locker = &quot;THREAD_LOCKER&quot;;  Monitor.Enter(m_Locker); for (int i = 0; i &lt; 10000; i++) &nbsp;&nbsp;&nbsp; x++; Monitor.Exit(m_Locker);Solution #3:&nbsp;AutoResetEvent to ensure threads doing task one by one. private static AutoResetEvent m_AutoReset = new AutoResetEvent(false);  protected void btn_DoWork_Click(object sender, EventArgs e) { &nbsp;&nbsp;&nbsp; ShowStatus(&quot;Starting...&quot;);  &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; MaxThraedCount; i++) &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m_Workers[i] = new Thread(IncreaseNumber) { Name = &quot;Thread &quot; + (i + 1) }; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m_Workers[i].Start(); &nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; m_AutoReset.Set(); }  void IncreaseNumber() { &nbsp;&nbsp;&nbsp; m_AutoReset.WaitOne(); &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 10000; i++) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x++; &nbsp;&nbsp;&nbsp; m_AutoReset.Set(); }One notable point is in this case (UI non-blocking) it is not easy to use Monitor.Enter/Monitor.Pulse pair to replace AutoResetEvent and implement &quot;one by one&quot; logic becasue Monitor.Pulse won&#39;t maitain state, below is the description in MSDN:ImportantThe&nbsp;Monitor&nbsp;class does not maintain state indicating that the&nbsp;Pulse&nbsp;method has been called. Thus, if you call&nbsp;Pulse&nbsp;when no threads are waiting, the next thread that calls&nbsp;Wait&nbsp;blocks as if&nbsp;Pulse&nbsp;had never been called. If two threads are using&nbsp;Pulse&nbsp;and&nbsp;Wait&nbsp;to interact, this could result in a deadlock. Contrast this with the behavior of the&nbsp;AutoResetEvent&nbsp;class: If you signal an&nbsp;AutoResetEvent&nbsp;by calling its&nbsp;Set&nbsp;method, and there are no threads waiting, the&nbsp;AutoResetEvent&nbsp;remains in a signaled state until a thread calls&nbsp;WaitOne,&nbsp;WaitAny, or&nbsp;WaitAll. The&nbsp;AutoResetEvent&nbsp;releases that thread and returns to the unsignaled state.In my Winform application, if I call Monitor.Pulse() in button click event, many threads will not receive the signal (whereas AutoResetEvent will remain signaled state)! I wrote a simple routine to demonstrate this: private static readonly string _locker = &quot;THREAD_LOCKER&quot;; public static void Main() { &nbsp;&nbsp;&nbsp; for(int i = 0;i&lt;5;i++) &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Thread t = new Thread(DoWork); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t.Name = &quot;T&quot; + (i + 1); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t.IsBackground = true; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t.Start(); &nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; //Thread.Sleep(500); &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; Monitor.Enter(_locker); &nbsp;&nbsp;&nbsp; Console.WriteLine(&quot;Main thread&quot;); &nbsp;&nbsp;&nbsp; Monitor.Pulse(_locker); &nbsp;&nbsp;&nbsp; Monitor.Exit(_locker); }  private static void DoWork() { &nbsp;&nbsp;&nbsp; Monitor.Enter(_locker); &nbsp;&nbsp;&nbsp; Monitor.Wait(_locker); &nbsp;&nbsp;&nbsp; Monitor.Pulse(_locker); &nbsp;&nbsp;&nbsp; Monitor.Exit(_locker); &nbsp;&nbsp;&nbsp; Console.WriteLine(Thread.CurrentThread.Name + &quot; finished and exist&quot;); }Removing &quot;Thread.Sleep(500)&quot; will *VERY POSSIBLY* lead less than 5 thread working, because creating 5 threads requires not short time (kenel object, TEB, kenel/user stack), during the period one just created thread (T2) might get the signal or might not (much more possible), because when the previously created thread (T1) calling &quot;Monitor.Pulse(_locker)&quot; T2 had NOT been setup, T2 and the thread created later will have no chance to get signal! They will be waiting... So the 0.5 seconds is used to give time to create 5 thread, otherwise main thread will quit immediately and background thread will be collected.Solution #4:&nbsp;Create a temp integer in each thread and once finish add temp onto x under a exclusive lock. private readonly string m_Locker = &quot;THREAD_LOCKER&quot;;  void IncreaseNumber(object objThreadName) { &nbsp;&nbsp;&nbsp; int tmp = 0; &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 10000; i++) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tmp++;  &nbsp;&nbsp;&nbsp; lock (m_Locker) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x += tmp; }Solution #5:&nbsp;ReaderWriterLockSlim. void IncreaseNumber(object objThreadName) { &nbsp;&nbsp;&nbsp; // Or we can use ReaderWriterLock.AcquireWriterLock(500) but it has more performance overhead and is not recommended &nbsp;&nbsp;&nbsp; m_ReaderWriterLocker.EnterWriteLock();  &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 10000; i++) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x++; &nbsp;&nbsp;&nbsp; m_ReaderWriterLocker.ExitWriteLock();&nbsp; // Or ReaderWriterLock.ReleaseWriterLock(); }Please note that ReaderWriterLock class is not recommended, it &quot;take about five times longer to execute than a call to Monitor&#39;s Enter method.&quot; please refer:&nbsp;Reader/Writer Locks and the ResourceLock Library by Jeffery Richter.Solution #6:&nbsp;Parallel.Forcoordinate with Interlocked.Increment. Parallel.For(0, 100000, (i) =&gt; Interlocked.Increment(ref x));ConclusionIn this post I took a simple &amp; straight-forward example: 10 threads simultaneously operating on on field, to experiment atomicity operation in C#.Net, using synchronization technology including exclusive locking, signaling, non-blocking synchronization, I guess this is a very good example to master basic FCL thread libraries/concepts such as Interlocked, Monitor, MemoryBarrier, volatile, AutoResetEvent, ReaderWriterLockSlim, etc.Multi-threading programming is indeed very complex, during my investigation I happened to saw even Jon Skeet admitted he had &ldquo;his eyes opened to the precise meaning of volatile which isn&#39;t &quot;always read from main memory, always write directly to main memory&quot; (link), so as a&nbsp;rookie in this field I should invest more effort on it:)Further ReadingThreading In C#&nbsp;(Strongly recommended!!!)Linearizability&nbsp;WikipediaIntroducing the new ReaderWriterLockSlim in OrcasAsynchronous Code BlocksAtomic OperationsBoosting Performance with Atomic Operations in .NET 4">
@@ -35,8 +35,14 @@
 
 
 
+  
 
-<link rel="canonical" href="https://wayneye.com/Atomic-Operation-In-Csharp">
+  
+    <meta property="fb:app_id" content="374223339969060">
+  
+
+
+<link rel="canonical" href="http://localhost:4000/Atomic-Operation-In-Csharp">
 
 
 
@@ -105,8 +111,6 @@
         
         <a class="site-title" href="/">Wayne's Geek Life</a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="http://wayneye.com/shelf" >Shelf</a>
-            </li><li class="masthead__menu-item">
               <a href="/categories/" >Categories</a>
             </li><li class="masthead__menu-item">
               <a href="/tags/" >Tags</a>
@@ -115,7 +119,7 @@
             </li><li class="masthead__menu-item">
               <a href="/album/" >Album</a>
             </li><li class="masthead__menu-item">
-              <a href="/about/" >About</a>
+              <a href="/about" >About</a>
             </li></ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
@@ -158,7 +162,7 @@
     
     
       <p class="author__bio" itemprop="description">
-        Whatever is worth doing is worth doing well.
+        Whatever is worth doing is worth doing well!
       </p>
     
   </div>
@@ -457,11 +461,11 @@ Removing "<code>Thread.Sleep(500)</code>" will *<strong>VERY POSSIBLY</strong>* 
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Atomic+Operation+in+C%23.Net%20https%3A%2F%2Fwayneye.com%2FAtomic-Operation-In-Csharp" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Atomic+Operation+in+C%23.Net%20http%3A%2F%2Flocalhost%3A4000%2FAtomic-Operation-In-Csharp" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwayneye.com%2FAtomic-Operation-In-Csharp" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2FAtomic-Operation-In-Csharp" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwayneye.com%2FAtomic-Operation-In-Csharp" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2FAtomic-Operation-In-Csharp" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -478,15 +482,6 @@ Removing "<code>Thread.Sleep(500)</code>" will *<strong>VERY POSSIBLY</strong>* 
   </nav>
 
     </div>
-
-    
-      <div class="page__comments">
-  
-  
-      <h4 class="page__comments-title">Leave a comment</h4>
-      <section class="fb-comments" data-href="https://wayneye.com/Atomic-Operation-In-Csharp" data-mobile="true" data-num-posts="5" data-width="100%" data-colorscheme="light"></section>
-    
-</div>
 
     
   </article>
@@ -680,7 +675,7 @@ I have been researched and watched many NAS options to setup a home storage+medi
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=374223339969060";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
   

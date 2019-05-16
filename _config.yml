@@ -38,6 +38,10 @@ author:
       icon: "fab fa-fw fa-github"
       url: "https://github.com/WayneYe/"
 
+facebook:
+  app_id:  374223339969060
+  username: WayneYeDotCom
+
 #theme: jekyll-theme-hacker
 #theme: minimal-mistakes-jekyll
 minimal_mistakes_skin: "air" # "default" "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum" "sunrise"
@@ -85,7 +89,7 @@ defaults:
 comments:
   provider: "facebook"
   facebook:
-    appid: # optional
+    appid: 374223339969060
     num_posts: 5 # 5 (default)
     colorscheme: light # "light" (default), "dark"
 

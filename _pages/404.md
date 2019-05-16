@@ -1,0 +1,5 @@
+---
+permalink: /404/
+---
+
+<iframe src="http://notfound-static.fwebservices.be/404/index.html?&amp;key=bb20fd92cba6ae2e000a288041fac568" width="100%" height="650" frameborder="0"></iframe>

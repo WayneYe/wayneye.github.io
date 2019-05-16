@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Wayne's Geek Life">
 <meta property="og:title" content="Resolving mouseover/mouseout multi-trigger problem">
-<meta property="og:url" content="https://wayneye.com/Resolving-mouseover-mouseout-Multi-Trigger-Problem">
+<meta property="og:url" content="http://localhost:4000/Resolving-mouseover-mouseout-Multi-Trigger-Problem">
 
 
   <meta property="og:description" content="BackgroundWhile I was developing my blog&#39;s comments function, I hope reader can write down their Gravatar&nbsp;email address, and my preferable UI was an &quot;hint icon&quot; dispolayed desides the Email textbox, so that while reader mouse overs it an overlay box will show the reason why Email is required, in additional, I want to add a little bit fancier animation:When user&#39;s mouse hovers on the icon, show the div box from small to large, once reaches predefined size, fades in the hint sentente.When mouse out the icon, fades out the hint sentence and then hides the div from large to small.My requirement seems easy, however, I did spend two whole days in making it perfect, so I write down my investigation path here.&nbsp;The problems I facedMy first thoughts was definitely simple, subscribe the onmouseover/onmouseout event for the hint icon, and setinterval the size animation, once finished, fades in the texts.That&#39;s fine! But I soon encountered one problem which is easy to trigger: mouse keeps on overing/outing the icon quickly (as long as the interval is shorter than the sizing animation), it will cause the two event handlers (mouseover/mouseout) multi-triggered so that a infinite loop could be easily caused.The multi-trigger problem I faced is not the one related with DOM event bubbling, which is well described in jQuery mouseover API.Majority functions on my simple blog didn&#39;t use any third party JS library including jQuery, instead, I was trying to be a &quot;rambo&quot;, just for improving my coding skills - by implementing various kinds of features and resolving various kinds of problems.Overcoming this issue cost me one whole day:) I tried strategies listed below:Put global variables indicating the showing/hiding process - isShowing &amp; isHiding.Clearing oppositeinterval handle as soon as over/out event was triggered.Inspired by #2, unsubscribing oppotite event handler as soon as mouseover/mouseout was captured.#1 does not solve the problem, I tried while multi-triggered, the interval cannot be cleared (not very sure the reason), #2 absolutely not work because it will stop unfinished animation. Finally I resolved the problem using #3, which I think it is the best one.&nbsp;ImplementationThe HTML &lt;div id=&quot;hintContainer&quot;&gt; &nbsp;&nbsp;&nbsp; &lt;div id=&quot;hintIcon&quot;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;img src=&quot;../Images/Hint.gif&quot; alt=&quot;Email Hint&quot;&gt; &nbsp;&nbsp;&nbsp; &lt;/div&gt; &nbsp;&nbsp;&nbsp; &lt;div id=&quot;CommentHint&quot;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;div id=&quot;hintText&quot;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Required (not shown), used only for displaying &lt;strong&gt;Gravatar&lt;/strong&gt; and receiving &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; future notification when new comment(s) posted on this blog. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/div&gt; &nbsp;&nbsp;&nbsp; &lt;/div&gt; &lt;/div&gt;The CSS &lt;style type=&quot;text/css&quot;&gt; &nbsp;&nbsp;&nbsp; #hintContainer &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 184px; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 80px; &nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp; #hintIcon &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 16px; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 16px; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float: left; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cursor: pointer; &nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp; #CommentHint &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; position:absolute; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: #fff; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 0; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 0; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background-color: black; /*#adc7ed*/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 1px dotted #666; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 2px; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: none; &nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp; #hintText &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; opacity: 0; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; filter: Alpha(opacity=0); &nbsp;&nbsp;&nbsp; } &lt;/style&gt;The JavaScriptFoundation methods in my &quot;rambo&quot; library: var $id = function (id) { return document.getElementById(id); } function bindEvent(domObj, eventName, evtHandler, useCapture) { &nbsp;&nbsp;&nbsp; if (domObj.addEventListener) { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; domObj.addEventListener(eventName, evtHandler, useCapture ? useCapture : false); &nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp; else if (domObj.attachEvent) { // IE 8 and below  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; evtHandler.wrapper = function () { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; evtHandler.call(domObj) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; domObj.attachEvent(&quot;on&quot; + eventName, evtHandler.wrapper); &nbsp;&nbsp;&nbsp; } } function setSize(ele, width, height) { &nbsp;&nbsp;&nbsp; ele.style.width = width + &#39;px&#39;; &nbsp;&nbsp;&nbsp; ele.style.height = height + &#39;px&#39;; } function setPosition(ele, left, top) { &nbsp;&nbsp;&nbsp; ele.style.left = left + &#39;px&#39;; &nbsp;&nbsp;&nbsp; ele.style.top = top + &#39;px&#39;; }Animation methods: var hintIcon = $id(&#39;hintIcon&#39;), commentHint = $id(&#39;CommentHint&#39;), hintText = $id(&#39;hintText&#39;); bindEvent(hintIcon, &quot;mouseover&quot;, showHint);  var totalFrames = 20, curFrame = 0; var sliceWidth = 180 / totalFrames, sliceHeight = 80 / totalFrames; var showHinthandler = hideHinthandler = undefined; var offset = 10;  function showHint(evt) { &nbsp;&nbsp;&nbsp; if (!evt) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; evt = window.event;  &nbsp;&nbsp;&nbsp; // Unbind mouseover immediately to prevent multi-trigger &nbsp;&nbsp;&nbsp; unbindEvent(this, &quot;mouseover&quot;, showHint);  &nbsp;&nbsp;&nbsp; setPosition(commentHint, evt.clientX + offset, evt.clientY); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; showElement(commentHint); &nbsp;&nbsp;&nbsp; showElement(hintText);  &nbsp;&nbsp;&nbsp; showHinthandler = setInterval(function () { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //console.log(&quot;show: &quot; + curFrame);  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (++curFrame &lt;= totalFrames) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setSize(commentHint, sliceWidth * curFrame, sliceHeight * curFrame); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; clearInterval(showHinthandler); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; curFrame = totalFrames;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Fade in hint text &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; divFadeIn(hintText, 2, 10);  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Bind mouseout event back to the icon UNTIL finished showing &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bindEvent(hintIcon, &quot;mouseout&quot;, hideHint); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp; }, 10); } function hideHint(evt) { &nbsp;&nbsp;&nbsp; if (!evt) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; evt = window.event;  &nbsp;&nbsp;&nbsp; // Unbind mouseover immediately to prevent multi-trigger &nbsp;&nbsp;&nbsp; unbindEvent(this, &quot;mouseout&quot;, hideHint);  &nbsp;&nbsp;&nbsp; divFadeOut(hintText, 2, 10);  &nbsp;&nbsp;&nbsp; setTimeout(function () { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hideHinthandler = setInterval(function () {  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hideElement(hintText); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; console.log(&quot;hide: &quot; + curFrame);   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (--curFrame &gt;= 0) { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setSize(commentHint, sliceWidth * curFrame, sliceHeight * curFrame); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; clearInterval(hideHinthandler); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; curFrame = 0;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hideElement(commentHint);  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Bind mouseover event back to the icon UNTIL finished hiding &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bindEvent(hintIcon, &quot;mouseover&quot;, showHint); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }, 10); &nbsp;&nbsp;&nbsp; }, 800); }ConclusionI guess this is a pretty good problem for interview, I am fool so I cannot resolve it in short period, however, I think good fronteers should solve it greatly:)">
@@ -35,8 +35,14 @@
 
 
 
+  
 
-<link rel="canonical" href="https://wayneye.com/Resolving-mouseover-mouseout-Multi-Trigger-Problem">
+  
+    <meta property="fb:app_id" content="374223339969060">
+  
+
+
+<link rel="canonical" href="http://localhost:4000/Resolving-mouseover-mouseout-Multi-Trigger-Problem">
 
 
 
@@ -105,8 +111,6 @@
         
         <a class="site-title" href="/">Wayne's Geek Life</a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="http://wayneye.com/shelf" >Shelf</a>
-            </li><li class="masthead__menu-item">
               <a href="/categories/" >Categories</a>
             </li><li class="masthead__menu-item">
               <a href="/tags/" >Tags</a>
@@ -115,7 +119,7 @@
             </li><li class="masthead__menu-item">
               <a href="/album/" >Album</a>
             </li><li class="masthead__menu-item">
-              <a href="/about/" >About</a>
+              <a href="/about" >About</a>
             </li></ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
@@ -158,7 +162,7 @@
     
     
       <p class="author__bio" itemprop="description">
-        Whatever is worth doing is worth doing well.
+        Whatever is worth doing is worth doing well!
       </p>
     
   </div>
@@ -392,11 +396,11 @@
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Resolving+mouseover%2Fmouseout+multi-trigger+problem%20https%3A%2F%2Fwayneye.com%2FResolving-mouseover-mouseout-Multi-Trigger-Problem" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Resolving+mouseover%2Fmouseout+multi-trigger+problem%20http%3A%2F%2Flocalhost%3A4000%2FResolving-mouseover-mouseout-Multi-Trigger-Problem" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwayneye.com%2FResolving-mouseover-mouseout-Multi-Trigger-Problem" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2FResolving-mouseover-mouseout-Multi-Trigger-Problem" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwayneye.com%2FResolving-mouseover-mouseout-Multi-Trigger-Problem" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2FResolving-mouseover-mouseout-Multi-Trigger-Problem" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -413,15 +417,6 @@
   </nav>
 
     </div>
-
-    
-      <div class="page__comments">
-  
-  
-      <h4 class="page__comments-title">Leave a comment</h4>
-      <section class="fb-comments" data-href="https://wayneye.com/Resolving-mouseover-mouseout-Multi-Trigger-Problem" data-mobile="true" data-num-posts="5" data-width="100%" data-colorscheme="light"></section>
-    
-</div>
 
     
   </article>
@@ -615,7 +610,7 @@ I have been researched and watched many NAS options to setup a home storage+medi
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=374223339969060";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
   

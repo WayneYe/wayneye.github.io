@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Wayne's Geek Life">
 <meta property="og:title" content="IP Address to Geolocation">
-<meta property="og:url" content="https://wayneye.com/IPAddress-To-Geolocation">
+<meta property="og:url" content="http://localhost:4000/IPAddress-To-Geolocation">
 
 
   <meta property="og:description" content="BackgroundFew months ago I found an interesting website: http://ipinfodb.com/, it provided API which could “translate” any IP Address into a geography location including City/Region/Country as well as latitude/longitude and time zone information, to invoke its API, a registered API key is required (which is free).  Since beforehand I stored visitor’s IP Addresses into my own database, I decided to utilize InfoDB API to store visitor’s GEO locations. Just few days ago, I casually emitted an idea: summarize those GEO location records and display them on Google Map, hum, it is feasible:) So, the process is: Track visitor’s IP addresses -&gt; “Translate” them to Geography location -&gt; Show them on Google Map! (PS, I’ve been used Google Analytics for my Geek Place - http://WayneYe.com for more than two years, it is no double extremely powerful, and it already contains a feature “Map Overlay”, however, due to privacy policy, Google Analytics does NOT display visitor’s IP address, see http://www.google.com/support/analytics/bin/answer.py?hl=en&amp;answer=86214).&lt;h2&gt;Implementation&lt;/h2&gt;The first task I need to do is track visitor’s IP Address, most of the time, user visits a website in browser submits an HTTP GET request (an HTTP data package) based on Transmission Control Protocol (most of the time) , browser passed the ball to DNS server and DNS server delivered the request to the designation - the web host server, during the process, the original Http request was possibly transferred through a number of routers/proxies and many other stuff, the request’s header information might have been updated: Via (Standard HTTP request header) or X-Forwarded-For (non-standard header but widely used), could be the original ISP’s information/IP Address OR possibly one of the proxy’s IP Address. So, usually the server received the request and saw Via/X-Forwarded-For header information, it got to know visitor’s IP address (NOT all the time, some times ISP’s IP address), in ASP.NET, it is simply to call Request.UserHostAddress, however, we can never simply trust this because of two major reasons:&lt;ol&gt;            &lt;li&gt;Malicious application can forge HTTP request with modified X-Forwareded-To header (for example: X-Forwarded-To: dangerous code), if you are unlucky to trust it and have it inserted into Database, then SQL Injection hole will be utilized by Malicious application.&lt;/li&gt;            &lt;li&gt;Not all the visitors are human-been, part of them could be search engine spiders, I must distinguish human visitors and spiders, otherwise for example, I will be happy to see a lot of “visitors” came from “Mountain View, CA” ^_^.&lt;/li&gt;&lt;/ol&gt;For #1: I use regular expression to validate the string I got from Request.UserHostAddress:&lt;pre style=&quot;color: #000020; background: #f6f8ff;&quot;&gt;public static Boolean IsValidIP(string ip){    if (System.Text.RegularExpressions.Regex.IsMatch(ip, ”[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}”))    {        string[] ips = ip.Split(’.’);        if (ips.Length == 4 || ips.Length == 6)        {            if (System.Int32.Parse(ips[0]) &lt; 256 &amp;&amp; System.Int32.Parse(ips[1]) &lt; 256                &amp; System.Int32.Parse(ips[2]) &lt; 256 &amp; System.Int32.Parse(ips[3]) &lt; 256)                return true;            else                return false;        }        else            return false;    }    else        return false;}&lt;/pre&gt;If the result is “0.0.0.0”, I will ignore it.For #2, so far I haven’t found a “perfect way” to solve this issue (and I guess there might be no perfect solution to identify all the search engines in the world, please correct me if I am wrong); However, I’ve defined two rules to try my best to identify them for general and normal situations:&lt;h3&gt;Rule #1:&lt;/h3&gt;Request which contains “Cookie” Header with “ASP.NET_SessionId” AND its value is equal with server side, then it should be a normal user who has just visited my website within the one session. Notes: there might be two exceptions for rule #1,&lt;ol&gt;            &lt;li&gt;If user’s browser has disabled Cookie then this rule will NOT be effective since the client request will never contain a Cookie header since the browser disabled it:).&lt;/li&gt;            &lt;li&gt;Assume there is a crawler who crawls my website and accept storing cookie, then #1 will not be effective. However, I don’t think a crawler will firstly request a SessionID and then request again with the SessionID).&lt;/li&gt;&lt;/ol&gt;&lt;h3&gt;Rule #2:&lt;/h3&gt;Define a crawler list and analyses whether “User-Agent” header contains one of them, this should be configurable. Refer more Crawler example at: http://en.wikipedia.org/wiki/Web_crawler#Examples_of_Web_crawlers Talk is cheap, show me the code, I wrote a method to identify crawlers by applying two rules above.&lt;pre style=&quot;color: #000020; background: #f6f8ff;&quot;&gt;public static Boolean IsCrawlerRequest(){    // Rule 1: Request which contains “Cookie” Header with “ASP.NET_SessionId” and its value is equal with server side,     // then it should be a normal user (except maliciously forging, I don’t think a crawler will firstly request a sessionID and then request again with the SessionID).    //if (HttpContext.Current.Request.Cookies[“ASP.NET_SessionId”] != null    //    &amp;&amp; HttpContext.Current.Request.Cookies[“ASP.NET_SessionId”].Value == HttpContext.Current.Session.SessionID)    if (HttpContext.Current.Request.Headers[”Cookie”] != null        &amp;&amp; HttpContext.Current.Request.Headers[”Cookie”].Contains(”ASP.NET_SessionId”))        return false;  // Should be a normal user browsing my website using a browser.     // Rule 2: define a crawler list and analyses whether “User-Agent” header contains one of them, this should be configurable    // Refer more Crawler example at: http://en.wikipedia.org/wiki/Web_crawler#Examples_of_Web_crawlers    var crawlerList = new String[] { ”google”, ”bing”, ”msn”, ”yahoo”, ”baidu”, ”sosospider”, ”sogou”, ”youdao” };     if (!String.IsNullOrEmpty(HttpContext.Current.Request.UserAgent))        foreach (String bot in crawlerList)            if (HttpContext.Current.Request.UserAgent.ToLower(CultureInfo.InvariantCulture).Contains(bot))                return true; // It is a crawler     return false;}&lt;/pre&gt;Please be aware that I commented out HttpContext.Current.Request.Cookies[&quot;ASP.NET_SessionId&quot;] != null, since I found that Request.Cookie will ALWAYS contain “ASP.NET_SessionId” EVENT IF the browser disabled Cookie storing, I will do further investigation and double check later! Ok, now we get normal users’ IP Addresses and filtered search engine crawlers, the next step is invoking InfoDB API to “translate” IP Address to Geolocation, you need register an API KEY here, and then submit an HTTP GET request to:&lt;blockquote&gt;http://api.ipinfodb.com/v2/ip_query.php?key=[API KEY]&amp;ip=[IP Address]&amp;timezone=false&lt;/blockquote&gt;It returns XML below, I take IP=”117.136.8.14” for example:&lt;pre style=&quot;color: #000020; background: #f6f8ff;&quot;&gt;&lt;?xml version=“1.0” encoding=“UTF-8”?&gt;&lt;Response&gt;  &lt;Status&gt;OK&lt;/Status&gt;  &lt;CountryCode&gt;CN&lt;/CountryCode&gt;  &lt;CountryName&gt;China&lt;/CountryName&gt;  &lt;RegionCode&gt;23&lt;/RegionCode&gt;  &lt;RegionName&gt;Shanghai&lt;/RegionName&gt;  &lt;City&gt;Shanghai&lt;/City&gt;  &lt;ZipPostalCode&gt;&lt;/ZipPostalCode&gt;  &lt;Latitude&gt;31.005&lt;/Latitude&gt;  &lt;Longitude&gt;121.409&lt;/Longitude&gt; &lt;Timezone&gt;0&lt;/Timezone&gt;  &lt;Gmtoffset&gt;0&lt;/Gmtoffset&gt;  &lt;Dstoffset&gt;0&lt;/Dstoffset&gt;  &lt;TimezoneName&gt;&lt;/TimezoneName&gt;  &lt;Isdst&gt;&lt;/Isdst&gt;  &lt;Ip&gt;117.136.8.14&lt;/Ip&gt;&lt;/Response&gt;&lt;/pre&gt;Wow, looks precise:), I am going to show visitor’s geolocation on Google Map (I know this compromises visitor’s privacy but my personal blog http://WayneYe.com is not a company and I will NEVER earn a cent by doing this:)). Anyway, I use the latest Google Map JavaScript API V3, and there are two major functionalities:1. Display visitor’s Geolocation as long as user’s browser support “navigator.geolocation” property (Google Chrome, Mozilla Filefox support it, IE not support and I will set default location to New York City), a sample below: 2. Display a specified blog’s visitors’ geolocations on Google Map, screenshot below shows the visitors’ geolocations who visited my blog: My new Dev box - HP Z800 Workstation, by clicking each geolocation, it will show on Google Map.The JavaScript code showing below:&lt;pre style=&quot;color: #000020; background: #f6f8ff;&quot;&gt;&lt;script type=“text/javascript”&gt;    var initialLocation;    var newyork = new google.maps.LatLng(40.69847032728747, -73.9514422416687);    var browserSupportFlag = new Boolean();    var map;    var myOptions    var infowindow = new google.maps.InfoWindow();     function initialize() {        myOptions = {            zoom: 6,            mapTypeId: google.maps.MapTypeId.ROADMAP        };        map = new google.maps.Map(document.getElementById(“googleMapContainer”), myOptions);         // Try W3C Geolocation (Preferred)        if (navigator.geolocation) {            browserSupportFlag = true;            navigator.geolocation.getCurrentPosition(function (position) {                map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));                infowindow.setContent(‘Hi, dear WayneYe.com visitor! You are here:)’);                infowindow.setPosition(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));                infowindow.open(map);            }, function () {                handleNoGeolocation(browserSupportFlag);            });        } else {            browserSupportFlag = false;            handleNoGeolocation(browserSupportFlag);        }         function handleNoGeolocation(errorFlag) {            //contentString = ‘Cannot track your location, default to New York City.’;             map.setCenter(newyork);            //infowindow.setContent(contentString);            //infowindow.setPosition(newyork);            infowindow.open(map);        }    }     function setGoogleMapLocation(geoLocation, latitude, longitude) {        contentString = geoLocation;         var visitorLocation = new google.maps.LatLng(latitude, longitude);         map.setCenter(visitorLocation);        infowindow.setContent(contentString);        infowindow.setPosition(visitorLocation);        infowindow.open(map);    }&lt;/script&gt;&lt;/pre&gt;Ok, all done, eventually I built a visit record page which shows every’s blog’s visitors’ Geolocations, the location is: http://wayneye.com/VisitRecord.">
@@ -35,8 +35,14 @@
 
 
 
+  
 
-<link rel="canonical" href="https://wayneye.com/IPAddress-To-Geolocation">
+  
+    <meta property="fb:app_id" content="374223339969060">
+  
+
+
+<link rel="canonical" href="http://localhost:4000/IPAddress-To-Geolocation">
 
 
 
@@ -105,8 +111,6 @@
         
         <a class="site-title" href="/">Wayne's Geek Life</a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="http://wayneye.com/shelf" >Shelf</a>
-            </li><li class="masthead__menu-item">
               <a href="/categories/" >Categories</a>
             </li><li class="masthead__menu-item">
               <a href="/tags/" >Tags</a>
@@ -115,7 +119,7 @@
             </li><li class="masthead__menu-item">
               <a href="/album/" >Album</a>
             </li><li class="masthead__menu-item">
-              <a href="/about/" >About</a>
+              <a href="/about" >About</a>
             </li></ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
@@ -158,7 +162,7 @@
     
     
       <p class="author__bio" itemprop="description">
-        Whatever is worth doing is worth doing well.
+        Whatever is worth doing is worth doing well!
       </p>
     
   </div>
@@ -357,11 +361,11 @@
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=IP+Address+to+Geolocation%20https%3A%2F%2Fwayneye.com%2FIPAddress-To-Geolocation" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=IP+Address+to+Geolocation%20http%3A%2F%2Flocalhost%3A4000%2FIPAddress-To-Geolocation" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwayneye.com%2FIPAddress-To-Geolocation" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2FIPAddress-To-Geolocation" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwayneye.com%2FIPAddress-To-Geolocation" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2FIPAddress-To-Geolocation" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -378,15 +382,6 @@
   </nav>
 
     </div>
-
-    
-      <div class="page__comments">
-  
-  
-      <h4 class="page__comments-title">Leave a comment</h4>
-      <section class="fb-comments" data-href="https://wayneye.com/IPAddress-To-Geolocation" data-mobile="true" data-num-posts="5" data-width="100%" data-colorscheme="light"></section>
-    
-</div>
 
     
   </article>
@@ -580,7 +575,7 @@ I have been researched and watched many NAS options to setup a home storage+medi
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=374223339969060";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
   

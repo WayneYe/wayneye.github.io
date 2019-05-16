@@ -3,7 +3,7 @@ title: Wayne's Geek Life
 title_separator: "-"
 email: xiaotianpop@gmail.com
 keyword: "Wayne Ye,WayneYe.com,Geek,Programming,C#,ASP.NET,GO,Python,Ruby,Rails,Cucumber,JavaScript,nodejs,HTML5,SOLID,AWS,Microservices"
-description: "I am a software engineer, solutions architect and also a geek, I've immersed in software/web development over 14 years, with solid experience in a dozen languages: C#/ASP.NET, Python, Ruby/RoR, JavaScript/nodejs. I am an AWS Certified Solutions Architect (2017-2019), PMP and CodeProject MVP."
+description: "I am a software engineer, technical lead and also a geek, I've immersed in software/web development for 14 years, I hack using these languages: Python, Golang, JavaScript/nodejs, Ruby/RoR, C#. I am an AWS Certified Solutions Architect (2017-2019), PMP and CodeProject MVP."
 url: "http://wayneye.com"
 SEOTitle: Wayne's Geek Life
 locale: "en-US"
@@ -18,7 +18,7 @@ repository: WayneYe/wayneye.github.io
 author:
   name             : "Wayne Ye"
   avatar           : "assets/images/me.jpg"
-  bio              : "I am a software engineer, technical lead and also a geek, I've immersed in software/web development for 14 years, I hack using these languages: Python, Golang, JavaScript/nodejs, Ruby/RoR, C#. I am an AWS Certified Solutions Architect (2017-2019), PMP and CodeProject MVP."
+  bio              : "Whatever is worth doing is worth doing well."
   location         : "San Francisco"
   email            :
   links:
@@ -182,7 +182,7 @@ sass:
 
 # Outputting
 permalink: /:categories/:title/
-paginate: 5 # amount of posts to show
+paginate: 10 # amount of posts to show
 paginate_path: /page:num/
 timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 

@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Wayne's Geek Life">
 <meta property="og:title" content="作息时间自动提醒Windows Service">
-<meta property="og:url" content="http://wayneye.com/Personal-Schedule-Windows-Service">
+<meta property="og:url" content="https://wayneye.com/Personal-Schedule-Windows-Service">
 
 
   <meta property="og:description" content="经济危机真真切切的影响到了几乎每一个人，09年过去三分之一多一点了，生活不太规律，确实太忙的说，工作换了，房子也换了，又做回了张江男，觉得自己再不好好努力会Out的。。。都奔三儿而去了。。。于是乎，为了勉励自己，做了这么个东东。一个Windows Service，里面跑一个Timer，每隔10秒check一下当前时间，一旦发现时间吻合，则调用Microsoft Speech Technology? 发声提醒，超级简单，不过。。。以后要么得一直戴着心爱的森海塞尔，要么只能用音箱了。。。服务描述：Notify Wayne to follow the schedule established by himself. If this service is disabled, Wayne may waste a lot of time...项目层级：&nbsp;WayneScheduleService.cs Windows Service后台代码 ScheduleItemsReader.cs Linq读取ScheduleItems SoundNotifier.cs 执行发声提醒 ServiceLogManager.cs 打Log&lt;/ul&gt;主要程序代码：调用程序发声的代码：&nbsp;&nbsp;&nbsp;&nbsp; public static class SoundNotifier&nbsp;&nbsp;&nbsp; {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public static void Phonate(String sentence)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SpeechSynthesizer speaker = new SpeechSynthesizer();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CultureInfo cnCulture = CultureInfo.GetCultureInfo(&quot;en-US&quot;); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PromptBuilder pb = new PromptBuilder(CultureInfo.CurrentCulture);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pb.StartVoice(VoiceGender.Female, VoiceAge.Adult);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pb.StartStyle(new PromptStyle(PromptVolume.ExtraLoud)); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pb.StartSentence();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pb.AppendText(sentence, PromptEmphasis.Strong);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pb.EndSentence(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pb.EndStyle();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pb.EndVoice(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; speaker.Speak(pb);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }&nbsp;&nbsp;&nbsp; } 晚间作息时间弄在XML里，根据情况自行配置（搞烦了全删掉。。。）：&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;&lt;WayneScheduleItems&gt;&nbsp; &lt;ScheduleItem TriggerHour=&quot;18&quot; TriggerMinute=&quot;20&quot; Content=&quot;Hi! Wayne! Dinner Time!&quot; /&gt;&nbsp; &lt;ScheduleItem TriggerHour=&quot;19&quot; TriggerMinute=&quot;0&quot; Content=&quot;Hi! Wayne! It is time to learn technologies and programming skills!&quot; /&gt;&nbsp; &lt;ScheduleItem TriggerHour=&quot;20&quot; TriggerMinute=&quot;30&quot; Content=&quot;Hi! Wayne! Take a rest, entertainment, gaming, exercise and wash.&quot; /&gt;&nbsp; &lt;ScheduleItem TriggerHour=&quot;22&quot; TriggerMinute=&quot;0&quot; Content=&quot;Well, read/write Emails, read some news.&quot; /&gt;&nbsp; &lt;ScheduleItem TriggerHour=&quot;23&quot; TriggerMinute=&quot;0&quot; Content=&quot;Wayne, go to bed, sleep! Good night!&quot; /&gt;&lt;/WayneScheduleItems&gt;使用Linq读取XML里的ScheduleItems：List&lt;ScheduleItem&gt; scheduleItems = new List&lt;ScheduleItem&gt;(); IEnumerable&lt;XElement&gt; scheduleItemsCollection = from scheduleItem in XElement.Load(ScheduleItemsXmlLocation).Descendants(&quot;ScheduleItem&quot;) select scheduleItem; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; foreach (XElement ele in scheduleItemsCollection)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ScheduleItem scheduleItem = new ScheduleItem();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; scheduleItem.TriggerHour = ushort.Parse(ele.Attribute(&quot;TriggerHour&quot;).Value);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; scheduleItem.TriggerMinute = ushort.Parse(ele.Attribute(&quot;TriggerMinute&quot;).Value);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; scheduleItem.Content = ele.Attribute(&quot;Content&quot;).Value; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; scheduleItems.Add(scheduleItem);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return scheduleItems; 最后是Timer：const double WorkInterval = 10000d;m_Timer = new Timer(WorkInterval);m_Timer.Enabled = true;m_Timer.Elapsed += new ElapsedEventHandler(OnTimerElapse);源代码下载Note: 由于使用Linq的缘故只能运行于Donet 3.5，由于使用Microsoft Speech Technology? ，仅支持XP以上操作系统（在XP中还有点问题，比如不支持女声，并且不支持中文）。 ">
@@ -36,7 +36,7 @@
 
 
 
-<link rel="canonical" href="http://wayneye.com/Personal-Schedule-Windows-Service">
+<link rel="canonical" href="https://wayneye.com/Personal-Schedule-Windows-Service">
 
 
 
@@ -175,7 +175,7 @@
       
         
           
-            <li><a href="mailto:admin@wayneye.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+            <li><a href="mailto:me@wayneye.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
           
         
           
@@ -373,11 +373,11 @@
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%E4%BD%9C%E6%81%AF%E6%97%B6%E9%97%B4%E8%87%AA%E5%8A%A8%E6%8F%90%E9%86%92Windows+Service%20http%3A%2F%2Fwayneye.com%2FPersonal-Schedule-Windows-Service" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%E4%BD%9C%E6%81%AF%E6%97%B6%E9%97%B4%E8%87%AA%E5%8A%A8%E6%8F%90%E9%86%92Windows+Service%20https%3A%2F%2Fwayneye.com%2FPersonal-Schedule-Windows-Service" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwayneye.com%2FPersonal-Schedule-Windows-Service" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwayneye.com%2FPersonal-Schedule-Windows-Service" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fwayneye.com%2FPersonal-Schedule-Windows-Service" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwayneye.com%2FPersonal-Schedule-Windows-Service" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -400,7 +400,7 @@
   
   
       <h4 class="page__comments-title">Leave a comment</h4>
-      <section class="fb-comments" data-href="http://wayneye.com/Personal-Schedule-Windows-Service" data-mobile="true" data-num-posts="5" data-width="100%" data-colorscheme="light"></section>
+      <section class="fb-comments" data-href="https://wayneye.com/Personal-Schedule-Windows-Service" data-mobile="true" data-num-posts="5" data-width="100%" data-colorscheme="light"></section>
     
 </div>
 
@@ -422,7 +422,7 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="/self-improvement/Master-AWS-Development-Published/" rel="permalink">Master AWS Development Published
+        <a href="/Master-AWS-Development-Video-Published" rel="permalink">Master AWS Development Video Published
 </a>
       
     </h2>
@@ -435,9 +435,7 @@
   less than 1 minute read
 </p>
     
-    <p class="archive__item-excerpt" itemprop="description">
-	
-
+    <p class="archive__item-excerpt" itemprop="description">After 8 months of continuously hard working, this &lt;Master AWS Development&gt; video course is now live at: Packt Website.  What a journey!
 
 </p>
   </article>

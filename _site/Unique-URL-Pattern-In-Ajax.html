@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Wayne's Geek Life">
 <meta property="og:title" content="Unique URL Pattern in Ajax Web Application">
-<meta property="og:url" content="http://wayneye.com/Unique-URL-Pattern-In-Ajax">
+<meta property="og:url" content="https://wayneye.com/Unique-URL-Pattern-In-Ajax">
 
 
   <meta property="og:description" content="Testing: Can I really edit this?BackgroundFew days ago one of my friend asked me how does Gmail change its URL while user operates inside it without page refreshing, I’ve no idea about that at that time, he then shared a link Ajax Pattern - Unique URLs which deep dives into this topic, as the article mentioned: Unique URL make your website’s link “Bookmarkable, Linkable, Type-In-Able”, plus Sharable IMHO, easy to be shared to Social network which is extremely important nowadays.ImplementationThe key technology to achieve the ““Unique URL” goal could be summarized into two points:	If the content in the page has been updated by Ajax significantly enough, update the URL (location.hash) as well.// Ajax rendering all blog entries in page number 5location.hash = &#39;Blogs&amp;Page5&#39;;	Every time the Ajax page loads, JS should understand the URL and render related content as well.&lt;body onload=&quot;restoreAjaxContent()&quot;&gt;&lt;script type=&quot;text/javascript&quot;&gt;function restoreAjaxContent(){    var urlHash = location.hash;    var curPageNo = urlHash.replace(&#39;Blogs&amp;Page&#39;,&#39;&#39;);    // Safe parse curPageNo into number, handles wrong parameters (Ignored for here)    // Display loading text/image on the page (optional but better UX).    // Ajax rendering all blog entries in page number curPageNo.}&lt;/script&gt;&lt;/body&gt;What I want to emphasize is the hash value, i.e. the content behind # is originally expected an HTML element’s name attribute used for In-Page navigation, it is completely the contract between client Browser, HTML content and JavaScript, server side cannot get the information directly except we explicitly pass the value to the server side (hidden post, URL query string, Ajax etc), therefore,if some user access the unique URL, your website’s client side JS should parse the hash and retrieve relevant data from server side.Advantage	Better user experience.Every time user accesses the unique URL Ajax page, the fixed part of this page loaded first, and then loads the main content asynchronously, if the main content is large enough, for example, contains images or rich media content, the &quot;async loading&quot; is much better than the page loading blocked by downloading those images/medias.For instance, originally loading one specific page requires 2 seconds totally, after applying the this &quot;async loading&quot;,  the fixed part cost 0.4 seconds to be loaded and the main content costs 1.8 seconds, from user&#39;s point of view,  usually the latter case would be better because the user see your page is partially loaded within a short period (0.4) which feels good enough, plus a graceful loading/splash screen, eventually the UX got improved significantly!	Better SEO support (Performance Aspect)The page rendering speed is an important fact for a search engine&#39;s crawler, by applying &quot;async loading&quot;, the crawler will deem the page it is crawling has a good loading speed - 0.4 seconds.	Easy to support W3 web standardThis is sort of kidding:) Since your main content is Ajax loaded, W3 validator (so does Search Engine) won&#39;t validate the main content which is very possible does not strictly adhere all the standard rules.Disadvantage	Main content cannot be indexed by Search enginesAll main content is loaded by JavaScript, Search engine won&#39;t crawler those content, this is a serious problem! However, it is easy to walk around, builds a traditional page without Ajax, store it into sitemap.xml and submit to search engine Web Master tool.	Harder to development and to maintainClient JavaScript/Ajax development is more complex and less convenient comparing to server side technology like ASP.NET, JAVA EE or PHP.  Although there are jQuery (write less, do more), Prototype.js (make develop JS in a more OO way), DoJo and so on, it still might not be very happy while a developer is struggling with mixed HTML/CSS/JavaScript:)P.S. I spent two days in updating my blog (http://WayneYe.com), revised the paging style from traditional into the Ajax Unique URL pattern above, it is no doing Ajax paging and update URL like &quot;http://wayneye.com/#Blogs&amp;Page5&quot;, it definitely &quot;Bookmarkable, Linkable, Type-In-Able and Sharable&quot;, plus a loading panel and content fades in effect, I believe its UX is much better than before.">
@@ -36,7 +36,7 @@
 
 
 
-<link rel="canonical" href="http://wayneye.com/Unique-URL-Pattern-In-Ajax">
+<link rel="canonical" href="https://wayneye.com/Unique-URL-Pattern-In-Ajax">
 
 
 
@@ -175,7 +175,7 @@
       
         
           
-            <li><a href="mailto:admin@wayneye.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+            <li><a href="mailto:me@wayneye.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
           
         
           
@@ -392,11 +392,11 @@ P.S. I spent two days in updating my blog (<a href="http://WayneYe.com" target="
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Unique+URL+Pattern+in+Ajax+Web+Application%20http%3A%2F%2Fwayneye.com%2FUnique-URL-Pattern-In-Ajax" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Unique+URL+Pattern+in+Ajax+Web+Application%20https%3A%2F%2Fwayneye.com%2FUnique-URL-Pattern-In-Ajax" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwayneye.com%2FUnique-URL-Pattern-In-Ajax" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwayneye.com%2FUnique-URL-Pattern-In-Ajax" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fwayneye.com%2FUnique-URL-Pattern-In-Ajax" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwayneye.com%2FUnique-URL-Pattern-In-Ajax" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -419,7 +419,7 @@ P.S. I spent two days in updating my blog (<a href="http://WayneYe.com" target="
   
   
       <h4 class="page__comments-title">Leave a comment</h4>
-      <section class="fb-comments" data-href="http://wayneye.com/Unique-URL-Pattern-In-Ajax" data-mobile="true" data-num-posts="5" data-width="100%" data-colorscheme="light"></section>
+      <section class="fb-comments" data-href="https://wayneye.com/Unique-URL-Pattern-In-Ajax" data-mobile="true" data-num-posts="5" data-width="100%" data-colorscheme="light"></section>
     
 </div>
 
@@ -441,7 +441,7 @@ P.S. I spent two days in updating my blog (<a href="http://WayneYe.com" target="
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="/self-improvement/Master-AWS-Development-Published/" rel="permalink">Master AWS Development Published
+        <a href="/Master-AWS-Development-Video-Published" rel="permalink">Master AWS Development Video Published
 </a>
       
     </h2>
@@ -454,9 +454,7 @@ P.S. I spent two days in updating my blog (<a href="http://WayneYe.com" target="
   less than 1 minute read
 </p>
     
-    <p class="archive__item-excerpt" itemprop="description">
-	
-
+    <p class="archive__item-excerpt" itemprop="description">After 8 months of continuously hard working, this &lt;Master AWS Development&gt; video course is now live at: Packt Website.  What a journey!
 
 </p>
   </article>

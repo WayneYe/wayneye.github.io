@@ -575,7 +575,7 @@ var store = [{
         "url": "https://wayneye.com/Passing-AWS-Certified-Solutions-Architect",
         "teaser":null},{
         "title": "Master AWS Development Video Published",
-        "excerpt":"After 8 months of continuously hard working, this &lt;Master AWS Development&gt; video course is now live at: Packt Website. What a journey! The motivation In June 2018, PacktPub contacted me and asked my interest for recording a video course, they provided a few topics like AWS, Python, Docker, etc, I...","categories": ["Self-Improvement"],
+        "excerpt":"Publishing information After 8 months of continuously hard working, this &lt;Master AWS Development&gt; video course is now live at: Packt Website, I described this course as below: Amazon Web Services (AWS) is the gold standard of the cloud. If you are web and cloud computing developer, your life becomes much...","categories": ["Self-Improvement"],
         "tags": ["AWS","Technology"],
         "url": "https://wayneye.com/Master-AWS-Development-Video-Published",
         "teaser":null}]

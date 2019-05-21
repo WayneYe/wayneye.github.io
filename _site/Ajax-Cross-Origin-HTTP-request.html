@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Wayne's Geek Life">
 <meta property="og:title" content="AJAX Cross-Origin HTTP request">
-<meta property="og:url" content="http://localhost:4000/Ajax-Cross-Origin-HTTP-request">
+<meta property="og:url" content="https://wayneye.com/Ajax-Cross-Origin-HTTP-request">
 
 
   <meta property="og:description" content="BackgroundCross-Origin Request Sharing - CORS (A.K.A. Cross-Domain AJAX request) is an issue that most web developers might encounter,&nbsp;according to Same-Origin-Policy, browsers restrict client JavaScript in a security sandbox, usually JS cannot directly communicate with a remote server from a different domain. In the past developers created many tricky ways to achieve Cross-Domain resource request, most commonly using ways are:Use Flash/Silverlight or server side as a &quot;proxy&quot; to communicate with remote.JSON With Padding (JSONP).Embeds remote server in an iframe and communicate through fragment or window.name, refer here.And so on..Those tricky ways have more or less some issues, for example JSONP might result in security hole if developers simply &quot;eval&quot; it, and #3 above, although it works, both domains should build strict contract between each other, it neither flexible nor elegant IMHO:)W3C had introduced&nbsp;Cross-Origin Resource Sharing (CORS)&nbsp;as a standard solution to provide a safe, flexible and a recommended standard way to solve this issue.&nbsp;MechanismFrom a high level we can simply deem CORS is a contract between client AJAX call from domain A and a page hosted on domain B, a tipical Cross-Origin request/response would be:DomainA&nbsp;AJAX request headersHost DomainB.comUser-Agent Mozilla/5.0 (Windows NT 6.1; WOW64; rv:2.0) Gecko/20100101 Firefox/4.0Accept text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8,application/jsonAccept-Language en-us;Accept-Encoding gzip, deflateKeep-Alive 115Origin http://DomainA.com&nbsp;DomainB response headersCache-Control privateContent-Type application/json; charset=utf-8Access-Control-Allow-Origin DomainA.comContent-Length 87Proxy-Connection Keep-AliveConnection Keep-AliveThe blue parts I marked above were the kernal facts, &quot;Origin&quot; request header &quot;indicates where the cross-origin request or preflight request originates from&quot;, the &quot;Access-Control-Allow-Origin&quot; response header indicates this page allows remote request from DomainA (if the value is * indicate allows remote requests from any domain).As I mentioned above, W3 recommended browser to implement a &quot;preflight request&quot; before submiting the actually Cross-Origin HTTP request, in a nutshell it is an HTTP &quot;OPTIONS&quot; request:OPTIONS DomainB.com/foo.aspx HTTP/1.1If foo.aspx supports OPTIONS HTTP verb, it might return response like below:HTTP/1.1 200 OKDate: Wed, 01 Mar 2011 15:38:19 GMTAccess-Control-Allow-Origin: http://DomainB.comAccess-Control-Allow-Methods: POST, GET, OPTIONS, HEADAccess-Control-Allow-Headers: X-Requested-WithAccess-Control-Max-Age: 1728000Connection: Keep-AliveContent-Type: application/jsonOnly if the response contains &quot;Access-Control-Allow-Origin&quot; AND its value is &quot;*&quot; or contain the domain who submitted the CORS request, by satisfying this mandtory condition browser will submit the actual Cross-Domain request, and cache the result in &quot;Preflight-Result-Cache&quot;.ImplementationLet&#39;s take a look at server side code samples below (ASP.NET and PHP):ASP.NET (C#)protected void Page_Load(object sender, EventArgs e){    String data = String.Empty;    String returnJSONStr = String.Empty;">
@@ -26,6 +26,18 @@
 
 
 
+
+  <meta name="twitter:site" content="@wayneye">
+  <meta name="twitter:title" content="AJAX Cross-Origin HTTP request">
+  <meta name="twitter:description" content="BackgroundCross-Origin Request Sharing - CORS (A.K.A. Cross-Domain AJAX request) is an issue that most web developers might encounter,&nbsp;according to Same-Origin-Policy, browsers restrict client JavaScript in a security sandbox, usually JS cannot directly communicate with a remote server from a different domain. In the past developers created many tricky ways to achieve Cross-Domain resource request, most commonly using ways are:Use Flash/Silverlight or server side as a &quot;proxy&quot; to communicate with remote.JSON With Padding (JSONP).Embeds remote server in an iframe and communicate through fragment or window.name, refer here.And so on..Those tricky ways have more or less some issues, for example JSONP might result in security hole if developers simply &quot;eval&quot; it, and #3 above, although it works, both domains should build strict contract between each other, it neither flexible nor elegant IMHO:)W3C had introduced&nbsp;Cross-Origin Resource Sharing (CORS)&nbsp;as a standard solution to provide a safe, flexible and a recommended standard way to solve this issue.&nbsp;MechanismFrom a high level we can simply deem CORS is a contract between client AJAX call from domain A and a page hosted on domain B, a tipical Cross-Origin request/response would be:DomainA&nbsp;AJAX request headersHost DomainB.comUser-Agent Mozilla/5.0 (Windows NT 6.1; WOW64; rv:2.0) Gecko/20100101 Firefox/4.0Accept text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8,application/jsonAccept-Language en-us;Accept-Encoding gzip, deflateKeep-Alive 115Origin http://DomainA.com&nbsp;DomainB response headersCache-Control privateContent-Type application/json; charset=utf-8Access-Control-Allow-Origin DomainA.comContent-Length 87Proxy-Connection Keep-AliveConnection Keep-AliveThe blue parts I marked above were the kernal facts, &quot;Origin&quot; request header &quot;indicates where the cross-origin request or preflight request originates from&quot;, the &quot;Access-Control-Allow-Origin&quot; response header indicates this page allows remote request from DomainA (if the value is * indicate allows remote requests from any domain).As I mentioned above, W3 recommended browser to implement a &quot;preflight request&quot; before submiting the actually Cross-Origin HTTP request, in a nutshell it is an HTTP &quot;OPTIONS&quot; request:OPTIONS DomainB.com/foo.aspx HTTP/1.1If foo.aspx supports OPTIONS HTTP verb, it might return response like below:HTTP/1.1 200 OKDate: Wed, 01 Mar 2011 15:38:19 GMTAccess-Control-Allow-Origin: http://DomainB.comAccess-Control-Allow-Methods: POST, GET, OPTIONS, HEADAccess-Control-Allow-Headers: X-Requested-WithAccess-Control-Max-Age: 1728000Connection: Keep-AliveContent-Type: application/jsonOnly if the response contains &quot;Access-Control-Allow-Origin&quot; AND its value is &quot;*&quot; or contain the domain who submitted the CORS request, by satisfying this mandtory condition browser will submit the actual Cross-Domain request, and cache the result in &quot;Preflight-Result-Cache&quot;.ImplementationLet&#39;s take a look at server side code samples below (ASP.NET and PHP):ASP.NET (C#)protected void Page_Load(object sender, EventArgs e){    String data = String.Empty;    String returnJSONStr = String.Empty;">
+  <meta name="twitter:url" content="https://wayneye.com/Ajax-Cross-Origin-HTTP-request">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
 
 
 
@@ -42,7 +54,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/Ajax-Cross-Origin-HTTP-request">
+<link rel="canonical" href="https://wayneye.com/Ajax-Cross-Origin-HTTP-request">
 
 
 
@@ -521,11 +533,11 @@ cor<span style="color: #308080;">.</span>onreadystatechange <span style="color: 
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=AJAX+Cross-Origin+HTTP+request%20http%3A%2F%2Flocalhost%3A4000%2FAjax-Cross-Origin-HTTP-request" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=wayneye&text=AJAX+Cross-Origin+HTTP+request%20https%3A%2F%2Fwayneye.com%2FAjax-Cross-Origin-HTTP-request" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2FAjax-Cross-Origin-HTTP-request" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwayneye.com%2FAjax-Cross-Origin-HTTP-request" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2FAjax-Cross-Origin-HTTP-request" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwayneye.com%2FAjax-Cross-Origin-HTTP-request" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -542,6 +554,15 @@ cor<span style="color: #308080;">.</span>onreadystatechange <span style="color: 
   </nav>
 
     </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section class="fb-comments" data-href="https://wayneye.com/Ajax-Cross-Origin-HTTP-request" data-mobile="true" data-num-posts="5" data-width="100%" data-colorscheme="light"></section>
+    
+</div>
 
     
   </article>

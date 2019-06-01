@@ -11,7 +11,7 @@ main:
   - title: "Album"
     url: /album/
   - title: "About"
-    url: /about
+    url: /about/
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
   # - title: "Sample Posts"

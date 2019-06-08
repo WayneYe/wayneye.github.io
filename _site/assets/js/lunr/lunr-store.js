@@ -558,4 +558,9 @@ var store = [{
         "excerpt":"Publishing information After 8 months of continuously hard working, this &lt;Master AWS Development&gt; video course is now live at: Packt Website, I described this course as below: Amazon Web Services (AWS) is the gold standard of the cloud. If you are web and cloud computing developer, your life becomes much...","categories": ["Self-Improvement"],
         "tags": ["AWS","Technology"],
         "url": "https://wayneye.com/Master-AWS-Development-Video-Published",
+        "teaser":null},{
+        "title": "Apply UK Visit VISA",
+        "excerpt":"Background I was planning to attend #adskfootball2019 in Dublin, Ireland from Jun 14th to Jun 16th, 2019: Autodesk Football Tournament 2019 In order to attend, I needed applying Ireland VISA, and since I was planning to fly back to Shanghai later in June, so I thought I could just fly...","categories": ["Life"],
+        "tags": ["Life"],
+        "url": "https://wayneye.com/Apply-UK-Visit-VISA",
         "teaser":null}]

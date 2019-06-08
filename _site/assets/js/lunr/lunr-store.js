@@ -234,11 +234,6 @@ var store = [{
         "tags": ["Hack"],
         "url": "https://wayneye.com/Encrypt-DotNet-Configuration-File",
         "teaser":null},{
-        "title": "惊为天人！",
-        "excerpt":"Freedamn 中国特色自由Smilence 笑而不语Togayther 终成眷属Democrazy 痴心妄想shitizen 屁民Innernet 中国互联网Departyment（政府）有关部门 Chinsumer&nbsp; 在国外疯狂购物的中国人Emotionormal 情绪稳定Sexretary 女秘书Halfyuan 五毛canclensor&nbsp; 审查Wall· e&nbsp; 防火墙围观&nbsp; Circuseevegeteal&nbsp; 偷菜yakshit&nbsp; 亚克西animale&nbsp; 男人天性corpspend&nbsp; 捞尸费suihide&nbsp; 躲猫猫niubility&nbsp; 牛逼antizen 蚁民gunvernment 枪杆子政权propoorty 房地产stuck market&nbsp; 股市livelihard 生活stupig 笨猪Z-turn&nbsp; 折腾Don'train&nbsp; 动车Foulsball&nbsp; 中国足球 Gambller&nbsp; 干部&nbsp; Goveruption&nbsp; 政府Harmany 河蟹Profartssor&nbsp; 叫兽 ","categories": ["Life"],
-        "tags": ["Life"],
-        "url": "https://wayneye.com/%E6%83%8A%E4%B8%BA%E5%A4%A9%E4%BA%BA!",
-        "teaser":null},{
         "title": "Programmatically PIN shortcut onto Taskbar on Win7",
         "excerpt":"Background During my work I got one requirement of pinning a specific shortcut file (*.lnk) onto the Windows 7 Taskbar, after investigating I found programmtically achive this is “not permitted”, refer MSDN article: http://msdn.microsoft.com/en-us/library/dd378460(VS.85).aspx A small set of applications are pinned by default for new installations. Other than these, only...","categories": ["Hack"],
         "tags": ["Hack"],
@@ -273,11 +268,6 @@ var store = [{
         "excerpt":"MSDN TechNet Flash has announced Microsoft Desktop Player, now it is in Beta, it can be accessed through the official website which is Silverlight based: http://www.microsoft.com/click/desktopplayer/ I also installed the desktop version, the desktop version is not a Silverlight OOB, instead, it is a traditional Winform, see screenshot below: Microsoft...","categories": ["Hack"],
         "tags": ["Hack"],
         "url": "https://wayneye.com/Microsoft-Desktop-Player",
-        "teaser":null},{
-        "title": "此言极是",
-        "excerpt":"    G的P，HeXie，Fazhi，RM Gong pu,都是笑话而已。。   为啥不用文本？我们都懂的！ ","categories": ["Life"],
-        "tags": ["Life"],
-        "url": "https://wayneye.com/%E6%AD%A4%E8%A8%80%E6%9E%81%E6%98%AF",
         "teaser":null},{
         "title": "My new Dev box - HP Z800 Workstation",
         "excerpt":"两个星期以前我实在无法忍受Visual Studio 2010的缓慢，即使Disable了IntelliTrace以及别的一些的优化也没有显著改善，而我很清楚这台HP XW9400虽然也很强大很CPU主频很低：2.2G，CPU Rank 300名外。。 我向Manager申请一台新的开发机，老大欣然同意了，于是我跟部门的IT沟通说只希望CPU，内存，硬盘快些就行了，不要光驱和显卡。   两周后Z800到货了！！CPU按我要求的是Intel Xeon 5680，6核主频3.33G，12M三级缓存，开启超线程后任务管理器里显示12个CPU！！8G内存加360GB 7200R/S硬盘（这个有点短板），没有光驱:)。    这颗CPU在cpubenchmark.net上现今排名高居第6名：         Well,这下心满意足的，一边玩着机器一边啧啧称赞加坏笑ing:)  周二带上新烧的Nike D7000去公司拍了几张，Showing below:             显卡仅支持HDMI输出，这下俺的HP 24寸显示器又成了短板了^_^  搞到这台Baby之后，我该好好努力工作了吧，呵呵，多多研究12核Parallel Computing吧:) ","categories": ["Life"],
@@ -353,11 +343,6 @@ var store = [{
         "excerpt":"HTML5 WebSocket defines a bi-directional, full-duplex communication channel operates through a single TCP connection, this article discusses its fantastic performance, the WebSocket protocol principle and its handshake mechanism, and develop a WebSocket application in action (Team Poker). Embeded youku video link because Youtube is outside of the largest \"intranet\" in...","categories": ["Hack"],
         "tags": ["Hack"],
         "url": "https://wayneye.com/HTML5-Web-Socket-In-Essence",
-        "teaser":null},{
-        "title": "【转载】韩寒 - 没希望工程",
-        "excerpt":"中国的慈善机构是很淡定的，因为他们都是政府机构，事态再失控，他们都不害怕。他们知道，他们拥有最后一道防线：舆论消灭权。在这些慈善机构们到了最危险的时候，肯定有个部门会发出最后的吼声，然后一片寂静。比较著名的一次慈善机构行使舆论消灭权是在2002年，《南方周末》头版揭露希望工程负责任挪用亿元善款进行投资，最终导致亏损。结果这份报纸几十万份被收回销毁，仅存几千在人间。写这篇文章的新闻人方进玉遭到处理，提供线索的杨女士在2006年患癌症去世，审计报告一直没有对外公开。此前希望工程还有假信丑闻，上海一家规模不大的私营公司捐助希望工程17名学生，他们收到了所有学生的感谢信，结果经查证，仅有3名学生收到了善款，其余均为假信，他们踏访了那片土地，发现感谢信中的一些学生其实已经失学。后来南方周末的记者去做过深度报告，有一家未收到善款的失学的兰姓孩子家中母亲双腿瘫痪，家中孩子全部失学，由于当时中央还征收农业税，而残疾人可以免除农业税，孩子的母亲交不起五十元办理残疾证，所以爬到了当地政府门口要求减免，官员说，你没有残疾证，所以你不是残疾人。后来走访的学生虽然补收到了希望工程善款，但日期其实已经被涂改。  &nbsp;  虽然在假信风波中，有相当责任是地方的共青团和教委，因为是官方慈善机构的性质，所以善款会先到当地共青团，再到教委，再到学校，再到个人，但毫无疑问这是整套系统出现的问题。那么为什么类似红十字会这样的慈善机构，臭名昭著，但官方一样不允许非官方的慈善机构或者NGO的产生呢？我觉得这并不是因为官方担心管理混乱，因为NGO再混乱也混乱不过他们自己。而是由于官方机构做的实在太差，所以他们明白很多NGO的诞生势必会很快树立威信，吸引大量年轻人和各界人士，而NGO往往都与慈善有关，加上独立，透明，又有资金和会员的支持，又获得人心，等于是建党伟业，假以时日，势必会政权构成一定的威胁，就算没有威胁，被监督和对比着也是浑身不舒服，就好比金正日一定不喜欢金城武天天站在他边上。所以官方牢牢控制着慈善机构，管理媒体，审计和司法的又都是自己人，这便是中国所谓慈善机构的问题来源。  &nbsp;  但是很明显，红十字会的后台没有希望工程硬，在新浪微薄搜索红十字，会出现很多内容，正面负面都有，但是搜索希望工程或者其娘家青基会，马上会出现&ldquo;根据相关法律法规，你所搜索的内容不予显示&rdquo;，这就变成了没希望工程。而在百度和谷歌上搜索其丑闻，很多也被屏蔽。在丑闻出现以后，红十字会的各种领导虽然智商不济，但还硬撑召开了发布会，说了一堆不着边的傻话，而且新闻媒体也没有遭到报复。希望工程面对自己的丑闻则不会进行任何的回应，直接封杀媒体，销毁报纸，处理记者。红十字会表示，争取马上开通查询系统，可以让捐款者知道每一笔善款的去处。而希望工程则无法审计。面对一个这样霸道而神秘的慈善工程，我们完全有理由用最坏的心去揣测他，并要求对希望工程进行独立的审计。  &nbsp;  在我们做学生的时候，大家都曾经被要求为希望工程捐献，而且年复一年。如果你问我，我们还要为希望工程捐款么，我问你，如果美国人用TWITTER搜索一个慈善机构和一个慈善工程，结果搜索不到任何信息，那他们会为这个慈善机构捐款么？人类没有任何理由为一个不愿公布审计报告并压迫传媒的机构捐款，无论它救助的是什么样的对象或者获得了什么样的成就。  &nbsp;  如果我们以最好的心去揣测，那么希望工程也可以退出历史舞台了，如果现在退出，那也算功成身退，毕竟希望工程帮助过不少贫困学生，虽然这是拿老百姓的捐款来节省应该是属于财政的开支，但也是有善。当年邓小平推出希望工程，财政尚不富裕，需要民间慈善。但如今，公款吃喝一年数千亿，维稳一年数千亿，讨好各种生僻国家一家数百亿，而中国有失学儿童三百万，承担他们教育仅仅需要一年十亿。假设现在的中国没有一所小学，要给中国的五十万个村里每一个村都盖一个小学，包括华西村之流也给盖上，需要的全部资金也仅仅等于我们的全体行政人员一个季度不要进行公款消费。所以我觉得希望工程已经完全没有任何的理由向民间征集善款，教育本来是国家财政的一个重要支出部分。我们来看一个数据：2010年香港GDP17481亿港元，征税2090亿港元。深圳GDP9511亿元，征税3061亿元，广州GDP10604亿元，征税3379亿元。香港税收占GDP12%，深圳、广州均为32%。香港教育预算540亿，医疗预算399亿，共占税收45%；而广深两地的教育、医疗预算累计才213亿元，占税收3%。说到医疗，我们再看另外一个数据：政府投入的医疗费用中，80%是为850万以党政干部为主的群体服务；据监察部、人事部披露，全国有200万名各级干部长期请病假，其中有40万名干部长期占据了干部病房、干部招待所、度假村，一年开支约为500亿元。  &nbsp;  这两个数据说明了什么我就不说了。到了今天，政府有足够的能力和义务去承担基础教育和希望工程，老百姓无需去掏不明不白并不容质疑的捐款。如果政府对教育的支出所占的GDP比例达到了其他国家的相应比例，而基础教育问题依然无法解决，那才是民间慈善应该帮助和顶上的时候。但这些不意味着我们不再需要慈善，我自己抄袭自己一下，引用去年一篇文章的结尾来给这篇文章结尾：  &nbsp;  诸恶莫作，众善奉行。但是如果诸恶一直在作，甚至越做越过，乃至是非颠倒，这一切都不影响后面的那句，众善奉行。  &nbsp;  只有众善够重，诸恶才能被诛。  &nbsp;  原文链接，可能会被HX，但我这里不会，如果我这个PageRank 1的也被HX了，那他们也太。。。  ","categories": ["Life"],
-        "tags": ["Life"],
-        "url": "https://wayneye.com/There-Is-No-The-Hope-Project",
         "teaser":null},{
         "title": "帮助这些被遗弃的孩子 - 从身边微小的事做起",
         "excerpt":"上个周六，我陪老婆去参加一个公益活动，感触颇多，谨以短文一篇记录下所见，所思，所想。 Shanghai Healing Home由一群工作上在上海的老外们创建，他们从各种途径（一般是医院）收养被遗弃的患有先天性唇腭裂的孩子们，起初自己出资，慢慢地呼吁有爱心的人资助，逐渐地发展到一定规模，目前一共大概收养了25个孩子，他们中的一部分已经通过好心人的捐赠以及组员的沟通与努力成功实施了手术，跟正常的孩子无异，并且有些孩子已经提交相关组织申请领养。 我们的工作是帮助搬家，下午2:30约在广兰路地铁站集合，然后帮忙把东西从广兰路的一幢房子搬到巨峰路，大概一共来了快20个人，我和老婆是这次唯二的中国人。。人齐了后，组织者Lauren开始分工，我和老婆被分到照顾小孩，（照顾小孩的都是女人，就我一公的。。我估计一来我们第一次参加跟他们不太熟，不好意思让我们干重活，也可能考虑到英美鬼畜力气大些，我想起了敢死队里杰森&middot;斯坦森对李连杰说的：&ldquo;Four and a half??&rdquo;），anyway，我只想多多了解下。 初到孩子们的&ldquo;家&rdquo;，立刻感觉到温馨与仁爱，同时又觉得有些心酸，坦白说我也非常愤怒，可谓是百感交集，。但是在3个多小时跟这些可爱的孩子们一起的时间里，一个最简单的词可以概括：开心！ @可爱的小光头他妈和一个可爱的孩子（已经做过手术） 鄙人和一个可爱的女孩子，她很乖，我抱了她1个多小时，她一会都不闹。 很多患有唇腭裂的孩子，没有办法自然吸奶，只能用软管插入胃中，把奶通过软管挤进胃里，真的非常可怜，下面这个小孩就是这样的情况，已经块一岁了，却骨瘦如柴，她也非常乖，一直躺在那里，一声都没闹，一双明亮的眼睛不停地到处看。 这个胖小子这么会睡，难怪有点吨位:) &nbsp; 幸好有这群好心人，他们其实已经算非常幸运了： &nbsp; 这个小女孩叫小五，她真是可爱的，非常非常乖，一个人坐着玩，一丁点儿都不闹，而且她好像还比较喜欢我，往我身上爬，最后我走的时候还抓着我的手不放，呵呵，我走后一会就想她了，下次一定再去巨峰路看她！ &nbsp; 听组织成员Freda介绍，为一名患有唇腭裂的孩子做手术大概只需要1-2万元，他们一方面接受捐赠，另一方面四处寻求医院的&rdquo;免费手术&ldquo;，我不是这方面专家，描述得可能有问题，但是确实有免费做这种手术的（听了这个让我感觉很欣慰，我原来老是在想，为啥谁谁谁身患绝症媒体都呼吁社会献爱心，医院呢？医院就不能献爱心？？）。 无论如何，我这个穷酸的码农今次为这些可爱的孩子们做了一丁点贡献，我像Freda询问了捐赠渠道，以及：&rdquo;你们需要码农帮忙改进/维护网站吗？&ldquo;，Freda表示非常需要，我给了她我的联系方式。 现在，鄙人向本博的极小众读者呼吁，行动起来，从身边的小事做起，给这些可爱的孩子们一点帮助，Shanghai Healing Home的捐赠方式在这个页面，一点点钱，一些您的孩子穿过的衣服，用过的用品或者玩过的玩具，都可以的！ Let's start from the... Man In the Mirror I'm gonna make a change, For once im my life It's gonna feel real good, Gonna make a diference...","categories": ["Life"],
@@ -568,11 +553,6 @@ var store = [{
         "excerpt":"3 years of AWS hands on experience, two months of preparation, 30 hours of course learning, 300+ exam practices, this was the work I’ve done to pass the AWS Certified Solutions Architect - Associate, my exam result is below: Overall Score: 81% Topic Level Scoring: 1.0 Designing highly available, cost efficient,...","categories": ["Self-Improvement"],
         "tags": ["AWS","Technology"],
         "url": "https://wayneye.com/self-improvement/passing-aws-certified-solutions-architect/",
-        "teaser":null},{
-        "title": "Passing AWS Certified Solutions Architect",
-        "excerpt":"3 years of AWS hands on experience, two months of preparation, 30 hours of course learning, 300+ exam practices, this was the work I've done to pass the&nbsp;AWS Certified Solutions Architect - Associate, my exam result is below: Overall Score: 81% Topic Level Scoring: 1.0 Designing highly available, cost efficient,...","categories": ["Hack"],
-        "tags": ["Hack"],
-        "url": "https://wayneye.com/Passing-AWS-Certified-Solutions-Architect",
         "teaser":null},{
         "title": "Master AWS Development Video Published",
         "excerpt":"Publishing information After 8 months of continuously hard working, this &lt;Master AWS Development&gt; video course is now live at: Packt Website, I described this course as below: Amazon Web Services (AWS) is the gold standard of the cloud. If you are web and cloud computing developer, your life becomes much...","categories": ["Self-Improvement"],

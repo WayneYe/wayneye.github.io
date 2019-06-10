@@ -17,6 +17,8 @@ I was planning to attend #adskfootball2019 in Dublin, Ireland from Jun 14th to J
 
 In order to attend, I needed applying Ireland VISA, and since I was planning to fly back to Shanghai later in June, so I thought I could just fly from SF to Dublin, then Dublin to Shanghai, and soon I realized that there is no direct flight from DUB to PVG, so a practical (and also very fun and economic) option is to fly from Dublin to London, and then London to Shanghai, bingo ^_^
 
+<!--more-->
+
 ## The VISA application experience
 
 The most appropriate VISA for me would be [Visitor in Transit VISA](https://www.gov.uk/transit-visa/visitor-in-transit-visa), which means I must have in/out flights and must leave UK within 48 hours, sounds good, I can stay in London two days, two nights, and since it was just 1 month away, I thought applying this kind of VISA would be relatively faster and easier.

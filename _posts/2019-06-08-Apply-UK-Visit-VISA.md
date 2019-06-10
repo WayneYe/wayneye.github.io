@@ -21,18 +21,18 @@ In order to attend, I needed applying Ireland VISA, and since I was planning to 
 
 The most appropriate VISA for me would be [Visitor in Transit VISA](https://www.gov.uk/transit-visa/visitor-in-transit-visa), which means I must have in/out flights and must leave UK within 48 hours, sounds good, I can stay in London two days, two nights, and since it was just 1 month away, I thought applying this kind of VISA would be relatively faster and easier.
 
-So the first step is to make an appointment at USCIS and process 10 finger printings, short say: *10-printed*, it was not that bad since the most close USCIS office is just 15 minutes of walking from Autodesk 1 Market office.  After doing this I got a receipt and instructions which guides me the next step: mail all the required documents to UK Consulate in New Your: a letter to explain the purpose of the visit, financial proof and all my family members' profile, and most important: **I must mail them my passport**! Inside this instruction it clearly instruct appliers to buy a shipping label from a VFS global: https://www.vfsglobal.co.uk/us/en/premium-services:
+So the first step is to make an appointment at USCIS and process 10 finger printings, short say: *10-printed*, it was not that bad since the most close USCIS office is just 15 minutes of walking from Autodesk 1 Market office.  After doing this I got a receipt and instructions which guides me the next step: mail all the required documents to UK Consulate in New Your: a letter to explain the purpose of the visit, financial proof and all my family members' profile, and most important: I must mail them my passport, inside this instruction it clearly instruct appliers to buy a shipping label from a VFS global: https://www.vfsglobal.co.uk/us/en/premium-services:
 
 <figure>
     <a href="/assets/images/posts/2019-06-06-Apply-UK-VISA/VFS-Premium.png"><img src="/assets/images/posts/2019-06-06-Apply-UK-VISA/VFS-Premium.png"></a>
     <figcaption>VFS-Premium Services</figcaption>
 </figure>
 
-I won't spend even 410 bucks to buy their "Premium Service", there is a section in the bottom of the page "Most popular services", and I chose "Round Trip Courier Service - up to 2lbs" which is 72 bucks (later on after I read some posts in Quora I realized this is not required, I can simply just purchase a return label from UPS).
+Well, I won't spend even 410 bucks to buy their "Premium Service", there is a section in the bottom of the page "Most popular services", and I chose "Round Trip Courier Service - up to 2lbs" which is 72 bucks (later on after I read some posts in Quora I realized this is not required, I can simply just purchase a return label from UPS).
 
 So since I have to mail my passport and I would also apply Ireland VISA, and I visited the Ireland consulate and talked to a really nice lady officer there, explained my situation and she told me it is ok, they will process my VISA application without holding my passport, I can go ahead mail my passport to UK consulate, I appreciated her considerate.
 
-I mailed my passport on May 23rd, i.e. 20 days before the tournament, I truly hoped my application can be processed fast enough.  However, there was no progress after two weeks, on Jun 5th I couldn't wait any longer, and I realized there isn't an online portal to track the VISA status nor a phone number to call, I called the UK consulate in San Francisco and the stuff was really rude and kept emphasizing they are not responsible for any VISA service, and I was redirected to a robot audio saying I can visit their website for contacting method.
+I mailed my passport on May 23rd, i.e. 20 days before the tournament, I truly hoped my application can be processed fast enough.  However, the fact was there was no progress after two weeks, on Jun 5th I couldn't wait any longer, and I realized there isn't an online portal to track the VISA status nor a phone number to call, I called the UK consulate in San Francisco and the stuff was really rude and kept emphasizing they are not responsible for any VISA service, and I was redirected to a robot audio saying I can visit their website for contacting method.
 
 After some googling and struggling I found their contact methods at: https://www.gov.uk/contact-ukvi-inside-outside-uk/y/outside-the-uk/english
 > Contact UK Visas and Immigration in English
@@ -52,13 +52,13 @@ After some googling and struggling I found their contact methods at: https://www
 I called this number and the very first voice I heard was to enter my credit card information, and after 2 minutes of wait a human picked up the phone and stating immediately without even letting me to say hello: "before you talk please allow us to emphasize the disclaimer blah, blah...", this last about 40 seconds, and I finally got chance to speak, after explaining my situation I begged: "**please mail back me my passport immediately, I don't need VISA any more, thank you!!**".  I don't want to recap these horrible moments, I ended up by calling them twice and got charged `$1.75 * 2 + $15.68 + $29.68 = $48.86` for a single purpose as I roared above^.
 
 ## Conclusion
-IMHO, visitor who plan travel to a certain place because they are expecting a pleasant journey, they hope a wonderful trip so that it can be shared to their friends and relatives, also to create some unforgettable memory, whereas after experiencing such a terrible, unfriendly, or let me say it directly: **arrogant** VISA processing process: 10-printed + super detailed forms + non-traceable progress + insanely expensive inquiry phone charge VISA experience, this could kill all of their positive passion.  For my case please remember: after all I was just applying a Visitor in Transit VISA which only allowing me to stay in this country for **less than 48 hours**, but it almost destroyed my entire travel plan because of their "impressive efficiency"😠
+First, don't get me wrong, I fully respect UK, a great country that contributed a ton to humane being, I have several friends from UK as well.  However, IMHO, visitor who plan travel to a certain place because they are expecting a pleasant journey, they hope a wonderful trip so that it can be shared to their friends and relatives, also to create some unforgettable memory, whereas after experiencing this slow, not that friendly, or let me say it directly: **arrogant** VISA processing process: 10-printed + super detailed forms + non-traceable progress + insanely expensive inquiry phone charge VISA experience, this could kill all of their positive passion.  For my case please remember: after all I was just applying a Visitor in Transit VISA which only allowing me to stay in this country for **less than 48 hours**, but it almost destroyed my entire travel plan because of their "impressive efficiency"😠
 
 <figure>
     <a href="/assets/images/posts/2019-06-06-Apply-UK-VISA/zhuge.jpg"><img src="/assets/images/posts/2019-06-06-Apply-UK-VISA/zhuge.jpg"></a>
 </figure>
 
-The total damage on me so far are:
+The total cost on me so far are:
 
 * VISA fee: $86
 * VFS global service fee: $75

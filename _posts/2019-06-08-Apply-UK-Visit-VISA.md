@@ -57,10 +57,6 @@ I called this number and the very first voice I heard was to enter my credit car
 ## Conclusion
 First, don't get me wrong, I fully respect UK, a great country that contributed a ton to humane being, I have several friends from UK as well.  However, IMHO, visitor who plan travel to a certain place because they are expecting a pleasant journey, they hope a wonderful trip so that it can be shared to their friends and relatives, also to create some unforgettable memory, whereas after experiencing this slow, not that friendly, or let me say it directly: **arrogant** VISA processing process: 10-printed + super detailed forms + non-traceable progress + insanely expensive inquiry phone charge VISA experience, this could kill all of their positive passion.  For my case please remember: after all I was just applying a Visitor in Transit VISA which only allowing me to stay in this country for **less than 48 hours**, but it almost destroyed my entire travel plan because of their "impressive efficiency"😠
 
-<figure>
-    <a href="/assets/images/posts/2019-06-06-Apply-UK-VISA/zhuge.jpg"><img src="/assets/images/posts/2019-06-06-Apply-UK-VISA/zhuge.jpg"></a>
-</figure>
-
 The total cost on me so far are:
 
 * VISA fee: $86

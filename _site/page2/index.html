@@ -314,7 +314,14 @@
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Hooray! My new development &amp; gaming machine - the later 2013 iMac!
-I wrote this blog post to record my thoughts and feelings before and after I purchased...</p>
+I wrote this blog post to record my thoughts and feelings before and after I purchased this baby:)
+My open questions and the answers I got from the Apple customer service
+
+I will choose a dedicated SSD, will it be PCIe based?
+Will the 2013 iMac easy to expand memory? Similar with the later 2012?
+If I purchase the apple care in Singapore apple website online, will it valid in case in the future I migrated to other country (for example, USA) ?
+Will the iMac pre-installed OSX mavericks?
+If I buy a external USB 3.0 hard driv...</p>
   </article>
 </div>
 
@@ -342,7 +349,16 @@ I wrote this blog post to record my thoughts and feelings before and after I pur
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">The landscape&nbsp;
-Sharding is the strategy that MongoDB uses to horizentally scale the entire data store infrustructure and meet the demands of data,growth...</p>
+Sharding is the strategy that MongoDB uses to horizentally scale the entire data store infrustructure and meet the demands of data,growth, the infrastructure can be demonstrated as image below:
+
+Preparation
+To simulate a production like environment, a minimum number of 7 physical/virtual servers are required, the role of them are:
+
+3 for Mongo config servers
+1 for&nbsp;Mongo shard server (mongos)
+3 for a Mongo shard (Replica set), 1&nbsp;primary&nbsp;and 2&nbsp;secondary&nbsp;(or 1 secondary and 1 arbiter).
+
+Note: all the machines above need have mongod installed, for in...</p>
   </article>
 </div>
 
@@ -371,7 +387,15 @@ Sharding is the strategy that MongoDB uses to horizentally scale the entire data
     
     <p class="archive__item-excerpt" itemprop="description">Installation
 Exhaustive documentation:&nbsp;http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/
-Mongo executables will be installed into&nbsp;...</p>
+Mongo executables will be installed into&nbsp;/use/bin/, database files will under&nbsp;/data/db/
+Log file location:&nbsp;/var/log/mongodb/mongodb.log
+
+Terminology
+
+Adminstration
+sudo service mongodb start/stop/restart&nbsp;or simply issue&nbsp;mongod&nbsp;to start MongoDB process
+mongo&nbsp;to enter MongoDB Console
+&gt; show dbs &nbsp;#Show all databases&gt; db &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; #Show current db&gt; db.help() &nbsp; #View commands related with db# "Create" ...</p>
   </article>
 </div>
 
@@ -402,7 +426,18 @@ Mongo executables will be installed into&nbsp;...</p>
 本屌丝租用的是一套位于Pasir Pajang Hill据说是富人区的海景房, 每月开销S$3600，跟Mark兄弟分摊。
  海景房 - 每天24小时都有不一样的景色
 
-鄙人酷爱游泳，之前2个月住在Carabelle时每晚9点回家，50米奥林匹克泳池包场的感觉实在是太爽了，在天朝...</p>
+鄙人酷爱游泳，之前2个月住在Carabelle时每晚9点回家，50米奥林匹克泳池包场的感觉实在是太爽了，在天朝只有半夜才行吧，而且水质也没法比。目前这个Condo的泳池较小，聊胜于无吧:)每天送儿子回到家，老婆早已准备好各式美味晚餐，让我自己都嫉妒自己:)
+ 老婆的新拿手菜 - 烤鱼
+儿子开始在Learning Vision上幼儿园
+每天早上开开心心送儿子去我司楼下的幼儿园，既增进父子感情，又不耽误工作。
+   自行车座椅上的儿子
+   自行车座椅上的儿子
+   旅行箱里的儿子，这样的景象其实发生在周末我们一家人去超级市场时，由于儿童推车必须在Bus上收起来，我们便用旅行箱作为儿子的座驾，他也非常喜欢，只是走在路上回头率实在很高:)
+儿子经过1个月的适应，现在已经非常享受幼儿园的环境了。
+   幼儿园新生活
+这里的食物真的很赞
+狮城招牌辣椒螃蟹(Chili Crab)，在Jumbo Seafood吃的，吃后真是&ldquo;三月不知肉味&rdquo;了，整个享受的过程中我就不停地感叹：&ldquo;怎么可以做得这么好吃。。。&rdquo;。
+   新加坡招牌菜式 - 辣椒螃蟹...</p>
   </article>
 </div>
 
@@ -430,7 +465,7 @@ Mongo executables will be installed into&nbsp;...</p>
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Technical tags: IBM, Domino, AIX, LotusScript, ODBC/JDBC, ADO, OLE DB,
-Assume we are now in Jurassic period, the technologies above are in Cambrian period, d...</p>
+Assume we are now in Jurassic period, the technologies above are in Cambrian period, developers who has less than 4 years experience probably never heard about any of the above terminologies... No choice, I was dealing with them during the passes few weeks, I met ODBC as soon as I graduated while I was development ASP website using VBScript, but it was soon replaced by ADO, and after half a year I started studying .NET so I used ADO.NET, nowadays we usually talk to Entity Framework which abstracts ADO.NET interfaces... N...</p>
   </article>
 </div>
 
@@ -459,7 +494,9 @@ Assume we are now in Jurassic period, the technologies above are in Cambrian per
     
     <p class="archive__item-excerpt" itemprop="description">Introduction
 Varnish is an HTTP accelerator, the official page is: https://www.varnish-cache.org/.
-Varnish stands in front of the web application server to b...</p>
+Varnish stands in front of the web application server to be a cache reverse proxy (also can be a load balancer), it can simply cache all the static resources in memory, and can also be powerfully configed using VCL (Varnish Configuration Language, a DSL for Varnish configuration) to cache dynamic content, in addition, Varnish implements ESI (Edge Side Include) standards to provide ability to cache static parts of the page.
+
+A web server uses Varnish can easily handle more than 10,000 requests/...</p>
   </article>
 </div>
 
@@ -487,7 +524,13 @@ Varnish stands in front of the web application server to b...</p>
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Introduction
-On the homepage of nxing wiki, there used to be one sentence which really impressed my very much when I first time to take a look at it and lear...</p>
+On the homepage of nxing wiki, there used to be one sentence which really impressed my very much when I first time to take a look at it and learn it three years ago:
+
+Apache is like Microsoft Word, it has a million options but you only need six. Nginx does those six things, and it does five of them 50 times faster than Apache. &nbsp;--Chris Lea
+
+
+Now it is not there anymore, how you can still search on the web to see it:&nbsp;example link.
+One of the six things nginx can do and can do gorgeous is putting it in front of the web application server as a Cache Reverse Proxy, which ...</p>
   </article>
 </div>
 
@@ -514,7 +557,10 @@ On the homepage of nxing wiki, there used to be one sentence which really impres
   11 minute read
 </p>
     
-    <p class="archive__item-excerpt" itemprop="description">In our daily TDD/BDD work, we spent most of our time in test cases, we analyze requirements, write test case, run it and watch it fail, implement code to mak...</p>
+    <p class="archive__item-excerpt" itemprop="description">In our daily TDD/BDD work, we spent most of our time in test cases, we analyze requirements, write test case, run it and watch it fail, implement code to make the test pass, repeat the process "until money runs out". Thus the speed of running those test cases have significant impact on a team's performance, ! You can't tolerance writing a test case, waiting 1 minute finish; You can't tolerance CI finishes running all RSpec/Cucumber tests for half an hour! I can't! So I motivated to improve this!
+The result
+
+In the project I was working on there are 1566 RSpec examples for all models, after ...</p>
   </article>
 </div>
 
@@ -543,7 +589,17 @@ On the homepage of nxing wiki, there used to be one sentence which really impres
     
     <p class="archive__item-excerpt" itemprop="description">Motivation
 
-    Leveraging CDN (Content Delivery Network) to speed up static files loading time is one of the most important fact which affects a website's l...</p>
+    Leveraging CDN (Content Delivery Network) to speed up static files loading time is one of the most important fact which affects a website's loading time, CDN was emphasized in many articles related with improving website's performance, for example:
+    
+      Nicholas C. Zakas - How content delivery networks (CDNs) work
+      Why the CDN industry is so important
+      Importance of Using CDN to Speed Up Website
+      Best Practices for Speeding Up Your Web Site
+    
+  
+
+Free JavaScript CDN providers
+Majority of the largest websites (Facebook, Twitter, Yahoo, Google, etc.) on...</p>
   </article>
 </div>
 
@@ -573,7 +629,11 @@ On the homepage of nxing wiki, there used to be one sentence which really impres
     <p class="archive__item-excerpt" itemprop="description"> ThoughtWorks card on my MacBook Pro (Click to enlarge)
 One month milestone
 
-I just experienced my first month in ThoughtWorks, in fact I decided to record m...</p>
+I just experienced my first month in ThoughtWorks, in fact I decided to record my feelings and thoughts even before I joint this incredible company, I believe it would be a unforgettable period of my life. And right now it's the time for me to do it! To document the different and special places of ThoughtWorks from a developer's/geek's eye.
+Culture in ThoughtWorks
+ ThoughtWorks office (Click to enlarge)
+Pair programming
+My first time pair experience was the interview taken place in ThoughtWorks Xi'an office, which ...</p>
   </article>
 </div>
 

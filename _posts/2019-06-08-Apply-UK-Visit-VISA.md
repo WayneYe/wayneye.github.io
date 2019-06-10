@@ -80,3 +80,4 @@ The total cost on me so far are:
 
 ## Updates
 * Jun 8th: until the time I wrote this post (Saturday Jun 8th), my passport is still on the way back to San Francisco.
+* Jun 10th: received an email UKHubVISAInfo: "Your UK visa application has been dispatched from the UK Visa Section. --Croydon"

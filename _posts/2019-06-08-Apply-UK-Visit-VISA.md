@@ -81,3 +81,6 @@ The total cost on me so far are:
 ## Updates
 * Jun 8th: until the time I wrote this post (Saturday Jun 8th), my passport is still on the way back to San Francisco.
 * Jun 10th: received an email UKHubVISAInfo: "Your UK visa application has been dispatched from the UK Visa Section. --Croydon"
+* Jun 11th: I finally received my passport at 11:45 AM, so the UK consulate in NYC didn't issue me a VISA eventually, sure, fine!  Maybe they were just too busy with Brexit and really didn't have time to process my 48 hours VISA during the past 3 weeks, I understand but I wrote a reply email to them below: <br />
+  ![Email reply to VFS](assets/images/posts/2019-06-06-Apply-UK-VISA/VFS.png "Email reply to VFS")
+* Jun 11th: I ran to the Ireland consulate immeditely and got to see Ms. Molly the 3rd time, as always, she is so kind, helpful and considerate, she pasted my approved short-stay travelling VISA within 1 minute and expressed her wishes to my upcoming trip in Ireland, I appreciated and told her I decided to stay in Ireland for two more days, I also asked her whether or not let me bring anything she needs from Ireland, she said no with smile and appreciation.  I will update on this later :)

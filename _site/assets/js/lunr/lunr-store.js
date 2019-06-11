@@ -535,17 +535,12 @@ var store = [{
         "url": "https://wayneye.com/New-Life-Begins-In-BayArea",
         "teaser":null},{
         "title": "FC Barcelona Miracle Comeback!",
-        "excerpt":"0:4到6:1 - 史诗般的逆转 From 0:4 to 6:1 - Epic comeback 2017年3月8日，巴塞罗那诺坎普球场，加泰罗尼亚足球巨人巴塞罗那队坐镇主场迎战巴黎圣日耳曼队，带着首回合0:4的比分，开始了几乎所有人都认为的荣誉之战，绝大多数人（包括我在内），都认为巴萨可能会赢，但绝不可能翻盘，自有欧洲冠军杯以来，没有任何球队在落后4球的情况下能搬回来，迄今为止最惊天动地的翻盘出现在13年前，AC米兰主场4:1战胜拉科鲁尼亚，回到拉科主场，由马凯，潘迪亚尼、贝莱隆等人领衔实现4:0的疯狂逆转。此次虽说巴萨有世上无双的MSN三叉戟，巴黎账面上也绝对比当年的AC米兰差了点点，但是毕竟巴萨可是可怜得连个客场进球都没有，而大巴黎状态正佳，进1球就几乎可以宣告巴萨死刑，因为在此情况下他们需要进6球，面对由当世顶尖中卫蒂亚戈席尔瓦领衔的大巴黎防线，这种期望值是否太。。。然而，足球就是足球，理性分析与实际结果的差距经常巨大！就在此时，就在此地，巴塞罗那队实现了欧冠历史上绝无仅有的超级大逆转，全世界所有足球迷，即使不是巴萨的粉丝，都被此神迹彻底燃爆！ Mar 8th 2017, Camp Nou stadium at Barcelona, the Catalan giant faced Paris Saint Germain, with a 0:4 loss taken from 1st leg, started a \"honor bound\" from majority people's point of view, most people (including me), would guess...","categories": ["Life"],
+        "excerpt":"0:4到6:1 - 史诗般的逆转 From 0:4 to 6:1 - Epic comeback 2017年3月8日，巴塞罗那诺坎普球场，加泰罗尼亚足球巨人巴塞罗那队坐镇主场迎战巴黎圣日耳曼队，带着首回合0:4的比分，开始了几乎所有人都认为的荣誉之战，绝大多数人（包括我在内），都认为巴萨可能会赢，但绝不可能翻盘，自有欧洲冠军杯以来，没有任何球队在落后4球的情况下能搬回来，迄今为止最惊天动地的翻盘出现在13年前，AC米兰主场4:1战胜拉科鲁尼亚，回到拉科主场，由马凯，潘迪亚尼、贝莱隆等人领衔实现4:0的疯狂逆转。此次虽说巴萨有世上无双的MSN三叉戟，巴黎账面上也绝对比当年的AC米兰差了点点，但是毕竟巴萨可是可怜得连个客场进球都没有，而大巴黎状态正佳，进1球就几乎可以宣告巴萨死刑，因为在此情况下他们需要进6球，面对由当世顶尖中卫蒂亚戈席尔瓦领衔的大巴黎防线，这种期望值是否太。。。然而，足球就是足球，理性分析与实际结果的差距经常巨大！就在此时，就在此地，巴塞罗那队实现了欧冠历史上绝无仅有的超级大逆转，全世界所有足球迷，即使不是巴萨的粉丝，都被此神迹彻底燃爆！ Mar 8th 2017, Camp Nou stadium at Barcelona, the Catalan giant faced Paris Saint Germain, with a 0:4 loss taken from 1st leg, started a “honor bound” from majority people’s point of view, most people (including me), would guess...","categories": ["Life"],
         "tags": ["Life"],
         "url": "https://wayneye.com/FC-Barcelona-Miracle-Comeback",
         "teaser":null},{
         "title": "Storage+Media home server for less than $300",
-        "excerpt":"Background I have been researched and watched many NAS options to setup a home storage+media server during the past year, and so far there was no perfect answer, either lacking features/performance, or way too expensive... An Intel Celeron CPU + 1GB mem with a customized Linux (in other words: closed...","categories": ["Life"],
-        "tags": ["Life"],
-        "url": "https://wayneye.com/Storage-Media-Home-Server-Less-Than-300",
-        "teaser":null},{
-        "title": "Storage+Media home server for less than $300",
-        "excerpt":"Background I have been researched and watched many NAS options to setup a home storage+media server during the past year, and so far there was no perfect answer, either lacking features/performance, or way too expensive... An Intel Celeron CPU + 1GB mem with a customized Linux (in other words: closed...","categories": ["Geek"],
+        "excerpt":"Background I have been researched and watched many NAS options to setup a home storage+media server during the past year, and so far there was no perfect answer, either lacking features/performance, or way too expensive… An Intel Celeron CPU + 1GB mem with a customized Linux (in other words: closed...","categories": ["Geek"],
         "tags": ["Geek","Hack"],
         "url": "https://wayneye.com/geek/Storage-Media-Home-Server-Less-Than-300/",
         "teaser":null},{

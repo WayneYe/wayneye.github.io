@@ -550,7 +550,7 @@ var store = [{
         "url": "https://wayneye.com/self-improvement/passing-aws-certified-solutions-architect/",
         "teaser":null},{
         "title": "Master AWS Development Video Published",
-        "excerpt":"Publishing information After 8 months of continuously hard working, this &lt;Master AWS Development&gt; video course is now live at: Packt Website, I described this course as below: Amazon Web Services (AWS) is the gold standard of the cloud. If you are web and cloud computing developer, your life becomes much...","categories": ["Self-Improvement"],
+        "excerpt":"Course overview video Publishing information After 8 months of continuously hard working, this &lt;Master AWS Development&gt; video course is now live at: Packt Website, I described this course as below: Amazon Web Services (AWS) is the gold standard of the cloud. If you are web and cloud computing developer, your...","categories": ["Self-Improvement"],
         "tags": ["AWS","Technology"],
         "url": "https://wayneye.com/Master-AWS-Development-Video-Published",
         "teaser":null},{

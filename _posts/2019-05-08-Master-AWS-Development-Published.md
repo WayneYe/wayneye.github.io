@@ -8,6 +8,10 @@ tags:
 permalink: Master-AWS-Development-Video-Published
 ---
 
+## Course overview video
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yzZ7u5k7Q7M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Publishing information
 
 After 8 months of continuously hard working, this \<**_Master AWS Development_**\> video course is now live at: <a href="https://www.packtpub.com/virtualization-and-cloud/mastering-aws-development-video" target="_blank">Packt Website</a>, I described this course as below:
@@ -19,8 +23,10 @@ After 8 months of continuously hard working, this \<**_Master AWS Development_**
 > By the end of this course, you’ll be a master at building, deploying, and managing your applications on AWS. And you’ll know how to scale and secure your applications thanks to industry best practices.
 
 <a href="https://www.packtpub.com/virtualization-and-cloud/mastering-aws-development-video" target="_blank">
-	<img style="width: 500px;margin: 20px 0 0 20%;" src="https://www.packtpub.com/sites/default/files/bookretailers/V11847_LOw.png" alt="Marstering AWS Development Video Course">
+	<img style="width: 500px;margin: 20px 0 0 20%;" src="/assets/images/posts/2019-05-08-Master-AWS-Development-Published/v11847_low.png" alt="Marstering AWS Development Video Course">
 </a>
+
+<!--more-->
 
 ## The motivation
 

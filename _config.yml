@@ -157,7 +157,6 @@ exclude:
   - /test # ignore Minimal Mistakes /test
 keep_files:
   - .git
-  - .svn
 encoding: "utf-8"
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
@@ -166,7 +165,6 @@ markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 markdown: kramdown
 highlighter: rouge
 lsi: false
-excerpt_separator: "\n\n"
 incremental: false
 
 

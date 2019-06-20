@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Wayne's Geek Life">
 <meta property="og:title" content="Wayne’s Geek Life">
-<meta property="og:url" content="https://wayneye.com/page12/">
+<meta property="og:url" content="http://localhost:4000/page12/">
 
 
 
@@ -28,7 +28,7 @@
   <meta name="twitter:site" content="@wayneye">
   <meta name="twitter:title" content="Wayne’s Geek Life">
   <meta name="twitter:description" content="I am a software engineer, technical lead and also a geek, I’ve immersed in software/web development for 14 years, I hack using these languages: Python, Golang, JavaScript/nodejs, Ruby/RoR, C#. I am an AWS Certified Solutions Architect (2017-2019), PMP and CodeProject MVP.">
-  <meta name="twitter:url" content="https://wayneye.com/page12/">
+  <meta name="twitter:url" content="http://localhost:4000/page12/">
 
   
     <meta name="twitter:card" content="summary">
@@ -50,10 +50,10 @@
   
 
 
-<link rel="canonical" href="https://wayneye.com/page12/">
+<link rel="canonical" href="http://localhost:4000/page12/">
 
 
-  <link rel="prev" href="https://wayneye.com/page11/">
+  <link rel="prev" href="http://localhost:4000/page11/">
 
 
 
@@ -101,11 +101,11 @@
     <!-- start custom head snippets -->
 
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
-<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
-<link rel="manifest" href="assets/images/favicon/site.webmanifest">
-<link rel="mask-icon" href="assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 
@@ -134,7 +134,7 @@
             </li><li class="masthead__menu-item">
               <a href="/search/" >Search</a>
             </li><li class="masthead__menu-item">
-              <a href="/album/" >Album</a>
+              <a href="/gallery/" >Gallery</a>
             </li><li class="masthead__menu-item">
               <a href="/about/" >About</a>
             </li></ul>
@@ -344,7 +344,10 @@
     <p class="archive__item-excerpt" itemprop="description">在开发这个自己用的Blog时，决定认真研究一下以前接触过的URL Rewrite，我见过类似这样的域名： xxx.com/Archive/2008/03/21/，一直不知道怎么实现的，正好借这次机会研究一下。
 从前天开始就一直在努力，基本上是第一天差了大半天资料，&lt;A href="http://msdn2.microsoft.com/en-us/library/ms972974.aspx" target=_blank&gt;这篇文章&lt;/A&gt;写得非常详细，向作者致敬！第二天终于上手做出Demo，但有Bug，第三天解决了Bug，完美运行^_^
 其实简单点说，个人觉得对于ASP.NET开发者实现URL Rewrite基本有3种途径：
-1. 修改IIS ISAPI扩展，例如把”.xx”交给aspnet_isapi.dll ISAPI 扩展，就成了这样：”xxx.htm?q=blah”，这样就是最简单直接的SEO，但由于我是虚拟主机所以我仅仅只在本地试了下，不知道精英科技的管理面板是否支持，我没有试。2. 修改WebConfig，添加自己实现的IHttpModule，根据传入的URL来Rewrite到相应的页面，比如接受到类似” Archive/2008/03/21/”的URL，则Rewrite到Archive.aspx?Year=2008&amp;Month=3&a...</p>
+1. 修改IIS ISAPI扩展，例如把”.xx”交给aspnet_isapi.dll ISAPI 扩展，就成了这样：”xxx.htm?q=blah”，这样就是最简单直接的SEO，但由于我是虚拟主机所以我仅仅只在本地试了下，不知道精英科技的管理面板是否支持，我没有试。2. 修改WebConfig，添加
+
+
+</p>
   </article>
 </div>
 

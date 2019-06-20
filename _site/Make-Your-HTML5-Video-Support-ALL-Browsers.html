@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Make your HTML5 Video support all browsers - Wayne’s Geek Life</title>
-<meta name="description" content="IntroductionHTML5 video tag gave us the following advantages:No plugin required, directly play.Visible &amp; controllable for Browser and search engine, not a &quot;black box&quot; such as Flash or SilverLight.Cross-platform, in theory all PC/mobile browsers as well as Ipad/Windows 8/Android tablet PC.&nbsp;Downward compatibility. Which is very important, but W3C had made it simple and works, we can smoothly fall back to flash if the user agent does not recognize &quot;&lt;video&gt;&quot; tag.So it is simple and pretty cool! However, there is still issues within a not short period: the browser support - each concrete browser and the company (ies) behind it supports different formant of videos, to be more specific, refer the table below stole from about.com:&nbsp;AndroidChromeFirefoxInternet ExploreriOSOperaSafariCodec&nbsp;WinMacWinMacWin&nbsp;WinMacWinMacMP4 or H.2643.097XX93XX55ogg/Theora2.3973.63.6XX10.6310.63XXWebM2.3973.63.69 (withcomponents)X10.6310.63XXSo to support all browsers: IE 6.0+, Firefox, Chrome, Safari, Opera, etc, what should we do?Cross All Browser ImplementationBy searching on the google and half a day investigation, I found the solution, sample code pasted below: &lt;video controls=&quot;controls&quot; preload=&quot;auto&quot; poster=&quot;napshot.png&quot;&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.mp4&quot; type=&quot;video/mp4&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.webm&quot; type=&quot;video/webm&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.ogv&quot; type=&quot;video/ogg&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;!--  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Flash &nbsp;&nbsp;&nbsp; --&gt; &lt;/video&gt;The code above results in IE 9.0+/Safari will load mp4, Chrome/Firefox&nbsp;and Opera&nbsp;will load webm, and IE 6.0 ~ 8.0 will load flash.Note: as browsers may change its attitude on the video format support, so my code &amp; comments might not right in the future. &nbsp;Few tipsOne important thing is make sure your web server supports those video MIME types, taking IIS as an example, we need to config it to support this by doing following:Open IIS Server Manager (Win+R -&gt; inetmgr).Go to your website, double clicks &quot;MIME Types&quot;.Add MIME types: video/mp4, video/webm and video/ogg.&nbsp;An equivalent way to define those MIME types within your ASP.NET web.config: &lt;staticContent&gt; &nbsp;&nbsp;&nbsp; &lt;mimeMap fileExtension=&quot;.webm&quot; mimeType=&quot;video/webm&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;mimeMap fileExtension=&quot;.ogv&quot; mimeType=&quot;video/ogg&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;mimeMap fileExtension=&quot;.mp4&quot; mimeType=&quot;video/mp4&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;clientCache cacheControlMode=&quot;UseMaxAge&quot; cacheControlMaxAge=&quot;30.00:00:00&quot; /&gt; &lt;/staticContent&gt;Another important thing is video converting, I would recommended combinations and steps according to my experience on this:Using Any Video Converter to compress/convert original video file to a flv.Using&nbsp;Miro conver the compressed flv to ogv, webm and mp4.&nbsp;They both are free to use, Miro is actually based on the famous open source ffmpeg library which I like very much, Miro is also open source.One more thing:), we can customize video UI by CSS, and there are already a few good open source library to help you:&nbsp;MediaElement.js&nbsp;and&nbsp;VideoJS.&nbsp;Live DemoMy lovely son  ">
+<meta name="description" content="IntroductionHTML5 video tag gave us the following advantages:No plugin required, directly play.Visible &amp; controllable for Browser and search engine, not a &quot;black box&quot; such as Flash or SilverLight.Cross-platform, in theory all PC/mobile browsers as well as Ipad/Windows 8/Android tablet PC.&nbsp;Downward compatibility. Which is very important, but W3C had made it simple and works, we can smoothly fall back to flash if the user agent does not recognize &quot;&lt;video&gt;&quot; tag.So it is simple and pretty cool! However, there is still issues within a not short period: the browser support - each concrete browser and the company (ies) behind it supports different formant of videos, to be more specific, refer the table below stole from about.com:&nbsp;AndroidChromeFirefoxInternet ExploreriOSOperaSafariCodec&nbsp;WinMacWinMacWin&nbsp;WinMacWinMacMP4 or H.2643.097XX93XX55ogg/Theora2.3973.63.6XX10.6310.63XXWebM2.3973.63.69 (withcomponents)X10.6310.63XXSo to support all browsers: IE 6.0+, Firefox, Chrome, Safari, Opera, etc, what should we do?Cross All Browser ImplementationBy searching on the google and half a day investigation, I found the solution, sample code pasted below: &lt;video controls=&quot;controls&quot; preload=&quot;auto&quot; poster=&quot;napshot.png&quot;&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.mp4&quot; type=&quot;video/mp4&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.webm&quot; type=&quot;video/webm&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.ogv&quot; type=&quot;video/ogg&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;!--  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Flash &nbsp;&nbsp;&nbsp; --&gt; &lt;/video&gt;The code above results in IE 9.0+/Safari will load mp4, Chrome/Firefox&nbsp;and Opera&nbsp;will load webm, and IE 6.0 ~ 8.0 will load flash.Note: as browsers may change its attitude on the video format support, so my code &amp; comments might not right in the future. &nbsp;Few tips">
 
 
 
@@ -18,10 +18,10 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Wayne's Geek Life">
 <meta property="og:title" content="Make your HTML5 Video support all browsers">
-<meta property="og:url" content="https://wayneye.com/Make-Your-HTML5-Video-Support-ALL-Browsers">
+<meta property="og:url" content="http://localhost:4000/Make-Your-HTML5-Video-Support-ALL-Browsers">
 
 
-  <meta property="og:description" content="IntroductionHTML5 video tag gave us the following advantages:No plugin required, directly play.Visible &amp; controllable for Browser and search engine, not a &quot;black box&quot; such as Flash or SilverLight.Cross-platform, in theory all PC/mobile browsers as well as Ipad/Windows 8/Android tablet PC.&nbsp;Downward compatibility. Which is very important, but W3C had made it simple and works, we can smoothly fall back to flash if the user agent does not recognize &quot;&lt;video&gt;&quot; tag.So it is simple and pretty cool! However, there is still issues within a not short period: the browser support - each concrete browser and the company (ies) behind it supports different formant of videos, to be more specific, refer the table below stole from about.com:&nbsp;AndroidChromeFirefoxInternet ExploreriOSOperaSafariCodec&nbsp;WinMacWinMacWin&nbsp;WinMacWinMacMP4 or H.2643.097XX93XX55ogg/Theora2.3973.63.6XX10.6310.63XXWebM2.3973.63.69 (withcomponents)X10.6310.63XXSo to support all browsers: IE 6.0+, Firefox, Chrome, Safari, Opera, etc, what should we do?Cross All Browser ImplementationBy searching on the google and half a day investigation, I found the solution, sample code pasted below: &lt;video controls=&quot;controls&quot; preload=&quot;auto&quot; poster=&quot;napshot.png&quot;&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.mp4&quot; type=&quot;video/mp4&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.webm&quot; type=&quot;video/webm&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.ogv&quot; type=&quot;video/ogg&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;!--  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Flash &nbsp;&nbsp;&nbsp; --&gt; &lt;/video&gt;The code above results in IE 9.0+/Safari will load mp4, Chrome/Firefox&nbsp;and Opera&nbsp;will load webm, and IE 6.0 ~ 8.0 will load flash.Note: as browsers may change its attitude on the video format support, so my code &amp; comments might not right in the future. &nbsp;Few tipsOne important thing is make sure your web server supports those video MIME types, taking IIS as an example, we need to config it to support this by doing following:Open IIS Server Manager (Win+R -&gt; inetmgr).Go to your website, double clicks &quot;MIME Types&quot;.Add MIME types: video/mp4, video/webm and video/ogg.&nbsp;An equivalent way to define those MIME types within your ASP.NET web.config: &lt;staticContent&gt; &nbsp;&nbsp;&nbsp; &lt;mimeMap fileExtension=&quot;.webm&quot; mimeType=&quot;video/webm&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;mimeMap fileExtension=&quot;.ogv&quot; mimeType=&quot;video/ogg&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;mimeMap fileExtension=&quot;.mp4&quot; mimeType=&quot;video/mp4&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;clientCache cacheControlMode=&quot;UseMaxAge&quot; cacheControlMaxAge=&quot;30.00:00:00&quot; /&gt; &lt;/staticContent&gt;Another important thing is video converting, I would recommended combinations and steps according to my experience on this:Using Any Video Converter to compress/convert original video file to a flv.Using&nbsp;Miro conver the compressed flv to ogv, webm and mp4.&nbsp;They both are free to use, Miro is actually based on the famous open source ffmpeg library which I like very much, Miro is also open source.One more thing:), we can customize video UI by CSS, and there are already a few good open source library to help you:&nbsp;MediaElement.js&nbsp;and&nbsp;VideoJS.&nbsp;Live DemoMy lovely son  ">
+  <meta property="og:description" content="IntroductionHTML5 video tag gave us the following advantages:No plugin required, directly play.Visible &amp; controllable for Browser and search engine, not a &quot;black box&quot; such as Flash or SilverLight.Cross-platform, in theory all PC/mobile browsers as well as Ipad/Windows 8/Android tablet PC.&nbsp;Downward compatibility. Which is very important, but W3C had made it simple and works, we can smoothly fall back to flash if the user agent does not recognize &quot;&lt;video&gt;&quot; tag.So it is simple and pretty cool! However, there is still issues within a not short period: the browser support - each concrete browser and the company (ies) behind it supports different formant of videos, to be more specific, refer the table below stole from about.com:&nbsp;AndroidChromeFirefoxInternet ExploreriOSOperaSafariCodec&nbsp;WinMacWinMacWin&nbsp;WinMacWinMacMP4 or H.2643.097XX93XX55ogg/Theora2.3973.63.6XX10.6310.63XXWebM2.3973.63.69 (withcomponents)X10.6310.63XXSo to support all browsers: IE 6.0+, Firefox, Chrome, Safari, Opera, etc, what should we do?Cross All Browser ImplementationBy searching on the google and half a day investigation, I found the solution, sample code pasted below: &lt;video controls=&quot;controls&quot; preload=&quot;auto&quot; poster=&quot;napshot.png&quot;&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.mp4&quot; type=&quot;video/mp4&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.webm&quot; type=&quot;video/webm&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.ogv&quot; type=&quot;video/ogg&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;!--  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Flash &nbsp;&nbsp;&nbsp; --&gt; &lt;/video&gt;The code above results in IE 9.0+/Safari will load mp4, Chrome/Firefox&nbsp;and Opera&nbsp;will load webm, and IE 6.0 ~ 8.0 will load flash.Note: as browsers may change its attitude on the video format support, so my code &amp; comments might not right in the future. &nbsp;Few tips">
 
 
 
@@ -29,8 +29,8 @@
 
   <meta name="twitter:site" content="@wayneye">
   <meta name="twitter:title" content="Make your HTML5 Video support all browsers">
-  <meta name="twitter:description" content="IntroductionHTML5 video tag gave us the following advantages:No plugin required, directly play.Visible &amp; controllable for Browser and search engine, not a &quot;black box&quot; such as Flash or SilverLight.Cross-platform, in theory all PC/mobile browsers as well as Ipad/Windows 8/Android tablet PC.&nbsp;Downward compatibility. Which is very important, but W3C had made it simple and works, we can smoothly fall back to flash if the user agent does not recognize &quot;&lt;video&gt;&quot; tag.So it is simple and pretty cool! However, there is still issues within a not short period: the browser support - each concrete browser and the company (ies) behind it supports different formant of videos, to be more specific, refer the table below stole from about.com:&nbsp;AndroidChromeFirefoxInternet ExploreriOSOperaSafariCodec&nbsp;WinMacWinMacWin&nbsp;WinMacWinMacMP4 or H.2643.097XX93XX55ogg/Theora2.3973.63.6XX10.6310.63XXWebM2.3973.63.69 (withcomponents)X10.6310.63XXSo to support all browsers: IE 6.0+, Firefox, Chrome, Safari, Opera, etc, what should we do?Cross All Browser ImplementationBy searching on the google and half a day investigation, I found the solution, sample code pasted below: &lt;video controls=&quot;controls&quot; preload=&quot;auto&quot; poster=&quot;napshot.png&quot;&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.mp4&quot; type=&quot;video/mp4&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.webm&quot; type=&quot;video/webm&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.ogv&quot; type=&quot;video/ogg&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;!--  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Flash &nbsp;&nbsp;&nbsp; --&gt; &lt;/video&gt;The code above results in IE 9.0+/Safari will load mp4, Chrome/Firefox&nbsp;and Opera&nbsp;will load webm, and IE 6.0 ~ 8.0 will load flash.Note: as browsers may change its attitude on the video format support, so my code &amp; comments might not right in the future. &nbsp;Few tipsOne important thing is make sure your web server supports those video MIME types, taking IIS as an example, we need to config it to support this by doing following:Open IIS Server Manager (Win+R -&gt; inetmgr).Go to your website, double clicks &quot;MIME Types&quot;.Add MIME types: video/mp4, video/webm and video/ogg.&nbsp;An equivalent way to define those MIME types within your ASP.NET web.config: &lt;staticContent&gt; &nbsp;&nbsp;&nbsp; &lt;mimeMap fileExtension=&quot;.webm&quot; mimeType=&quot;video/webm&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;mimeMap fileExtension=&quot;.ogv&quot; mimeType=&quot;video/ogg&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;mimeMap fileExtension=&quot;.mp4&quot; mimeType=&quot;video/mp4&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;clientCache cacheControlMode=&quot;UseMaxAge&quot; cacheControlMaxAge=&quot;30.00:00:00&quot; /&gt; &lt;/staticContent&gt;Another important thing is video converting, I would recommended combinations and steps according to my experience on this:Using Any Video Converter to compress/convert original video file to a flv.Using&nbsp;Miro conver the compressed flv to ogv, webm and mp4.&nbsp;They both are free to use, Miro is actually based on the famous open source ffmpeg library which I like very much, Miro is also open source.One more thing:), we can customize video UI by CSS, and there are already a few good open source library to help you:&nbsp;MediaElement.js&nbsp;and&nbsp;VideoJS.&nbsp;Live DemoMy lovely son  ">
-  <meta name="twitter:url" content="https://wayneye.com/Make-Your-HTML5-Video-Support-ALL-Browsers">
+  <meta name="twitter:description" content="IntroductionHTML5 video tag gave us the following advantages:No plugin required, directly play.Visible &amp; controllable for Browser and search engine, not a &quot;black box&quot; such as Flash or SilverLight.Cross-platform, in theory all PC/mobile browsers as well as Ipad/Windows 8/Android tablet PC.&nbsp;Downward compatibility. Which is very important, but W3C had made it simple and works, we can smoothly fall back to flash if the user agent does not recognize &quot;&lt;video&gt;&quot; tag.So it is simple and pretty cool! However, there is still issues within a not short period: the browser support - each concrete browser and the company (ies) behind it supports different formant of videos, to be more specific, refer the table below stole from about.com:&nbsp;AndroidChromeFirefoxInternet ExploreriOSOperaSafariCodec&nbsp;WinMacWinMacWin&nbsp;WinMacWinMacMP4 or H.2643.097XX93XX55ogg/Theora2.3973.63.6XX10.6310.63XXWebM2.3973.63.69 (withcomponents)X10.6310.63XXSo to support all browsers: IE 6.0+, Firefox, Chrome, Safari, Opera, etc, what should we do?Cross All Browser ImplementationBy searching on the google and half a day investigation, I found the solution, sample code pasted below: &lt;video controls=&quot;controls&quot; preload=&quot;auto&quot; poster=&quot;napshot.png&quot;&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.mp4&quot; type=&quot;video/mp4&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.webm&quot; type=&quot;video/webm&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.ogv&quot; type=&quot;video/ogg&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;!--  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Flash &nbsp;&nbsp;&nbsp; --&gt; &lt;/video&gt;The code above results in IE 9.0+/Safari will load mp4, Chrome/Firefox&nbsp;and Opera&nbsp;will load webm, and IE 6.0 ~ 8.0 will load flash.Note: as browsers may change its attitude on the video format support, so my code &amp; comments might not right in the future. &nbsp;Few tips">
+  <meta name="twitter:url" content="http://localhost:4000/Make-Your-HTML5-Video-Support-ALL-Browsers">
 
   
     <meta name="twitter:card" content="summary">
@@ -41,7 +41,7 @@
 
 
 
-  <meta property="article:published_time" content="2011-11-07T00:00:00-08:00">
+  <meta property="article:published_time" content="2011-11-07T00:00:00+08:00">
 
 
 
@@ -54,7 +54,7 @@
   
 
 
-<link rel="canonical" href="https://wayneye.com/Make-Your-HTML5-Video-Support-ALL-Browsers">
+<link rel="canonical" href="http://localhost:4000/Make-Your-HTML5-Video-Support-ALL-Browsers">
 
 
 
@@ -103,11 +103,11 @@
     <!-- start custom head snippets -->
 
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
-<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
-<link rel="manifest" href="assets/images/favicon/site.webmanifest">
-<link rel="mask-icon" href="assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 
@@ -136,7 +136,7 @@
             </li><li class="masthead__menu-item">
               <a href="/search/" >Search</a>
             </li><li class="masthead__menu-item">
-              <a href="/album/" >Album</a>
+              <a href="/gallery/" >Gallery</a>
             </li><li class="masthead__menu-item">
               <a href="/about/" >About</a>
             </li></ul>
@@ -284,7 +284,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Make your HTML5 Video support all browsers">
-    <meta itemprop="description" content="IntroductionHTML5 video tag gave us the following advantages:No plugin required, directly play.Visible &amp; controllable for Browser and search engine, not a &quot;black box&quot; such as Flash or SilverLight.Cross-platform, in theory all PC/mobile browsers as well as Ipad/Windows 8/Android tablet PC.&nbsp;Downward compatibility. Which is very important, but W3C had made it simple and works, we can smoothly fall back to flash if the user agent does not recognize &quot;&lt;video&gt;&quot; tag.So it is simple and pretty cool! However, there is still issues within a not short period: the browser support - each concrete browser and the company (ies) behind it supports different formant of videos, to be more specific, refer the table below stole from about.com:&nbsp;AndroidChromeFirefoxInternet ExploreriOSOperaSafariCodec&nbsp;WinMacWinMacWin&nbsp;WinMacWinMacMP4 or H.2643.097XX93XX55ogg/Theora2.3973.63.6XX10.6310.63XXWebM2.3973.63.69 (withcomponents)X10.6310.63XXSo to support all browsers: IE 6.0+, Firefox, Chrome, Safari, Opera, etc, what should we do?Cross All Browser ImplementationBy searching on the google and half a day investigation, I found the solution, sample code pasted below: &lt;video controls=&quot;controls&quot; preload=&quot;auto&quot; poster=&quot;napshot.png&quot;&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.mp4&quot; type=&quot;video/mp4&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.webm&quot; type=&quot;video/webm&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.ogv&quot; type=&quot;video/ogg&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;!--  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Flash &nbsp;&nbsp;&nbsp; --&gt; &lt;/video&gt;The code above results in IE 9.0+/Safari will load mp4, Chrome/Firefox&nbsp;and Opera&nbsp;will load webm, and IE 6.0 ~ 8.0 will load flash.Note: as browsers may change its attitude on the video format support, so my code &amp; comments might not right in the future. &nbsp;Few tipsOne important thing is make sure your web server supports those video MIME types, taking IIS as an example, we need to config it to support this by doing following:Open IIS Server Manager (Win+R -&gt; inetmgr).Go to your website, double clicks &quot;MIME Types&quot;.Add MIME types: video/mp4, video/webm and video/ogg.&nbsp;An equivalent way to define those MIME types within your ASP.NET web.config: &lt;staticContent&gt; &nbsp;&nbsp;&nbsp; &lt;mimeMap fileExtension=&quot;.webm&quot; mimeType=&quot;video/webm&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;mimeMap fileExtension=&quot;.ogv&quot; mimeType=&quot;video/ogg&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;mimeMap fileExtension=&quot;.mp4&quot; mimeType=&quot;video/mp4&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;clientCache cacheControlMode=&quot;UseMaxAge&quot; cacheControlMaxAge=&quot;30.00:00:00&quot; /&gt; &lt;/staticContent&gt;Another important thing is video converting, I would recommended combinations and steps according to my experience on this:Using Any Video Converter to compress/convert original video file to a flv.Using&nbsp;Miro conver the compressed flv to ogv, webm and mp4.&nbsp;They both are free to use, Miro is actually based on the famous open source ffmpeg library which I like very much, Miro is also open source.One more thing:), we can customize video UI by CSS, and there are already a few good open source library to help you:&nbsp;MediaElement.js&nbsp;and&nbsp;VideoJS.&nbsp;Live DemoMy lovely son  ">
+    <meta itemprop="description" content="IntroductionHTML5 video tag gave us the following advantages:No plugin required, directly play.Visible &amp; controllable for Browser and search engine, not a &quot;black box&quot; such as Flash or SilverLight.Cross-platform, in theory all PC/mobile browsers as well as Ipad/Windows 8/Android tablet PC.&nbsp;Downward compatibility. Which is very important, but W3C had made it simple and works, we can smoothly fall back to flash if the user agent does not recognize &quot;&lt;video&gt;&quot; tag.So it is simple and pretty cool! However, there is still issues within a not short period: the browser support - each concrete browser and the company (ies) behind it supports different formant of videos, to be more specific, refer the table below stole from about.com:&nbsp;AndroidChromeFirefoxInternet ExploreriOSOperaSafariCodec&nbsp;WinMacWinMacWin&nbsp;WinMacWinMacMP4 or H.2643.097XX93XX55ogg/Theora2.3973.63.6XX10.6310.63XXWebM2.3973.63.69 (withcomponents)X10.6310.63XXSo to support all browsers: IE 6.0+, Firefox, Chrome, Safari, Opera, etc, what should we do?Cross All Browser ImplementationBy searching on the google and half a day investigation, I found the solution, sample code pasted below: &lt;video controls=&quot;controls&quot; preload=&quot;auto&quot; poster=&quot;napshot.png&quot;&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.mp4&quot; type=&quot;video/mp4&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.webm&quot; type=&quot;video/webm&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.ogv&quot; type=&quot;video/ogg&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;!--  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Flash &nbsp;&nbsp;&nbsp; --&gt; &lt;/video&gt;The code above results in IE 9.0+/Safari will load mp4, Chrome/Firefox&nbsp;and Opera&nbsp;will load webm, and IE 6.0 ~ 8.0 will load flash.Note: as browsers may change its attitude on the video format support, so my code &amp; comments might not right in the future. &nbsp;Few tips">
     <meta itemprop="datePublished" content="November 07, 2011">
     
 
@@ -461,7 +461,7 @@
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2011-11-07T00:00:00-08:00">November 07, 2011</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2011-11-07T00:00:00+08:00">November 07, 2011</time></p>
         
       </footer>
 
@@ -470,11 +470,11 @@
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?via=wayneye&text=Make+your+HTML5+Video+support+all+browsers%20https%3A%2F%2Fwayneye.com%2FMake-Your-HTML5-Video-Support-ALL-Browsers" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=wayneye&text=Make+your+HTML5+Video+support+all+browsers%20http%3A%2F%2Flocalhost%3A4000%2FMake-Your-HTML5-Video-Support-ALL-Browsers" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwayneye.com%2FMake-Your-HTML5-Video-Support-ALL-Browsers" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2FMake-Your-HTML5-Video-Support-ALL-Browsers" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwayneye.com%2FMake-Your-HTML5-Video-Support-ALL-Browsers" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2FMake-Your-HTML5-Video-Support-ALL-Browsers" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -491,15 +491,6 @@
   </nav>
 
     </div>
-
-    
-      <div class="page__comments">
-  
-  
-      <h4 class="page__comments-title">Leave a comment</h4>
-      <section id="disqus_thread"></section>
-    
-</div>
 
     
   </article>
@@ -534,6 +525,14 @@
     
     <p class="archive__item-excerpt" itemprop="description">Background
 
+I was planning to attend #adskfootball2019 in Dublin, Ireland from Jun 14th to Jun 16th, 2019:
+
+    
+    Autodesk Football Tournament 2019
+
+
+In order to attend, I needed applying Ireland VISA, and since I was planning to fly back to Shanghai later in June, so I thought I could just fly from SF to Dublin, then Dublin to Shanghai, and soon I realized that there is no direct flight from DUB to PVG, so a practical (and also very fun and economic) option is to fly from Dublin to London, and then London to Shanghai, bingo ^_^
+
 </p>
   </article>
 </div>
@@ -563,7 +562,18 @@
     
     <p class="archive__item-excerpt" itemprop="description">Course overview video
 
-</p>
+
+
+Publishing information
+
+After 8 months of continuously hard working, this &lt;Master AWS Development&gt; video course is now live at: Packt Website, I described this course as below:
+
+
+  Amazon Web Services (AWS) is the gold standard of the cloud. If you are web and cloud computing developer, your life becomes much easier by diving deeper into AWS.
+
+
+
+  This course shows you how to use AWS services such as IAM, S3, EC2, and RDS/Dynamo to make your applications reliable and have a consistent performance. You’ll build modern serverless applications on the cloud, and u...</p>
   </article>
 </div>
 
@@ -591,6 +601,8 @@
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">
+
+3 years of AWS hands on experience, two months of preparation, 30 hours of course learning, 300+ exam practices, this was the work I’ve done to pass the AWS Certified Solutions Architect - Associate, my exam result is below:
 
 </p>
   </article>
@@ -621,7 +633,12 @@
     
     <p class="archive__item-excerpt" itemprop="description">Background
 
-</p>
+I have been researched and watched many NAS options to setup a home storage+media server during the past year, and so far there was no perfect answer, either lacking features/performance, or way too expensive… An Intel Celeron CPU + 1GB mem with a customized Linux (in other words: closed source )running Plex or something else, and the cost is like $400 (terrible hardware performance), or $800+/$1000+, way too expensive, examples:
+
+
+  Synology DS216J NAS DiskStation (DS216j)
+  WD My Cloud EX4100 Diskless Expert Series 4-Bay NAS
+  NETGEAR ReadyNAS 524X High Performance 10GbE 4-bay...</p>
   </article>
 </div>
 
@@ -693,7 +710,7 @@
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://wayneye.com/Make-Your-HTML5-Video-Support-ALL-Browsers";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.url = "http://localhost:4000/Make-Your-HTML5-Video-Support-ALL-Browsers";  // Replace PAGE_URL with your page's canonical URL variable
       this.page.identifier = "/Make-your-HTML5-Video-support-all-browsers"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     (function() { // DON'T EDIT BELOW THIS LINE

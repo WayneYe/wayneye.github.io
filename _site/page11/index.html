@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Wayne's Geek Life">
 <meta property="og:title" content="Wayne’s Geek Life">
-<meta property="og:url" content="https://wayneye.com/page11/">
+<meta property="og:url" content="http://localhost:4000/page11/">
 
 
 
@@ -28,7 +28,7 @@
   <meta name="twitter:site" content="@wayneye">
   <meta name="twitter:title" content="Wayne’s Geek Life">
   <meta name="twitter:description" content="I am a software engineer, technical lead and also a geek, I’ve immersed in software/web development for 14 years, I hack using these languages: Python, Golang, JavaScript/nodejs, Ruby/RoR, C#. I am an AWS Certified Solutions Architect (2017-2019), PMP and CodeProject MVP.">
-  <meta name="twitter:url" content="https://wayneye.com/page11/">
+  <meta name="twitter:url" content="http://localhost:4000/page11/">
 
   
     <meta name="twitter:card" content="summary">
@@ -50,13 +50,13 @@
   
 
 
-<link rel="canonical" href="https://wayneye.com/page11/">
+<link rel="canonical" href="http://localhost:4000/page11/">
 
 
-  <link rel="prev" href="https://wayneye.com/page10/">
+  <link rel="prev" href="http://localhost:4000/page10/">
 
 
-  <link rel="next" href="https://wayneye.com/page12/">
+  <link rel="next" href="http://localhost:4000/page12/">
 
 
 
@@ -103,11 +103,11 @@
     <!-- start custom head snippets -->
 
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
-<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
-<link rel="manifest" href="assets/images/favicon/site.webmanifest">
-<link rel="mask-icon" href="assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 
@@ -136,7 +136,7 @@
             </li><li class="masthead__menu-item">
               <a href="/search/" >Search</a>
             </li><li class="masthead__menu-item">
-              <a href="/album/" >Album</a>
+              <a href="/gallery/" >Gallery</a>
             </li><li class="masthead__menu-item">
               <a href="/about/" >About</a>
             </li></ul>
@@ -315,6 +315,22 @@
     
     <p class="archive__item-excerpt" itemprop="description">前几天在网上找到这么个酷酷的玩意，用JS给图片加上各种各样的圆角效果，官方主页：
 
+http://www.netzgesta.de/corner/
+
+看后顿时觉得很酷，今天周末，有时间来搞搞这个：）
+
+读了官网的说明后发现很简单，下载corner.js（本地下载
+
+），然后页面include后直接使用class="自己挑一个喜欢的class"就ok了。
+
+那么这里有个问题，如果你的Blog上线已有时日（比如鄙博）,难道要手动更新你之前所有Blog里的图片代码给它们加上
+
+class？？
+呵呵，这点事根本不能称之为问题：）当然是加段JS脚本给动态注册className喽，鄙播采用了Div+Css架构以及
+
+MasterPage，所有的Blog都包含于一个名为“ContentPlaceHolder”对Div中
+
+
 </p>
   </article>
 </div>
@@ -445,7 +461,9 @@
     
     <p class="archive__item-excerpt" itemprop="description">当地时间下午4点47
 
-&lt;DIV&gt;也有免税店&lt;/DIV&gt;&lt;DIV&gt;&lt;/DIV&gt;&lt;DIV&gt;看了很多家，仁川机场的商店比浦东要多很多，价格嘛。。。贵很多。。。&lt;/DIV&gt;&lt;DIV&gt;随手看看一件衣服，上标500多美刀，我只有乍舌的份。&lt;/DIV&gt;&lt;DIV&gt;数码产品的价格则厚道些，Nikon D60 大概RMB2700的样子，Sony A200 888，我不清楚&lt;/DIV&gt;&lt;DIV&gt;现在国内的价格，但估计应该差不太多，再怎么着比服装，手表，香水等奢侈品强多了！&lt;/DIV&gt;&lt;DIV&gt;KFC全球都有&lt;/DIV&gt;&lt;DIV&gt;&lt;/DIV&gt;&lt;DIV&gt;我走过去看了看，几个鸡块儿（不知是否上校鸡块或者高丽鸡块？）17000韩元，算下来好像7，80大洋了，贵贵贵！！！&lt;/DIV&gt;&lt;DIV&gt;我猜这应该是首尔这边的某旅游景点，就跟国内很多古代楼宇十分相似，中华文化的印记！&lt;/DIV&gt;&lt;DIV&gt;&lt;/DIV&gt;&lt;DIV&gt;打开手机看看还有信号吗？结果却出乎想象。&lt;/DIV&gt;&lt;DIV&gt;&lt;/DIV&gt;&lt;DI...</p>
+&lt;DIV&gt;也有免税店&lt;/DIV&gt;&lt;DIV&gt;&lt;/DIV&gt;&lt;DIV&gt;看了很多家，仁川机场的商店比浦东要多很多，价格嘛。。。贵很多。。。&lt;/DIV&gt;&lt;DIV&gt;随手看看一件衣服，上标500多美刀，我只有乍舌的份。&lt;/DIV&gt;&lt;DIV&gt;数码产品的价格则厚道些，Nikon D60 大概RMB2700的样子，Sony A200 888，我不清楚&lt;/DIV&gt;&lt;DIV&gt;现在国内的价格，但估计
+
+</p>
   </article>
 </div>
 
@@ -501,7 +519,9 @@
     
     <p class="archive__item-excerpt" itemprop="description">今天去参加了好友Monica的Party，我们早就准备好了在Party中给她送上蛋糕给她提前庆祝生日:P 
 Monica很开心：
-&lt;IMG class=BlogImage alt=P1020665.JPG src=”http://wayneye.com/Archive/2008/04/12/Images/P1020665.JPG”&gt;&lt;P&gt; &lt;/P&gt;&lt;P&gt;我们准备的生日蛋糕：&lt;/P&gt;&lt;IMG class=BlogImage alt=P1020686.JPG src=”http://wayneye.com/Archive/2008/04/12/Images/P1020686.JPG”&gt;&lt;P&gt; &lt;/P&gt;&lt;P&gt;Royal也很开心&lt;/P&gt;&lt;IMG class=BlogImage alt=P1020691.JPG src=”http://wayneye.com/Archive/2008/04/12/Images/P1020691.JPG”&gt;&lt;P&gt; &lt;/P&gt;&lt;P&gt;这帮家伙玩了一阵子以后。。。恶作剧开始了，最先受难的当然是寿星。。。&lt;/P&gt;&lt;IMG class=BlogImage alt=P1020693.J...</p>
+&lt;IMG class=BlogImage alt=P1020665.JPG src=”http://wayneye.com/Archive/2008/04/12/Images/P1020665.JPG”&gt;&lt;P&gt; &lt;/P&gt;&lt;P&gt;我们准备的生日蛋糕：&lt;/P&gt;&lt;IMG class=BlogImage alt=P1020686.JPG src=”http://wayneye.com/Archive/2008/04/12/Images/P1020686.JPG”&gt;&lt;P&gt; &lt;/P&gt;&lt;P&gt;Royal也很开心&lt;/P&gt;&lt;IMG class=BlogImage alt=P1020691.JPG src=”http://wayneye.com/Archive/2008/04/12/Images/P1020691.JPG”&gt;&lt;P&gt; &lt;/P&gt;&lt;P&gt;这帮家伙玩了
+
+</p>
   </article>
 </div>
 
@@ -531,7 +551,10 @@ Monica很开心：
     <p class="archive__item-excerpt" itemprop="description">今天睡了个懒觉，9点多爬起来，然后乘2号线到南京西路梅陇镇广场，一去就发现好多人。。
 我直接去了8楼，看到保安大哥忙得不亦乐乎，我跟他说我是办美商会商务签证的，他说让我下去到1楼2号口拿牌子，此时是12点，而我的面前预约单上写的是要在12：45之前，我赶紧告诉他这个情况，他说没有关系，一定要拿牌子，我猜可能是便于管理吧，便赶紧下去了，发现下面人更多了。。。看到有一列队是美商会的， 我就过去排了，这时有个“老大”（保安们这样称呼的）过来， 说我的包要去存，手机不能带进去，这个我之前是知道的，然后我问他：“请问在哪里存？”，他告诉我往前走10米，位置给我留着，ok，我有赶紧过去存包。呵呵，看到那边一个醒目的牌子上书着几个大字：“您办签证，我们看包”，真“体贴”，费用是10块中华大钱：）
 等待5分钟后有位大哥让我们跟着他走，我是第一个，我便问他：“请问每天都是这么多人吗？”，答曰：“今天少了一半呢。。”，囧。。。
-上去之后先安检，然后按指纹，然后就进入了面签的环节，这是个漫长的等待过程，因为人很多，在我前面大概有20多位，我注意到签证官一般对年龄大点的叔叔阿姨们说这美式中文，比如“尼为什么妖取美国？”，对年轻人呢则是英文，e.g.&nbsp;Do you have any family in US?",&nbsp;What's your purpose?", etc. 此时我还是很...</p>
+上去之后先安检，然后按指纹，然后就进入
+
+
+</p>
   </article>
 </div>
 

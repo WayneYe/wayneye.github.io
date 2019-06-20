@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>HTML5 Web Storage in Essence - Wayne’s Geek Life</title>
-<meta name="description" content="Background ">
+<meta name="description" content="Background Web Storage (also named Dom storage) is a brand new mechanism of storing temporary/permanent data introduced in HTML5 to replace cookie, it contains two new DOM objects: sessionStoragy and localStorage), in Web Storage Spec, Ian Hickson documented that Web Storage are intended to solve two cases that &quot;not handled well by Cookie&quot;, they are:  The first is designed for scenarios where the user is carrying out a single transaction, but could be carrying out multiple transactions in different windows at the same time.       The second storage mechanism is designed for storage that spans multiple windows, and lasts beyond the current session. In particular, Web applications may wish to store megabytes of user data, such as entire user-authored documents or a user&#39;s mailbox, on the client side for performance reasons. sessionStorage and localStorage are introduced by W3 in HTML5 to solve problems above, let&#39;s begin with a review of how Cookie currently works.Current HTTP State Storage – CookieMechanism An HTTP Cookie was a set of key/value pairs which an HTTP web server requests a concrete client browser (i.e. User Agent - UA) to store on client&#39;s hard disk, when the UA request to the web server further, UA will wrap all the cookie data within the HTTP request header as long as following conditions are all satisfied:  The cookie data has not expired.   The requested domain is under exactly the same domain when cookie was stored.   The requested path under the domain is the same one where cookie was stored. Once the cookie expires, browser will delete it from local hard disk.A common cookie example:  An end user types www.foo.net in a browser&#39;s navigation bar and hit enter.   www.foo.net returns HTTP status 200 message below (In the Green part, web server expected client browser to store two Cookie key/value pairs: WayneKey1=value1;WayneKey2=Value2, they could be accessible from the entire domain, and they will expire after 1 year):               HTTP/1.1 200 OK             Content-type: text/html             Set-Cookie: WayneKey1=value1;WayneKey2=Value2;domain=www.foo.net; expires=Tue, 24-Feb-2012 07:13:22 GMT; path=/; HttpOnly             &#160; (Response HTTP body)      ">
 
 
 
@@ -18,10 +18,10 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Wayne's Geek Life">
 <meta property="og:title" content="HTML5 Web Storage in Essence">
-<meta property="og:url" content="https://wayneye.com/HTML5-Web-Storage-In-Essence">
+<meta property="og:url" content="http://localhost:4000/HTML5-Web-Storage-In-Essence">
 
 
-  <meta property="og:description" content="Background ">
+  <meta property="og:description" content="Background Web Storage (also named Dom storage) is a brand new mechanism of storing temporary/permanent data introduced in HTML5 to replace cookie, it contains two new DOM objects: sessionStoragy and localStorage), in Web Storage Spec, Ian Hickson documented that Web Storage are intended to solve two cases that &quot;not handled well by Cookie&quot;, they are:  The first is designed for scenarios where the user is carrying out a single transaction, but could be carrying out multiple transactions in different windows at the same time.       The second storage mechanism is designed for storage that spans multiple windows, and lasts beyond the current session. In particular, Web applications may wish to store megabytes of user data, such as entire user-authored documents or a user&#39;s mailbox, on the client side for performance reasons. sessionStorage and localStorage are introduced by W3 in HTML5 to solve problems above, let&#39;s begin with a review of how Cookie currently works.Current HTTP State Storage – CookieMechanism An HTTP Cookie was a set of key/value pairs which an HTTP web server requests a concrete client browser (i.e. User Agent - UA) to store on client&#39;s hard disk, when the UA request to the web server further, UA will wrap all the cookie data within the HTTP request header as long as following conditions are all satisfied:  The cookie data has not expired.   The requested domain is under exactly the same domain when cookie was stored.   The requested path under the domain is the same one where cookie was stored. Once the cookie expires, browser will delete it from local hard disk.A common cookie example:  An end user types www.foo.net in a browser&#39;s navigation bar and hit enter.   www.foo.net returns HTTP status 200 message below (In the Green part, web server expected client browser to store two Cookie key/value pairs: WayneKey1=value1;WayneKey2=Value2, they could be accessible from the entire domain, and they will expire after 1 year):               HTTP/1.1 200 OK             Content-type: text/html             Set-Cookie: WayneKey1=value1;WayneKey2=Value2;domain=www.foo.net; expires=Tue, 24-Feb-2012 07:13:22 GMT; path=/; HttpOnly             &#160; (Response HTTP body)      ">
 
 
 
@@ -29,8 +29,8 @@
 
   <meta name="twitter:site" content="@wayneye">
   <meta name="twitter:title" content="HTML5 Web Storage in Essence">
-  <meta name="twitter:description" content="Background ">
-  <meta name="twitter:url" content="https://wayneye.com/HTML5-Web-Storage-In-Essence">
+  <meta name="twitter:description" content="Background Web Storage (also named Dom storage) is a brand new mechanism of storing temporary/permanent data introduced in HTML5 to replace cookie, it contains two new DOM objects: sessionStoragy and localStorage), in Web Storage Spec, Ian Hickson documented that Web Storage are intended to solve two cases that &quot;not handled well by Cookie&quot;, they are:  The first is designed for scenarios where the user is carrying out a single transaction, but could be carrying out multiple transactions in different windows at the same time.       The second storage mechanism is designed for storage that spans multiple windows, and lasts beyond the current session. In particular, Web applications may wish to store megabytes of user data, such as entire user-authored documents or a user&#39;s mailbox, on the client side for performance reasons. sessionStorage and localStorage are introduced by W3 in HTML5 to solve problems above, let&#39;s begin with a review of how Cookie currently works.Current HTTP State Storage – CookieMechanism An HTTP Cookie was a set of key/value pairs which an HTTP web server requests a concrete client browser (i.e. User Agent - UA) to store on client&#39;s hard disk, when the UA request to the web server further, UA will wrap all the cookie data within the HTTP request header as long as following conditions are all satisfied:  The cookie data has not expired.   The requested domain is under exactly the same domain when cookie was stored.   The requested path under the domain is the same one where cookie was stored. Once the cookie expires, browser will delete it from local hard disk.A common cookie example:  An end user types www.foo.net in a browser&#39;s navigation bar and hit enter.   www.foo.net returns HTTP status 200 message below (In the Green part, web server expected client browser to store two Cookie key/value pairs: WayneKey1=value1;WayneKey2=Value2, they could be accessible from the entire domain, and they will expire after 1 year):               HTTP/1.1 200 OK             Content-type: text/html             Set-Cookie: WayneKey1=value1;WayneKey2=Value2;domain=www.foo.net; expires=Tue, 24-Feb-2012 07:13:22 GMT; path=/; HttpOnly             &#160; (Response HTTP body)      ">
+  <meta name="twitter:url" content="http://localhost:4000/HTML5-Web-Storage-In-Essence">
 
   
     <meta name="twitter:card" content="summary">
@@ -41,7 +41,7 @@
 
 
 
-  <meta property="article:published_time" content="2011-02-26T00:00:00-08:00">
+  <meta property="article:published_time" content="2011-02-26T00:00:00+08:00">
 
 
 
@@ -54,7 +54,7 @@
   
 
 
-<link rel="canonical" href="https://wayneye.com/HTML5-Web-Storage-In-Essence">
+<link rel="canonical" href="http://localhost:4000/HTML5-Web-Storage-In-Essence">
 
 
 
@@ -103,11 +103,11 @@
     <!-- start custom head snippets -->
 
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
-<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
-<link rel="manifest" href="assets/images/favicon/site.webmanifest">
-<link rel="mask-icon" href="assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 
@@ -136,7 +136,7 @@
             </li><li class="masthead__menu-item">
               <a href="/search/" >Search</a>
             </li><li class="masthead__menu-item">
-              <a href="/album/" >Album</a>
+              <a href="/gallery/" >Gallery</a>
             </li><li class="masthead__menu-item">
               <a href="/about/" >About</a>
             </li></ul>
@@ -284,7 +284,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="HTML5 Web Storage in Essence">
-    <meta itemprop="description" content="Background ">
+    <meta itemprop="description" content="Background Web Storage (also named Dom storage) is a brand new mechanism of storing temporary/permanent data introduced in HTML5 to replace cookie, it contains two new DOM objects: sessionStoragy and localStorage), in Web Storage Spec, Ian Hickson documented that Web Storage are intended to solve two cases that &quot;not handled well by Cookie&quot;, they are:  The first is designed for scenarios where the user is carrying out a single transaction, but could be carrying out multiple transactions in different windows at the same time.       The second storage mechanism is designed for storage that spans multiple windows, and lasts beyond the current session. In particular, Web applications may wish to store megabytes of user data, such as entire user-authored documents or a user&#39;s mailbox, on the client side for performance reasons. sessionStorage and localStorage are introduced by W3 in HTML5 to solve problems above, let&#39;s begin with a review of how Cookie currently works.Current HTTP State Storage – CookieMechanism An HTTP Cookie was a set of key/value pairs which an HTTP web server requests a concrete client browser (i.e. User Agent - UA) to store on client&#39;s hard disk, when the UA request to the web server further, UA will wrap all the cookie data within the HTTP request header as long as following conditions are all satisfied:  The cookie data has not expired.   The requested domain is under exactly the same domain when cookie was stored.   The requested path under the domain is the same one where cookie was stored. Once the cookie expires, browser will delete it from local hard disk.A common cookie example:  An end user types www.foo.net in a browser&#39;s navigation bar and hit enter.   www.foo.net returns HTTP status 200 message below (In the Green part, web server expected client browser to store two Cookie key/value pairs: WayneKey1=value1;WayneKey2=Value2, they could be accessible from the entire domain, and they will expire after 1 year):               HTTP/1.1 200 OK             Content-type: text/html             Set-Cookie: WayneKey1=value1;WayneKey2=Value2;domain=www.foo.net; expires=Tue, 24-Feb-2012 07:13:22 GMT; path=/; HttpOnly             &#160; (Response HTTP body)      ">
     <meta itemprop="datePublished" content="February 26, 2011">
     
 
@@ -800,7 +800,7 @@ function onStorageChanged(e) {
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2011-02-26T00:00:00-08:00">February 26, 2011</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2011-02-26T00:00:00+08:00">February 26, 2011</time></p>
         
       </footer>
 
@@ -809,11 +809,11 @@ function onStorageChanged(e) {
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?via=wayneye&text=HTML5+Web+Storage+in+Essence%20https%3A%2F%2Fwayneye.com%2FHTML5-Web-Storage-In-Essence" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=wayneye&text=HTML5+Web+Storage+in+Essence%20http%3A%2F%2Flocalhost%3A4000%2FHTML5-Web-Storage-In-Essence" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwayneye.com%2FHTML5-Web-Storage-In-Essence" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2FHTML5-Web-Storage-In-Essence" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwayneye.com%2FHTML5-Web-Storage-In-Essence" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2FHTML5-Web-Storage-In-Essence" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -830,15 +830,6 @@ function onStorageChanged(e) {
   </nav>
 
     </div>
-
-    
-      <div class="page__comments">
-  
-  
-      <h4 class="page__comments-title">Leave a comment</h4>
-      <section id="disqus_thread"></section>
-    
-</div>
 
     
   </article>
@@ -873,6 +864,14 @@ function onStorageChanged(e) {
     
     <p class="archive__item-excerpt" itemprop="description">Background
 
+I was planning to attend #adskfootball2019 in Dublin, Ireland from Jun 14th to Jun 16th, 2019:
+
+    
+    Autodesk Football Tournament 2019
+
+
+In order to attend, I needed applying Ireland VISA, and since I was planning to fly back to Shanghai later in June, so I thought I could just fly from SF to Dublin, then Dublin to Shanghai, and soon I realized that there is no direct flight from DUB to PVG, so a practical (and also very fun and economic) option is to fly from Dublin to London, and then London to Shanghai, bingo ^_^
+
 </p>
   </article>
 </div>
@@ -902,7 +901,18 @@ function onStorageChanged(e) {
     
     <p class="archive__item-excerpt" itemprop="description">Course overview video
 
-</p>
+
+
+Publishing information
+
+After 8 months of continuously hard working, this &lt;Master AWS Development&gt; video course is now live at: Packt Website, I described this course as below:
+
+
+  Amazon Web Services (AWS) is the gold standard of the cloud. If you are web and cloud computing developer, your life becomes much easier by diving deeper into AWS.
+
+
+
+  This course shows you how to use AWS services such as IAM, S3, EC2, and RDS/Dynamo to make your applications reliable and have a consistent performance. You’ll build modern serverless applications on the cloud, and u...</p>
   </article>
 </div>
 
@@ -930,6 +940,8 @@ function onStorageChanged(e) {
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">
+
+3 years of AWS hands on experience, two months of preparation, 30 hours of course learning, 300+ exam practices, this was the work I’ve done to pass the AWS Certified Solutions Architect - Associate, my exam result is below:
 
 </p>
   </article>
@@ -960,7 +972,12 @@ function onStorageChanged(e) {
     
     <p class="archive__item-excerpt" itemprop="description">Background
 
-</p>
+I have been researched and watched many NAS options to setup a home storage+media server during the past year, and so far there was no perfect answer, either lacking features/performance, or way too expensive… An Intel Celeron CPU + 1GB mem with a customized Linux (in other words: closed source )running Plex or something else, and the cost is like $400 (terrible hardware performance), or $800+/$1000+, way too expensive, examples:
+
+
+  Synology DS216J NAS DiskStation (DS216j)
+  WD My Cloud EX4100 Diskless Expert Series 4-Bay NAS
+  NETGEAR ReadyNAS 524X High Performance 10GbE 4-bay...</p>
   </article>
 </div>
 
@@ -1032,7 +1049,7 @@ function onStorageChanged(e) {
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://wayneye.com/HTML5-Web-Storage-In-Essence";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.url = "http://localhost:4000/HTML5-Web-Storage-In-Essence";  // Replace PAGE_URL with your page's canonical URL variable
       this.page.identifier = "/HTML5-Web-Storage-in-Essence"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     (function() { // DON'T EDIT BELOW THIS LINE

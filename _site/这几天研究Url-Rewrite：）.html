@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>这几天研究Url Rewrite：） - Wayne’s Geek Life</title>
-<meta name="description" content="在开发这个自己用的Blog时，决定认真研究一下以前接触过的URL Rewrite，我见过类似这样的域名： xxx.com/Archive/2008/03/21/，一直不知道怎么实现的，正好借这次机会研究一下。从前天开始就一直在努力，基本上是第一天差了大半天资料，&lt;A href=&quot;http://msdn2.microsoft.com/en-us/library/ms972974.aspx&quot; target=_blank&gt;这篇文章&lt;/A&gt;写得非常详细，向作者致敬！第二天终于上手做出Demo，但有Bug，第三天解决了Bug，完美运行^_^其实简单点说，个人觉得对于ASP.NET开发者实现URL Rewrite基本有3种途径：1. 修改IIS ISAPI扩展，例如把”.xx”交给aspnet_isapi.dll ISAPI 扩展，就成了这样：”xxx.htm?q=blah”，这样就是最简单直接的SEO，但由于我是虚拟主机所以我仅仅只在本地试了下，不知道精英科技的管理面板是否支持，我没有试。2. 修改WebConfig，添加自己实现的IHttpModule，根据传入的URL来Rewrite到相应的页面，比如接受到类似” Archive/2008/03/21/”的URL，则Rewrite到Archive.aspx?Year=2008&amp;Month=3&amp;Day=21，这中间是用正则来匹配的。3. 使用第三方组件如：IIS Rewrite 由于鄙人一直都希望自己实现某些东西，只要不是太复杂，所以我决定使用第二种。那么一个比Hello World还简单的实例是这样做的： 写一个class实现IHttpModule：WayneHttpModule  IHttpModule然后：public void Init(HttpApplication context)                    context.BeginRequest = new EventHandler(context_BeginRequest);                void context_BeginRequest(object sender, EventArgs e)                    HttpApplication app  sender as HttpApplication;            app.Context.RewritePath(“Test.aspx”);        然后在Web.config里添加：&lt;httpModules&gt;        lt;add name=”WayneHttpModule” type=”WayneBlog.Web.WayneHttpModule”/&gt;      lt;/httpModules&gt; &lt;HR&gt;&lt;P&gt;&lt;/P&gt;&lt;P&gt;就搞定了。。。这样在当前虚拟目录下，任何以“aspx”为后缀的Url请求全部会被WayneHttpModule截获并且转向（Rwrite）到Test.aspx，需要注意的是，即使这个页面并不存在，比如IamFoo.aspx，呵呵。&lt;/P&gt;&lt;P&gt;那么类似这样的：” Archive/2008/03/21/”，教程作者提到必须设一个主页（比如Default.aspx），并且这个主页物理存在于” /2008/03/21/”这个目录下，如果嫌麻烦那么可以仿照.Text，截获所有的Http请求并交给aspnet_isapi.dll ISAPI 扩展。我个人觉得这样对于我来说更麻烦，我选择了去建Default.aspx，每次发表一篇新的Blog，就去生成目录并写Default.Aspx文件：）&lt;/P&gt;">
+<meta name="description" content="在开发这个自己用的Blog时，决定认真研究一下以前接触过的URL Rewrite，我见过类似这样的域名： xxx.com/Archive/2008/03/21/，一直不知道怎么实现的，正好借这次机会研究一下。从前天开始就一直在努力，基本上是第一天差了大半天资料，&lt;A href=&quot;http://msdn2.microsoft.com/en-us/library/ms972974.aspx&quot; target=_blank&gt;这篇文章&lt;/A&gt;写得非常详细，向作者致敬！第二天终于上手做出Demo，但有Bug，第三天解决了Bug，完美运行^_^其实简单点说，个人觉得对于ASP.NET开发者实现URL Rewrite基本有3种途径：1. 修改IIS ISAPI扩展，例如把”.xx”交给aspnet_isapi.dll ISAPI 扩展，就成了这样：”xxx.htm?q=blah”，这样就是最简单直接的SEO，但由于我是虚拟主机所以我仅仅只在本地试了下，不知道精英科技的管理面板是否支持，我没有试。2. 修改WebConfig，添加">
 
 
 
@@ -18,10 +18,10 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Wayne's Geek Life">
 <meta property="og:title" content="这几天研究Url Rewrite：）">
-<meta property="og:url" content="https://wayneye.com/%E8%BF%99%E5%87%A0%E5%A4%A9%E7%A0%94%E7%A9%B6Url-Rewrite:)">
+<meta property="og:url" content="http://localhost:4000/%E8%BF%99%E5%87%A0%E5%A4%A9%E7%A0%94%E7%A9%B6Url-Rewrite:)">
 
 
-  <meta property="og:description" content="在开发这个自己用的Blog时，决定认真研究一下以前接触过的URL Rewrite，我见过类似这样的域名： xxx.com/Archive/2008/03/21/，一直不知道怎么实现的，正好借这次机会研究一下。从前天开始就一直在努力，基本上是第一天差了大半天资料，&lt;A href=&quot;http://msdn2.microsoft.com/en-us/library/ms972974.aspx&quot; target=_blank&gt;这篇文章&lt;/A&gt;写得非常详细，向作者致敬！第二天终于上手做出Demo，但有Bug，第三天解决了Bug，完美运行^_^其实简单点说，个人觉得对于ASP.NET开发者实现URL Rewrite基本有3种途径：1. 修改IIS ISAPI扩展，例如把”.xx”交给aspnet_isapi.dll ISAPI 扩展，就成了这样：”xxx.htm?q=blah”，这样就是最简单直接的SEO，但由于我是虚拟主机所以我仅仅只在本地试了下，不知道精英科技的管理面板是否支持，我没有试。2. 修改WebConfig，添加自己实现的IHttpModule，根据传入的URL来Rewrite到相应的页面，比如接受到类似” Archive/2008/03/21/”的URL，则Rewrite到Archive.aspx?Year=2008&amp;Month=3&amp;Day=21，这中间是用正则来匹配的。3. 使用第三方组件如：IIS Rewrite 由于鄙人一直都希望自己实现某些东西，只要不是太复杂，所以我决定使用第二种。那么一个比Hello World还简单的实例是这样做的： 写一个class实现IHttpModule：WayneHttpModule  IHttpModule然后：public void Init(HttpApplication context)                    context.BeginRequest = new EventHandler(context_BeginRequest);                void context_BeginRequest(object sender, EventArgs e)                    HttpApplication app  sender as HttpApplication;            app.Context.RewritePath(“Test.aspx”);        然后在Web.config里添加：&lt;httpModules&gt;        lt;add name=”WayneHttpModule” type=”WayneBlog.Web.WayneHttpModule”/&gt;      lt;/httpModules&gt; &lt;HR&gt;&lt;P&gt;&lt;/P&gt;&lt;P&gt;就搞定了。。。这样在当前虚拟目录下，任何以“aspx”为后缀的Url请求全部会被WayneHttpModule截获并且转向（Rwrite）到Test.aspx，需要注意的是，即使这个页面并不存在，比如IamFoo.aspx，呵呵。&lt;/P&gt;&lt;P&gt;那么类似这样的：” Archive/2008/03/21/”，教程作者提到必须设一个主页（比如Default.aspx），并且这个主页物理存在于” /2008/03/21/”这个目录下，如果嫌麻烦那么可以仿照.Text，截获所有的Http请求并交给aspnet_isapi.dll ISAPI 扩展。我个人觉得这样对于我来说更麻烦，我选择了去建Default.aspx，每次发表一篇新的Blog，就去生成目录并写Default.Aspx文件：）&lt;/P&gt;">
+  <meta property="og:description" content="在开发这个自己用的Blog时，决定认真研究一下以前接触过的URL Rewrite，我见过类似这样的域名： xxx.com/Archive/2008/03/21/，一直不知道怎么实现的，正好借这次机会研究一下。从前天开始就一直在努力，基本上是第一天差了大半天资料，&lt;A href=&quot;http://msdn2.microsoft.com/en-us/library/ms972974.aspx&quot; target=_blank&gt;这篇文章&lt;/A&gt;写得非常详细，向作者致敬！第二天终于上手做出Demo，但有Bug，第三天解决了Bug，完美运行^_^其实简单点说，个人觉得对于ASP.NET开发者实现URL Rewrite基本有3种途径：1. 修改IIS ISAPI扩展，例如把”.xx”交给aspnet_isapi.dll ISAPI 扩展，就成了这样：”xxx.htm?q=blah”，这样就是最简单直接的SEO，但由于我是虚拟主机所以我仅仅只在本地试了下，不知道精英科技的管理面板是否支持，我没有试。2. 修改WebConfig，添加">
 
 
 
@@ -29,8 +29,8 @@
 
   <meta name="twitter:site" content="@wayneye">
   <meta name="twitter:title" content="这几天研究Url Rewrite：）">
-  <meta name="twitter:description" content="在开发这个自己用的Blog时，决定认真研究一下以前接触过的URL Rewrite，我见过类似这样的域名： xxx.com/Archive/2008/03/21/，一直不知道怎么实现的，正好借这次机会研究一下。从前天开始就一直在努力，基本上是第一天差了大半天资料，&lt;A href=&quot;http://msdn2.microsoft.com/en-us/library/ms972974.aspx&quot; target=_blank&gt;这篇文章&lt;/A&gt;写得非常详细，向作者致敬！第二天终于上手做出Demo，但有Bug，第三天解决了Bug，完美运行^_^其实简单点说，个人觉得对于ASP.NET开发者实现URL Rewrite基本有3种途径：1. 修改IIS ISAPI扩展，例如把”.xx”交给aspnet_isapi.dll ISAPI 扩展，就成了这样：”xxx.htm?q=blah”，这样就是最简单直接的SEO，但由于我是虚拟主机所以我仅仅只在本地试了下，不知道精英科技的管理面板是否支持，我没有试。2. 修改WebConfig，添加自己实现的IHttpModule，根据传入的URL来Rewrite到相应的页面，比如接受到类似” Archive/2008/03/21/”的URL，则Rewrite到Archive.aspx?Year=2008&amp;Month=3&amp;Day=21，这中间是用正则来匹配的。3. 使用第三方组件如：IIS Rewrite 由于鄙人一直都希望自己实现某些东西，只要不是太复杂，所以我决定使用第二种。那么一个比Hello World还简单的实例是这样做的： 写一个class实现IHttpModule：WayneHttpModule  IHttpModule然后：public void Init(HttpApplication context)                    context.BeginRequest = new EventHandler(context_BeginRequest);                void context_BeginRequest(object sender, EventArgs e)                    HttpApplication app  sender as HttpApplication;            app.Context.RewritePath(“Test.aspx”);        然后在Web.config里添加：&lt;httpModules&gt;        lt;add name=”WayneHttpModule” type=”WayneBlog.Web.WayneHttpModule”/&gt;      lt;/httpModules&gt; &lt;HR&gt;&lt;P&gt;&lt;/P&gt;&lt;P&gt;就搞定了。。。这样在当前虚拟目录下，任何以“aspx”为后缀的Url请求全部会被WayneHttpModule截获并且转向（Rwrite）到Test.aspx，需要注意的是，即使这个页面并不存在，比如IamFoo.aspx，呵呵。&lt;/P&gt;&lt;P&gt;那么类似这样的：” Archive/2008/03/21/”，教程作者提到必须设一个主页（比如Default.aspx），并且这个主页物理存在于” /2008/03/21/”这个目录下，如果嫌麻烦那么可以仿照.Text，截获所有的Http请求并交给aspnet_isapi.dll ISAPI 扩展。我个人觉得这样对于我来说更麻烦，我选择了去建Default.aspx，每次发表一篇新的Blog，就去生成目录并写Default.Aspx文件：）&lt;/P&gt;">
-  <meta name="twitter:url" content="https://wayneye.com/%E8%BF%99%E5%87%A0%E5%A4%A9%E7%A0%94%E7%A9%B6Url-Rewrite:)">
+  <meta name="twitter:description" content="在开发这个自己用的Blog时，决定认真研究一下以前接触过的URL Rewrite，我见过类似这样的域名： xxx.com/Archive/2008/03/21/，一直不知道怎么实现的，正好借这次机会研究一下。从前天开始就一直在努力，基本上是第一天差了大半天资料，&lt;A href=&quot;http://msdn2.microsoft.com/en-us/library/ms972974.aspx&quot; target=_blank&gt;这篇文章&lt;/A&gt;写得非常详细，向作者致敬！第二天终于上手做出Demo，但有Bug，第三天解决了Bug，完美运行^_^其实简单点说，个人觉得对于ASP.NET开发者实现URL Rewrite基本有3种途径：1. 修改IIS ISAPI扩展，例如把”.xx”交给aspnet_isapi.dll ISAPI 扩展，就成了这样：”xxx.htm?q=blah”，这样就是最简单直接的SEO，但由于我是虚拟主机所以我仅仅只在本地试了下，不知道精英科技的管理面板是否支持，我没有试。2. 修改WebConfig，添加">
+  <meta name="twitter:url" content="http://localhost:4000/%E8%BF%99%E5%87%A0%E5%A4%A9%E7%A0%94%E7%A9%B6Url-Rewrite:)">
 
   
     <meta name="twitter:card" content="summary">
@@ -41,7 +41,7 @@
 
 
 
-  <meta property="article:published_time" content="2008-03-21T00:00:00-07:00">
+  <meta property="article:published_time" content="2008-03-21T00:00:00+08:00">
 
 
 
@@ -54,7 +54,7 @@
   
 
 
-<link rel="canonical" href="https://wayneye.com/%E8%BF%99%E5%87%A0%E5%A4%A9%E7%A0%94%E7%A9%B6Url-Rewrite:)">
+<link rel="canonical" href="http://localhost:4000/%E8%BF%99%E5%87%A0%E5%A4%A9%E7%A0%94%E7%A9%B6Url-Rewrite:)">
 
 
 
@@ -103,11 +103,11 @@
     <!-- start custom head snippets -->
 
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
-<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
-<link rel="manifest" href="assets/images/favicon/site.webmanifest">
-<link rel="mask-icon" href="assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 
@@ -136,7 +136,7 @@
             </li><li class="masthead__menu-item">
               <a href="/search/" >Search</a>
             </li><li class="masthead__menu-item">
-              <a href="/album/" >Album</a>
+              <a href="/gallery/" >Gallery</a>
             </li><li class="masthead__menu-item">
               <a href="/about/" >About</a>
             </li></ul>
@@ -284,7 +284,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="这几天研究Url Rewrite：）">
-    <meta itemprop="description" content="在开发这个自己用的Blog时，决定认真研究一下以前接触过的URL Rewrite，我见过类似这样的域名： xxx.com/Archive/2008/03/21/，一直不知道怎么实现的，正好借这次机会研究一下。从前天开始就一直在努力，基本上是第一天差了大半天资料，&lt;A href=&quot;http://msdn2.microsoft.com/en-us/library/ms972974.aspx&quot; target=_blank&gt;这篇文章&lt;/A&gt;写得非常详细，向作者致敬！第二天终于上手做出Demo，但有Bug，第三天解决了Bug，完美运行^_^其实简单点说，个人觉得对于ASP.NET开发者实现URL Rewrite基本有3种途径：1. 修改IIS ISAPI扩展，例如把”.xx”交给aspnet_isapi.dll ISAPI 扩展，就成了这样：”xxx.htm?q=blah”，这样就是最简单直接的SEO，但由于我是虚拟主机所以我仅仅只在本地试了下，不知道精英科技的管理面板是否支持，我没有试。2. 修改WebConfig，添加自己实现的IHttpModule，根据传入的URL来Rewrite到相应的页面，比如接受到类似” Archive/2008/03/21/”的URL，则Rewrite到Archive.aspx?Year=2008&amp;Month=3&amp;Day=21，这中间是用正则来匹配的。3. 使用第三方组件如：IIS Rewrite 由于鄙人一直都希望自己实现某些东西，只要不是太复杂，所以我决定使用第二种。那么一个比Hello World还简单的实例是这样做的： 写一个class实现IHttpModule：WayneHttpModule  IHttpModule然后：public void Init(HttpApplication context)                    context.BeginRequest = new EventHandler(context_BeginRequest);                void context_BeginRequest(object sender, EventArgs e)                    HttpApplication app  sender as HttpApplication;            app.Context.RewritePath(“Test.aspx”);        然后在Web.config里添加：&lt;httpModules&gt;        lt;add name=”WayneHttpModule” type=”WayneBlog.Web.WayneHttpModule”/&gt;      lt;/httpModules&gt; &lt;HR&gt;&lt;P&gt;&lt;/P&gt;&lt;P&gt;就搞定了。。。这样在当前虚拟目录下，任何以“aspx”为后缀的Url请求全部会被WayneHttpModule截获并且转向（Rwrite）到Test.aspx，需要注意的是，即使这个页面并不存在，比如IamFoo.aspx，呵呵。&lt;/P&gt;&lt;P&gt;那么类似这样的：” Archive/2008/03/21/”，教程作者提到必须设一个主页（比如Default.aspx），并且这个主页物理存在于” /2008/03/21/”这个目录下，如果嫌麻烦那么可以仿照.Text，截获所有的Http请求并交给aspnet_isapi.dll ISAPI 扩展。我个人觉得这样对于我来说更麻烦，我选择了去建Default.aspx，每次发表一篇新的Blog，就去生成目录并写Default.Aspx文件：）&lt;/P&gt;">
+    <meta itemprop="description" content="在开发这个自己用的Blog时，决定认真研究一下以前接触过的URL Rewrite，我见过类似这样的域名： xxx.com/Archive/2008/03/21/，一直不知道怎么实现的，正好借这次机会研究一下。从前天开始就一直在努力，基本上是第一天差了大半天资料，&lt;A href=&quot;http://msdn2.microsoft.com/en-us/library/ms972974.aspx&quot; target=_blank&gt;这篇文章&lt;/A&gt;写得非常详细，向作者致敬！第二天终于上手做出Demo，但有Bug，第三天解决了Bug，完美运行^_^其实简单点说，个人觉得对于ASP.NET开发者实现URL Rewrite基本有3种途径：1. 修改IIS ISAPI扩展，例如把”.xx”交给aspnet_isapi.dll ISAPI 扩展，就成了这样：”xxx.htm?q=blah”，这样就是最简单直接的SEO，但由于我是虚拟主机所以我仅仅只在本地试了下，不知道精英科技的管理面板是否支持，我没有试。2. 修改WebConfig，添加">
     <meta itemprop="datePublished" content="March 21, 2008">
     
 
@@ -363,7 +363,7 @@
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2008-03-21T00:00:00-07:00">March 21, 2008</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2008-03-21T00:00:00+08:00">March 21, 2008</time></p>
         
       </footer>
 
@@ -372,11 +372,11 @@
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?via=wayneye&text=%E8%BF%99%E5%87%A0%E5%A4%A9%E7%A0%94%E7%A9%B6Url+Rewrite%EF%BC%9A%EF%BC%89%20https%3A%2F%2Fwayneye.com%2F%25E8%25BF%2599%25E5%2587%25A0%25E5%25A4%25A9%25E7%25A0%2594%25E7%25A9%25B6Url-Rewrite%3A%29" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=wayneye&text=%E8%BF%99%E5%87%A0%E5%A4%A9%E7%A0%94%E7%A9%B6Url+Rewrite%EF%BC%9A%EF%BC%89%20http%3A%2F%2Flocalhost%3A4000%2F%25E8%25BF%2599%25E5%2587%25A0%25E5%25A4%25A9%25E7%25A0%2594%25E7%25A9%25B6Url-Rewrite%3A%29" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwayneye.com%2F%25E8%25BF%2599%25E5%2587%25A0%25E5%25A4%25A9%25E7%25A0%2594%25E7%25A9%25B6Url-Rewrite%3A%29" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25E8%25BF%2599%25E5%2587%25A0%25E5%25A4%25A9%25E7%25A0%2594%25E7%25A9%25B6Url-Rewrite%3A%29" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwayneye.com%2F%25E8%25BF%2599%25E5%2587%25A0%25E5%25A4%25A9%25E7%25A0%2594%25E7%25A9%25B6Url-Rewrite%3A%29" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25E8%25BF%2599%25E5%2587%25A0%25E5%25A4%25A9%25E7%25A0%2594%25E7%25A9%25B6Url-Rewrite%3A%29" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -392,15 +392,6 @@
   </nav>
 
     </div>
-
-    
-      <div class="page__comments">
-  
-  
-      <h4 class="page__comments-title">Leave a comment</h4>
-      <section id="disqus_thread"></section>
-    
-</div>
 
     
   </article>
@@ -435,6 +426,14 @@
     
     <p class="archive__item-excerpt" itemprop="description">Background
 
+I was planning to attend #adskfootball2019 in Dublin, Ireland from Jun 14th to Jun 16th, 2019:
+
+    
+    Autodesk Football Tournament 2019
+
+
+In order to attend, I needed applying Ireland VISA, and since I was planning to fly back to Shanghai later in June, so I thought I could just fly from SF to Dublin, then Dublin to Shanghai, and soon I realized that there is no direct flight from DUB to PVG, so a practical (and also very fun and economic) option is to fly from Dublin to London, and then London to Shanghai, bingo ^_^
+
 </p>
   </article>
 </div>
@@ -464,7 +463,18 @@
     
     <p class="archive__item-excerpt" itemprop="description">Course overview video
 
-</p>
+
+
+Publishing information
+
+After 8 months of continuously hard working, this &lt;Master AWS Development&gt; video course is now live at: Packt Website, I described this course as below:
+
+
+  Amazon Web Services (AWS) is the gold standard of the cloud. If you are web and cloud computing developer, your life becomes much easier by diving deeper into AWS.
+
+
+
+  This course shows you how to use AWS services such as IAM, S3, EC2, and RDS/Dynamo to make your applications reliable and have a consistent performance. You’ll build modern serverless applications on the cloud, and u...</p>
   </article>
 </div>
 
@@ -492,6 +502,8 @@
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">
+
+3 years of AWS hands on experience, two months of preparation, 30 hours of course learning, 300+ exam practices, this was the work I’ve done to pass the AWS Certified Solutions Architect - Associate, my exam result is below:
 
 </p>
   </article>
@@ -522,7 +534,12 @@
     
     <p class="archive__item-excerpt" itemprop="description">Background
 
-</p>
+I have been researched and watched many NAS options to setup a home storage+media server during the past year, and so far there was no perfect answer, either lacking features/performance, or way too expensive… An Intel Celeron CPU + 1GB mem with a customized Linux (in other words: closed source )running Plex or something else, and the cost is like $400 (terrible hardware performance), or $800+/$1000+, way too expensive, examples:
+
+
+  Synology DS216J NAS DiskStation (DS216j)
+  WD My Cloud EX4100 Diskless Expert Series 4-Bay NAS
+  NETGEAR ReadyNAS 524X High Performance 10GbE 4-bay...</p>
   </article>
 </div>
 
@@ -594,7 +611,7 @@
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://wayneye.com/%E8%BF%99%E5%87%A0%E5%A4%A9%E7%A0%94%E7%A9%B6Url-Rewrite:)";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.url = "http://localhost:4000/%E8%BF%99%E5%87%A0%E5%A4%A9%E7%A0%94%E7%A9%B6Url-Rewrite:)";  // Replace PAGE_URL with your page's canonical URL variable
       this.page.identifier = "/这几天研究Url-Rewrite：）"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     (function() { // DON'T EDIT BELOW THIS LINE

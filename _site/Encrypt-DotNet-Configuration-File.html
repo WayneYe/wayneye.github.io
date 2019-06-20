@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Encrypt .Net Configuration file - Wayne’s Geek Life</title>
-<meta name="description" content="Under some scenarios the developers want to encrypt some sections inside app.config or web.config file, this article How To: Encrypt Configuration Sections in ASP.NET 2.0 Using RSA describes how to do so clearly, Scott Guthrie also posted one: Encrypting Web.Config Values in ASP.NET 2.0.">
+<meta name="description" content="Under some scenarios the developers want to encrypt some sections inside app.config or web.config file, this article How To: Encrypt Configuration Sections in ASP.NET 2.0 Using RSA describes how to do so clearly, Scott Guthrie also posted one: Encrypting Web.Config Values in ASP.NET 2.0.However, in the posts above they uses aspnet_regiis.exe and seems it doesn’t directly support app.config, if we want to encrypt app.config for Windows Form or WPF applications, while I tried use it to encrypt my app.config file, it generates a web.config which means my Winform definitely can’t use it, even if I copy the encrypted appSettings section from this generated web.config to my own app.config(ConfigurationManager.AppSettings[EncryptedKeyName] is null after I did that).">
 
 
 
@@ -18,10 +18,10 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Wayne's Geek Life">
 <meta property="og:title" content="Encrypt .Net Configuration file">
-<meta property="og:url" content="https://wayneye.com/Encrypt-DotNet-Configuration-File">
+<meta property="og:url" content="http://localhost:4000/Encrypt-DotNet-Configuration-File">
 
 
-  <meta property="og:description" content="Under some scenarios the developers want to encrypt some sections inside app.config or web.config file, this article How To: Encrypt Configuration Sections in ASP.NET 2.0 Using RSA describes how to do so clearly, Scott Guthrie also posted one: Encrypting Web.Config Values in ASP.NET 2.0.">
+  <meta property="og:description" content="Under some scenarios the developers want to encrypt some sections inside app.config or web.config file, this article How To: Encrypt Configuration Sections in ASP.NET 2.0 Using RSA describes how to do so clearly, Scott Guthrie also posted one: Encrypting Web.Config Values in ASP.NET 2.0.However, in the posts above they uses aspnet_regiis.exe and seems it doesn’t directly support app.config, if we want to encrypt app.config for Windows Form or WPF applications, while I tried use it to encrypt my app.config file, it generates a web.config which means my Winform definitely can’t use it, even if I copy the encrypted appSettings section from this generated web.config to my own app.config(ConfigurationManager.AppSettings[EncryptedKeyName] is null after I did that).">
 
 
 
@@ -29,8 +29,8 @@
 
   <meta name="twitter:site" content="@wayneye">
   <meta name="twitter:title" content="Encrypt .Net Configuration file">
-  <meta name="twitter:description" content="Under some scenarios the developers want to encrypt some sections inside app.config or web.config file, this article How To: Encrypt Configuration Sections in ASP.NET 2.0 Using RSA describes how to do so clearly, Scott Guthrie also posted one: Encrypting Web.Config Values in ASP.NET 2.0.">
-  <meta name="twitter:url" content="https://wayneye.com/Encrypt-DotNet-Configuration-File">
+  <meta name="twitter:description" content="Under some scenarios the developers want to encrypt some sections inside app.config or web.config file, this article How To: Encrypt Configuration Sections in ASP.NET 2.0 Using RSA describes how to do so clearly, Scott Guthrie also posted one: Encrypting Web.Config Values in ASP.NET 2.0.However, in the posts above they uses aspnet_regiis.exe and seems it doesn’t directly support app.config, if we want to encrypt app.config for Windows Form or WPF applications, while I tried use it to encrypt my app.config file, it generates a web.config which means my Winform definitely can’t use it, even if I copy the encrypted appSettings section from this generated web.config to my own app.config(ConfigurationManager.AppSettings[EncryptedKeyName] is null after I did that).">
+  <meta name="twitter:url" content="http://localhost:4000/Encrypt-DotNet-Configuration-File">
 
   
     <meta name="twitter:card" content="summary">
@@ -41,7 +41,7 @@
 
 
 
-  <meta property="article:published_time" content="2010-06-11T00:00:00-07:00">
+  <meta property="article:published_time" content="2010-06-11T00:00:00+08:00">
 
 
 
@@ -54,7 +54,7 @@
   
 
 
-<link rel="canonical" href="https://wayneye.com/Encrypt-DotNet-Configuration-File">
+<link rel="canonical" href="http://localhost:4000/Encrypt-DotNet-Configuration-File">
 
 
 
@@ -103,11 +103,11 @@
     <!-- start custom head snippets -->
 
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
-<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
-<link rel="manifest" href="assets/images/favicon/site.webmanifest">
-<link rel="mask-icon" href="assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 
@@ -136,7 +136,7 @@
             </li><li class="masthead__menu-item">
               <a href="/search/" >Search</a>
             </li><li class="masthead__menu-item">
-              <a href="/album/" >Album</a>
+              <a href="/gallery/" >Gallery</a>
             </li><li class="masthead__menu-item">
               <a href="/about/" >About</a>
             </li></ul>
@@ -284,7 +284,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Encrypt .Net Configuration file">
-    <meta itemprop="description" content="Under some scenarios the developers want to encrypt some sections inside app.config or web.config file, this article How To: Encrypt Configuration Sections in ASP.NET 2.0 Using RSA describes how to do so clearly, Scott Guthrie also posted one: Encrypting Web.Config Values in ASP.NET 2.0.">
+    <meta itemprop="description" content="Under some scenarios the developers want to encrypt some sections inside app.config or web.config file, this article How To: Encrypt Configuration Sections in ASP.NET 2.0 Using RSA describes how to do so clearly, Scott Guthrie also posted one: Encrypting Web.Config Values in ASP.NET 2.0.However, in the posts above they uses aspnet_regiis.exe and seems it doesn’t directly support app.config, if we want to encrypt app.config for Windows Form or WPF applications, while I tried use it to encrypt my app.config file, it generates a web.config which means my Winform definitely can’t use it, even if I copy the encrypted appSettings section from this generated web.config to my own app.config(ConfigurationManager.AppSettings[EncryptedKeyName] is null after I did that).">
     <meta itemprop="datePublished" content="June 11, 2010">
     
 
@@ -400,7 +400,7 @@ SectionInformation appSettingsSecInfo <span style="color: #308080">=</span> conf
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2010-06-11T00:00:00-07:00">June 11, 2010</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2010-06-11T00:00:00+08:00">June 11, 2010</time></p>
         
       </footer>
 
@@ -409,11 +409,11 @@ SectionInformation appSettingsSecInfo <span style="color: #308080">=</span> conf
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?via=wayneye&text=Encrypt+.Net+Configuration+file%20https%3A%2F%2Fwayneye.com%2FEncrypt-DotNet-Configuration-File" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=wayneye&text=Encrypt+.Net+Configuration+file%20http%3A%2F%2Flocalhost%3A4000%2FEncrypt-DotNet-Configuration-File" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwayneye.com%2FEncrypt-DotNet-Configuration-File" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2FEncrypt-DotNet-Configuration-File" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwayneye.com%2FEncrypt-DotNet-Configuration-File" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2FEncrypt-DotNet-Configuration-File" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -430,15 +430,6 @@ SectionInformation appSettingsSecInfo <span style="color: #308080">=</span> conf
   </nav>
 
     </div>
-
-    
-      <div class="page__comments">
-  
-  
-      <h4 class="page__comments-title">Leave a comment</h4>
-      <section id="disqus_thread"></section>
-    
-</div>
 
     
   </article>
@@ -473,6 +464,14 @@ SectionInformation appSettingsSecInfo <span style="color: #308080">=</span> conf
     
     <p class="archive__item-excerpt" itemprop="description">Background
 
+I was planning to attend #adskfootball2019 in Dublin, Ireland from Jun 14th to Jun 16th, 2019:
+
+    
+    Autodesk Football Tournament 2019
+
+
+In order to attend, I needed applying Ireland VISA, and since I was planning to fly back to Shanghai later in June, so I thought I could just fly from SF to Dublin, then Dublin to Shanghai, and soon I realized that there is no direct flight from DUB to PVG, so a practical (and also very fun and economic) option is to fly from Dublin to London, and then London to Shanghai, bingo ^_^
+
 </p>
   </article>
 </div>
@@ -502,7 +501,18 @@ SectionInformation appSettingsSecInfo <span style="color: #308080">=</span> conf
     
     <p class="archive__item-excerpt" itemprop="description">Course overview video
 
-</p>
+
+
+Publishing information
+
+After 8 months of continuously hard working, this &lt;Master AWS Development&gt; video course is now live at: Packt Website, I described this course as below:
+
+
+  Amazon Web Services (AWS) is the gold standard of the cloud. If you are web and cloud computing developer, your life becomes much easier by diving deeper into AWS.
+
+
+
+  This course shows you how to use AWS services such as IAM, S3, EC2, and RDS/Dynamo to make your applications reliable and have a consistent performance. You’ll build modern serverless applications on the cloud, and u...</p>
   </article>
 </div>
 
@@ -530,6 +540,8 @@ SectionInformation appSettingsSecInfo <span style="color: #308080">=</span> conf
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">
+
+3 years of AWS hands on experience, two months of preparation, 30 hours of course learning, 300+ exam practices, this was the work I’ve done to pass the AWS Certified Solutions Architect - Associate, my exam result is below:
 
 </p>
   </article>
@@ -560,7 +572,12 @@ SectionInformation appSettingsSecInfo <span style="color: #308080">=</span> conf
     
     <p class="archive__item-excerpt" itemprop="description">Background
 
-</p>
+I have been researched and watched many NAS options to setup a home storage+media server during the past year, and so far there was no perfect answer, either lacking features/performance, or way too expensive… An Intel Celeron CPU + 1GB mem with a customized Linux (in other words: closed source )running Plex or something else, and the cost is like $400 (terrible hardware performance), or $800+/$1000+, way too expensive, examples:
+
+
+  Synology DS216J NAS DiskStation (DS216j)
+  WD My Cloud EX4100 Diskless Expert Series 4-Bay NAS
+  NETGEAR ReadyNAS 524X High Performance 10GbE 4-bay...</p>
   </article>
 </div>
 
@@ -632,7 +649,7 @@ SectionInformation appSettingsSecInfo <span style="color: #308080">=</span> conf
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://wayneye.com/Encrypt-DotNet-Configuration-File";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.url = "http://localhost:4000/Encrypt-DotNet-Configuration-File";  // Replace PAGE_URL with your page's canonical URL variable
       this.page.identifier = "/Encrypt-.Net-Configuration-file"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     (function() { // DON'T EDIT BELOW THIS LINE

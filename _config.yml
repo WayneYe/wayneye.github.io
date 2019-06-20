@@ -81,8 +81,8 @@ defaults:
       layout: single
       author_profile: true
   - scope:
-      path: "/album"
-      type: "posts"   # TODO
+      path: "/gallery"
+      type: "posts"  # TODO
     values:
       layout: "default"
       comments: true

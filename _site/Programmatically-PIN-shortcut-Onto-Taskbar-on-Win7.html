@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Programmatically PIN shortcut onto Taskbar on Win7 - Wayne’s Geek Life</title>
-<meta name="description" content="Background">
+<meta name="description" content="BackgroundDuring my work I got one requirement of pinning a specific shortcut file (*.lnk) onto the Windows 7 Taskbar, after investigating I found programmtically achive this is “not permitted”, refer MSDN article: http://msdn.microsoft.com/en-us/library/dd378460(VS.85).aspx  A small set of applications are pinned by default for new installations. Other than these, only the user can pin further applications; programmatic pinning by an application is not permitted.However, the exception comes from Windows Script Hosting, a snippet of VBscript can achieve my requirement, I read several articles (refer the end of this post) and wrote two VBS scripts showing below:Pin to TaskbarOption Explicit&#39;Const CSIDL_COMMON_PROGRAMS = &amp;H17Dim ShellApp, FSO, DesktopSet ShellApp = CreateObject(&quot;Shell.Application&quot;)Set FSO = CreateObject(&quot;Scripting.FileSystemObject&quot;)&#39;Set StartMenuFolder = ShellApp.NameSpace(CSIDL_COMMON_PROGRAMS)Set Desktop =  ShellApp.NameSpace(&quot;C:\Users\Wayne\Desktop&quot;)Dim LnkFileLnkFile = Desktop.Self.Path&amp;&quot;\ScheduleNotifier.lnk&quot;If(FSO.FileExists(LnkFile)) Then    Dim tmp, verb    &#39;For Each verb in Desktop.ParseName(&quot;ScheduleNotifier.lnk&quot;).Verbs        &#39;tmp = tmp&amp;verb&amp;chr(13)    &#39;Next    &#39;MsgBox(tmp)    Dim desktopImtes, item    Set desktopImtes = Desktop.Items()    For Each item in desktopImtes        If (item.Name = &quot;ScheduleNotifier&quot;) Then            &#39;MsgBox(item.Name)            For Each verb in item.Verbs                If (verb.Name = &quot;Pin to Tas&amp;kbar&quot;) Then &#39;If (verb.Name = &quot;锁定到任务栏(&amp;K)&quot;)                    verb.DoIt                End If            Next        End If    NextEnd IfSet FSO = NothingSet ShellApp = NothingUnpin from TaskbarOption Explicit&#39;Const CSIDL_COMMON_PROGRAMS = &amp;H17Dim ShellApp, FSO, DesktopSet ShellApp = CreateObject(&quot;Shell.Application&quot;)Set FSO = CreateObject(&quot;Scripting.FileSystemObject&quot;)&#39;Set StartMenuFolder = ShellApp.NameSpace(CSIDL_COMMON_PROGRAMS)Set Desktop =  ShellApp.NameSpace(&quot;C:\Users\Wayne\Desktop&quot;)Dim LnkFileLnkFile = Desktop.Self.Path&amp;&quot;\ScheduleNotifier.lnk&quot;If(FSO.FileExists(LnkFile)) Then    Dim tmp, verb    &#39;For Each verb in Desktop.ParseName(&quot;ScheduleNotifier.lnk&quot;).Verbs        &#39;tmp = tmp&amp;verb&amp;chr(13)    &#39;Next    &#39;MsgBox(tmp)    Dim desktopImtes, item    Set desktopImtes = Desktop.Items()    For Each item in desktopImtes        If (item.Name = &quot;ScheduleNotifier&quot;) Then            &#39;MsgBox(item.Name)            For Each verb in item.Verbs                If (verb.Name = &quot;Unpin from Tas&amp;kbar&quot;) Then &#39;If (verb.Name = &quot;从任务栏脱离(&amp;K)&quot;)                    verb.DoIt                End If            Next        End If    NextEnd IfSet FSO = NothingSet ShellApp = NothingAlthough two snippets of VBS code are simple and stright-forward, they has on serious limitation, it only support one specified language, attention of this line of code:If (verb.Name = &quot;Pin to Tas&amp;kbar&quot;) Then &#39;If (verb.Name = &quot;锁定到任务栏(&amp;K)&quot;)On Chinese locale, I have to replace “Pin to Tas&amp;kbar” with “锁定到任务栏(&amp;K)”, so in order to support more languages I need to know each exact {Pin sentence} to do the pinning, you know, google translation won’t always work in this case:), so I definitely don’t want to do that…You probably ask WHY??? Because FolderItemVerb object only has one property: Name, and Name is definitely “language sensitive“, MSDN does mention there are two more properties “Application” and “Parent” however they are “Not implemented”.Several tipsFor a specific Windows user, all shortcuts pinned onto taskbar store the shortcuts files under   %AppData%\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar OEM manufacturers could “pre-pin” some shortcut onto the Taskbar before shipping the PC/laptops to the consumers, simply run batch command below during the DASH (see Desktop and mobile Architecture for System Hardware) process:   Rem Pining OEM Welcome Center app on task barReg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TBDEn /v SBOEM0 /t REG_EXPAND_SZ /d “SomeFile.lnk” /f   &#160;  References  Pin Items to the Start Menu or Windows 7 Taskbar via Script       http://blogs.technet.com/b/deploymentguys/archive/2009/04/08/pin-items-to-the-start-menu-or-windows-7-taskbar-via-script.aspx  Pin and Un-pin items to/from the Windows 7 taskbar       http://blog.ananthonline.net/?p=37  ">
 
 
 
@@ -18,10 +18,10 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Wayne's Geek Life">
 <meta property="og:title" content="Programmatically PIN shortcut onto Taskbar on Win7">
-<meta property="og:url" content="https://wayneye.com/Programmatically-PIN-shortcut-Onto-Taskbar-on-Win7">
+<meta property="og:url" content="http://localhost:4000/Programmatically-PIN-shortcut-Onto-Taskbar-on-Win7">
 
 
-  <meta property="og:description" content="Background">
+  <meta property="og:description" content="BackgroundDuring my work I got one requirement of pinning a specific shortcut file (*.lnk) onto the Windows 7 Taskbar, after investigating I found programmtically achive this is “not permitted”, refer MSDN article: http://msdn.microsoft.com/en-us/library/dd378460(VS.85).aspx  A small set of applications are pinned by default for new installations. Other than these, only the user can pin further applications; programmatic pinning by an application is not permitted.However, the exception comes from Windows Script Hosting, a snippet of VBscript can achieve my requirement, I read several articles (refer the end of this post) and wrote two VBS scripts showing below:Pin to TaskbarOption Explicit&#39;Const CSIDL_COMMON_PROGRAMS = &amp;H17Dim ShellApp, FSO, DesktopSet ShellApp = CreateObject(&quot;Shell.Application&quot;)Set FSO = CreateObject(&quot;Scripting.FileSystemObject&quot;)&#39;Set StartMenuFolder = ShellApp.NameSpace(CSIDL_COMMON_PROGRAMS)Set Desktop =  ShellApp.NameSpace(&quot;C:\Users\Wayne\Desktop&quot;)Dim LnkFileLnkFile = Desktop.Self.Path&amp;&quot;\ScheduleNotifier.lnk&quot;If(FSO.FileExists(LnkFile)) Then    Dim tmp, verb    &#39;For Each verb in Desktop.ParseName(&quot;ScheduleNotifier.lnk&quot;).Verbs        &#39;tmp = tmp&amp;verb&amp;chr(13)    &#39;Next    &#39;MsgBox(tmp)    Dim desktopImtes, item    Set desktopImtes = Desktop.Items()    For Each item in desktopImtes        If (item.Name = &quot;ScheduleNotifier&quot;) Then            &#39;MsgBox(item.Name)            For Each verb in item.Verbs                If (verb.Name = &quot;Pin to Tas&amp;kbar&quot;) Then &#39;If (verb.Name = &quot;锁定到任务栏(&amp;K)&quot;)                    verb.DoIt                End If            Next        End If    NextEnd IfSet FSO = NothingSet ShellApp = NothingUnpin from TaskbarOption Explicit&#39;Const CSIDL_COMMON_PROGRAMS = &amp;H17Dim ShellApp, FSO, DesktopSet ShellApp = CreateObject(&quot;Shell.Application&quot;)Set FSO = CreateObject(&quot;Scripting.FileSystemObject&quot;)&#39;Set StartMenuFolder = ShellApp.NameSpace(CSIDL_COMMON_PROGRAMS)Set Desktop =  ShellApp.NameSpace(&quot;C:\Users\Wayne\Desktop&quot;)Dim LnkFileLnkFile = Desktop.Self.Path&amp;&quot;\ScheduleNotifier.lnk&quot;If(FSO.FileExists(LnkFile)) Then    Dim tmp, verb    &#39;For Each verb in Desktop.ParseName(&quot;ScheduleNotifier.lnk&quot;).Verbs        &#39;tmp = tmp&amp;verb&amp;chr(13)    &#39;Next    &#39;MsgBox(tmp)    Dim desktopImtes, item    Set desktopImtes = Desktop.Items()    For Each item in desktopImtes        If (item.Name = &quot;ScheduleNotifier&quot;) Then            &#39;MsgBox(item.Name)            For Each verb in item.Verbs                If (verb.Name = &quot;Unpin from Tas&amp;kbar&quot;) Then &#39;If (verb.Name = &quot;从任务栏脱离(&amp;K)&quot;)                    verb.DoIt                End If            Next        End If    NextEnd IfSet FSO = NothingSet ShellApp = NothingAlthough two snippets of VBS code are simple and stright-forward, they has on serious limitation, it only support one specified language, attention of this line of code:If (verb.Name = &quot;Pin to Tas&amp;kbar&quot;) Then &#39;If (verb.Name = &quot;锁定到任务栏(&amp;K)&quot;)On Chinese locale, I have to replace “Pin to Tas&amp;kbar” with “锁定到任务栏(&amp;K)”, so in order to support more languages I need to know each exact {Pin sentence} to do the pinning, you know, google translation won’t always work in this case:), so I definitely don’t want to do that…You probably ask WHY??? Because FolderItemVerb object only has one property: Name, and Name is definitely “language sensitive“, MSDN does mention there are two more properties “Application” and “Parent” however they are “Not implemented”.Several tipsFor a specific Windows user, all shortcuts pinned onto taskbar store the shortcuts files under   %AppData%\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar OEM manufacturers could “pre-pin” some shortcut onto the Taskbar before shipping the PC/laptops to the consumers, simply run batch command below during the DASH (see Desktop and mobile Architecture for System Hardware) process:   Rem Pining OEM Welcome Center app on task barReg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TBDEn /v SBOEM0 /t REG_EXPAND_SZ /d “SomeFile.lnk” /f   &#160;  References  Pin Items to the Start Menu or Windows 7 Taskbar via Script       http://blogs.technet.com/b/deploymentguys/archive/2009/04/08/pin-items-to-the-start-menu-or-windows-7-taskbar-via-script.aspx  Pin and Un-pin items to/from the Windows 7 taskbar       http://blog.ananthonline.net/?p=37  ">
 
 
 
@@ -29,8 +29,8 @@
 
   <meta name="twitter:site" content="@wayneye">
   <meta name="twitter:title" content="Programmatically PIN shortcut onto Taskbar on Win7">
-  <meta name="twitter:description" content="Background">
-  <meta name="twitter:url" content="https://wayneye.com/Programmatically-PIN-shortcut-Onto-Taskbar-on-Win7">
+  <meta name="twitter:description" content="BackgroundDuring my work I got one requirement of pinning a specific shortcut file (*.lnk) onto the Windows 7 Taskbar, after investigating I found programmtically achive this is “not permitted”, refer MSDN article: http://msdn.microsoft.com/en-us/library/dd378460(VS.85).aspx  A small set of applications are pinned by default for new installations. Other than these, only the user can pin further applications; programmatic pinning by an application is not permitted.However, the exception comes from Windows Script Hosting, a snippet of VBscript can achieve my requirement, I read several articles (refer the end of this post) and wrote two VBS scripts showing below:Pin to TaskbarOption Explicit&#39;Const CSIDL_COMMON_PROGRAMS = &amp;H17Dim ShellApp, FSO, DesktopSet ShellApp = CreateObject(&quot;Shell.Application&quot;)Set FSO = CreateObject(&quot;Scripting.FileSystemObject&quot;)&#39;Set StartMenuFolder = ShellApp.NameSpace(CSIDL_COMMON_PROGRAMS)Set Desktop =  ShellApp.NameSpace(&quot;C:\Users\Wayne\Desktop&quot;)Dim LnkFileLnkFile = Desktop.Self.Path&amp;&quot;\ScheduleNotifier.lnk&quot;If(FSO.FileExists(LnkFile)) Then    Dim tmp, verb    &#39;For Each verb in Desktop.ParseName(&quot;ScheduleNotifier.lnk&quot;).Verbs        &#39;tmp = tmp&amp;verb&amp;chr(13)    &#39;Next    &#39;MsgBox(tmp)    Dim desktopImtes, item    Set desktopImtes = Desktop.Items()    For Each item in desktopImtes        If (item.Name = &quot;ScheduleNotifier&quot;) Then            &#39;MsgBox(item.Name)            For Each verb in item.Verbs                If (verb.Name = &quot;Pin to Tas&amp;kbar&quot;) Then &#39;If (verb.Name = &quot;锁定到任务栏(&amp;K)&quot;)                    verb.DoIt                End If            Next        End If    NextEnd IfSet FSO = NothingSet ShellApp = NothingUnpin from TaskbarOption Explicit&#39;Const CSIDL_COMMON_PROGRAMS = &amp;H17Dim ShellApp, FSO, DesktopSet ShellApp = CreateObject(&quot;Shell.Application&quot;)Set FSO = CreateObject(&quot;Scripting.FileSystemObject&quot;)&#39;Set StartMenuFolder = ShellApp.NameSpace(CSIDL_COMMON_PROGRAMS)Set Desktop =  ShellApp.NameSpace(&quot;C:\Users\Wayne\Desktop&quot;)Dim LnkFileLnkFile = Desktop.Self.Path&amp;&quot;\ScheduleNotifier.lnk&quot;If(FSO.FileExists(LnkFile)) Then    Dim tmp, verb    &#39;For Each verb in Desktop.ParseName(&quot;ScheduleNotifier.lnk&quot;).Verbs        &#39;tmp = tmp&amp;verb&amp;chr(13)    &#39;Next    &#39;MsgBox(tmp)    Dim desktopImtes, item    Set desktopImtes = Desktop.Items()    For Each item in desktopImtes        If (item.Name = &quot;ScheduleNotifier&quot;) Then            &#39;MsgBox(item.Name)            For Each verb in item.Verbs                If (verb.Name = &quot;Unpin from Tas&amp;kbar&quot;) Then &#39;If (verb.Name = &quot;从任务栏脱离(&amp;K)&quot;)                    verb.DoIt                End If            Next        End If    NextEnd IfSet FSO = NothingSet ShellApp = NothingAlthough two snippets of VBS code are simple and stright-forward, they has on serious limitation, it only support one specified language, attention of this line of code:If (verb.Name = &quot;Pin to Tas&amp;kbar&quot;) Then &#39;If (verb.Name = &quot;锁定到任务栏(&amp;K)&quot;)On Chinese locale, I have to replace “Pin to Tas&amp;kbar” with “锁定到任务栏(&amp;K)”, so in order to support more languages I need to know each exact {Pin sentence} to do the pinning, you know, google translation won’t always work in this case:), so I definitely don’t want to do that…You probably ask WHY??? Because FolderItemVerb object only has one property: Name, and Name is definitely “language sensitive“, MSDN does mention there are two more properties “Application” and “Parent” however they are “Not implemented”.Several tipsFor a specific Windows user, all shortcuts pinned onto taskbar store the shortcuts files under   %AppData%\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar OEM manufacturers could “pre-pin” some shortcut onto the Taskbar before shipping the PC/laptops to the consumers, simply run batch command below during the DASH (see Desktop and mobile Architecture for System Hardware) process:   Rem Pining OEM Welcome Center app on task barReg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TBDEn /v SBOEM0 /t REG_EXPAND_SZ /d “SomeFile.lnk” /f   &#160;  References  Pin Items to the Start Menu or Windows 7 Taskbar via Script       http://blogs.technet.com/b/deploymentguys/archive/2009/04/08/pin-items-to-the-start-menu-or-windows-7-taskbar-via-script.aspx  Pin and Un-pin items to/from the Windows 7 taskbar       http://blog.ananthonline.net/?p=37  ">
+  <meta name="twitter:url" content="http://localhost:4000/Programmatically-PIN-shortcut-Onto-Taskbar-on-Win7">
 
   
     <meta name="twitter:card" content="summary">
@@ -41,7 +41,7 @@
 
 
 
-  <meta property="article:published_time" content="2010-07-17T00:00:00-07:00">
+  <meta property="article:published_time" content="2010-07-17T00:00:00+08:00">
 
 
 
@@ -54,7 +54,7 @@
   
 
 
-<link rel="canonical" href="https://wayneye.com/Programmatically-PIN-shortcut-Onto-Taskbar-on-Win7">
+<link rel="canonical" href="http://localhost:4000/Programmatically-PIN-shortcut-Onto-Taskbar-on-Win7">
 
 
 
@@ -103,11 +103,11 @@
     <!-- start custom head snippets -->
 
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
-<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
-<link rel="manifest" href="assets/images/favicon/site.webmanifest">
-<link rel="mask-icon" href="assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 
@@ -136,7 +136,7 @@
             </li><li class="masthead__menu-item">
               <a href="/search/" >Search</a>
             </li><li class="masthead__menu-item">
-              <a href="/album/" >Album</a>
+              <a href="/gallery/" >Gallery</a>
             </li><li class="masthead__menu-item">
               <a href="/about/" >About</a>
             </li></ul>
@@ -284,7 +284,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Programmatically PIN shortcut onto Taskbar on Win7">
-    <meta itemprop="description" content="Background">
+    <meta itemprop="description" content="BackgroundDuring my work I got one requirement of pinning a specific shortcut file (*.lnk) onto the Windows 7 Taskbar, after investigating I found programmtically achive this is “not permitted”, refer MSDN article: http://msdn.microsoft.com/en-us/library/dd378460(VS.85).aspx  A small set of applications are pinned by default for new installations. Other than these, only the user can pin further applications; programmatic pinning by an application is not permitted.However, the exception comes from Windows Script Hosting, a snippet of VBscript can achieve my requirement, I read several articles (refer the end of this post) and wrote two VBS scripts showing below:Pin to TaskbarOption Explicit&#39;Const CSIDL_COMMON_PROGRAMS = &amp;H17Dim ShellApp, FSO, DesktopSet ShellApp = CreateObject(&quot;Shell.Application&quot;)Set FSO = CreateObject(&quot;Scripting.FileSystemObject&quot;)&#39;Set StartMenuFolder = ShellApp.NameSpace(CSIDL_COMMON_PROGRAMS)Set Desktop =  ShellApp.NameSpace(&quot;C:\Users\Wayne\Desktop&quot;)Dim LnkFileLnkFile = Desktop.Self.Path&amp;&quot;\ScheduleNotifier.lnk&quot;If(FSO.FileExists(LnkFile)) Then    Dim tmp, verb    &#39;For Each verb in Desktop.ParseName(&quot;ScheduleNotifier.lnk&quot;).Verbs        &#39;tmp = tmp&amp;verb&amp;chr(13)    &#39;Next    &#39;MsgBox(tmp)    Dim desktopImtes, item    Set desktopImtes = Desktop.Items()    For Each item in desktopImtes        If (item.Name = &quot;ScheduleNotifier&quot;) Then            &#39;MsgBox(item.Name)            For Each verb in item.Verbs                If (verb.Name = &quot;Pin to Tas&amp;kbar&quot;) Then &#39;If (verb.Name = &quot;锁定到任务栏(&amp;K)&quot;)                    verb.DoIt                End If            Next        End If    NextEnd IfSet FSO = NothingSet ShellApp = NothingUnpin from TaskbarOption Explicit&#39;Const CSIDL_COMMON_PROGRAMS = &amp;H17Dim ShellApp, FSO, DesktopSet ShellApp = CreateObject(&quot;Shell.Application&quot;)Set FSO = CreateObject(&quot;Scripting.FileSystemObject&quot;)&#39;Set StartMenuFolder = ShellApp.NameSpace(CSIDL_COMMON_PROGRAMS)Set Desktop =  ShellApp.NameSpace(&quot;C:\Users\Wayne\Desktop&quot;)Dim LnkFileLnkFile = Desktop.Self.Path&amp;&quot;\ScheduleNotifier.lnk&quot;If(FSO.FileExists(LnkFile)) Then    Dim tmp, verb    &#39;For Each verb in Desktop.ParseName(&quot;ScheduleNotifier.lnk&quot;).Verbs        &#39;tmp = tmp&amp;verb&amp;chr(13)    &#39;Next    &#39;MsgBox(tmp)    Dim desktopImtes, item    Set desktopImtes = Desktop.Items()    For Each item in desktopImtes        If (item.Name = &quot;ScheduleNotifier&quot;) Then            &#39;MsgBox(item.Name)            For Each verb in item.Verbs                If (verb.Name = &quot;Unpin from Tas&amp;kbar&quot;) Then &#39;If (verb.Name = &quot;从任务栏脱离(&amp;K)&quot;)                    verb.DoIt                End If            Next        End If    NextEnd IfSet FSO = NothingSet ShellApp = NothingAlthough two snippets of VBS code are simple and stright-forward, they has on serious limitation, it only support one specified language, attention of this line of code:If (verb.Name = &quot;Pin to Tas&amp;kbar&quot;) Then &#39;If (verb.Name = &quot;锁定到任务栏(&amp;K)&quot;)On Chinese locale, I have to replace “Pin to Tas&amp;kbar” with “锁定到任务栏(&amp;K)”, so in order to support more languages I need to know each exact {Pin sentence} to do the pinning, you know, google translation won’t always work in this case:), so I definitely don’t want to do that…You probably ask WHY??? Because FolderItemVerb object only has one property: Name, and Name is definitely “language sensitive“, MSDN does mention there are two more properties “Application” and “Parent” however they are “Not implemented”.Several tipsFor a specific Windows user, all shortcuts pinned onto taskbar store the shortcuts files under   %AppData%\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar OEM manufacturers could “pre-pin” some shortcut onto the Taskbar before shipping the PC/laptops to the consumers, simply run batch command below during the DASH (see Desktop and mobile Architecture for System Hardware) process:   Rem Pining OEM Welcome Center app on task barReg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TBDEn /v SBOEM0 /t REG_EXPAND_SZ /d “SomeFile.lnk” /f   &#160;  References  Pin Items to the Start Menu or Windows 7 Taskbar via Script       http://blogs.technet.com/b/deploymentguys/archive/2009/04/08/pin-items-to-the-start-menu-or-windows-7-taskbar-via-script.aspx  Pin and Un-pin items to/from the Windows 7 taskbar       http://blog.ananthonline.net/?p=37  ">
     <meta itemprop="datePublished" content="July 17, 2010">
     
 
@@ -486,7 +486,7 @@ LnkFile <span style="color: #308080">=</span> Desktop<span style="color: #008c00
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2010-07-17T00:00:00-07:00">July 17, 2010</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2010-07-17T00:00:00+08:00">July 17, 2010</time></p>
         
       </footer>
 
@@ -495,11 +495,11 @@ LnkFile <span style="color: #308080">=</span> Desktop<span style="color: #008c00
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?via=wayneye&text=Programmatically+PIN+shortcut+onto+Taskbar+on+Win7%20https%3A%2F%2Fwayneye.com%2FProgrammatically-PIN-shortcut-Onto-Taskbar-on-Win7" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=wayneye&text=Programmatically+PIN+shortcut+onto+Taskbar+on+Win7%20http%3A%2F%2Flocalhost%3A4000%2FProgrammatically-PIN-shortcut-Onto-Taskbar-on-Win7" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwayneye.com%2FProgrammatically-PIN-shortcut-Onto-Taskbar-on-Win7" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2FProgrammatically-PIN-shortcut-Onto-Taskbar-on-Win7" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwayneye.com%2FProgrammatically-PIN-shortcut-Onto-Taskbar-on-Win7" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2FProgrammatically-PIN-shortcut-Onto-Taskbar-on-Win7" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -516,15 +516,6 @@ LnkFile <span style="color: #308080">=</span> Desktop<span style="color: #008c00
   </nav>
 
     </div>
-
-    
-      <div class="page__comments">
-  
-  
-      <h4 class="page__comments-title">Leave a comment</h4>
-      <section id="disqus_thread"></section>
-    
-</div>
 
     
   </article>
@@ -559,6 +550,14 @@ LnkFile <span style="color: #308080">=</span> Desktop<span style="color: #008c00
     
     <p class="archive__item-excerpt" itemprop="description">Background
 
+I was planning to attend #adskfootball2019 in Dublin, Ireland from Jun 14th to Jun 16th, 2019:
+
+    
+    Autodesk Football Tournament 2019
+
+
+In order to attend, I needed applying Ireland VISA, and since I was planning to fly back to Shanghai later in June, so I thought I could just fly from SF to Dublin, then Dublin to Shanghai, and soon I realized that there is no direct flight from DUB to PVG, so a practical (and also very fun and economic) option is to fly from Dublin to London, and then London to Shanghai, bingo ^_^
+
 </p>
   </article>
 </div>
@@ -588,7 +587,18 @@ LnkFile <span style="color: #308080">=</span> Desktop<span style="color: #008c00
     
     <p class="archive__item-excerpt" itemprop="description">Course overview video
 
-</p>
+
+
+Publishing information
+
+After 8 months of continuously hard working, this &lt;Master AWS Development&gt; video course is now live at: Packt Website, I described this course as below:
+
+
+  Amazon Web Services (AWS) is the gold standard of the cloud. If you are web and cloud computing developer, your life becomes much easier by diving deeper into AWS.
+
+
+
+  This course shows you how to use AWS services such as IAM, S3, EC2, and RDS/Dynamo to make your applications reliable and have a consistent performance. You’ll build modern serverless applications on the cloud, and u...</p>
   </article>
 </div>
 
@@ -616,6 +626,8 @@ LnkFile <span style="color: #308080">=</span> Desktop<span style="color: #008c00
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">
+
+3 years of AWS hands on experience, two months of preparation, 30 hours of course learning, 300+ exam practices, this was the work I’ve done to pass the AWS Certified Solutions Architect - Associate, my exam result is below:
 
 </p>
   </article>
@@ -646,7 +658,12 @@ LnkFile <span style="color: #308080">=</span> Desktop<span style="color: #008c00
     
     <p class="archive__item-excerpt" itemprop="description">Background
 
-</p>
+I have been researched and watched many NAS options to setup a home storage+media server during the past year, and so far there was no perfect answer, either lacking features/performance, or way too expensive… An Intel Celeron CPU + 1GB mem with a customized Linux (in other words: closed source )running Plex or something else, and the cost is like $400 (terrible hardware performance), or $800+/$1000+, way too expensive, examples:
+
+
+  Synology DS216J NAS DiskStation (DS216j)
+  WD My Cloud EX4100 Diskless Expert Series 4-Bay NAS
+  NETGEAR ReadyNAS 524X High Performance 10GbE 4-bay...</p>
   </article>
 </div>
 
@@ -718,7 +735,7 @@ LnkFile <span style="color: #308080">=</span> Desktop<span style="color: #008c00
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://wayneye.com/Programmatically-PIN-shortcut-Onto-Taskbar-on-Win7";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.url = "http://localhost:4000/Programmatically-PIN-shortcut-Onto-Taskbar-on-Win7";  // Replace PAGE_URL with your page's canonical URL variable
       this.page.identifier = "/Programmatically-PIN-shortcut-onto-Taskbar-on-Win7"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     (function() { // DON'T EDIT BELOW THIS LINE

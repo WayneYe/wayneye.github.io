@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Wayne's Geek Life">
 <meta property="og:title" content="Wayne’s Geek Life">
-<meta property="og:url" content="https://wayneye.com/page2/">
+<meta property="og:url" content="http://localhost:4000/page2/">
 
 
 
@@ -28,7 +28,7 @@
   <meta name="twitter:site" content="@wayneye">
   <meta name="twitter:title" content="Wayne’s Geek Life">
   <meta name="twitter:description" content="I am a software engineer, technical lead and also a geek, I’ve immersed in software/web development for 14 years, I hack using these languages: Python, Golang, JavaScript/nodejs, Ruby/RoR, C#. I am an AWS Certified Solutions Architect (2017-2019), PMP and CodeProject MVP.">
-  <meta name="twitter:url" content="https://wayneye.com/page2/">
+  <meta name="twitter:url" content="http://localhost:4000/page2/">
 
   
     <meta name="twitter:card" content="summary">
@@ -50,13 +50,13 @@
   
 
 
-<link rel="canonical" href="https://wayneye.com/page2/">
+<link rel="canonical" href="http://localhost:4000/page2/">
 
 
-  <link rel="prev" href="https://wayneye.com/">
+  <link rel="prev" href="http://localhost:4000/">
 
 
-  <link rel="next" href="https://wayneye.com/page3/">
+  <link rel="next" href="http://localhost:4000/page3/">
 
 
 
@@ -103,11 +103,11 @@
     <!-- start custom head snippets -->
 
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
-<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
-<link rel="manifest" href="assets/images/favicon/site.webmanifest">
-<link rel="mask-icon" href="assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 
@@ -136,7 +136,7 @@
             </li><li class="masthead__menu-item">
               <a href="/search/" >Search</a>
             </li><li class="masthead__menu-item">
-              <a href="/album/" >Album</a>
+              <a href="/gallery/" >Gallery</a>
             </li><li class="masthead__menu-item">
               <a href="/about/" >About</a>
             </li></ul>
@@ -355,12 +355,9 @@ Exhaustive documentation:&nbsp;http://docs.mongodb.org/manual/tutorial/install-m
 Mongo executables will be installed into&nbsp;/use/bin/, database files will under&nbsp;/data/db/
 Log file location:&nbsp;/var/log/mongodb/mongodb.log
 
-Terminology
 
-Adminstration
-sudo service mongodb start/stop/restart&nbsp;or simply issue&nbsp;mongod&nbsp;to start MongoDB process
-mongo&nbsp;to enter MongoDB Console
-&gt; show dbs &nbsp;#Show all databases&gt; db &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; #Show current db&gt; db.help() &nbsp; #View commands related with db# "Create" ...</p>
+
+</p>
   </article>
 </div>
 
@@ -391,18 +388,7 @@ mongo&nbsp;to enter MongoDB Console
 本屌丝租用的是一套位于Pasir Pajang Hill据说是富人区的海景房, 每月开销S$3600，跟Mark兄弟分摊。
  海景房 - 每天24小时都有不一样的景色
 
-鄙人酷爱游泳，之前2个月住在Carabelle时每晚9点回家，50米奥林匹克泳池包场的感觉实在是太爽了，在天朝只有半夜才行吧，而且水质也没法比。目前这个Condo的泳池较小，聊胜于无吧:)每天送儿子回到家，老婆早已准备好各式美味晚餐，让我自己都嫉妒自己:)
- 老婆的新拿手菜 - 烤鱼
-儿子开始在Learning Vision上幼儿园
-每天早上开开心心送儿子去我司楼下的幼儿园，既增进父子感情，又不耽误工作。
-   自行车座椅上的儿子
-   自行车座椅上的儿子
-   旅行箱里的儿子，这样的景象其实发生在周末我们一家人去超级市场时，由于儿童推车必须在Bus上收起来，我们便用旅行箱作为儿子的座驾，他也非常喜欢，只是走在路上回头率实在很高:)
-儿子经过1个月的适应，现在已经非常享受幼儿园的环境了。
-   幼儿园新生活
-这里的食物真的很赞
-狮城招牌辣椒螃蟹(Chili Crab)，在Jumbo Seafood吃的，吃后真是&ldquo;三月不知肉味&rdquo;了，整个享受的过程中我就不停地感叹：&ldquo;怎么可以做得这么好吃。。。&rdquo;。
-   新加坡招牌菜式 - 辣椒螃蟹...</p>
+</p>
   </article>
 </div>
 
@@ -461,7 +447,7 @@ Assume we are now in Jurassic period, the technologies above are in Cambrian per
 Varnish is an HTTP accelerator, the official page is: https://www.varnish-cache.org/.
 Varnish stands in front of the web application server to be a cache reverse proxy (also can be a load balancer), it can simply cache all the static resources in memory, and can also be powerfully configed using VCL (Varnish Configuration Language, a DSL for Varnish configuration) to cache dynamic content, in addition, Varnish implements ESI (Edge Side Include) standards to provide ability to cache static parts of the page.
 
-A web server uses Varnish can easily handle more than 10,000 requests/...</p>
+</p>
   </article>
 </div>
 
@@ -494,8 +480,8 @@ On the homepage of nxing wiki, there used to be one sentence which really impres
 Apache is like Microsoft Word, it has a million options but you only need six. Nginx does those six things, and it does five of them 50 times faster than Apache. &nbsp;--Chris Lea
 
 
-Now it is not there anymore, how you can still search on the web to see it:&nbsp;example link.
-One of the six things nginx can do and can do gorgeous is putting it in front of the web application server as a Cache Reverse Proxy, which ...</p>
+
+</p>
   </article>
 </div>
 
@@ -525,7 +511,7 @@ One of the six things nginx can do and can do gorgeous is putting it in front of
     <p class="archive__item-excerpt" itemprop="description">In our daily TDD/BDD work, we spent most of our time in test cases, we analyze requirements, write test case, run it and watch it fail, implement code to make the test pass, repeat the process "until money runs out". Thus the speed of running those test cases have significant impact on a team's performance, ! You can't tolerance writing a test case, waiting 1 minute finish; You can't tolerance CI finishes running all RSpec/Cucumber tests for half an hour! I can't! So I motivated to improve this!
 The result
 
-In the project I was working on there are 1566 RSpec examples for all models, after ...</p>
+</p>
   </article>
 </div>
 
@@ -563,8 +549,7 @@ In the project I was working on there are 1566 RSpec examples for all models, af
     
   
 
-Free JavaScript CDN providers
-Majority of the largest websites (Facebook, Twitter, Yahoo, Google, etc.) on...</p>
+</p>
   </article>
 </div>
 
@@ -594,11 +579,7 @@ Majority of the largest websites (Facebook, Twitter, Yahoo, Google, etc.) on...<
     <p class="archive__item-excerpt" itemprop="description"> ThoughtWorks card on my MacBook Pro (Click to enlarge)
 One month milestone
 
-I just experienced my first month in ThoughtWorks, in fact I decided to record my feelings and thoughts even before I joint this incredible company, I believe it would be a unforgettable period of my life. And right now it's the time for me to do it! To document the different and special places of ThoughtWorks from a developer's/geek's eye.
-Culture in ThoughtWorks
- ThoughtWorks office (Click to enlarge)
-Pair programming
-My first time pair experience was the interview taken place in ThoughtWorks Xi'an office, which ...</p>
+</p>
   </article>
 </div>
 
@@ -628,15 +609,7 @@ My first time pair experience was the interview taken place in ThoughtWorks Xi'a
     <p class="archive__item-excerpt" itemprop="description">
 It is a huge honor for me, I appreciate the recognition from the CodeProject team, and I believe this is not only a recognition but also a kind of&nbsp;encourage,&nbsp;I&nbsp;will&nbsp;definitely try my best to work harder in the coming 2012:)
 
-
-CodeProject MVP List 2012
-
-My current profile&nbsp;
-2011 is an inflection point of my life, I became a father, forced by the presure, I started working really hard:) Below are few articles I posted on CodeProject, I also summarized my articles in my shelf.
-
-A Complete Impersonation Demo in C#.NET
-JavaScript - Foundation of the Language
-HTML5 Web So...</p>
+</p>
   </article>
 </div>
 

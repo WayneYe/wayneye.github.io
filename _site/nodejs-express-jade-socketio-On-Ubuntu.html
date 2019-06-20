@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>nodejs+express+jade+socket.io on Ubuntu 11.04 - Wayne’s Geek Life</title>
-<meta name="description" content="Introductionsocket.io&nbsp;is a brilliant project which perfectly supports HTML5 WebSocket, in additional, it can fall back to flash or long polling when the client web browser does not support WebSocket, I explored it today on Ubuntu, I summarized the process in this post.&nbsp;Install nodejsI used nodejs v0.4.11, the latest stable version, by mannually compile/make/install.sudo curl http://nodejs.org/dist/node-v0.4.11.tar.gz -o ~/Desktop/WayneDevLab/node.tar sudo tar -xf node.tar cd node-v0.4.11./configuremake sudo make install">
+<meta name="description" content="Introductionsocket.io&nbsp;is a brilliant project which perfectly supports HTML5 WebSocket, in additional, it can fall back to flash or long polling when the client web browser does not support WebSocket, I explored it today on Ubuntu, I summarized the process in this post.&nbsp;Install nodejsI used nodejs v0.4.11, the latest stable version, by mannually compile/make/install.sudo curl http://nodejs.org/dist/node-v0.4.11.tar.gz -o ~/Desktop/WayneDevLab/node.tar sudo tar -xf node.tar cd node-v0.4.11./configuremake sudo make installIn the &quot;./configure&quot; step above if it prompted &quot;libssl-dev&quot; not found, please install libssl-dev (sudo apt-get install libssl-dev) which is required by node for hosting HTTPs server.Install npmcurl http://npmjs.org/install.sh | shInstall expressexpress&nbsp;is an insanely fast and high performance server-side JavaScript web development framework built on node, hosting a real web server based on node will be much harder without it:)$ npm install -g express$ express /tmp/foo &amp;&amp; cd /tmp/foo$ npm install -d&nbsp;Install socket.ionpm install socket.ioSetting up the Web server!!I&#39;ve modified my app.js as below: var express = require(&#39;express&#39;);  var app = module.exports = express.createServer(),  &nbsp;&nbsp;&nbsp; io = require(&#39;socket.io&#39;).listen(app);  // Configuration app.configure(function(){ &nbsp; app.set(&#39;views&#39;, __dirname + &#39;/views&#39;); &nbsp; app.set(&#39;view engine&#39;, &#39;jade&#39;); &nbsp; app.set(&#39;view options&#39;, {layout: false}); &nbsp; app.use(express.bodyParser()); &nbsp; app.use(express.methodOverride()); &nbsp; app.use(app.router); &nbsp; app.use(express.static(__dirname + &#39;/public&#39;)); });  app.configure(&#39;development&#39;, function(){ &nbsp; app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));  });  app.configure(&#39;production&#39;, function(){ &nbsp; app.use(express.errorHandler());  });  // Routes  app.get(&#39;/&#39;, function(req, res){ &nbsp; res.render(&#39;index&#39;, { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; title: &#39;Wayne Express Hello World&#39;, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; youAreUsingJade: true, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; domain: &#39;192.168.1.4&#39; &nbsp; }); });  app.listen(3000); console.log(&quot;Express server listening on port %d in %s mode&quot;, app.address().port, app.settings.env);  io.sockets.on(&#39;connection&#39;, function (socket) { &nbsp; socket.emit(&#39;news&#39;, { hello: &#39;world&#39; }); &nbsp; socket.on(&#39;my other event&#39;, function (data) { &nbsp;&nbsp;&nbsp; console.log(data); &nbsp; }); });And below is my index.jade:!!! 5html(lang=&quot;en&quot;)  head    title= title    script(src=&#39;http://&#39;+ domain + &#39;:3000/socket.io/socket.io.js&#39;)    script(type=&#39;text/javascript&#39;)      var socket;      socket =  io.connect(&#39;http://192.168.1.4:3000&#39;);      socket.on(&#39;news&#39;, function (data) {       console.log(data);       socket.emit(&#39;my other event&#39;, { my: &#39;data&#39; });             });  body    h1 Wayne WebSocket Demo using Socket.io    #container      - if (youAreUsingJade)        p You are amazing      - else        p Get on it!    p Powered By a(href=&#39;http://socket.io&#39;) Socket.io    footer Copyright&copy;2011 http://wayneye.comTesting everything upStart the server by:$ node app.jsIt works:)I tested the combination above by using google Chromoum Dev 12 and Dev 15, they seperately adhere WebSocket protocol draft-hixie-thewebsocketprotocol-76&nbsp;and draft-ietf-hybi-thewebsocketprotocol-10, the connection details for hybi10 is showing below:socket.io will print out useful information on console when running:&nbsp;Wish that helps:)">
 
 
 
@@ -18,10 +18,10 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Wayne's Geek Life">
 <meta property="og:title" content="nodejs+express+jade+socket.io on Ubuntu 11.04">
-<meta property="og:url" content="https://wayneye.com/nodejs-express-jade-socketio-On-Ubuntu">
+<meta property="og:url" content="http://localhost:4000/nodejs-express-jade-socketio-On-Ubuntu">
 
 
-  <meta property="og:description" content="Introductionsocket.io&nbsp;is a brilliant project which perfectly supports HTML5 WebSocket, in additional, it can fall back to flash or long polling when the client web browser does not support WebSocket, I explored it today on Ubuntu, I summarized the process in this post.&nbsp;Install nodejsI used nodejs v0.4.11, the latest stable version, by mannually compile/make/install.sudo curl http://nodejs.org/dist/node-v0.4.11.tar.gz -o ~/Desktop/WayneDevLab/node.tar sudo tar -xf node.tar cd node-v0.4.11./configuremake sudo make install">
+  <meta property="og:description" content="Introductionsocket.io&nbsp;is a brilliant project which perfectly supports HTML5 WebSocket, in additional, it can fall back to flash or long polling when the client web browser does not support WebSocket, I explored it today on Ubuntu, I summarized the process in this post.&nbsp;Install nodejsI used nodejs v0.4.11, the latest stable version, by mannually compile/make/install.sudo curl http://nodejs.org/dist/node-v0.4.11.tar.gz -o ~/Desktop/WayneDevLab/node.tar sudo tar -xf node.tar cd node-v0.4.11./configuremake sudo make installIn the &quot;./configure&quot; step above if it prompted &quot;libssl-dev&quot; not found, please install libssl-dev (sudo apt-get install libssl-dev) which is required by node for hosting HTTPs server.Install npmcurl http://npmjs.org/install.sh | shInstall expressexpress&nbsp;is an insanely fast and high performance server-side JavaScript web development framework built on node, hosting a real web server based on node will be much harder without it:)$ npm install -g express$ express /tmp/foo &amp;&amp; cd /tmp/foo$ npm install -d&nbsp;Install socket.ionpm install socket.ioSetting up the Web server!!I&#39;ve modified my app.js as below: var express = require(&#39;express&#39;);  var app = module.exports = express.createServer(),  &nbsp;&nbsp;&nbsp; io = require(&#39;socket.io&#39;).listen(app);  // Configuration app.configure(function(){ &nbsp; app.set(&#39;views&#39;, __dirname + &#39;/views&#39;); &nbsp; app.set(&#39;view engine&#39;, &#39;jade&#39;); &nbsp; app.set(&#39;view options&#39;, {layout: false}); &nbsp; app.use(express.bodyParser()); &nbsp; app.use(express.methodOverride()); &nbsp; app.use(app.router); &nbsp; app.use(express.static(__dirname + &#39;/public&#39;)); });  app.configure(&#39;development&#39;, function(){ &nbsp; app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));  });  app.configure(&#39;production&#39;, function(){ &nbsp; app.use(express.errorHandler());  });  // Routes  app.get(&#39;/&#39;, function(req, res){ &nbsp; res.render(&#39;index&#39;, { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; title: &#39;Wayne Express Hello World&#39;, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; youAreUsingJade: true, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; domain: &#39;192.168.1.4&#39; &nbsp; }); });  app.listen(3000); console.log(&quot;Express server listening on port %d in %s mode&quot;, app.address().port, app.settings.env);  io.sockets.on(&#39;connection&#39;, function (socket) { &nbsp; socket.emit(&#39;news&#39;, { hello: &#39;world&#39; }); &nbsp; socket.on(&#39;my other event&#39;, function (data) { &nbsp;&nbsp;&nbsp; console.log(data); &nbsp; }); });And below is my index.jade:!!! 5html(lang=&quot;en&quot;)  head    title= title    script(src=&#39;http://&#39;+ domain + &#39;:3000/socket.io/socket.io.js&#39;)    script(type=&#39;text/javascript&#39;)      var socket;      socket =  io.connect(&#39;http://192.168.1.4:3000&#39;);      socket.on(&#39;news&#39;, function (data) {       console.log(data);       socket.emit(&#39;my other event&#39;, { my: &#39;data&#39; });             });  body    h1 Wayne WebSocket Demo using Socket.io    #container      - if (youAreUsingJade)        p You are amazing      - else        p Get on it!    p Powered By a(href=&#39;http://socket.io&#39;) Socket.io    footer Copyright&copy;2011 http://wayneye.comTesting everything upStart the server by:$ node app.jsIt works:)I tested the combination above by using google Chromoum Dev 12 and Dev 15, they seperately adhere WebSocket protocol draft-hixie-thewebsocketprotocol-76&nbsp;and draft-ietf-hybi-thewebsocketprotocol-10, the connection details for hybi10 is showing below:socket.io will print out useful information on console when running:&nbsp;Wish that helps:)">
 
 
 
@@ -29,8 +29,8 @@
 
   <meta name="twitter:site" content="@wayneye">
   <meta name="twitter:title" content="nodejs+express+jade+socket.io on Ubuntu 11.04">
-  <meta name="twitter:description" content="Introductionsocket.io&nbsp;is a brilliant project which perfectly supports HTML5 WebSocket, in additional, it can fall back to flash or long polling when the client web browser does not support WebSocket, I explored it today on Ubuntu, I summarized the process in this post.&nbsp;Install nodejsI used nodejs v0.4.11, the latest stable version, by mannually compile/make/install.sudo curl http://nodejs.org/dist/node-v0.4.11.tar.gz -o ~/Desktop/WayneDevLab/node.tar sudo tar -xf node.tar cd node-v0.4.11./configuremake sudo make install">
-  <meta name="twitter:url" content="https://wayneye.com/nodejs-express-jade-socketio-On-Ubuntu">
+  <meta name="twitter:description" content="Introductionsocket.io&nbsp;is a brilliant project which perfectly supports HTML5 WebSocket, in additional, it can fall back to flash or long polling when the client web browser does not support WebSocket, I explored it today on Ubuntu, I summarized the process in this post.&nbsp;Install nodejsI used nodejs v0.4.11, the latest stable version, by mannually compile/make/install.sudo curl http://nodejs.org/dist/node-v0.4.11.tar.gz -o ~/Desktop/WayneDevLab/node.tar sudo tar -xf node.tar cd node-v0.4.11./configuremake sudo make installIn the &quot;./configure&quot; step above if it prompted &quot;libssl-dev&quot; not found, please install libssl-dev (sudo apt-get install libssl-dev) which is required by node for hosting HTTPs server.Install npmcurl http://npmjs.org/install.sh | shInstall expressexpress&nbsp;is an insanely fast and high performance server-side JavaScript web development framework built on node, hosting a real web server based on node will be much harder without it:)$ npm install -g express$ express /tmp/foo &amp;&amp; cd /tmp/foo$ npm install -d&nbsp;Install socket.ionpm install socket.ioSetting up the Web server!!I&#39;ve modified my app.js as below: var express = require(&#39;express&#39;);  var app = module.exports = express.createServer(),  &nbsp;&nbsp;&nbsp; io = require(&#39;socket.io&#39;).listen(app);  // Configuration app.configure(function(){ &nbsp; app.set(&#39;views&#39;, __dirname + &#39;/views&#39;); &nbsp; app.set(&#39;view engine&#39;, &#39;jade&#39;); &nbsp; app.set(&#39;view options&#39;, {layout: false}); &nbsp; app.use(express.bodyParser()); &nbsp; app.use(express.methodOverride()); &nbsp; app.use(app.router); &nbsp; app.use(express.static(__dirname + &#39;/public&#39;)); });  app.configure(&#39;development&#39;, function(){ &nbsp; app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));  });  app.configure(&#39;production&#39;, function(){ &nbsp; app.use(express.errorHandler());  });  // Routes  app.get(&#39;/&#39;, function(req, res){ &nbsp; res.render(&#39;index&#39;, { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; title: &#39;Wayne Express Hello World&#39;, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; youAreUsingJade: true, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; domain: &#39;192.168.1.4&#39; &nbsp; }); });  app.listen(3000); console.log(&quot;Express server listening on port %d in %s mode&quot;, app.address().port, app.settings.env);  io.sockets.on(&#39;connection&#39;, function (socket) { &nbsp; socket.emit(&#39;news&#39;, { hello: &#39;world&#39; }); &nbsp; socket.on(&#39;my other event&#39;, function (data) { &nbsp;&nbsp;&nbsp; console.log(data); &nbsp; }); });And below is my index.jade:!!! 5html(lang=&quot;en&quot;)  head    title= title    script(src=&#39;http://&#39;+ domain + &#39;:3000/socket.io/socket.io.js&#39;)    script(type=&#39;text/javascript&#39;)      var socket;      socket =  io.connect(&#39;http://192.168.1.4:3000&#39;);      socket.on(&#39;news&#39;, function (data) {       console.log(data);       socket.emit(&#39;my other event&#39;, { my: &#39;data&#39; });             });  body    h1 Wayne WebSocket Demo using Socket.io    #container      - if (youAreUsingJade)        p You are amazing      - else        p Get on it!    p Powered By a(href=&#39;http://socket.io&#39;) Socket.io    footer Copyright&copy;2011 http://wayneye.comTesting everything upStart the server by:$ node app.jsIt works:)I tested the combination above by using google Chromoum Dev 12 and Dev 15, they seperately adhere WebSocket protocol draft-hixie-thewebsocketprotocol-76&nbsp;and draft-ietf-hybi-thewebsocketprotocol-10, the connection details for hybi10 is showing below:socket.io will print out useful information on console when running:&nbsp;Wish that helps:)">
+  <meta name="twitter:url" content="http://localhost:4000/nodejs-express-jade-socketio-On-Ubuntu">
 
   
     <meta name="twitter:card" content="summary">
@@ -41,7 +41,7 @@
 
 
 
-  <meta property="article:published_time" content="2011-08-29T00:00:00-07:00">
+  <meta property="article:published_time" content="2011-08-29T00:00:00+08:00">
 
 
 
@@ -54,7 +54,7 @@
   
 
 
-<link rel="canonical" href="https://wayneye.com/nodejs-express-jade-socketio-On-Ubuntu">
+<link rel="canonical" href="http://localhost:4000/nodejs-express-jade-socketio-On-Ubuntu">
 
 
 
@@ -103,11 +103,11 @@
     <!-- start custom head snippets -->
 
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
-<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
-<link rel="manifest" href="assets/images/favicon/site.webmanifest">
-<link rel="mask-icon" href="assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 
@@ -136,7 +136,7 @@
             </li><li class="masthead__menu-item">
               <a href="/search/" >Search</a>
             </li><li class="masthead__menu-item">
-              <a href="/album/" >Album</a>
+              <a href="/gallery/" >Gallery</a>
             </li><li class="masthead__menu-item">
               <a href="/about/" >About</a>
             </li></ul>
@@ -284,7 +284,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="nodejs+express+jade+socket.io on Ubuntu 11.04">
-    <meta itemprop="description" content="Introductionsocket.io&nbsp;is a brilliant project which perfectly supports HTML5 WebSocket, in additional, it can fall back to flash or long polling when the client web browser does not support WebSocket, I explored it today on Ubuntu, I summarized the process in this post.&nbsp;Install nodejsI used nodejs v0.4.11, the latest stable version, by mannually compile/make/install.sudo curl http://nodejs.org/dist/node-v0.4.11.tar.gz -o ~/Desktop/WayneDevLab/node.tar sudo tar -xf node.tar cd node-v0.4.11./configuremake sudo make install">
+    <meta itemprop="description" content="Introductionsocket.io&nbsp;is a brilliant project which perfectly supports HTML5 WebSocket, in additional, it can fall back to flash or long polling when the client web browser does not support WebSocket, I explored it today on Ubuntu, I summarized the process in this post.&nbsp;Install nodejsI used nodejs v0.4.11, the latest stable version, by mannually compile/make/install.sudo curl http://nodejs.org/dist/node-v0.4.11.tar.gz -o ~/Desktop/WayneDevLab/node.tar sudo tar -xf node.tar cd node-v0.4.11./configuremake sudo make installIn the &quot;./configure&quot; step above if it prompted &quot;libssl-dev&quot; not found, please install libssl-dev (sudo apt-get install libssl-dev) which is required by node for hosting HTTPs server.Install npmcurl http://npmjs.org/install.sh | shInstall expressexpress&nbsp;is an insanely fast and high performance server-side JavaScript web development framework built on node, hosting a real web server based on node will be much harder without it:)$ npm install -g express$ express /tmp/foo &amp;&amp; cd /tmp/foo$ npm install -d&nbsp;Install socket.ionpm install socket.ioSetting up the Web server!!I&#39;ve modified my app.js as below: var express = require(&#39;express&#39;);  var app = module.exports = express.createServer(),  &nbsp;&nbsp;&nbsp; io = require(&#39;socket.io&#39;).listen(app);  // Configuration app.configure(function(){ &nbsp; app.set(&#39;views&#39;, __dirname + &#39;/views&#39;); &nbsp; app.set(&#39;view engine&#39;, &#39;jade&#39;); &nbsp; app.set(&#39;view options&#39;, {layout: false}); &nbsp; app.use(express.bodyParser()); &nbsp; app.use(express.methodOverride()); &nbsp; app.use(app.router); &nbsp; app.use(express.static(__dirname + &#39;/public&#39;)); });  app.configure(&#39;development&#39;, function(){ &nbsp; app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));  });  app.configure(&#39;production&#39;, function(){ &nbsp; app.use(express.errorHandler());  });  // Routes  app.get(&#39;/&#39;, function(req, res){ &nbsp; res.render(&#39;index&#39;, { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; title: &#39;Wayne Express Hello World&#39;, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; youAreUsingJade: true, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; domain: &#39;192.168.1.4&#39; &nbsp; }); });  app.listen(3000); console.log(&quot;Express server listening on port %d in %s mode&quot;, app.address().port, app.settings.env);  io.sockets.on(&#39;connection&#39;, function (socket) { &nbsp; socket.emit(&#39;news&#39;, { hello: &#39;world&#39; }); &nbsp; socket.on(&#39;my other event&#39;, function (data) { &nbsp;&nbsp;&nbsp; console.log(data); &nbsp; }); });And below is my index.jade:!!! 5html(lang=&quot;en&quot;)  head    title= title    script(src=&#39;http://&#39;+ domain + &#39;:3000/socket.io/socket.io.js&#39;)    script(type=&#39;text/javascript&#39;)      var socket;      socket =  io.connect(&#39;http://192.168.1.4:3000&#39;);      socket.on(&#39;news&#39;, function (data) {       console.log(data);       socket.emit(&#39;my other event&#39;, { my: &#39;data&#39; });             });  body    h1 Wayne WebSocket Demo using Socket.io    #container      - if (youAreUsingJade)        p You are amazing      - else        p Get on it!    p Powered By a(href=&#39;http://socket.io&#39;) Socket.io    footer Copyright&copy;2011 http://wayneye.comTesting everything upStart the server by:$ node app.jsIt works:)I tested the combination above by using google Chromoum Dev 12 and Dev 15, they seperately adhere WebSocket protocol draft-hixie-thewebsocketprotocol-76&nbsp;and draft-ietf-hybi-thewebsocketprotocol-10, the connection details for hybi10 is showing below:socket.io will print out useful information on console when running:&nbsp;Wish that helps:)">
     <meta itemprop="datePublished" content="August 29, 2011">
     
 
@@ -429,7 +429,7 @@ html(lang="en")
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2011-08-29T00:00:00-07:00">August 29, 2011</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2011-08-29T00:00:00+08:00">August 29, 2011</time></p>
         
       </footer>
 
@@ -438,11 +438,11 @@ html(lang="en")
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?via=wayneye&text=nodejs%2Bexpress%2Bjade%2Bsocket.io+on+Ubuntu+11.04%20https%3A%2F%2Fwayneye.com%2Fnodejs-express-jade-socketio-On-Ubuntu" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=wayneye&text=nodejs%2Bexpress%2Bjade%2Bsocket.io+on+Ubuntu+11.04%20http%3A%2F%2Flocalhost%3A4000%2Fnodejs-express-jade-socketio-On-Ubuntu" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwayneye.com%2Fnodejs-express-jade-socketio-On-Ubuntu" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fnodejs-express-jade-socketio-On-Ubuntu" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwayneye.com%2Fnodejs-express-jade-socketio-On-Ubuntu" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fnodejs-express-jade-socketio-On-Ubuntu" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -459,15 +459,6 @@ html(lang="en")
   </nav>
 
     </div>
-
-    
-      <div class="page__comments">
-  
-  
-      <h4 class="page__comments-title">Leave a comment</h4>
-      <section id="disqus_thread"></section>
-    
-</div>
 
     
   </article>
@@ -502,6 +493,14 @@ html(lang="en")
     
     <p class="archive__item-excerpt" itemprop="description">Background
 
+I was planning to attend #adskfootball2019 in Dublin, Ireland from Jun 14th to Jun 16th, 2019:
+
+    
+    Autodesk Football Tournament 2019
+
+
+In order to attend, I needed applying Ireland VISA, and since I was planning to fly back to Shanghai later in June, so I thought I could just fly from SF to Dublin, then Dublin to Shanghai, and soon I realized that there is no direct flight from DUB to PVG, so a practical (and also very fun and economic) option is to fly from Dublin to London, and then London to Shanghai, bingo ^_^
+
 </p>
   </article>
 </div>
@@ -531,7 +530,18 @@ html(lang="en")
     
     <p class="archive__item-excerpt" itemprop="description">Course overview video
 
-</p>
+
+
+Publishing information
+
+After 8 months of continuously hard working, this &lt;Master AWS Development&gt; video course is now live at: Packt Website, I described this course as below:
+
+
+  Amazon Web Services (AWS) is the gold standard of the cloud. If you are web and cloud computing developer, your life becomes much easier by diving deeper into AWS.
+
+
+
+  This course shows you how to use AWS services such as IAM, S3, EC2, and RDS/Dynamo to make your applications reliable and have a consistent performance. You’ll build modern serverless applications on the cloud, and u...</p>
   </article>
 </div>
 
@@ -559,6 +569,8 @@ html(lang="en")
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">
+
+3 years of AWS hands on experience, two months of preparation, 30 hours of course learning, 300+ exam practices, this was the work I’ve done to pass the AWS Certified Solutions Architect - Associate, my exam result is below:
 
 </p>
   </article>
@@ -589,7 +601,12 @@ html(lang="en")
     
     <p class="archive__item-excerpt" itemprop="description">Background
 
-</p>
+I have been researched and watched many NAS options to setup a home storage+media server during the past year, and so far there was no perfect answer, either lacking features/performance, or way too expensive… An Intel Celeron CPU + 1GB mem with a customized Linux (in other words: closed source )running Plex or something else, and the cost is like $400 (terrible hardware performance), or $800+/$1000+, way too expensive, examples:
+
+
+  Synology DS216J NAS DiskStation (DS216j)
+  WD My Cloud EX4100 Diskless Expert Series 4-Bay NAS
+  NETGEAR ReadyNAS 524X High Performance 10GbE 4-bay...</p>
   </article>
 </div>
 
@@ -661,7 +678,7 @@ html(lang="en")
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://wayneye.com/nodejs-express-jade-socketio-On-Ubuntu";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.url = "http://localhost:4000/nodejs-express-jade-socketio-On-Ubuntu";  // Replace PAGE_URL with your page's canonical URL variable
       this.page.identifier = "/nodejs+express+jade+socket.io-on-Ubuntu-11.04"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     (function() { // DON'T EDIT BELOW THIS LINE

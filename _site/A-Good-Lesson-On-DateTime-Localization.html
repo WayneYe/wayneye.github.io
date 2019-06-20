@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>A good lesson and experience - Wayne’s Geek Life</title>
-<meta name="description" content="I was extremely busy during the last two weeks, since our project was at bug fixing phase, my team and I worked really hard on dealing with the bugs; We fixed two to three bugs everyday by average, I am very satisfied with the efficiency myself.During this process, I encountered several very interesting issues. There was a crash bug with P1 priority, we all cannot reproduced it until one guy from US team provided a remote server that our product always crashed, after I logged onto that server and 20 minutes investigating, I was really surprised, the reason is one line of code written by myself, it is:DateTime.Parse(String.Format(&quot;{0}/{1}/{2} 00:00:00 &lt;FONT color=#ff0000&gt;AM&lt;/FONT&gt;&quot;, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year))Does this line of code has any problem, I definitely don’t think so before, but now, I understand, it &lt;FONT color=#ff0000&gt;only&lt;/FONT&gt; works under &lt;FONT color=#ff0000&gt;English format&lt;/FONT&gt;, once non-English format, under some format such as Chinese, the &lt;FONT color=#ff0000&gt;AM &lt;/FONT&gt;makes non sense; and… Under some formats (such as French), the code will throw FormatException and leads program crash…&lt;A href=&quot;https://4wypkg.bay.livefilestore.com/y1m9-JLMQ_Nx7oOv1UnJ5vqTEFo1fSXyjwbjLi1KREWc0B8tRewWusKLVsf825f5rTpmBdOmVROVojm5U62gaTBXLc0jEYRgXtFsj6rd1SYOGLHHBmFsjnkRzizvwBD3Sh_FgUUmJWtupcb4wIlXRC9rA/Format.png&quot; rel=WLPP;url=https://4wypkg.bay.livefilestore.com/y1m9-JLMQ_Nx7oOv1UnJ5vqTEFo1fSXyjwbjLi1KREWc0B8tRewWusKLVsf825f5rTpmBdOmVROVojm5U62gaTBXLc0jEYRgXtFsj6rd1SYOGLHHBmFsjnkRzizvwBD3Sh_FgUUmJWtupcb4wIlXRC9rA/Format.png target=_blank&gt;&lt;/A&gt;Another issue is a WPF related multi-threading issue, there is a module in our product used thread pool to invoke WMI APIs to get the drives&#39; information, once done the thread updates a Boolean flag indicate it is ready to bind data onto UI, once the flag changes, it will notify WPF main thread (two WPF pages subscribed this), but the problem is, the one of them directly starts binding data, since it will be done in the thread created by thread pool, WPF does NOT allow this, an InvalidOperationException will be thrown and leads product crash.The solution is straight forward: Let main thread updates the Boolean flag, so that both two subscribing page can simply just wait for it and do the binding.Interesting, hum:)">
+<meta name="description" content="I was extremely busy during the last two weeks, since our project was at bug fixing phase, my team and I worked really hard on dealing with the bugs; We fixed two to three bugs everyday by average, I am very satisfied with the efficiency myself.During this process, I encountered several very interesting issues. There was a crash bug with P1 priority, we all cannot reproduced it until one guy from US team provided a remote server that our product always crashed, after I logged onto that server and 20 minutes investigating, I was really surprised, the reason is one line of code written by myself, it is:DateTime.Parse(String.Format(&quot;{0}/{1}/{2} 00:00:00 &lt;FONT color=#ff0000&gt;AM&lt;/FONT&gt;&quot;, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year))Does this line of code has any problem, I definitely don’t think so before, but now, I understand, it &lt;FONT color=#ff0000&gt;only&lt;/FONT&gt; works under &lt;FONT color=#ff0000&gt;English format&lt;/FONT&gt;, once non-English format, under some format such as Chinese, the &lt;FONT color=#ff0000&gt;AM &lt;/FONT&gt;makes non sense; and… Under some formats (such as French), the code will throw FormatException and leads program crash…&lt;A href=&quot;https://4wypkg.bay.livefilestore.com/y1m9-JLMQ_Nx7oOv1UnJ5vqTEFo1fSXyjwbjLi1KREWc0B8tRewWusKLVsf825f5rTpmBdOmVROVojm5U62gaTBXLc0jEYRgXtFsj6rd1SYOGLHHBmFsjnkRzizvwBD3Sh_FgUUmJWtupcb4wIlXRC9rA/Format.png&quot; rel=WLPP;url=https://4wypkg.bay.livefilestore.com/y1m9-JLMQ_Nx7oOv1UnJ5vqTEFo1fSXyjwbjLi1KREWc0B8tRewWusKLVsf825f5rTpmBdOmVROVojm5U62gaTBXLc0jEYRgXtFsj6rd1SYOGLHHBmFsjnkRzizvwBD3Sh_FgUUmJWtupcb4wIlXRC9rA/Format.png target=_blank&gt;&lt;/A&gt;Another issue is a WPF related multi-threading issue, there is a module in our product used thread pool to invoke WMI APIs to">
 
 
 
@@ -18,10 +18,10 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Wayne's Geek Life">
 <meta property="og:title" content="A good lesson and experience">
-<meta property="og:url" content="https://wayneye.com/A-Good-Lesson-On-DateTime-Localization">
+<meta property="og:url" content="http://localhost:4000/A-Good-Lesson-On-DateTime-Localization">
 
 
-  <meta property="og:description" content="I was extremely busy during the last two weeks, since our project was at bug fixing phase, my team and I worked really hard on dealing with the bugs; We fixed two to three bugs everyday by average, I am very satisfied with the efficiency myself.During this process, I encountered several very interesting issues. There was a crash bug with P1 priority, we all cannot reproduced it until one guy from US team provided a remote server that our product always crashed, after I logged onto that server and 20 minutes investigating, I was really surprised, the reason is one line of code written by myself, it is:DateTime.Parse(String.Format(&quot;{0}/{1}/{2} 00:00:00 &lt;FONT color=#ff0000&gt;AM&lt;/FONT&gt;&quot;, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year))Does this line of code has any problem, I definitely don’t think so before, but now, I understand, it &lt;FONT color=#ff0000&gt;only&lt;/FONT&gt; works under &lt;FONT color=#ff0000&gt;English format&lt;/FONT&gt;, once non-English format, under some format such as Chinese, the &lt;FONT color=#ff0000&gt;AM &lt;/FONT&gt;makes non sense; and… Under some formats (such as French), the code will throw FormatException and leads program crash…&lt;A href=&quot;https://4wypkg.bay.livefilestore.com/y1m9-JLMQ_Nx7oOv1UnJ5vqTEFo1fSXyjwbjLi1KREWc0B8tRewWusKLVsf825f5rTpmBdOmVROVojm5U62gaTBXLc0jEYRgXtFsj6rd1SYOGLHHBmFsjnkRzizvwBD3Sh_FgUUmJWtupcb4wIlXRC9rA/Format.png&quot; rel=WLPP;url=https://4wypkg.bay.livefilestore.com/y1m9-JLMQ_Nx7oOv1UnJ5vqTEFo1fSXyjwbjLi1KREWc0B8tRewWusKLVsf825f5rTpmBdOmVROVojm5U62gaTBXLc0jEYRgXtFsj6rd1SYOGLHHBmFsjnkRzizvwBD3Sh_FgUUmJWtupcb4wIlXRC9rA/Format.png target=_blank&gt;&lt;/A&gt;Another issue is a WPF related multi-threading issue, there is a module in our product used thread pool to invoke WMI APIs to get the drives&#39; information, once done the thread updates a Boolean flag indicate it is ready to bind data onto UI, once the flag changes, it will notify WPF main thread (two WPF pages subscribed this), but the problem is, the one of them directly starts binding data, since it will be done in the thread created by thread pool, WPF does NOT allow this, an InvalidOperationException will be thrown and leads product crash.The solution is straight forward: Let main thread updates the Boolean flag, so that both two subscribing page can simply just wait for it and do the binding.Interesting, hum:)">
+  <meta property="og:description" content="I was extremely busy during the last two weeks, since our project was at bug fixing phase, my team and I worked really hard on dealing with the bugs; We fixed two to three bugs everyday by average, I am very satisfied with the efficiency myself.During this process, I encountered several very interesting issues. There was a crash bug with P1 priority, we all cannot reproduced it until one guy from US team provided a remote server that our product always crashed, after I logged onto that server and 20 minutes investigating, I was really surprised, the reason is one line of code written by myself, it is:DateTime.Parse(String.Format(&quot;{0}/{1}/{2} 00:00:00 &lt;FONT color=#ff0000&gt;AM&lt;/FONT&gt;&quot;, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year))Does this line of code has any problem, I definitely don’t think so before, but now, I understand, it &lt;FONT color=#ff0000&gt;only&lt;/FONT&gt; works under &lt;FONT color=#ff0000&gt;English format&lt;/FONT&gt;, once non-English format, under some format such as Chinese, the &lt;FONT color=#ff0000&gt;AM &lt;/FONT&gt;makes non sense; and… Under some formats (such as French), the code will throw FormatException and leads program crash…&lt;A href=&quot;https://4wypkg.bay.livefilestore.com/y1m9-JLMQ_Nx7oOv1UnJ5vqTEFo1fSXyjwbjLi1KREWc0B8tRewWusKLVsf825f5rTpmBdOmVROVojm5U62gaTBXLc0jEYRgXtFsj6rd1SYOGLHHBmFsjnkRzizvwBD3Sh_FgUUmJWtupcb4wIlXRC9rA/Format.png&quot; rel=WLPP;url=https://4wypkg.bay.livefilestore.com/y1m9-JLMQ_Nx7oOv1UnJ5vqTEFo1fSXyjwbjLi1KREWc0B8tRewWusKLVsf825f5rTpmBdOmVROVojm5U62gaTBXLc0jEYRgXtFsj6rd1SYOGLHHBmFsjnkRzizvwBD3Sh_FgUUmJWtupcb4wIlXRC9rA/Format.png target=_blank&gt;&lt;/A&gt;Another issue is a WPF related multi-threading issue, there is a module in our product used thread pool to invoke WMI APIs to">
 
 
 
@@ -29,8 +29,8 @@
 
   <meta name="twitter:site" content="@wayneye">
   <meta name="twitter:title" content="A good lesson and experience">
-  <meta name="twitter:description" content="I was extremely busy during the last two weeks, since our project was at bug fixing phase, my team and I worked really hard on dealing with the bugs; We fixed two to three bugs everyday by average, I am very satisfied with the efficiency myself.During this process, I encountered several very interesting issues. There was a crash bug with P1 priority, we all cannot reproduced it until one guy from US team provided a remote server that our product always crashed, after I logged onto that server and 20 minutes investigating, I was really surprised, the reason is one line of code written by myself, it is:DateTime.Parse(String.Format(&quot;{0}/{1}/{2} 00:00:00 &lt;FONT color=#ff0000&gt;AM&lt;/FONT&gt;&quot;, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year))Does this line of code has any problem, I definitely don’t think so before, but now, I understand, it &lt;FONT color=#ff0000&gt;only&lt;/FONT&gt; works under &lt;FONT color=#ff0000&gt;English format&lt;/FONT&gt;, once non-English format, under some format such as Chinese, the &lt;FONT color=#ff0000&gt;AM &lt;/FONT&gt;makes non sense; and… Under some formats (such as French), the code will throw FormatException and leads program crash…&lt;A href=&quot;https://4wypkg.bay.livefilestore.com/y1m9-JLMQ_Nx7oOv1UnJ5vqTEFo1fSXyjwbjLi1KREWc0B8tRewWusKLVsf825f5rTpmBdOmVROVojm5U62gaTBXLc0jEYRgXtFsj6rd1SYOGLHHBmFsjnkRzizvwBD3Sh_FgUUmJWtupcb4wIlXRC9rA/Format.png&quot; rel=WLPP;url=https://4wypkg.bay.livefilestore.com/y1m9-JLMQ_Nx7oOv1UnJ5vqTEFo1fSXyjwbjLi1KREWc0B8tRewWusKLVsf825f5rTpmBdOmVROVojm5U62gaTBXLc0jEYRgXtFsj6rd1SYOGLHHBmFsjnkRzizvwBD3Sh_FgUUmJWtupcb4wIlXRC9rA/Format.png target=_blank&gt;&lt;/A&gt;Another issue is a WPF related multi-threading issue, there is a module in our product used thread pool to invoke WMI APIs to get the drives&#39; information, once done the thread updates a Boolean flag indicate it is ready to bind data onto UI, once the flag changes, it will notify WPF main thread (two WPF pages subscribed this), but the problem is, the one of them directly starts binding data, since it will be done in the thread created by thread pool, WPF does NOT allow this, an InvalidOperationException will be thrown and leads product crash.The solution is straight forward: Let main thread updates the Boolean flag, so that both two subscribing page can simply just wait for it and do the binding.Interesting, hum:)">
-  <meta name="twitter:url" content="https://wayneye.com/A-Good-Lesson-On-DateTime-Localization">
+  <meta name="twitter:description" content="I was extremely busy during the last two weeks, since our project was at bug fixing phase, my team and I worked really hard on dealing with the bugs; We fixed two to three bugs everyday by average, I am very satisfied with the efficiency myself.During this process, I encountered several very interesting issues. There was a crash bug with P1 priority, we all cannot reproduced it until one guy from US team provided a remote server that our product always crashed, after I logged onto that server and 20 minutes investigating, I was really surprised, the reason is one line of code written by myself, it is:DateTime.Parse(String.Format(&quot;{0}/{1}/{2} 00:00:00 &lt;FONT color=#ff0000&gt;AM&lt;/FONT&gt;&quot;, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year))Does this line of code has any problem, I definitely don’t think so before, but now, I understand, it &lt;FONT color=#ff0000&gt;only&lt;/FONT&gt; works under &lt;FONT color=#ff0000&gt;English format&lt;/FONT&gt;, once non-English format, under some format such as Chinese, the &lt;FONT color=#ff0000&gt;AM &lt;/FONT&gt;makes non sense; and… Under some formats (such as French), the code will throw FormatException and leads program crash…&lt;A href=&quot;https://4wypkg.bay.livefilestore.com/y1m9-JLMQ_Nx7oOv1UnJ5vqTEFo1fSXyjwbjLi1KREWc0B8tRewWusKLVsf825f5rTpmBdOmVROVojm5U62gaTBXLc0jEYRgXtFsj6rd1SYOGLHHBmFsjnkRzizvwBD3Sh_FgUUmJWtupcb4wIlXRC9rA/Format.png&quot; rel=WLPP;url=https://4wypkg.bay.livefilestore.com/y1m9-JLMQ_Nx7oOv1UnJ5vqTEFo1fSXyjwbjLi1KREWc0B8tRewWusKLVsf825f5rTpmBdOmVROVojm5U62gaTBXLc0jEYRgXtFsj6rd1SYOGLHHBmFsjnkRzizvwBD3Sh_FgUUmJWtupcb4wIlXRC9rA/Format.png target=_blank&gt;&lt;/A&gt;Another issue is a WPF related multi-threading issue, there is a module in our product used thread pool to invoke WMI APIs to">
+  <meta name="twitter:url" content="http://localhost:4000/A-Good-Lesson-On-DateTime-Localization">
 
   
     <meta name="twitter:card" content="summary">
@@ -41,7 +41,7 @@
 
 
 
-  <meta property="article:published_time" content="2009-09-03T00:00:00-07:00">
+  <meta property="article:published_time" content="2009-09-03T00:00:00+08:00">
 
 
 
@@ -54,7 +54,7 @@
   
 
 
-<link rel="canonical" href="https://wayneye.com/A-Good-Lesson-On-DateTime-Localization">
+<link rel="canonical" href="http://localhost:4000/A-Good-Lesson-On-DateTime-Localization">
 
 
 
@@ -103,11 +103,11 @@
     <!-- start custom head snippets -->
 
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
-<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
-<link rel="manifest" href="assets/images/favicon/site.webmanifest">
-<link rel="mask-icon" href="assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 
@@ -136,7 +136,7 @@
             </li><li class="masthead__menu-item">
               <a href="/search/" >Search</a>
             </li><li class="masthead__menu-item">
-              <a href="/album/" >Album</a>
+              <a href="/gallery/" >Gallery</a>
             </li><li class="masthead__menu-item">
               <a href="/about/" >About</a>
             </li></ul>
@@ -284,7 +284,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="A good lesson and experience">
-    <meta itemprop="description" content="I was extremely busy during the last two weeks, since our project was at bug fixing phase, my team and I worked really hard on dealing with the bugs; We fixed two to three bugs everyday by average, I am very satisfied with the efficiency myself.During this process, I encountered several very interesting issues. There was a crash bug with P1 priority, we all cannot reproduced it until one guy from US team provided a remote server that our product always crashed, after I logged onto that server and 20 minutes investigating, I was really surprised, the reason is one line of code written by myself, it is:DateTime.Parse(String.Format(&quot;{0}/{1}/{2} 00:00:00 &lt;FONT color=#ff0000&gt;AM&lt;/FONT&gt;&quot;, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year))Does this line of code has any problem, I definitely don’t think so before, but now, I understand, it &lt;FONT color=#ff0000&gt;only&lt;/FONT&gt; works under &lt;FONT color=#ff0000&gt;English format&lt;/FONT&gt;, once non-English format, under some format such as Chinese, the &lt;FONT color=#ff0000&gt;AM &lt;/FONT&gt;makes non sense; and… Under some formats (such as French), the code will throw FormatException and leads program crash…&lt;A href=&quot;https://4wypkg.bay.livefilestore.com/y1m9-JLMQ_Nx7oOv1UnJ5vqTEFo1fSXyjwbjLi1KREWc0B8tRewWusKLVsf825f5rTpmBdOmVROVojm5U62gaTBXLc0jEYRgXtFsj6rd1SYOGLHHBmFsjnkRzizvwBD3Sh_FgUUmJWtupcb4wIlXRC9rA/Format.png&quot; rel=WLPP;url=https://4wypkg.bay.livefilestore.com/y1m9-JLMQ_Nx7oOv1UnJ5vqTEFo1fSXyjwbjLi1KREWc0B8tRewWusKLVsf825f5rTpmBdOmVROVojm5U62gaTBXLc0jEYRgXtFsj6rd1SYOGLHHBmFsjnkRzizvwBD3Sh_FgUUmJWtupcb4wIlXRC9rA/Format.png target=_blank&gt;&lt;/A&gt;Another issue is a WPF related multi-threading issue, there is a module in our product used thread pool to invoke WMI APIs to get the drives&#39; information, once done the thread updates a Boolean flag indicate it is ready to bind data onto UI, once the flag changes, it will notify WPF main thread (two WPF pages subscribed this), but the problem is, the one of them directly starts binding data, since it will be done in the thread created by thread pool, WPF does NOT allow this, an InvalidOperationException will be thrown and leads product crash.The solution is straight forward: Let main thread updates the Boolean flag, so that both two subscribing page can simply just wait for it and do the binding.Interesting, hum:)">
+    <meta itemprop="description" content="I was extremely busy during the last two weeks, since our project was at bug fixing phase, my team and I worked really hard on dealing with the bugs; We fixed two to three bugs everyday by average, I am very satisfied with the efficiency myself.During this process, I encountered several very interesting issues. There was a crash bug with P1 priority, we all cannot reproduced it until one guy from US team provided a remote server that our product always crashed, after I logged onto that server and 20 minutes investigating, I was really surprised, the reason is one line of code written by myself, it is:DateTime.Parse(String.Format(&quot;{0}/{1}/{2} 00:00:00 &lt;FONT color=#ff0000&gt;AM&lt;/FONT&gt;&quot;, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Year))Does this line of code has any problem, I definitely don’t think so before, but now, I understand, it &lt;FONT color=#ff0000&gt;only&lt;/FONT&gt; works under &lt;FONT color=#ff0000&gt;English format&lt;/FONT&gt;, once non-English format, under some format such as Chinese, the &lt;FONT color=#ff0000&gt;AM &lt;/FONT&gt;makes non sense; and… Under some formats (such as French), the code will throw FormatException and leads program crash…&lt;A href=&quot;https://4wypkg.bay.livefilestore.com/y1m9-JLMQ_Nx7oOv1UnJ5vqTEFo1fSXyjwbjLi1KREWc0B8tRewWusKLVsf825f5rTpmBdOmVROVojm5U62gaTBXLc0jEYRgXtFsj6rd1SYOGLHHBmFsjnkRzizvwBD3Sh_FgUUmJWtupcb4wIlXRC9rA/Format.png&quot; rel=WLPP;url=https://4wypkg.bay.livefilestore.com/y1m9-JLMQ_Nx7oOv1UnJ5vqTEFo1fSXyjwbjLi1KREWc0B8tRewWusKLVsf825f5rTpmBdOmVROVojm5U62gaTBXLc0jEYRgXtFsj6rd1SYOGLHHBmFsjnkRzizvwBD3Sh_FgUUmJWtupcb4wIlXRC9rA/Format.png target=_blank&gt;&lt;/A&gt;Another issue is a WPF related multi-threading issue, there is a module in our product used thread pool to invoke WMI APIs to">
     <meta itemprop="datePublished" content="September 03, 2009">
     
 
@@ -369,7 +369,7 @@
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2009-09-03T00:00:00-07:00">September 03, 2009</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2009-09-03T00:00:00+08:00">September 03, 2009</time></p>
         
       </footer>
 
@@ -378,11 +378,11 @@
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?via=wayneye&text=A+good+lesson+and+experience%20https%3A%2F%2Fwayneye.com%2FA-Good-Lesson-On-DateTime-Localization" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=wayneye&text=A+good+lesson+and+experience%20http%3A%2F%2Flocalhost%3A4000%2FA-Good-Lesson-On-DateTime-Localization" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwayneye.com%2FA-Good-Lesson-On-DateTime-Localization" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2FA-Good-Lesson-On-DateTime-Localization" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwayneye.com%2FA-Good-Lesson-On-DateTime-Localization" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2FA-Good-Lesson-On-DateTime-Localization" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -399,15 +399,6 @@
   </nav>
 
     </div>
-
-    
-      <div class="page__comments">
-  
-  
-      <h4 class="page__comments-title">Leave a comment</h4>
-      <section id="disqus_thread"></section>
-    
-</div>
 
     
   </article>
@@ -442,6 +433,14 @@
     
     <p class="archive__item-excerpt" itemprop="description">Background
 
+I was planning to attend #adskfootball2019 in Dublin, Ireland from Jun 14th to Jun 16th, 2019:
+
+    
+    Autodesk Football Tournament 2019
+
+
+In order to attend, I needed applying Ireland VISA, and since I was planning to fly back to Shanghai later in June, so I thought I could just fly from SF to Dublin, then Dublin to Shanghai, and soon I realized that there is no direct flight from DUB to PVG, so a practical (and also very fun and economic) option is to fly from Dublin to London, and then London to Shanghai, bingo ^_^
+
 </p>
   </article>
 </div>
@@ -471,7 +470,18 @@
     
     <p class="archive__item-excerpt" itemprop="description">Course overview video
 
-</p>
+
+
+Publishing information
+
+After 8 months of continuously hard working, this &lt;Master AWS Development&gt; video course is now live at: Packt Website, I described this course as below:
+
+
+  Amazon Web Services (AWS) is the gold standard of the cloud. If you are web and cloud computing developer, your life becomes much easier by diving deeper into AWS.
+
+
+
+  This course shows you how to use AWS services such as IAM, S3, EC2, and RDS/Dynamo to make your applications reliable and have a consistent performance. You’ll build modern serverless applications on the cloud, and u...</p>
   </article>
 </div>
 
@@ -499,6 +509,8 @@
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">
+
+3 years of AWS hands on experience, two months of preparation, 30 hours of course learning, 300+ exam practices, this was the work I’ve done to pass the AWS Certified Solutions Architect - Associate, my exam result is below:
 
 </p>
   </article>
@@ -529,7 +541,12 @@
     
     <p class="archive__item-excerpt" itemprop="description">Background
 
-</p>
+I have been researched and watched many NAS options to setup a home storage+media server during the past year, and so far there was no perfect answer, either lacking features/performance, or way too expensive… An Intel Celeron CPU + 1GB mem with a customized Linux (in other words: closed source )running Plex or something else, and the cost is like $400 (terrible hardware performance), or $800+/$1000+, way too expensive, examples:
+
+
+  Synology DS216J NAS DiskStation (DS216j)
+  WD My Cloud EX4100 Diskless Expert Series 4-Bay NAS
+  NETGEAR ReadyNAS 524X High Performance 10GbE 4-bay...</p>
   </article>
 </div>
 
@@ -601,7 +618,7 @@
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://wayneye.com/A-Good-Lesson-On-DateTime-Localization";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.url = "http://localhost:4000/A-Good-Lesson-On-DateTime-Localization";  // Replace PAGE_URL with your page's canonical URL variable
       this.page.identifier = "/A-good-lesson-and-experience"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     (function() { // DON'T EDIT BELOW THIS LINE

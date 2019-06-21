@@ -558,4 +558,9 @@ var store = [{
         "excerpt":"Background I was planning to attend #adskfootball2019 in Dublin, Ireland from Jun 14th to Jun 16th, 2019: Autodesk Football Tournament 2019 In order to attend, I needed applying Ireland VISA, and since I was planning to fly back to Shanghai later in June, so I thought I could just fly...","categories": ["Life"],
         "tags": ["Life"],
         "url": "http://localhost:4000/Apply-UK-Visit-VISA",
+        "teaser":null},{
+        "title": "Ireland Trip 2019",
+        "excerpt":"WHEN YOU ARE OLD When you are old and grey and full of sleep, And nodding by the fire, take down this book, And slowly read, and dream of the soft look Your eyes had once, and of their shadows deep; How many loved your moments of glad grace, And...","categories": ["Life"],
+        "tags": ["Life","Travel"],
+        "url": "http://localhost:4000/Ireland-Trip-2019",
         "teaser":null}]

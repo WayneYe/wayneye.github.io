@@ -110,6 +110,45 @@ permalink: Ireland-Trip-2019
     <a href="assets/images/posts/2019-06-20-Ireland-Trip/Cork-Part.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/Cork-Part.jpg"></a>
     <caption>科克市的普通民宅</caption>
 </figure>
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/Countryside.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/Countryside.jpg"></a>
+    <figcaption>离科克不远的乡村小镇</figcaption>
+</figure>
 
 一路下雨，而且路越来越窄，心里只能祈祷到我心心念的下个景点，请别下雨了吧:pray: 路上无聊拍了段视频：
+{% include video id="KXpzr2Yt-5M" provider="youtube" %}
 
+开了大概2个多小时，终于到了心心念的景点：[凯里之环(Ring of Kerry)](https://en.wikipedia.org/wiki/Ring_of_Kerry)，
+<figure class="half">
+    <a href="/assets/images/posts/2019-06-20-Ireland-Trip/Ring-Of-Kerry.jpg"><img src="/assets/images/posts/2019-06-20-Ireland-Trip/Ring-Of-Kerry.jpg"></a>
+    <a href="/assets/images/posts/2019-06-20-Ireland-Trip/Wild-Atlantic-Way.jpg"><img src="/assets/images/posts/2019-06-20-Ireland-Trip/Wild-Atlantic-Way.jpg"></a>
+    <figcaption>凯里之环和狂野大西洋之路的路牌</figcaption>
+</figure>
+
+凯里之环是一条全长近180公里的游览自驾路线，本身也是狂野大西洋之路的一部分，沿途风光绝妙。既有海滨滩涂，还有海岸峭壁；既有森林山野，还有草坪牧场；既可以远观群山起伏，也可以近赏田园风光。 非常感恩，雨停了，由于美景是在太多太震撼，我基本上是开开停停，无需赘言，请欣赏照片：
+
+
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Gorgeous-View.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Gorgeous-View.jpg"></a>
+</figure>
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Mountain.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Mountain.jpg"></a>
+</figure>
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Campsite.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Campsite.jpg"></a>
+</figure>
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Sea-View.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Sea-View.jpg"></a>
+</figure>
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Farms.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Farms.jpg"></a>
+</figure>
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Creek.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Creek.jpg"></a>
+</figure>
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Me-At-Beach.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Me-At-Beach.jpg"></a>
+</figure>
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Houses.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Houses.jpg"></a>
+</figure>

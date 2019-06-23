@@ -44,7 +44,7 @@ permalink: Ireland-Trip-2019
 
 ## 机缘巧合的旅行
 
-由于公司的[2019年足球世界杯在都柏林举办](https://wayneye.com/gallery/adsk-worldcup-2019)，我因此有幸首次到欧洲旅行，本来是想说在都柏林打完比赛再玩1天，然后去伦敦转2天就回上海跟家人团聚，结果没有想到[等了3周日落帝国都不给我签证](Apply-UK-Visit-VISA)，因此我决定好好探索下绿宝石岛。
+由于公司的[2019年足球世界杯在都柏林举办](https://wayneye.com/gallery/adsk-worldcup-2019)，我因此有幸首次到欧洲旅行，本来是想说在都柏林打完比赛玩1天，然后去伦敦转2天就回上海跟家人团聚，结果没有想到[等了3周日落帝国都不给我签证](Apply-UK-Visit-VISA)，因此我决定花2天好好探索下绿宝石岛。
 
 ## 地理，气候，历史和文化
 爱尔兰地处大不列颠岛的西面，如果不算英吉利海峡，可以算是欧亚大陆的最西段，可谓是天涯海角，好些年前在网上闲逛时还记得爱尔兰本地人自嘲雨水多，制作了下面的图片：
@@ -70,7 +70,7 @@ permalink: Ireland-Trip-2019
     <a href="assets/images/posts/2019-06-20-Ireland-Trip/Avis-Car-rental.png"><img src="assets/images/posts/2019-06-20-Ireland-Trip/Avis-Car-rental.png"></a>
 </figure>
 
-坦白说，我6年没有开手动挡了，此次是首次来爱尔兰，而且要靠左行哦，也就意味着跟以前右手换挡不一样，我得左手换挡，虽说13年我在新加坡时开过几次自动挡（坡县是靠左行），但是考虑到上述因素，依然还是极有挑战，不过嘛，I am always brave! 毅然订了手动。
+坦白说，我6年没有开手动挡了，此次是首次来爱尔兰，而且要靠左行哦，也就意味着跟以前右手换挡不一样，我得左手换挡，虽说13年我在新加坡时开过几次自动挡（坡县是靠左行），但是考虑到上述因素，依然还是极有挑战，不过嘛，I am always brave! 事实上，我敢打赌即便我看到MT和AT的价格一样，我依然还是会选手动:smile:。
 
 周日早上的早餐是酒店自助，即使昨天打了大半天比赛，体能消耗巨大，我却仍然非常克制地只盛了如下的一点东西：
 
@@ -257,3 +257,10 @@ permalink: Ireland-Trip-2019
     <a href="assets/images/posts/2019-06-20-Ireland-Trip/Super-Danger.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/Super-Danger.jpg"></a>
 </figure>
 我听到边上有人惊叹：“This is the most silly thing I've ever seen...”
+
+## 装备
+以上所有照片都是用我的华为Mate 20X拍摄，有些自拍是用的一只华为自拍杆+脚架，坦白说吧，我实在是太懒了，也没有足够的慧根去做照片后期，好在华为4摄非常优秀，足以填补镜头后面那个头的不足:smile:
+
+## 总结
+非常感谢您能够耐着心看到这里，本君写下这篇游记只是希望留下美好记忆，如果您看得开心，有了旅游和探索的冲动，本君不胜荣幸，谢谢！最后说一句：一个人研究攻略，制定行程好boring，希望下次能2个人。
+

@@ -40,9 +40,11 @@ permalink: Ireland-Trip-2019
 > 在头顶上的群山巅漫步闲游， <br />
 > 把他的面孔隐没在繁星中间。 <br />
 
-## Autodesk Football World cup 2019 - Dublin
+邀您一起，与我一同品味爱尔兰，上帝所眷恋的绿宝石岛。
 
-公司的足球2019年世界杯在都柏林举办，我因此有幸首次到欧洲旅行，本来是想说在都柏林打完比赛再玩1天，然后去伦敦转2天就回上海跟家人团聚，结果没有想到[等了3周日落帝国都不给我签证](Apply-UK-Visit-VISA)，因此我决定好好探索下绿宝石岛。
+## 机缘巧合的旅行
+
+由于公司的[2019年足球世界杯在都柏林举办](https://wayneye.com/gallery/adsk-worldcup-2019)，我因此有幸首次到欧洲旅行，本来是想说在都柏林打完比赛再玩1天，然后去伦敦转2天就回上海跟家人团聚，结果没有想到[等了3周日落帝国都不给我签证](Apply-UK-Visit-VISA)，因此我决定好好探索下绿宝石岛。
 
 ## 地理，气候，历史和文化
 爱尔兰地处大不列颠岛的西面，如果不算英吉利海峡，可以算是欧亚大陆的最西段，可谓是天涯海角，好些年前在网上闲逛时还记得爱尔兰本地人自嘲雨水多，制作了下面的图片：
@@ -104,11 +106,11 @@ permalink: Ireland-Trip-2019
 
 <figure>
     <a href="assets/images/posts/2019-06-20-Ireland-Trip/Cork-McDonald.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/Cork-McDonald.jpg"></a>
-    <caption>科克市中心的麦当劳</caption>
+    <figcaption>科克市中心的麦当劳</figcaption>
 </figure>
 <figure>
     <a href="assets/images/posts/2019-06-20-Ireland-Trip/Cork-Part.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/Cork-Part.jpg"></a>
-    <caption>科克市的普通民宅</caption>
+    <figcaption>科克市的普通民宅</figcaption>
 </figure>
 <figure>
     <a href="assets/images/posts/2019-06-20-Ireland-Trip/Countryside.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/Countryside.jpg"></a>
@@ -126,7 +128,6 @@ permalink: Ireland-Trip-2019
 </figure>
 
 凯里之环是一条全长近180公里的游览自驾路线，本身也是狂野大西洋之路的一部分，沿途风光绝妙。既有海滨滩涂，还有海岸峭壁；既有森林山野，还有草坪牧场；既可以远观群山起伏，也可以近赏田园风光。 非常感恩，雨停了，由于美景是在太多太震撼，我基本上是开开停停，无需赘言，请欣赏照片：
-
 
 <figure>
     <a href="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Gorgeous-View.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Gorgeous-View.jpg"></a>
@@ -152,3 +153,107 @@ permalink: Ireland-Trip-2019
 <figure>
     <a href="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Houses.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Houses.jpg"></a>
 </figure>
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Houses.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Houses.jpg"></a>
+</figure>
+
+因为时间关系，我规划的路线是从Kenmare一路往西开，到Sneem到Waterville，经过大半个凯里之环后北面的Tralee住一晚民宿，大概5点多钟在Kenmare的一家礼品店跟店家询问得知晚上10点半才天黑，那么预估我的时间非常充足，看下面的地图只要不花费过多时间晚上大概8点多我应该可以到Tralee的民宿：
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/map-of-kerry.png"><img src="assets/images/posts/2019-06-20-Ireland-Trip/map-of-kerry.png"></a>
+</figure>
+
+7点多钟在这家[QC’s Seafood Restaurant](https://www.google.com/maps/place/Quinlan+%26+Cooke+Boutique+Hotel+%26+QC%E2%80%99s+Seafood+Restaurant/@51.9459349,-10.2271513,10.51z/data=!4m12!1m6!3m5!1s0x484ff31dab3d706f:0xe4638f1804f04710!2sQuinlan+%26+Cooke+Boutique+Hotel+%26+QC%E2%80%99s+Seafood+Restaurant!8m2!3d51.9458617!4d-10.2270294!3m4!1s0x484ff31dab3d706f:0xe4638f1804f04710!8m2!3d51.9458617!4d-10.2270294)解决了晚餐：
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/RoK-QC.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/RoK-QC.jpg"></a>
+</figure>
+
+到了[Ms. Margrate的家](https://www.airbnb.com.sg/rooms/28183787?source_impression_id=p3_1561254329_DZECSdTqK%2B74cmwJ)大概快9点了，跟她聊了下得知她是心理康复的护士（非常严重的心理疾病比如有过犯罪记录的病人），兼职做Airbnb大概几年时间，聊了十几分钟，我清理了下东西，发现钱包里集齐了世界三大货币：
+
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/three-main-currencies.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/three-main-currencies.jpg"></a>
+</figure>
+
+我看着窗外的天色，已经9点半了居然还没有天黑（我潜意识里以为呢，9点多总要日落了吧，这里并没有到北欧的纬度啊，事后查了下，爱尔兰北纬50多度，实际上我此前去过最北的地方哈尔滨也只有北纬45度，超过66度就有极昼了），查了下今日落日时间是10点03分，我就请教她附近有没有很美的追日落的地方，她推荐了Blennerville Windmill，开车7分钟，极有激情的我便立马驱车出发，然而小有遗憾（其实也不遗憾，因为这天气算正常了，要知道三分之二的天都下雨呢:smile:），由于云层太厚，并没有机会看到明显的晚霞，也就只拍到了下面2张照片：
+
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/Tralee-Blennerville-Windmill.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/Tralee-Blennerville-Windmill.jpg"></a>
+</figure>
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/Tralee-Blennerville-Windmill-Flags.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/Tralee-Blennerville-Windmill-Flags.jpg"></a>
+</figure>
+
+此次来到爱尔兰，一大目标就是住在当地人的民宿，跟淳朴的爱尔兰人交流，体验下本地人的生活，这个小目标算是实现了，请看房子外观和我温馨的小床：
+<figure class="half">
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/RoK-house-external.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/RoK-house.jpg"></a>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/RoK-house-external.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/RoK-house-external.jpg"></a>
+</figure>
+
+第二天早上起床，一路沿海岸线向北，两边的景色依然是田园风：
+<figure style="width:1200px">
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/Countryside-view.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/Countryside-view.jpg"></a>
+</figure>
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/Countryside-view-2.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/Countryside-view-2.jpg"></a>
+</figure>
+
+沿途经过The Woollen Market100欧买了件纯羊毛衫：
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/The-Woollen-Market.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/The-Woollen-Market.jpg"></a>
+</figure>
+
+大概上午11点多钟，抵达了此次行程本君最期待的地方：莫赫悬崖（The Cliffs of Moher），他是欧洲最高的悬崖，最高点高出大西洋海平面有214米，极其雄伟壮阔，展现大西洋之狂野的最佳之处！诸多电影在这里取景，包括《哈利·波特与混血王子》，请看下面的片段：
+
+{% include video id="B0mVNFCcMXQ" provider="youtube" %}
+
+先给您上几张我拍的：
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/CoM-landscape.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/CoM-landscape.jpg"></a>
+</figure>
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/CoM-landscape-2.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/CoM-landscape-2.jpg"></a>
+</figure>
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/CoF-3.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/CoF-3.jpg"></a>
+</figure>
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/CoF-4.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/CoF-4.jpg"></a>
+</figure>
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/CoF-5.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/CoF-5.jpg"></a>
+</figure>
+
+再给您欣赏3幅驴友们拍的:
+<figure>
+    <a href="https://images.unsplash.com/photo-1500456759136-362ab38eec6d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80"><img src="https://images.unsplash.com/photo-1500456759136-362ab38eec6d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80"></a>
+    <figcaption>From unsplash</figcaption>
+</figure>
+<figure>
+    <a href="https://images.unsplash.com/photo-1459381484519-d5191fddc858?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2251&q=80"><img src="https://images.unsplash.com/photo-1459381484519-d5191fddc858?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2251&q=80"></a>
+    <figcaption>From unsplash</figcaption>
+</figure>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/100629421@N07/24475077681/in/photolist-DhMaTX-Lh3Ujz-q18Kg3-W3JMep-WXTopN-qxjydU-c1H4nd-2bQw9cb-MUtLBN-6aNyFn-bvCLET-MUuwTy-88H3Av-p5aVpv-8frEAd-dqwC8r-nJ7So9-oaoM9e-7dit5b-bWGfrd-7x91uC-7b57YD-5kxKeo-dvKqHL-bQWh5r-kBHoN6-Dog5to-28Y7PU3-6khmtr-57YrtA-28DXNRZ-apSDRj-2cDvsbQ-oqqt7-VCHDgy-69Eee5-ni2gLF-pK5mBN-2a2Ys38-X1ZxsB-9oFYKp-2a31dW4-Lh42rF-34FiaX-rDS72S-aLwHve-oky7c5-k9jcQG-ag2nr3-8oBbHG" title="Sunset On The Cliffs Of Moher"><img src="https://live.staticflickr.com/1662/24475077681_1fd8bbc818_k.jpg" width="2048" height="1365" alt="Sunset On The Cliffs Of Moher"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+
+<figure class="half">
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/Safety-advice.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/Safety-advice.jpg"></a>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/Memorial.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/Memorial.jpg"></a>
+    <figcaption>随处可见的安全提示以及一座纪念碑, RIP</figcaption>
+</figure>
+
+
+然而本君显然不算很乖的游客^_^：
+<figure class="third">
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-0.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-0.jpg"></a>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-0.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-1.jpg"></a>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-2.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-2.jpg"></a>
+</figure>
+<figure class="third">
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-3.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-3.jpg"></a>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-4.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-4.jpg"></a>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-5.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-5.jpg"></a>
+</figure>
+
+不过呢，当然也有人比我疯狂得多的，比如这位老兄：
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/Super-Danger.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/Super-Danger.jpg"></a>
+</figure>
+我听到边上有人惊叹：“This is the most silly thing I've ever seen...”

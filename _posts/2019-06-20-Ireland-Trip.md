@@ -154,7 +154,7 @@ permalink: Ireland-Trip-2019
     <a href="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Houses.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Houses.jpg"></a>
 </figure>
 <figure>
-    <a href="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Houses.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Houses.jpg"></a>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Mountain-View.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Mountain-View.jpg"></a>
 </figure>
 
 因为时间关系，我规划的路线是从Kenmare一路往西开，到Sneem到Waterville，经过大半个凯里之环后北面的Tralee住一晚民宿，大概5点多钟在Kenmare的一家礼品店跟店家询问得知晚上10点半才天黑，那么预估我的时间非常充足，看下面的地图只要不花费过多时间晚上大概8点多我应该可以到Tralee的民宿：

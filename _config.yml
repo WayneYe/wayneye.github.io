@@ -39,11 +39,6 @@ author:
       icon: "fab fa-fw fa-github"
       url: "https://github.com/WayneYe/"
 
-sidebar:
-  - title: "微信打赏"
-    image: "http://placehold.it/350x250"
-    text: "微信打赏"
-
 facebook:
   app_id:  374223339969060
   username: WayneYeDotCom
@@ -78,6 +73,8 @@ defaults:
       toc: true
       #toc_label: "Table of Contents"
       toc_icon: "cog"
+      sidebar:
+        nav: "dashang"
   - scope:
       path: ""
       type: "pages"

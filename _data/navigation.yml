@@ -18,3 +18,7 @@ main:
   #   url: /collection-archive/
   # - title: "Sitemap"
   #   url: /sitemap/
+dashang:
+  - title: "微信打赏"
+    url: "/assets/images/dashang.jpg"
+    image: "/assets/images/dashang.jpg"

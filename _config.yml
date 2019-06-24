@@ -59,10 +59,9 @@ plugins:
   - jekyll-seo-tag
 
 defaults:
-  -
-    scope:
+  - scope:
       path: "" # an empty string here means all files in the project
-      type: posts
+      type: "posts"
     values:
       layout: single
       classes: wide
@@ -76,16 +75,10 @@ defaults:
       toc_icon: "cog"
   - scope:
       path: ""
-      type: pages
+      type: "pages"
     values:
       layout: single
       author_profile: true
-  - scope:
-      path: "/gallery"
-      type: "posts"  # TODO
-    values:
-      layout: "default"
-      comments: true
 
 comments:
   provider: "disqus"

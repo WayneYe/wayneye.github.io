@@ -239,8 +239,7 @@ permalink: Ireland-Trip-2019
     <figcaption>随处可见的安全提示以及一座纪念碑, RIP</figcaption>
 </figure>
 
-
-然而本君显然不算很乖的游客^_^：
+显然本君不算很乖的游客^_^：
 <figure class="third">
     <a href="assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-0.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-0.jpg"></a>
     <a href="assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-0.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-1.jpg"></a>
@@ -253,14 +252,16 @@ permalink: Ireland-Trip-2019
 </figure>
 
 不过呢，当然也有人比我疯狂得多的，比如这位老兄：
-<figure>
-    <a href="assets/images/posts/2019-06-20-Ireland-Trip/Super-Danger.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/Super-Danger.jpg"></a>
-</figure>
+<!--<figure>-->
+    <!--<a href="assets/images/posts/2019-06-20-Ireland-Trip/Super-Danger.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/Super-Danger.jpg"></a>-->
+<!--</figure>-->
+{% include figure image_path="assets/images/posts/2019-06-20-Ireland-Trip/Super-Danger.jpg" alt="" caption="" %}
 我听到边上有人惊叹：“This is the most silly thing I've ever seen...”
 
 ## 装备
 以上所有照片都是用我的华为Mate 20X拍摄，有些自拍是用的一只华为自拍杆+脚架，坦白说吧，我实在是太懒了，也没有足够的慧根去做照片后期，好在华为4摄非常优秀，足以填补镜头后面那个头的不足:smile:
 
 ## 总结
-非常感谢您能够耐着心看到这里，本君写下这篇游记只是希望留下美好记忆，如果您看得开心，有了旅游和探索的冲动，本君不胜荣幸，谢谢！最后说一句：一个人研究攻略，制定行程好boring，希望下次能2个人。
+非常感谢您能够耐着心看到这里，本君写下这篇游记只是希望留下美好记忆，如果您看得开心，有了旅游和探索的冲动，本君不胜荣幸，谢谢！
 
+P.S.一个人研究攻略，制定行程有些boring，希望下次能>=2个人。

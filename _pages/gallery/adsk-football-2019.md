@@ -1,6 +1,8 @@
 ---
 title:  "AUTODESK WORLD CUP 2019 - Dublin"
 permalink: /gallery/adsk-worldcup-2019
+comments: true
+share: true
 gallery:
   - url: /assets/images/gallery/2019-adsk-football/AUTODESK-WORLD-CUP-Tymon-Park.jpg
     image_path: /assets/images/gallery/2019-adsk-football/AUTODESK-WORLD-CUP-Tymon-Park.jpg

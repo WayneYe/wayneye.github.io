@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Wayne's Geek Life">
 <meta property="og:title" content="A complete Impersonation Demo in C#.NET">
-<meta property="og:url" content="http://localhost:4000/DotNet-Impersonation-Demo">
+<meta property="og:url" content="https://wayneye.com/DotNet-Impersonation-Demo">
 
 
   <meta property="og:description" content="Under some scenarios we need impersonate another Windows account and do some work under that user’s session, for example:An enterprise ASP.NET web application provides server administrators’ ability to access the server under some specific privilege set; Server admin input their NT account information (domain\account + password) on the page, we need get WinNT Access Token and then impersonate this server user, so that we acquire its specific privilege and do the things ONLY THIS ACCOUNT CAN DO. We developed a Windows Service which needs internet access periodically, but a specific user sets an Sock5 proxy to access internet, then your Windows Service needs to know the Socks proxy information so that it could access internet, you must impersonate this user and read the settings. Impersonation definitionDefinition copied from: http://msdn.microsoft.com/en-us/library/aa376391(VS.85).aspx    Impersonation is the ability of a thread to execute using different security information than the process that owns the thread. Typically, a thread in a server application impersonates a client. This allows the server thread to act on behalf of that client to access objects on the server or validate access to the client’s own objects.  I read many articles and blogs and wrote an ImpersonateHelper class to do impersonation work, during the investigating I noticed that very few articles/blogs refer a complete impersonation process, so I decided to write one that refer as more details as I can, and actually my code was a code snippet combination came from 10+ sources.FunctionalityI create a local user: TempUser which belongs to “Administrators” (make sure log on TempUser at least once), I logged on as my own account and I am going to impersonate TempUser and do two things:">
@@ -30,7 +30,7 @@
   <meta name="twitter:site" content="@wayneye">
   <meta name="twitter:title" content="A complete Impersonation Demo in C#.NET">
   <meta name="twitter:description" content="Under some scenarios we need impersonate another Windows account and do some work under that user’s session, for example:An enterprise ASP.NET web application provides server administrators’ ability to access the server under some specific privilege set; Server admin input their NT account information (domain\account + password) on the page, we need get WinNT Access Token and then impersonate this server user, so that we acquire its specific privilege and do the things ONLY THIS ACCOUNT CAN DO. We developed a Windows Service which needs internet access periodically, but a specific user sets an Sock5 proxy to access internet, then your Windows Service needs to know the Socks proxy information so that it could access internet, you must impersonate this user and read the settings. Impersonation definitionDefinition copied from: http://msdn.microsoft.com/en-us/library/aa376391(VS.85).aspx    Impersonation is the ability of a thread to execute using different security information than the process that owns the thread. Typically, a thread in a server application impersonates a client. This allows the server thread to act on behalf of that client to access objects on the server or validate access to the client’s own objects.  I read many articles and blogs and wrote an ImpersonateHelper class to do impersonation work, during the investigating I noticed that very few articles/blogs refer a complete impersonation process, so I decided to write one that refer as more details as I can, and actually my code was a code snippet combination came from 10+ sources.FunctionalityI create a local user: TempUser which belongs to “Administrators” (make sure log on TempUser at least once), I logged on as my own account and I am going to impersonate TempUser and do two things:">
-  <meta name="twitter:url" content="http://localhost:4000/DotNet-Impersonation-Demo">
+  <meta name="twitter:url" content="https://wayneye.com/DotNet-Impersonation-Demo">
 
   
     <meta name="twitter:card" content="summary">
@@ -54,7 +54,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/DotNet-Impersonation-Demo">
+<link rel="canonical" href="https://wayneye.com/DotNet-Impersonation-Demo">
 
 
 
@@ -682,11 +682,11 @@ We need invoke three very famous Win32 API: <a href="http://msdn.microsoft.com/e
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?via=wayneye&text=A+complete+Impersonation+Demo+in+C%23.NET%20http%3A%2F%2Flocalhost%3A4000%2FDotNet-Impersonation-Demo" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=wayneye&text=A+complete+Impersonation+Demo+in+C%23.NET%20https%3A%2F%2Fwayneye.com%2FDotNet-Impersonation-Demo" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2FDotNet-Impersonation-Demo" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwayneye.com%2FDotNet-Impersonation-Demo" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2FDotNet-Impersonation-Demo" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwayneye.com%2FDotNet-Impersonation-Demo" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -703,6 +703,15 @@ We need invoke three very famous Win32 API: <a href="http://msdn.microsoft.com/e
   </nav>
 
     </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
 
     
   </article>
@@ -937,7 +946,7 @@ After 8 months of continuously hard working, this &lt;Master AWS Development&gt;
     
   <script>
     var disqus_config = function () {
-      this.page.url = "http://localhost:4000/DotNet-Impersonation-Demo";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.url = "https://wayneye.com/DotNet-Impersonation-Demo";  // Replace PAGE_URL with your page's canonical URL variable
       this.page.identifier = "/A-complete-Impersonation-Demo-in-C#.NET"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     (function() { // DON'T EDIT BELOW THIS LINE

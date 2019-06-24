@@ -66,7 +66,7 @@ defaults:
       layout: single
       classes: wide
       author_profile: true
-      read_time: true
+      # read_time: true 不准!中文支持不好
       comments: true
       share: true
       related: true

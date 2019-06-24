@@ -252,16 +252,16 @@ permalink: Ireland-Trip-2019
 </figure>
 
 不过呢，当然也有人比我疯狂得多的，比如这位老兄：
-<!--<figure>-->
-    <!--<a href="assets/images/posts/2019-06-20-Ireland-Trip/Super-Danger.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/Super-Danger.jpg"></a>-->
-<!--</figure>-->
-{% include figure image_path="assets/images/posts/2019-06-20-Ireland-Trip/Super-Danger.jpg" alt="" caption="" %}
-我听到边上有人惊叹：“This is the most silly thing I've ever seen...”
+{% include figure url="assets/images/posts/2019-06-20-Ireland-Trip/Super-Danger.jpg" image_path="assets/images/posts/2019-06-20-Ireland-Trip/Super-Danger.jpg" alt="" caption="" %}
+我听到边上有人惊叹：“This is the most silly thing I've ever seen...”，这位老兄脚下确实是百米悬崖，而且他还激情四射地高举国旗，要知道这里的风力可能会超过7级，我上面那些作妖的照片有一个实际上下面还有凸出的岩石，只是我专门给帮我拍照的朋友们交代了“构图要点”:blush:，所以看起来有点骇人而已，比如您看这张：
+{% include figure url="assets/images/posts/2019-06-20-Ireland-Trip/CoM-no-Danger.jpg" image_path="assets/images/posts/2019-06-20-Ireland-Trip/CoM-no-Danger.jpg" alt="" caption="" %}
+
+Anyway，表学我就对了。。。
 
 ## 装备
 以上所有照片都是用我的华为Mate 20X拍摄，有些自拍是用的一只华为自拍杆+脚架，坦白说吧，我实在是太懒了，也没有足够的慧根去做照片后期，好在华为4摄非常优秀，足以填补镜头后面那个头的不足:smile:
 
 ## 总结
-非常感谢您能够耐着心看到这里，本君写下这篇游记只是希望留下美好记忆，如果您看得开心，有了旅游和探索的冲动，本君不胜荣幸，谢谢！
+写下这篇游记只是希望留下美好记忆，我很懒，平时没太多时间码字，如果您能够耐着心看到这里，希望能带给您些许欢乐，使您有了旅游和探索的兴趣，欢迎留言，谢谢！
 
 P.S.一个人研究攻略，制定行程有些boring，希望下次能>=2个人。

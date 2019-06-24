@@ -73,8 +73,6 @@ defaults:
       toc: true
       #toc_label: "Table of Contents"
       toc_icon: "cog"
-      sidebar:
-        nav: "dashang"
   - scope:
       path: ""
       type: "pages"

@@ -127,7 +127,7 @@ permalink: Ireland-Trip-2019
     <figcaption>凯里之环和狂野大西洋之路的路牌</figcaption>
 </figure>
 
-凯里之环是一条全长近180公里的游览自驾路线，本身也是狂野大西洋之路的一部分，沿途风光绝妙。既有海滨滩涂，还有海岸峭壁；既有森林山野，还有草坪牧场；既可以远观群山起伏，也可以近赏田园风光。 非常感恩，雨停了，由于美景是在太多太震撼，我基本上是开开停停，无需赘言，请欣赏照片：
+凯里之环是一条全长近180公里的游览自驾路线，本身也是狂野大西洋之路的一部分，沿途风光绝妙。既有海滨滩涂，还有海岸峭壁；既有森林山野，还有草坪牧场；既可以远观群山起伏，也可以近赏田园风光。星球大战-最后的绝地武士在这里取景（http://www.kerryexperiencetours.ie/ring-of-kerry/star-wars-the-last-jedi-in-kerry/）。 非常感恩，雨停了，由于美景是在太多太震撼，我基本上是开开停停（大概二三十次吧），无需赘言，请欣赏照片：
 
 <figure>
     <a href="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Gorgeous-View.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/RoK-Gorgeous-View.jpg"></a>
@@ -186,6 +186,11 @@ permalink: Ireland-Trip-2019
 <figure class="half">
     <a href="assets/images/posts/2019-06-20-Ireland-Trip/RoK-house-external.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/RoK-house.jpg"></a>
     <a href="assets/images/posts/2019-06-20-Ireland-Trip/RoK-house-external.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/RoK-house-external.jpg"></a>
+</figure>
+
+Ms. Margret给了我个好评:)
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/Review-By-Margret.png"><img src="assets/images/posts/2019-06-20-Ireland-Trip/Review-By-Margret.png"></a>
 </figure>
 
 第二天早上起床，一路沿海岸线向北，两边的景色依然是田园风：
@@ -257,6 +262,32 @@ permalink: Ireland-Trip-2019
 {% include figure url="assets/images/posts/2019-06-20-Ireland-Trip/CoM-no-Danger.jpg" image_path="assets/images/posts/2019-06-20-Ireland-Trip/CoM-no-Danger.jpg" alt="" caption="" %}
 
 Anyway，表学我就对了。。。
+
+驾车返回都柏林后入住了又一间民宅Hazelwood：
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/Hazelwood-Bedroom.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/Hazelwood-Bedroom.jpg"></a>
+</figure>
+
+房东Mrs.Ann非常友好而且很有经验，她的大house有6间卧室，我跟她以及她可爱的小孙女聊了几句：
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/With-Ann.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/With-Ann.jpg"></a>
+</figure>
+
+临走时拍了张照留念，逍客和Hazelwood大house：
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/Park-At-Hazelwood.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/Park-At-Hazelwood.jpg"></a>
+</figure>
+
+Mrs.Ann精心摆好的餐具（早餐自助）：
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/Hazelwood-Breakfast-table.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/Hazelwood-Breakfast-table.jpg"></a>
+</figure>
+
+<figure>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/Tax-return.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/Tax-return.jpg"></a>
+    <figcaption>在机场临走时退税</figcaption>
+</figure>
+
 
 ## 装备
 以上所有照片都是用我的华为Mate 20X拍摄，有些自拍是用的一只华为自拍杆+脚架，坦白说吧，我实在是太懒了，也没有足够的慧根去做照片后期，好在华为4摄非常优秀，足以填补镜头后面那个头的不足:smile:

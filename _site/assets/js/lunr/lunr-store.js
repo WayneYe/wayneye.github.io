@@ -555,7 +555,12 @@ var store = [{
         "url": "https://wayneye.com/Ireland-Trip-2019",
         "teaser":null},{
         "title": "AWS reinvent 2019 - Las Vegas",
-        "excerpt":"This is my second time attending AWS re-Invent, last time was year 2017, the purpose of this blog is to summarize what I’ve learned, impressed and entertained :smile: Overall during my week staying my daily schedule was listening to sessions mixed with slack/emails during the daylight, and party/social in the...","categories": ["Life"],
-        "tags": ["Life"],
+        "excerpt":"This is my second time attending AWS re-Invent, last time was year 2017, the purpose of this blog is to summarize what I’ve learned, impressed and entertained :smile: At reinvent logo Crazy crowd at midnight madness party Overall during my week staying my daily schedule was listening to sessions mixed...","categories": ["IT-Industry"],
+        "tags": ["IT-Industry","AWS"],
         "url": "https://wayneye.com/AWS-reinvent-Las-Vegas",
+        "teaser":null},{
+        "title": "SkyJump from Stratosphere Tower at Las Vegas - Smile all the way down",
+        "excerpt":"Instead of spending any cent in the money pit casinos, I’d chose to do something more meaningful and exciting :) SkyJump Las Vegas holds the Guinness World Record for highest commercial decelerator descent with an official height of 829 ft (253 m) and is located at Stratosphere Las Vegas. As...","categories": ["Life"],
+        "tags": ["Life","Travel"],
+        "url": "https://wayneye.com/2019-12-07-SkyJump-Las-Vegas",
         "teaser":null}]

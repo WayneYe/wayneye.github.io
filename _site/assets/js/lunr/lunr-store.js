@@ -560,7 +560,7 @@ var store = [{
         "url": "https://wayneye.com/AWS-reinvent-Las-Vegas",
         "teaser":null},{
         "title": "SkyJump from Stratosphere Tower at Las Vegas - Smile all the way down",
-        "excerpt":"Instead of spending any cent in the money pit casinos, I’d chose to do something more meaningful and exciting :) SkyJump Las Vegas holds the Guinness World Record for highest commercial decelerator descent with an official height of 829 ft (253 m) and is located at Stratosphere Las Vegas. As...","categories": ["Life"],
+        "excerpt":"Instead of spending any cent in the money pit casinos, I’d chose to do something more meaningful and exciting :) 凯里之环和狂野大西洋之路的路牌 SkyJump Las Vegas holds the Guinness World Record for highest commercial decelerator descent with an official height of 829 ft (253 m) and is located at Stratosphere Las Vegas....","categories": ["Life"],
         "tags": ["Life","Travel"],
         "url": "https://wayneye.com/2019-12-07-SkyJump-Las-Vegas",
         "teaser":null}]

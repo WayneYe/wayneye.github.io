@@ -129,19 +129,26 @@
       <nav id="site-nav" class="greedy-nav">
         
         <a class="site-title" href="/">Wayne's Geek Life</a>
-        <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/categories/" >Categories</a>
-            </li><li class="masthead__menu-item">
-              <a href="/tags/" >Tags</a>
-            </li><li class="masthead__menu-item">
-              <a href="/search/" >Search</a>
-            </li><li class="masthead__menu-item">
-              <a href="/gallery/" >Gallery</a>
-            </li><li class="masthead__menu-item">
-              <a href="/vlog/" >Vlog</a>
-            </li><li class="masthead__menu-item">
-              <a href="/about/" >About</a>
-            </li></ul>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/gallery/">Gallery</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/vlog/">Vlog</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li>
+</ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
           <span class="visually-hidden">Toggle menu</span>
@@ -286,7 +293,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="My Love on Vim">
-    <meta itemprop="description" content="My life with Vim  I started learning Vim during Aug, 2011, the original motivation was trying to &quot;get rid of my mouse while I am coding&quot;, I had no teacher but google, learnt it from the very hard way. From the beginning 2-3 months, honest speaking, I was less productive while using Vim comparing with IDEs, there were so many things I could do in second in IDE, for example: search/replace, formatting, re-factoring, folding, and so on, whereas I had to spent days in learning how to accomplish a simple task in Vim, that was really painful, but I never gave up!After the first two months of exploration, I was feeling much more comfortable in using Vim, and I believe I am going to use this king of text editor during rest of my life:).Reasons why lovingThere are millions of people love Vim during the past decades in the planet, there could be different reasons why people love Vim, I believe the ultimate reasons are:  Type less, do more!  Mouse-less!  Ultimate productivity!  Unlimited extensibility!I just want express my understanding on the last fact: Vim can be extended through Vim script, ruby, python, lua, any language you like, unlimited possibility, as long as you are doing something that many people are doing as well, there would be plugins to help you; there isn&#39;t? You create one and benefits other people doing similar thing like you do!Hacking with Vim technical talkNavigate with &lt; and &gt; Or Click to View the presentation in a new TabI did a technical talk to share my most favourite Vim tips to colleagues in Autodesk Singapore office, it was a short one, but with many ultimate and useful hacking tips with Vim, my intention was trying to excite people, let them open their mouth: &quot;Wow! I never realized that Vim can do things like this!!&quot;, or &quot;I did know Vim is powerful, I never expect it can be that powerful!!&quot;.As I wish, I got some very positive feedback, and some familiar friends said they re-recognized me:)My favourite Vim tips  The content below are the tips I demonstrated in my talk above, all of them are not my invention, but standing upon giant&#39;s shoulder! Since I will be using Vim in rest of my life, there is no doubt I about this point, and I wish I will contribute as much as I can to this god like text editor and its eco-system in the future!Ultisnips + vim-snippetsUltisnips boosts my coding speed like a rocket! It works with vim-snippets behind the scene to allow you to type very few characters but generates a usually used code snippet for you, with place-holders for you to easily customizing the snippet, this combination supports all mainstream languages as long as there are geeks speak it! See my screenshot below:Ultisnips is written in python and is more preferable comparing to the relatively old snipmate, see discussion here.If you couldn&#39;t find the language you want, for example Apple swift, dude, it is a good opportunity for you to contribute:)Dragging linesDragging line(s) with automatically indentation fixing, this trick is accomplished by adding the following lines into vimrc:  &quot; Alt+j/k to move current line/selected lines up and down   nnoremap  :m+==   nnoremap  :m-2==  inoremap  :m+==gi  inoremap  :m-2==gi  vnoremap  :m&#39;&gt;+gv=gv  vnoremap  :m-2gv=gvIt works for single line:It works for multi lines:MacrosThe JSON conversion I did during the technical session was accomplished by the following key combinations:  gg #Make sure current cursor is at the buffer beginning.  qa # Start recording macros &quot;a&quot;  i # Insert  &quot;  f= #Forward to the char &quot;=&quot;  i&quot; # Insert double quote before &quot;=&quot;  ESC #Back to normal mode  l #Move to &quot;=&quot;  r: #Replace &quot;=&quot; with &quot;:&quot;  a&quot; #Append a double quote after &quot;:&quot;  A&quot;, # Append &quot; and , at the end of line  j0 #Move to the beginning of the next line  28@a #Repeat this operation for 28 timesLearn more: Macros - Vim Tips WikiExecute script inside Vim  Every vimer knows we can execute script (shell, perl, python, ruby, js, just everything) right inside Vim without switching to terminal, although many people are tmux funs, I still prefer do it in Vim&#39;s way, by having the following lines in my vimrc, I can instantly run the current script and view the result with nearly no latency:)  autocmd FileType sh map   :w:!/bin/sh %   autocmd FileType ruby map   :w:!/usr/bin/env ruby %   autocmd FileType python map   :w:!/usr/bin/env python %   autocmd FileType javascript map   :w:!/usr/bin/env node % &lt;/pre&gt;Match &amp; Untilcst # Change surround tag, pretty useful when editing HTMLvit # View in current tagdit # Delete content in current tagf$ # Forward to the first occurrence of $ within current lineF$ # Backward to the first occurrence of $ within current linedt$ # Delete content until matching the first occurrence of $ within current linevt$ # View (Select) content until matching the first occurrence of $ within current lineSearch &amp; ReplaceVim is extremely powerful in dealing with searching and replacing, the trick I&#39;ve done in the session is just tip of the iceberg, I typed :g/#/d to remove all comments in a Ruby file.Vimium  This is a awesome Chrome extension, the home page is: https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en, suffering the internet without mouse is absolutely feasible!My vimrchttp://WayneYe.com/vimrcMy future on Vim  I have been using Vim everyday during the past 3 years, I never stopped learning it, and with no doubt, I will do so in rest of my life, really, I just can&#39;t breath without it!   There are absolutely a lot of improvement space for me, apart from continuously improve productivity, I have intention to do more things in vim: Email, highly customized snippets (refer: &lt;a href=&quot;http://www.sirver.net/blog/2012/03/31/fourth-episode-of-ultisnips-screencast/&quot; target=_blank&quot;&gt;Ultisnips Screencast Episode 4&lt;/a&gt;, presentation, and more important, I want to contribute to Vim ecosystem!">
+    <meta itemprop="description" content="My life with Vim  I started learning Vim during Aug, 2011, the original motivation was trying to &quot;get rid of my mouse while I am coding&quot;, I had no teacher but google, learnt it from the very hard way. From the beginning 2-3 months, honest speaking, I was less productive while using Vim comparing with IDEs, there were so many things I could do in second in IDE, for example: search/replace, formatting, re-factoring, folding, and so on, whereas I had to spent days in learning how to accomplish a simple task in Vim, that was really painful, but I never gave up!After the first two months of exploration, I was feeling much more comfortable in using Vim, and I believe I am going to use this king of text editor during rest of my life:).Reasons why lovingThere are millions of people love Vim during the past decades in the planet, there could be different reasons why people love Vim, I believe the ultimate reasons are:  Type less, do more!  Mouse-less!  Ultimate productivity!  Unlimited extensibility!I just want express my understanding on the last fact: Vim can be extended through Vim script, ruby, python, lua, any language you like, unlimited possibility, as long as you are doing something that many people are doing as well, there would be plugins to help you; there isn't? You create one and benefits other people doing similar thing like you do!Hacking with Vim technical talkNavigate with &lt; and &gt; Or Click to View the presentation in a new TabI did a technical talk to share my most favourite Vim tips to colleagues in Autodesk Singapore office, it was a short one, but with many ultimate and useful hacking tips with Vim, my intention was trying to excite people, let them open their mouth: &quot;Wow! I never realized that Vim can do things like this!!&quot;, or &quot;I did know Vim is powerful, I never expect it can be that powerful!!&quot;.As I wish, I got some very positive feedback, and some familiar friends said they re-recognized me:)My favourite Vim tips  The content below are the tips I demonstrated in my talk above, all of them are not my invention, but standing upon giant's shoulder! Since I will be using Vim in rest of my life, there is no doubt I about this point, and I wish I will contribute as much as I can to this god like text editor and its eco-system in the future!Ultisnips + vim-snippetsUltisnips boosts my coding speed like a rocket! It works with vim-snippets behind the scene to allow you to type very few characters but generates a usually used code snippet for you, with place-holders for you to easily customizing the snippet, this combination supports all mainstream languages as long as there are geeks speak it! See my screenshot below:Ultisnips is written in python and is more preferable comparing to the relatively old snipmate, see discussion here.If you couldn't find the language you want, for example Apple swift, dude, it is a good opportunity for you to contribute:)Dragging linesDragging line(s) with automatically indentation fixing, this trick is accomplished by adding the following lines into vimrc:  &quot; Alt+j/k to move current line/selected lines up and down   nnoremap  :m+==   nnoremap  :m-2==  inoremap  :m+==gi  inoremap  :m-2==gi  vnoremap  :m'&gt;+gv=gv  vnoremap  :m-2gv=gvIt works for single line:It works for multi lines:MacrosThe JSON conversion I did during the technical session was accomplished by the following key combinations:  gg #Make sure current cursor is at the buffer beginning.  qa # Start recording macros &quot;a&quot;  i # Insert  &quot;  f= #Forward to the char &quot;=&quot;  i&quot; # Insert double quote before &quot;=&quot;  ESC #Back to normal mode  l #Move to &quot;=&quot;  r: #Replace &quot;=&quot; with &quot;:&quot;  a&quot; #Append a double quote after &quot;:&quot;  A&quot;, # Append &quot; and , at the end of line  j0 #Move to the beginning of the next line  28@a #Repeat this operation for 28 timesLearn more: Macros - Vim Tips WikiExecute script inside Vim  Every vimer knows we can execute script (shell, perl, python, ruby, js, just everything) right inside Vim without switching to terminal, although many people are tmux funs, I still prefer do it in Vim's way, by having the following lines in my vimrc, I can instantly run the current script and view the result with nearly no latency:)  autocmd FileType sh map   :w:!/bin/sh %   autocmd FileType ruby map   :w:!/usr/bin/env ruby %   autocmd FileType python map   :w:!/usr/bin/env python %   autocmd FileType javascript map   :w:!/usr/bin/env node % &lt;/pre&gt;Match &amp; Untilcst # Change surround tag, pretty useful when editing HTMLvit # View in current tagdit # Delete content in current tagf$ # Forward to the first occurrence of $ within current lineF$ # Backward to the first occurrence of $ within current linedt$ # Delete content until matching the first occurrence of $ within current linevt$ # View (Select) content until matching the first occurrence of $ within current lineSearch &amp; ReplaceVim is extremely powerful in dealing with searching and replacing, the trick I've done in the session is just tip of the iceberg, I typed :g/#/d to remove all comments in a Ruby file.Vimium  This is a awesome Chrome extension, the home page is: https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en, suffering the internet without mouse is absolutely feasible!My vimrchttp://WayneYe.com/vimrcMy future on Vim  I have been using Vim everyday during the past 3 years, I never stopped learning it, and with no doubt, I will do so in rest of my life, really, I just can't breath without it!   There are absolutely a lot of improvement space for me, apart from continuously improve productivity, I have intention to do more things in vim: Email, highly customized snippets (refer: &lt;a href=&quot;http://www.sirver.net/blog/2012/03/31/fourth-episode-of-ultisnips-screencast/&quot; target=_blank&quot;&gt;Ultisnips Screencast Episode 4&lt;/a&gt;, presentation, and more important, I want to contribute to Vim ecosystem!">
     <meta itemprop="datePublished" content="June 22, 2014">
     
 
@@ -303,12 +310,14 @@
         
           <aside class="sidebar__right ">
             <nav class="toc">
-              <header><h4 class="nav__title"><i class="fas fa-cog"></i> On this page</h4></header>
+              <header><h4 class="nav__title">
+<i class="fas fa-cog"></i> On this page</h4></header>
               <ul class="toc__menu">
   <li><a href="#">My life with Vim</a></li>
   <li><a href="#">Reasons why loving</a></li>
   <li><a href="#">Hacking with Vim technical talk</a></li>
-  <li><a href="#">My favourite Vim tips</a>
+  <li>
+<a href="#">My favourite Vim tips</a>
     <ul>
       <li><a href="#">Ultisnips + vim-snippets</a></li>
       <li><a href="#">Dragging lines</a></li>
@@ -336,6 +345,7 @@ After the first two months of exploration, I was feeling much more comfortable i
 There are millions of people love Vim during the past decades in the planet, there could be different reasons why people love Vim, I believe the ultimate reasons are:
 </p>
 <p>
+</p>
 <ul style="font-size: 16px;">
   <li><b>Type less, do more!</b></li>
   <li><b>Mouse-less!</b></li>
@@ -344,7 +354,7 @@ There are millions of people love Vim during the past decades in the planet, the
 </ul>
 
 I just want express my understanding on the last fact: Vim can be extended through Vim script, ruby, python, lua, any language you like, unlimited possibility, as long as you are doing something that many people are doing as well, there would be plugins to help you; there isn't? You create one and benefits other people doing similar thing like you do!
-</p>
+
 
 <h2>Hacking with Vim technical talk</h2>
 <p><iframe style="width: 760px; height: 480px; border: 1px solid #333;" src="http://wayneye.com/PPT/Hacking-With-Vim"></iframe></p>
@@ -363,14 +373,15 @@ I just want express my understanding on the last fact: Vim can be extended throu
 <h3>Ultisnips + vim-snippets</h3>
 <p><a href="https://github.com/SirVer/ultisnips" target="_blank">Ultisnips</a> boosts my coding speed like a rocket! It works with <a href="https://github.com/honza/vim-snippets" target="_blank">vim-snippets</a> behind the scene to allow you to type very few characters but generates a usually used code snippet for you, with place-holders for you to easily customizing the snippet, this combination supports all mainstream languages as long as there are geeks speak it! See my screenshot below:
 </p>
-<img src="https://semlfq.dm2301.livefilestore.com/y2pjM3n-igEDOIhyTZF_ZHcqnFix1kYiS0HKGyoR8Jqc0s3wMtJng7QtbYyiCPNU95EgWfk9VShiJ4K4MQqUvUSVMTu5RTs-WbpTYcPqEXYsdQ/vim-snips.gif?psid=1" alt="Vim-snippets"/>
+<img src="https://semlfq.dm2301.livefilestore.com/y2pjM3n-igEDOIhyTZF_ZHcqnFix1kYiS0HKGyoR8Jqc0s3wMtJng7QtbYyiCPNU95EgWfk9VShiJ4K4MQqUvUSVMTu5RTs-WbpTYcPqEXYsdQ/vim-snips.gif?psid=1" alt="Vim-snippets">
 
 <p>
+</p>
 <ul>
 <li>Ultisnips is written in python and is more preferable comparing to the relatively old <a href="https://github.com/garbas/vim-snipmate" target="_blank">snipmate</a>, see discussion <a href="https://github.com/honza/vim-snippets/issues/363" target="_blank">here</a>.</li>
 <li>If you couldn't find the language you want, for example <a href="https://developer.apple.com/swift/" target="_blank">Apple swift</a>, dude, it is a good opportunity for you to contribute:)</li>
 </ul>
-</p>
+
 
 <h3>Dragging lines</h3>
 <p>Dragging line(s) with automatically indentation fixing, this trick is accomplished by adding the following lines into vimrc:</p>
@@ -384,11 +395,11 @@ I just want express my understanding on the last fact: Vim can be extended throu
   vnoremap  :m-2gv=gv
 </pre>
 
-<p>It works for single line:<br />
-<img src="https://semlfq.dm2301.livefilestore.com/y2p58ahCjSFl77PgNKlMoRLa5mzmETXy2MTElTByYN0LlrSj5YBvhxZwxOMLb4-qHEppFlKIM4ZXKkwo8VVChPOm7qIYnTD5qreVomrbonr0Qc/vim-drag-1.gif?psid=1" alt="Vim-drag-single-line" style="width: 720px" />
+<p>It works for single line:<br>
+<img src="https://semlfq.dm2301.livefilestore.com/y2p58ahCjSFl77PgNKlMoRLa5mzmETXy2MTElTByYN0LlrSj5YBvhxZwxOMLb4-qHEppFlKIM4ZXKkwo8VVChPOm7qIYnTD5qreVomrbonr0Qc/vim-drag-1.gif?psid=1" alt="Vim-drag-single-line" style="width: 720px">
 </p>
-<p>It works for multi lines:<br />
-<img src="https://semlfq.dm2301.livefilestore.com/y2p2mYpyFQZB0Q3alZIxzRC3fgKzNacvrCjM7mCFagR7spzQOWJfuphOWYBMTiDk_1y4koWs89K9rnsIPDl54Oy6DqZMaTaRj6azxWGf2vDN_s/vim-drag-2.gif?psid=1" alt="Vim-drag-multi-lines"/>
+<p>It works for multi lines:<br>
+<img src="https://semlfq.dm2301.livefilestore.com/y2p2mYpyFQZB0Q3alZIxzRC3fgKzNacvrCjM7mCFagR7spzQOWJfuphOWYBMTiDk_1y4koWs89K9rnsIPDl54Oy6DqZMaTaRj6azxWGf2vDN_s/vim-drag-2.gif?psid=1" alt="Vim-drag-multi-lines">
 </p>
 
 
@@ -415,11 +426,11 @@ I just want express my understanding on the last fact: Vim can be extended throu
   Every vimer knows we can execute script (shell, perl, python, ruby, js, just everything) right inside Vim without switching to terminal, although many people are tmux funs, I still prefer do it in Vim's way, by having the following lines in my vimrc, I can instantly run the current script and view the result with nearly no latency:)
 </p>
 <pre>
-  autocmd FileType sh map <buffer> <C-S-e> :w<CR>:!/bin/sh % <CR>
-  autocmd FileType ruby map <buffer> <C-S-e> :w<CR>:!/usr/bin/env ruby % <CR>
-  autocmd FileType python map <buffer> <C-S-e> :w<CR>:!/usr/bin/env python % <CR>
-  autocmd FileType javascript map <buffer> <C-S-e> :w<CR>:!/usr/bin/env node % <CR>
-</pre>
+  autocmd FileType sh map <buffer> <c-s-e> :w<cr>:!/bin/sh % <cr>
+  autocmd FileType ruby map <buffer> <c-s-e> :w<cr>:!/usr/bin/env ruby % <cr>
+  autocmd FileType python map <buffer> <c-s-e> :w<cr>:!/usr/bin/env python % <cr>
+  autocmd FileType javascript map <buffer> <c-s-e> :w<cr>:!/usr/bin/env node % <cr>
+</cr></cr></c-s-e></buffer></cr></cr></c-s-e></buffer></cr></cr></c-s-e></buffer></cr></cr></c-s-e></buffer></pre>
 
 
 <h3>Match &amp; Until</h3>
@@ -445,7 +456,7 @@ I just want express my understanding on the last fact: Vim can be extended throu
   I have been using Vim everyday during the past 3 years, I never stopped learning it, and with no doubt, I will do so in rest of my life, really, <b>I just can't breath without it</b>! 
 </p>
 <p>
-  There are absolutely a lot of improvement space for me, apart from continuously improve productivity, I have intention to do more things in vim: Email, highly customized snippets (refer: <a href="http://www.sirver.net/blog/2012/03/31/fourth-episode-of-ultisnips-screencast/" target=_blank">Ultisnips Screencast Episode 4</a>, presentation, and more important, I want to contribute to Vim ecosystem!
+  There are absolutely a lot of improvement space for me, apart from continuously improve productivity, I have intention to do more things in vim: Email, highly customized snippets (refer: <a href="http://www.sirver.net/blog/2012/03/31/fourth-episode-of-ultisnips-screencast/" target='_blank"'>Ultisnips Screencast Episode 4</a>, presentation, and more important, I want to contribute to Vim ecosystem!
 </p>
 
 
@@ -559,6 +570,33 @@ I just want express my understanding on the last fact: Vim can be extended throu
     
     <h2 class="archive__item-title" itemprop="headline">
       
+        <a href="/AWS-reinvent-Las-Vegas" rel="permalink">AWS reinvent 2019 - Las Vegas
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">This is my second time attending AWS re-Invent, last time was year 2017, the purpose of this blog is to summarize what I’ve learned, impressed and entertained <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">
+
+Overall during my week staying my daily schedule was listening to sessions mixed with slack/emails during the daylight, and party/social in the evening time.
+
+All the keynotes/sessions have been uploaded here:  https://reinvent.awsevents.com/learn/keynotes/  and all announcements were summarized at this page, my personal top 5 thrilled announcements are:
+
+
+  Braket: Quantum computing is seriously coming!
+  Deep Composor: mach...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
         <a href="/Ireland-Trip-2019" rel="permalink">Ireland Trip 2019
 </a>
       
@@ -652,29 +690,6 @@ After 8 months of continuously hard working, this &lt;Master AWS Development&gt;
 </div>
 
         
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/self-improvement/passing-aws-certified-solutions-architect/" rel="permalink">Passing AWS Certified Solutions Architect
-</a>
-      
-    </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">
-
-3 years of AWS hands on experience, two months of preparation, 30 hours of course learning, 300+ exam practices, this was the work I’ve done to pass the AWS Certified Solutions Architect - Associate, my exam result is below:
-
-</p>
-  </article>
-</div>
-
-        
       </div>
     </div>
   
@@ -727,11 +742,11 @@ After 8 months of continuously hard working, this &lt;Master AWS Development&gt;
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2019 Wayne Ye. All rights reserved.
+<div class="page__footer-copyright">© 2019 Wayne Ye. All rights reserved.
  
   <!--Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>-->
 
-      </footer>
+      
     </div>
 
     
@@ -757,7 +772,8 @@ After 8 months of continuously hard working, this &lt;Master AWS Development&gt;
       (d.head || d.body).appendChild(s);
     })();
   </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
 
 
   
@@ -766,5 +782,6 @@ After 8 months of continuously hard working, this &lt;Master AWS Development&gt;
 
 
 
-  </body>
+  </footer>
+</div></body>
 </html>

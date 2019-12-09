@@ -129,19 +129,26 @@
       <nav id="site-nav" class="greedy-nav">
         
         <a class="site-title" href="/">Wayne's Geek Life</a>
-        <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/categories/" >Categories</a>
-            </li><li class="masthead__menu-item">
-              <a href="/tags/" >Tags</a>
-            </li><li class="masthead__menu-item">
-              <a href="/search/" >Search</a>
-            </li><li class="masthead__menu-item">
-              <a href="/gallery/" >Gallery</a>
-            </li><li class="masthead__menu-item">
-              <a href="/vlog/" >Vlog</a>
-            </li><li class="masthead__menu-item">
-              <a href="/about/" >About</a>
-            </li></ul>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/gallery/">Gallery</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/vlog/">Vlog</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li>
+</ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
           <span class="visually-hidden">Toggle menu</span>
@@ -286,7 +293,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="作息时间自动提醒Windows Service">
-    <meta itemprop="description" content="经济危机真真切切的影响到了几乎每一个人，09年过去三分之一多一点了，生活不太规律，确实太忙的说，工作换了，房子也换了，又做回了张江男，觉得自己再不好好努力会Out的。。。都奔三儿而去了。。。于是乎，为了勉励自己，做了这么个东东。一个Windows Service，里面跑一个Timer，每隔10秒check一下当前时间，一旦发现时间吻合，则调用Microsoft Speech Technology? 发声提醒，超级简单，不过。。。以后要么得一直戴着心爱的森海塞尔，要么只能用音箱了。。。服务描述：Notify Wayne to follow the schedule established by himself. If this service is disabled, Wayne may waste a lot of time...项目层级：&nbsp;WayneScheduleService.cs Windows Service后台代码 ">
+    <meta itemprop="description" content="经济危机真真切切的影响到了几乎每一个人，09年过去三分之一多一点了，生活不太规律，确实太忙的说，工作换了，房子也换了，又做回了张江男，觉得自己再不好好努力会Out的。。。都奔三儿而去了。。。于是乎，为了勉励自己，做了这么个东东。一个Windows Service，里面跑一个Timer，每隔10秒check一下当前时间，一旦发现时间吻合，则调用Microsoft Speech Technology? 发声提醒，超级简单，不过。。。以后要么得一直戴着心爱的森海塞尔，要么只能用音箱了。。。服务描述：Notify Wayne to follow the schedule established by himself. If this service is disabled, Wayne may waste a lot of time...项目层级： WayneScheduleService.cs Windows Service后台代码 ">
     <meta itemprop="datePublished" content="April 24, 2009">
     
 
@@ -303,39 +310,51 @@
         
           <aside class="sidebar__right ">
             <nav class="toc">
-              <header><h4 class="nav__title"><i class="fas fa-cog"></i> On this page</h4></header>
+              <header><h4 class="nav__title">
+<i class="fas fa-cog"></i> On this page</h4></header>
               
             </nav>
           </aside>
         
         <p>经济危机真真切切的影响到了几乎每一个人，09年过去三分之一多一点了，生活不太规律，确实太忙的说，工作换了，房子也换了，又做回了张江男，觉得自己再不好好努力会Out的。。。都奔三儿而去了。。。于是乎，为了勉励自己，做了这么个东东。</p>
-<p><img title="WSNSVC" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="475" alt="WSNSVC" src="https://a1r0ka.bay.livefilestore.com/y1mD6Kt2muV15s0gB3-mjxP7Wc4jaJsSm5xiCF75azDU1vttwkA_H9nrbJEU4LAqR_i7DvDM_QX4--f17CS2MW0JNn-Px4Ojn_wmWMyf9EameEvHi90UpQkN7vn_JzQ6lrqb_TSuRPTjrj9dnIISyGFSQ/WSNSVC_thumb[1].jpg" width="417" border="0"></p>
+<p><img title="WSNSVC" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="475" alt="WSNSVC" src="https://a1r0ka.bay.livefilestore.com/y1mD6Kt2muV15s0gB3-mjxP7Wc4jaJsSm5xiCF75azDU1vttwkA_H9nrbJEU4LAqR_i7DvDM_QX4--f17CS2MW0JNn-Px4Ojn_wmWMyf9EameEvHi90UpQkN7vn_JzQ6lrqb_TSuRPTjrj9dnIISyGFSQ/WSNSVC_thumb%5B1%5D.jpg" width="417" border="0"></p>
 <p>一个Windows Service，里面跑一个Timer，每隔10秒check一下当前时间，一旦发现时间吻合，则调用Microsoft Speech Technology? 发声提醒，超级简单，不过。。。以后要么得一直戴着心爱的森海塞尔，要么只能用音箱了。。。</p>
 <p><strong>服务描述：<br>Notify Wayne to follow the schedule established by himself. If this service is disabled, Wayne may waste a lot of time...</strong></p>
-<p><strong>项目层级：<br></strong><img title="SolutionHierarchy" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="366" alt="SolutionHierarchy" src="https://a1r0ka.bay.livefilestore.com/y1myARFNSs9HtPEkWNhLJtAPYbQUf3yRaNWdhWDTYz6QsW9bKfIjI8faJN_G8bGmfHxjUN5uePnITft3XyOOWkFVD9onxHYh2CsS1TZkzYNR2OiCrA5sZMW7goCQGrkHMSiXKz7l5U9ayquLzQ7CvcF5A/SolutionHierarchy_thumb[1].jpg" width="292" border="0">&nbsp;</p>
+<p><strong>项目层级：<br></strong><img title="SolutionHierarchy" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="366" alt="SolutionHierarchy" src="https://a1r0ka.bay.livefilestore.com/y1myARFNSs9HtPEkWNhLJtAPYbQUf3yRaNWdhWDTYz6QsW9bKfIjI8faJN_G8bGmfHxjUN5uePnITft3XyOOWkFVD9onxHYh2CsS1TZkzYNR2OiCrA5sZMW7goCQGrkHMSiXKz7l5U9ayquLzQ7CvcF5A/SolutionHierarchy_thumb%5B1%5D.jpg" width="292" border="0"> </p>
 <ul>
 <li>WayneScheduleService.cs Windows Service后台代码 <!--more-->
+</li>
 <li>ScheduleItemsReader.cs Linq读取ScheduleItems 
+</li>
 <li>SoundNotifier.cs 执行发声提醒 
-<li>ServiceLogManager.cs 打Log</li></ul>
+</li>
+<li>ServiceLogManager.cs 打Log</li>
+</ul>
 <p><strong>主要程序代码：</strong></p>
-<p>调用程序发声的代码：<br>&nbsp;&nbsp;&nbsp;&nbsp; public static class SoundNotifier<br>&nbsp;&nbsp;&nbsp; {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public static void Phonate(String sentence)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SpeechSynthesizer speaker = new SpeechSynthesizer();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CultureInfo cnCulture = CultureInfo.GetCultureInfo("en-US"); </p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PromptBuilder pb = new PromptBuilder(CultureInfo.CurrentCulture);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pb.StartVoice(VoiceGender.Female, VoiceAge.Adult);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pb.StartStyle(new PromptStyle(PromptVolume.ExtraLoud)); 
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pb.StartSentence();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pb.AppendText(sentence, PromptEmphasis.Strong);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pb.EndSentence(); 
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pb.EndStyle();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pb.EndVoice(); 
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; speaker.Speak(pb);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp; } 
-<p>晚间作息时间弄在XML里，根据情况自行配置（搞烦了全删掉。。。）：<br>&lt;?xml version="1.0" encoding="utf-8" ?&gt;<br>&lt;WayneScheduleItems&gt;<br>&nbsp; &lt;ScheduleItem TriggerHour="18" TriggerMinute="20" Content="Hi! Wayne! Dinner Time!" /&gt;<br>&nbsp; &lt;ScheduleItem TriggerHour="19" TriggerMinute="0" Content="Hi! Wayne! It is time to learn technologies and programming skills!" /&gt;<br>&nbsp; &lt;ScheduleItem TriggerHour="20" TriggerMinute="30" Content="Hi! Wayne! Take a rest, entertainment, gaming, exercise and wash." /&gt;<br>&nbsp; &lt;ScheduleItem TriggerHour="22" TriggerMinute="0" Content="Well, read/write Emails, read some news." /&gt;<br>&nbsp; &lt;ScheduleItem TriggerHour="23" TriggerMinute="0" Content="Wayne, go to bed, sleep! Good night!" /&gt;<br>&lt;/WayneScheduleItems&gt;</p>
+<p>调用程序发声的代码：<br>     public static class SoundNotifier<br>    {<br>        public static void Phonate(String sentence)<br>        {<br>            SpeechSynthesizer speaker = new SpeechSynthesizer();<br>            CultureInfo cnCulture = CultureInfo.GetCultureInfo("en-US"); </p>
+<p>            PromptBuilder pb = new PromptBuilder(CultureInfo.CurrentCulture);<br>            pb.StartVoice(VoiceGender.Female, VoiceAge.Adult);<br>            pb.StartStyle(new PromptStyle(PromptVolume.ExtraLoud)); 
+</p>
+<p>            pb.StartSentence();<br>            pb.AppendText(sentence, PromptEmphasis.Strong);<br>            pb.EndSentence(); 
+</p>
+<p>            pb.EndStyle();<br>            pb.EndVoice(); 
+</p>
+<p>            speaker.Speak(pb);<br>        }<br>    } 
+</p>
+<p>晚间作息时间弄在XML里，根据情况自行配置（搞烦了全删掉。。。）：<br>&lt;?xml version="1.0" encoding="utf-8" ?&gt;<br>&lt;WayneScheduleItems&gt;<br>  &lt;ScheduleItem TriggerHour="18" TriggerMinute="20" Content="Hi! Wayne! Dinner Time!" /&gt;<br>  &lt;ScheduleItem TriggerHour="19" TriggerMinute="0" Content="Hi! Wayne! It is time to learn technologies and programming skills!" /&gt;<br>  &lt;ScheduleItem TriggerHour="20" TriggerMinute="30" Content="Hi! Wayne! Take a rest, entertainment, gaming, exercise and wash." /&gt;<br>  &lt;ScheduleItem TriggerHour="22" TriggerMinute="0" Content="Well, read/write Emails, read some news." /&gt;<br>  &lt;ScheduleItem TriggerHour="23" TriggerMinute="0" Content="Wayne, go to bed, sleep! Good night!" /&gt;<br>&lt;/WayneScheduleItems&gt;</p>
 <p>使用Linq读取XML里的ScheduleItems：<br>List&lt;ScheduleItem&gt; scheduleItems = new List&lt;ScheduleItem&gt;(); </p>
 <p>IEnumerable&lt;XElement&gt; scheduleItemsCollection = from scheduleItem in XElement.Load(ScheduleItemsXmlLocation).Descendants("ScheduleItem") select scheduleItem; 
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; foreach (XElement ele in scheduleItemsCollection)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ScheduleItem scheduleItem = new ScheduleItem();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; scheduleItem.TriggerHour = ushort.Parse(ele.Attribute("TriggerHour").Value);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; scheduleItem.TriggerMinute = ushort.Parse(ele.Attribute("TriggerMinute").Value);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; scheduleItem.Content = ele.Attribute("Content").Value; </p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; scheduleItems.Add(scheduleItem);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } </p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return scheduleItems; 
+</p>
+<p>            foreach (XElement ele in scheduleItemsCollection)<br>            {<br>                ScheduleItem scheduleItem = new ScheduleItem();<br>                scheduleItem.TriggerHour = ushort.Parse(ele.Attribute("TriggerHour").Value);<br>                scheduleItem.TriggerMinute = ushort.Parse(ele.Attribute("TriggerMinute").Value);<br>                scheduleItem.Content = ele.Attribute("Content").Value; </p>
+<p>                scheduleItems.Add(scheduleItem);<br>            } </p>
+<p>            return scheduleItems; 
+</p>
 <p>最后是Timer：<br>const double WorkInterval = 10000d;<br>m_Timer = new Timer(WorkInterval);<br>m_Timer.Enabled = true;<br>m_Timer.Elapsed += new ElapsedEventHandler(OnTimerElapse);
+</p>
 <p><a href="http://cid-734274473cc13a10.skydrive.live.com/self.aspx/Public/WayneScheduleNotifier.zip" target="_blank"><strong>源代码下载</strong></a><br>Note: 由于使用Linq的缘故只能运行于Donet 3.5，由于使用Microsoft Speech Technology? ，仅支持XP以上操作系统（在XP中还有点问题，比如不支持女声，并且不支持中文）。 
 
 
         
-      </section>
+      </p></section>
 
       <footer class="page__meta">
         
@@ -444,6 +463,33 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
+        <a href="/AWS-reinvent-Las-Vegas" rel="permalink">AWS reinvent 2019 - Las Vegas
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">This is my second time attending AWS re-Invent, last time was year 2017, the purpose of this blog is to summarize what I’ve learned, impressed and entertained <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">
+
+Overall during my week staying my daily schedule was listening to sessions mixed with slack/emails during the daylight, and party/social in the evening time.
+
+All the keynotes/sessions have been uploaded here:  https://reinvent.awsevents.com/learn/keynotes/  and all announcements were summarized at this page, my personal top 5 thrilled announcements are:
+
+
+  Braket: Quantum computing is seriously coming!
+  Deep Composor: mach...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
         <a href="/Ireland-Trip-2019" rel="permalink">Ireland Trip 2019
 </a>
       
@@ -537,29 +583,6 @@ After 8 months of continuously hard working, this &lt;Master AWS Development&gt;
 </div>
 
         
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/self-improvement/passing-aws-certified-solutions-architect/" rel="permalink">Passing AWS Certified Solutions Architect
-</a>
-      
-    </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">
-
-3 years of AWS hands on experience, two months of preparation, 30 hours of course learning, 300+ exam practices, this was the work I’ve done to pass the AWS Certified Solutions Architect - Associate, my exam result is below:
-
-</p>
-  </article>
-</div>
-
-        
       </div>
     </div>
   
@@ -612,11 +635,11 @@ After 8 months of continuously hard working, this &lt;Master AWS Development&gt;
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2019 Wayne Ye. All rights reserved.
+<div class="page__footer-copyright">© 2019 Wayne Ye. All rights reserved.
  
   <!--Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>-->
 
-      </footer>
+      
     </div>
 
     
@@ -642,7 +665,8 @@ After 8 months of continuously hard working, this &lt;Master AWS Development&gt;
       (d.head || d.body).appendChild(s);
     })();
   </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
 
 
   
@@ -651,5 +675,6 @@ After 8 months of continuously hard working, this &lt;Master AWS Development&gt;
 
 
 
-  </body>
+  </footer>
+</div></body>
 </html>

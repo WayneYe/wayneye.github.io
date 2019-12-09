@@ -4,16 +4,6 @@ var store = [{
         "tags": ["Hack"],
         "url": "https://wayneye.com/%E8%BF%99%E5%87%A0%E5%A4%A9%E7%A0%94%E7%A9%B6Url-Rewrite:)",
         "teaser":null},{
-        "title": "小白和多多",
-        "excerpt":"小猫小白斗小白放下饭碗，轻轻的把猫放在双腿上。看着多多（小猫的名字）团团转地咬着自已的尾巴玩。小白满脸堆笑地一边骂道，笨蛋，这么费劲；一边用手拉起多多的尾巴就往多多嘴里送。小家伙不领情，张着爪子去挠小白。小白则赶紧放开手自卫的去拍猫爪。于是两个家伙就你一爪来我一拍地斗起来。 小猫抽烟记小白是个老烟民。吃完饭后一定非得抽上一支。和多多小斗一会后，摸出他甚爱的家乡烟-黄鹤楼往嘴里一叨。忽地嘴巴一抿，嘿嘿嘿地把烟儿拿下来就往多多嘴里塞。小家伙闻了闻，实在不喜欢烟草的味儿，拼命拧着脖子把头转开。无奈小白肉掌大而有力，把着多多的小脑袋不放。急得猫咪用爪子狠命抓小白。小白看它发急的样儿，收回肉掌悠悠地抽起烟来。还时不时地将烟喷到猫咪脸上，好让它也一起分享心爱的黄鹤楼。 慷慨赠袜小白有双臭脚，但他却不以为然。歪理是，男人脚不臭，那还像个男人吗？为了成全他做个男人，但又不至于让被窝臭哄哄，所以要求小白每晚睡觉前得洗脚。又到了小白洗脚的时候，脱下臭袜子，小白就放到多多的小脑袋瓜上，说来闻闻。多多举起两只小前爪抱着臭袜子，竟张开嘴巴咬起来了。这下小白可乐了，脱下另外一只袜子一起扔给多多，说你这么喜欢，我就送给你了，哈哈~~~唔，我可怜的多多！ ","categories": ["Life"],
-        "tags": ["Life"],
-        "url": "https://wayneye.com/%E5%B0%8F%E7%99%BD%E5%92%8C%E5%A4%9A%E5%A4%9A",
-        "teaser":null},{
-        "title": "百度Hi邀请入手",
-        "excerpt":"尊敬的用户：您好！首先感谢您对百度产品的关注与兴趣，现在百度正式诚邀您第一时间使用百度Hi的体验版本，并为您的百度帐号“xiaotianpop”开通了登录权限。我们非常渴望得到您的宝贵意见，对于提供有价值反馈的用户，我们会奉上一份精美的小礼品。1．如何使用？请点击此链接下载百度Hi体验版安装文件：http://im.baidu.com/download/BaiduHi_1.0_Beta1.exe安装完毕后，请用您的百度帐号“xiaotianpop”登录百度Hi。2．如何邀请好友使用百度Hi？(1) 在您第一次登录百度Hi时，系统会自动帮您导入您的百度空间好友，并向他们发送体验邀请。(2) 您成功登录百度Hi后，可通过好友的百度帐号或邮件地址将其加为联系人，系统会自动向您的好友发送邀请信。您的好友按照邀请信中的提示操作，即可获得百度Hi的登录权限。(3) 成功邀请一定数量的好友使用百度Hi后，您就会获得相应的创建群权限的奖励。详情请访问：http://im.baidu.com/help/hi_help5.html#n203．如何提交反馈？目前，百度Hi仅是体验版本，只有收到百度邀请的用户才能使用。在体验过程中，您可能会发现百度Hi的一些问题或者缺陷，请您通过百度Hi主面板上的“主菜单-&gt;帮助-&gt;发送反馈”，或者点击如下链接，向我们提交反馈：http://im.baidu.com/feedback/feedback.php4．什么是百度Hi？百度Hi是百度公司推出的一款集文字消息、音视频通话、文件传输等功能的即时通讯软件，您可以通过它方便找到志同道合的朋友，并随时与好友联络感情。百度好友：预先导入百度好友，并随时与他们对话。兴趣搜人：不管多少种爱好，百度Hi都能找到与您志趣相投的人。兴趣群组：轻松加入或创建兴趣群组，集合您的同趣好友。百度空间：一键进入您的百度空间，即时提醒好友空间更新。密友排行：可按联络频繁度对好友排序，您的“密友”一目了然。邮箱登录：记不住用户名？常用的电子邮件地址也可以登录。了解详情请访问http://im.baidu.com谢谢！百度公司2008年04月01日呵呵：）如果某位达人看到了本火星贴可以留下Email，鄙人定发送邀请给您：） ","categories": ["Life"],
-        "tags": ["Life"],
-        "url": "https://wayneye.com/%E7%99%BE%E5%BA%A6Hi%E9%82%80%E8%AF%B7%E5%85%A5%E6%89%8B",
-        "teaser":null},{
         "title": "谷歌的愚人节礼物:)",
         "excerpt":"今天从达人和菜头那里看到谷歌“发布\"了新产品:谷歌人肉搜索, 呵呵：眼前一亮，脑海里浮现的是某个或某些谷歌员工得意的坏笑。。。摘抄一些：谷歌人肉搜索引擎有哪些特点？ 规模最大：第一期工程拟招募人肉搜索志愿者2500万名，完成后将成为亚太地区最大的人肉搜索引擎。创新最多：256项专利技术，1024篇相关论文，4096次用户调研，65536轮预览版测试。领域最全：搜索范围涵盖娱乐、影视、体育、社会、名人、百姓、历史、地理、物种、太空等领域。速度最快：平均查询响应时间32秒。挖掘最深：曾在预览版测试中，用时128秒，成功定位了中国大陆生产的第一只自动冲水马桶。人肉搜索志愿者管理专员 博士以上学历管理学、传播学或相关专业毕业掌握五种以上方言有八卦主义精神和凡事不着调作风者优先NBNB。。。 ","categories": ["IT-Industry"],
         "tags": ["IT-Industry"],
@@ -563,4 +553,9 @@ var store = [{
         "excerpt":"WHEN YOU ARE OLD When you are old and grey and full of sleep, And nodding by the fire, take down this book, And slowly read, and dream of the soft look Your eyes had once, and of their shadows deep; How many loved your moments of glad grace, And...","categories": ["Life"],
         "tags": ["Life","Travel"],
         "url": "https://wayneye.com/Ireland-Trip-2019",
+        "teaser":null},{
+        "title": "AWS reinvent 2019 - Las Vegas",
+        "excerpt":"This is my second time attending AWS re-Invent, last time was year 2017, the purpose of this blog is to summarize what I’ve learned, impressed and entertained :smile: Overall during my week staying my daily schedule was listening to sessions mixed with slack/emails during the daylight, and party/social in the...","categories": ["Life"],
+        "tags": ["Life"],
+        "url": "https://wayneye.com/AWS-reinvent-Las-Vegas",
         "teaser":null}]

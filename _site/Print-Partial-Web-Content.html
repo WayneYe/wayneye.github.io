@@ -129,19 +129,26 @@
       <nav id="site-nav" class="greedy-nav">
         
         <a class="site-title" href="/">Wayne's Geek Life</a>
-        <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/categories/" >Categories</a>
-            </li><li class="masthead__menu-item">
-              <a href="/tags/" >Tags</a>
-            </li><li class="masthead__menu-item">
-              <a href="/search/" >Search</a>
-            </li><li class="masthead__menu-item">
-              <a href="/gallery/" >Gallery</a>
-            </li><li class="masthead__menu-item">
-              <a href="/vlog/" >Vlog</a>
-            </li><li class="masthead__menu-item">
-              <a href="/about/" >About</a>
-            </li></ul>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/gallery/">Gallery</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/vlog/">Vlog</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li>
+</ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
           <span class="visually-hidden">Toggle menu</span>
@@ -286,7 +293,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Print partial web content">
-    <meta itemprop="description" content="Per project needs we need print part of a web page, which I have no idea when I saw this requirement,&nbsp;I googled and I read this post:&nbsp;http://www.huntingground.freeserve.co.uk/main/mainfram.htm?../scripts/printing.htm, it basically use document.write to write the content you want to print to a new window by window.open, it works, however I really don&#39;t like the opened window.Occasionally&nbsp;I tried to find out whether CSS can achieve such function, seemed I was on the right way: CSS media types is to control different display settings on different &quot;media&quot;, controled completely by your own. What a shame to myself! CSS media types definiton from W3C official page:One of the most important features of style sheets is that they specify how a document is to be presented on different media: on the screen, on paper, with a speech synthesizer, with a braille device, etc.We can define print style by few ways:Make a seperate css file to define print style and link it by specifying media=print, &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;print.css&quot; media=&quot;print&quot; /&gt;Insert a &lt;style media=&quot;print&quot;&gt; snippet into the &lt;head&gt;.Define @media print rule inline with our CSS code: @media print {#text_print:display:visible;}.I&#39;d reccomended option 1 or 3 if the project is small.In additional I occasionally found that the&nbsp;Web Development extetion for Chrome already support this, we don&#39;t have to waste many pieces of papers.See also:Print ButtonW3C School: CSS Media types">
+    <meta itemprop="description" content="Per project needs we need print part of a web page, which I have no idea when I saw this requirement, I googled and I read this post: http://www.huntingground.freeserve.co.uk/main/mainfram.htm?../scripts/printing.htm, it basically use document.write to write the content you want to print to a new window by window.open, it works, however I really don't like the opened window.Occasionally I tried to find out whether CSS can achieve such function, seemed I was on the right way: CSS media types is to control different display settings on different &quot;media&quot;, controled completely by your own. What a shame to myself! CSS media types definiton from W3C official page:One of the most important features of style sheets is that they specify how a document is to be presented on different media: on the screen, on paper, with a speech synthesizer, with a braille device, etc.We can define print style by few ways:Make a seperate css file to define print style and link it by specifying media=print, &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;print.css&quot; media=&quot;print&quot; /&gt;Insert a &lt;style media=&quot;print&quot;&gt; snippet into the &lt;head&gt;.Define @media print rule inline with our CSS code: @media print {#text_print:display:visible;}.I'd reccomended option 1 or 3 if the project is small.In additional I occasionally found that the Web Development extetion for Chrome already support this, we don't have to waste many pieces of papers.See also:Print ButtonW3C School: CSS Media types">
     <meta itemprop="datePublished" content="September 28, 2011">
     
 
@@ -303,13 +310,14 @@
         
           <aside class="sidebar__right ">
             <nav class="toc">
-              <header><h4 class="nav__title"><i class="fas fa-cog"></i> On this page</h4></header>
+              <header><h4 class="nav__title">
+<i class="fas fa-cog"></i> On this page</h4></header>
               
             </nav>
           </aside>
         
-        <p>Per project needs we need print part of a web page, which I have no idea when I saw this requirement,&nbsp;I googled and I read this post:&nbsp;<a href="http://www.huntingground.freeserve.co.uk/main/mainfram.htm?../scripts/printing.htm">http://www.huntingground.freeserve.co.uk/main/mainfram.htm?../scripts/printing.htm</a>, it basically use <code>document.write</code> to write the content you want to print to a new window by <code>window.open</code>, it works, however I really don't like the opened window.</p>
-<p>Occasionally&nbsp;I tried to find out whether CSS can achieve such function, seemed I was on the right way: <a href="http://www.w3.org/TR/CSS2/media.html" target="_blank">CSS media types</a> is to control different display settings on different "media", controled completely by your own. What a shame to myself! CSS media types definiton from W3C official page:</p>
+        <p>Per project needs we need print part of a web page, which I have no idea when I saw this requirement, I googled and I read this post: <a href="http://www.huntingground.freeserve.co.uk/main/mainfram.htm?../scripts/printing.htm">http://www.huntingground.freeserve.co.uk/main/mainfram.htm?../scripts/printing.htm</a>, it basically use <code>document.write</code> to write the content you want to print to a new window by <code>window.open</code>, it works, however I really don't like the opened window.</p>
+<p>Occasionally I tried to find out whether CSS can achieve such function, seemed I was on the right way: <a href="http://www.w3.org/TR/CSS2/media.html" target="_blank">CSS media types</a> is to control different display settings on different "media", controled completely by your own. What a shame to myself! CSS media types definiton from W3C official page:</p>
 <blockquote>
 <p><strong>One of the most important features of style sheets is that they specify how a document is to be presented on different media: on the screen, on paper, with a speech synthesizer, with a braille device, etc.</strong></p>
 </blockquote>
@@ -320,8 +328,8 @@
 <li>Define <code>@media print</code> rule inline with our CSS code: <code>@media print {#text_print:display:visible;}</code>.</li>
 </ol>
 <p>I'd reccomended option 1 or 3 if the project is small.</p>
-<p>In additional I occasionally found that the&nbsp;Web Development extetion for Chrome already support this, we don't have to waste many pieces of papers<img style="background-image: url('http://wayneye.com/Images/winLiveEmotions.gif'); background-position: -0px -0px; width: 19px; height: 19px;" src="http://wayneye.com/Images/invis.gif" alt="Smile" />.</p>
-<p><img title="Web Development Tool" src="https://byfiles.storage.live.com/y1pjr4gj8WcdWQMf0guwFcaGtSwgMWiYdaWY09gDnQ8tfWCe7nKaYOXMF19LfqIyydSv57DRK32q9o/print.png?psid=1" alt="Web Development Tool" width="640" height="134" /></p>
+<p>In additional I occasionally found that the Web Development extetion for Chrome already support this, we don't have to waste many pieces of papers<img style="background-image: url('http://wayneye.com/Images/winLiveEmotions.gif'); background-position: -0px -0px; width: 19px; height: 19px;" src="http://wayneye.com/Images/invis.gif" alt="Smile">.</p>
+<p><img title="Web Development Tool" src="https://byfiles.storage.live.com/y1pjr4gj8WcdWQMf0guwFcaGtSwgMWiYdaWY09gDnQ8tfWCe7nKaYOXMF19LfqIyydSv57DRK32q9o/print.png?psid=1" alt="Web Development Tool" width="640" height="134"></p>
 <p>See also:</p>
 <p><a href="http://javascript.about.com/library/blprint.htm" target="_blank">Print Button</a></p>
 <p><a href="http://www.w3schools.com/css/css_mediatypes.asp" target="_blank">W3C School: CSS Media types</a></p>
@@ -436,6 +444,33 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
+        <a href="/AWS-reinvent-Las-Vegas" rel="permalink">AWS reinvent 2019 - Las Vegas
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">This is my second time attending AWS re-Invent, last time was year 2017, the purpose of this blog is to summarize what I’ve learned, impressed and entertained <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">
+
+Overall during my week staying my daily schedule was listening to sessions mixed with slack/emails during the daylight, and party/social in the evening time.
+
+All the keynotes/sessions have been uploaded here:  https://reinvent.awsevents.com/learn/keynotes/  and all announcements were summarized at this page, my personal top 5 thrilled announcements are:
+
+
+  Braket: Quantum computing is seriously coming!
+  Deep Composor: mach...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
         <a href="/Ireland-Trip-2019" rel="permalink">Ireland Trip 2019
 </a>
       
@@ -529,29 +564,6 @@ After 8 months of continuously hard working, this &lt;Master AWS Development&gt;
 </div>
 
         
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/self-improvement/passing-aws-certified-solutions-architect/" rel="permalink">Passing AWS Certified Solutions Architect
-</a>
-      
-    </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">
-
-3 years of AWS hands on experience, two months of preparation, 30 hours of course learning, 300+ exam practices, this was the work I’ve done to pass the AWS Certified Solutions Architect - Associate, my exam result is below:
-
-</p>
-  </article>
-</div>
-
-        
       </div>
     </div>
   
@@ -604,11 +616,11 @@ After 8 months of continuously hard working, this &lt;Master AWS Development&gt;
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2019 Wayne Ye. All rights reserved.
+<div class="page__footer-copyright">© 2019 Wayne Ye. All rights reserved.
  
   <!--Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>-->
 
-      </footer>
+      
     </div>
 
     
@@ -634,7 +646,8 @@ After 8 months of continuously hard working, this &lt;Master AWS Development&gt;
       (d.head || d.body).appendChild(s);
     })();
   </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
 
 
   
@@ -643,5 +656,6 @@ After 8 months of continuously hard working, this &lt;Master AWS Development&gt;
 
 
 
-  </body>
+  </footer>
+</div></body>
 </html>

@@ -129,19 +129,26 @@
       <nav id="site-nav" class="greedy-nav">
         
         <a class="site-title" href="/">Wayne's Geek Life</a>
-        <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/categories/" >Categories</a>
-            </li><li class="masthead__menu-item">
-              <a href="/tags/" >Tags</a>
-            </li><li class="masthead__menu-item">
-              <a href="/search/" >Search</a>
-            </li><li class="masthead__menu-item">
-              <a href="/gallery/" >Gallery</a>
-            </li><li class="masthead__menu-item">
-              <a href="/vlog/" >Vlog</a>
-            </li><li class="masthead__menu-item">
-              <a href="/about/" >About</a>
-            </li></ul>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/gallery/">Gallery</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/vlog/">Vlog</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li>
+</ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
           <span class="visually-hidden">Toggle menu</span>
@@ -286,7 +293,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="MongoDB Schema Design and Common Practices">
-    <meta itemprop="description" content="InstallationExhaustive documentation:&nbsp;http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/Mongo executables will be installed into&nbsp;/use/bin/, database files will under&nbsp;/data/db/Log file location:&nbsp;/var/log/mongodb/mongodb.log">
+    <meta itemprop="description" content="InstallationExhaustive documentation: http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/Mongo executables will be installed into /use/bin/, database files will under /data/db/Log file location: /var/log/mongodb/mongodb.log">
     <meta itemprop="datePublished" content="August 30, 2013">
     
 
@@ -303,21 +310,28 @@
         
           <aside class="sidebar__right ">
             <nav class="toc">
-              <header><h4 class="nav__title"><i class="fas fa-cog"></i> On this page</h4></header>
+              <header><h4 class="nav__title">
+<i class="fas fa-cog"></i> On this page</h4></header>
               <ul class="toc__menu">
   <li><a href="#MongoDB-ExtendedProfile-Installation">Installation</a></li>
   <li><a href="#MongoDB-ExtendedProfile-Terminology">Terminology</a></li>
-  <li><a href="#MongoDB-ExtendedProfile-Adminstration">Adminstration</a>
+  <li>
+<a href="#MongoDB-ExtendedProfile-Adminstration">Adminstration</a>
              -  <a href="#"> </a>
-             -  <a href="#MongoDB-ExtendedProfile-BatchadministrationfromJavaScripthttp%3A%2F%2Fdocs.mongodb.org%2Fmanual%2Ftutorial%2Fwrite-scripts-for-the-mongo-shell%2Fhttp%3A%2F%2Fdocs.mongodb.org%2Fmanual%2Fcore%2Fserver-side-javascript%2F%23running-js-scripts-in-mongo-on-mon">Batch administration from JavaScripthttp://docs.mongodb.org/manual/tutorial/write-scripts-for-the-mongo-shell/http://docs.mongodb.org/manual/core/server-side-javascript/#running-js-scripts-in-mongo-on-mongod-hosthttp://docs.mongodb.org/manual/tutorial/store-javascript-function-on-server/ http://docs.mongodb.org/manual/reference/method/  (Mongo shell JS references)</a></li>
-  <li><a href="#MongoDB-ExtendedProfile-SchemaDesign">Schema Design</a>
+             -  <a href="#MongoDB-ExtendedProfile-BatchadministrationfromJavaScripthttp%3A%2F%2Fdocs.mongodb.org%2Fmanual%2Ftutorial%2Fwrite-scripts-for-the-mongo-shell%2Fhttp%3A%2F%2Fdocs.mongodb.org%2Fmanual%2Fcore%2Fserver-side-javascript%2F%23running-js-scripts-in-mongo-on-mon">Batch administration from JavaScripthttp://docs.mongodb.org/manual/tutorial/write-scripts-for-the-mongo-shell/http://docs.mongodb.org/manual/core/server-side-javascript/#running-js-scripts-in-mongo-on-mongod-hosthttp://docs.mongodb.org/manual/tutorial/store-javascript-function-on-server/ http://docs.mongodb.org/manual/reference/method/  (Mongo shell JS references)</a>
+</li>
+  <li>
+<a href="#MongoDB-ExtendedProfile-SchemaDesign">Schema Design</a>
              -  <a href="#MongoDB-ExtendedProfile-Embedding%28de-normalizedata%29">Embedding (de-normalize data)</a>
          -  <a href="#">Example 1: Blog with comments</a>
          -  <a href="#">Example 2: Dishes and Cheves</a>
-             -  <a href="#MongoDB-ExtendedProfile-Referencing%28Normalize-data%29">Referencing (Normalize-data)</a></li>
-  <li><a href="#">Advanced Features</a>
+             -  <a href="#MongoDB-ExtendedProfile-Referencing%28Normalize-data%29">Referencing (Normalize-data)</a>
+</li>
+  <li>
+<a href="#">Advanced Features</a>
      -  <a href="#">Multikey-Indexes</a>
-     -  <a href="#">Aggregation framework</a></li>
+     -  <a href="#">Aggregation framework</a>
+</li>
   <li><a href="#MongoDB-ExtendedProfile-CommonPractices">Common Practices </a></li>
   <li><a href="#MongoDB-ExtendedProfile-Usefulresources">Useful resources</a></li>
 </ul>
@@ -325,22 +339,25 @@
           </aside>
         
         <h2 id="MongoDB-ExtendedProfile-Installation">Installation</h2>
-<p>Exhaustive documentation:&nbsp;<a class="external-link" href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/" rel="nofollow">http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/</a></p>
-<p>Mongo executables will be installed into&nbsp;<b>/use/bin/</b>, database files will under&nbsp;<b>/data/db/</b></p>
-<p>Log file location:&nbsp;<b>/var/log/mongodb/mongodb.log</b></p>
+<p>Exhaustive documentation: <a class="external-link" href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/" rel="nofollow">http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/</a></p>
+<p>Mongo executables will be installed into <b>/use/bin/</b>, database files will under <b>/data/db/</b></p>
+<p>Log file location: <b>/var/log/mongodb/mongodb.log</b></p>
 <p><!--more--></p>
 <h2 id="MongoDB-ExtendedProfile-Terminology">Terminology</h2>
-<p><b><img class="confluence-embedded-image" alt="" src="https://ejlfia.bn1.livefilestore.com/y2pyy1aQvaVlhOQRU2m_HhWMirImZPQbroZm6R5D5mHIit6JqQQeO2t0NoYMkfgjsyQhFhVxHQQQHuKI14Fg6DHG8F_8tODx8_3VtGFWDWwVC4/Terminology.png?psid=1" /><br /></b></p>
+<p><b><img class="confluence-embedded-image" alt="" src="https://ejlfia.bn1.livefilestore.com/y2pyy1aQvaVlhOQRU2m_HhWMirImZPQbroZm6R5D5mHIit6JqQQeO2t0NoYMkfgjsyQhFhVxHQQQHuKI14Fg6DHG8F_8tODx8_3VtGFWDWwVC4/Terminology.png?psid=1"><br></b></p>
 <h2 id="MongoDB-ExtendedProfile-Adminstration">Adminstration</h2>
-<div><b><em>sudo service mongodb start/</em><em>stop/restart</em>&nbsp;</b>or simply issue&nbsp;<b><em>mongod&nbsp;</em></b>to start MongoDB process</div>
-<div><b><em>mongo&nbsp;</em></b>to enter MongoDB Console</div>
-<div class="source" style="font-family: '[object HTMLOptionElement]', Consolas, 'Lucida Console', 'Courier New'; color: #f6f3e8; background-color: #242424;">&gt; show dbs &nbsp;<span style="color: #99968b; font-style: italic;">#Show all databases</span><br />&gt; db &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #99968b; font-style: italic;">#Show current db</span><br />&gt; db.help() &nbsp; <span style="color: #99968b; font-style: italic;">#View commands related with db</span><br /><br /><span style="color: #99968b; font-style: italic;"># "Create" a new database named foo_db</span><br />&gt; use foo_db &nbsp;<span style="color: #99968b; font-style: italic;"># Mongo will create this DB virutally, if we save anything into any collections, it will really creates the db.</span><br /><span style="color: #99968b; font-style: italic;"># Create a new document into a collection (implicitly)</span><br />&gt; db.user_profiles.save<span style="color: #f6f3e8;">({</span> first_name: <span style="color: #95e454; font-style: italic;">"Wayne"</span>, last_name: <span style="color: #95e454; font-style: italic;">"Ye"</span> <span style="color: #f6f3e8;">})</span><br /><span style="color: #99968b; font-style: italic;"># Explicitly create a new collection ()</span><br />db.createCollection(<span style="color: #95e454; font-style: italic;">"user_profile"</span>)<br /><span style="color: #99968b; font-style: italic;"># Query the collection</span><br />&gt; db.user_profiles.find()<br /><span style="color: #f6f3e8;">{</span> <span style="color: #95e454; font-style: italic;">"_id"</span> : ObjectId(<span style="color: #95e454; font-style: italic;">"5216fa545b4a83d66587d397"</span>), <span style="color: #95e454; font-style: italic;">"first_name"</span> : <span style="color: #95e454; font-style: italic;">"Wayne"</span>, <span style="color: #95e454; font-style: italic;">"last_name"</span> : <span style="color: #95e454; font-style: italic;">"Ye"</span> <span style="color: #f6f3e8;">}</span><br />&gt; db.user_profiles.save<span style="color: #f6f3e8;">({</span> first_name: <span style="color: #95e454; font-style: italic;">"Wendy"</span>, last_name: <span style="color: #95e454; font-style: italic;">"Shen"</span>, gender: <span style="color: #95e454; font-style: italic;">"Female"</span> <span style="color: #f6f3e8;">})</span><br />&gt; db.user_profiles.find()<br /><span style="color: #99968b; font-style: italic;"># Update</span><br />&gt; db.collection.update( <span style="color: #f6f3e8;">{</span> field: value1 <span style="color: #f6f3e8;">}</span>, <span style="color: #f6f3e8;">{</span> <span style="color: #cae682;">$set</span>: <span style="color: #f6f3e8;">{</span> field1: value2 <span style="color: #f6f3e8;">}</span> <span style="color: #f6f3e8;">}</span> ); <br /><span style="color: #99968b; font-style: italic;"># View status</span><br />&gt; db.stats()<br />&gt; db.mycol.stats()</div>
-<div class="source" style="font-family: '[object HTMLOptionElement]', Consolas, 'Lucida Console', 'Courier New'; color: #f6f3e8; background-color: #242424;"><span style="color: #99968b; font-style: italic;"># Query subdocument using <a title="Dot Noation" href="http://docs.mongodb.org/manual/core/document/#dot-notation" target="_blank">Dot Notation</a></span><br />&gt; db.demo.insert({ "Items": [ { "Name": "Milk Powder", "Price": 9.9 }, { "Name": "Toy Car", "Price": 26 } ] })<br />&gt; db.demo.find({ "Items.Price": { $gt: 20 } })<br />{ <span style="color: #95e454; font-style: italic;">"_id"</span> : ObjectId(<span style="color: #95e454; font-style: italic;">"5216fa545b4a83d66587d397"</span>), "Items" : [ &nbsp;{ &nbsp;"Name" : "Milk Powder", &nbsp;"Price" : 9.9 }, &nbsp;{ &nbsp;"Name" : "Toy Car", &nbsp;"Price" : 26 } ] }</div>
-<h6>&nbsp;</h6>
-<h6 id="MongoDB-ExtendedProfile-BatchadministrationfromJavaScripthttp%3A%2F%2Fdocs.mongodb.org%2Fmanual%2Ftutorial%2Fwrite-scripts-for-the-mongo-shell%2Fhttp%3A%2F%2Fdocs.mongodb.org%2Fmanual%2Fcore%2Fserver-side-javascript%2F%23running-js-scripts-in-mongo-on-mon">Batch administration from JavaScript<br /><a class="external-link" href="http://docs.mongodb.org/manual/tutorial/write-scripts-for-the-mongo-shell/" rel="nofollow">http://docs.mongodb.org/manual/tutorial/write-scripts-for-the-mongo-shell/</a><br /><a class="external-link" href="http://docs.mongodb.org/manual/core/server-side-javascript/#running-js-scripts-in-mongo-on-mongod-host" rel="nofollow">http://docs.mongodb.org/manual/core/server-side-javascript/#running-js-scripts-in-mongo-on-mongod-host<br /></a><a class="external-link" href="http://docs.mongodb.org/manual/tutorial/store-javascript-function-on-server/" rel="nofollow">http://docs.mongodb.org/manual/tutorial/store-javascript-function-on-server/</a><a class="external-link" href="http://docs.mongodb.org/manual/core/server-side-javascript/#running-js-scripts-in-mongo-on-mongod-host" rel="nofollow">&nbsp;<br /></a><a class="external-link" href="http://docs.mongodb.org/manual/reference/method/" rel="nofollow">http://docs.mongodb.org/manual/reference/method/</a><a class="external-link" href="http://docs.mongodb.org/manual/core/server-side-javascript/#running-js-scripts-in-mongo-on-mongod-host" rel="nofollow">&nbsp;</a>&nbsp;(Mongo shell JS references)</h6>
-<p><em>mongo&nbsp;<a class="external-link" href="http://localhost:27017/mydb" rel="nofollow">localhost:27017/mydb</a>&nbsp;db_schema.js</em></p>
+<div>
+<b><em>sudo service mongodb start/</em><em>stop/restart</em> </b>or simply issue <b><em>mongod </em></b>to start MongoDB process</div>
+<div>
+<b><em>mongo </em></b>to enter MongoDB Console</div>
+<div class="source" style="font-family: '[object HTMLOptionElement]', Consolas, 'Lucida Console', 'Courier New'; color: #f6f3e8; background-color: #242424;">&gt; show dbs  <span style="color: #99968b; font-style: italic;">#Show all databases</span><br>&gt; db             <span style="color: #99968b; font-style: italic;">#Show current db</span><br>&gt; db.help()   <span style="color: #99968b; font-style: italic;">#View commands related with db</span><br><br><span style="color: #99968b; font-style: italic;"># "Create" a new database named foo_db</span><br>&gt; use foo_db  <span style="color: #99968b; font-style: italic;"># Mongo will create this DB virutally, if we save anything into any collections, it will really creates the db.</span><br><span style="color: #99968b; font-style: italic;"># Create a new document into a collection (implicitly)</span><br>&gt; db.user_profiles.save<span style="color: #f6f3e8;">({</span> first_name: <span style="color: #95e454; font-style: italic;">"Wayne"</span>, last_name: <span style="color: #95e454; font-style: italic;">"Ye"</span> <span style="color: #f6f3e8;">})</span><br><span style="color: #99968b; font-style: italic;"># Explicitly create a new collection ()</span><br>db.createCollection(<span style="color: #95e454; font-style: italic;">"user_profile"</span>)<br><span style="color: #99968b; font-style: italic;"># Query the collection</span><br>&gt; db.user_profiles.find()<br><span style="color: #f6f3e8;">{</span> <span style="color: #95e454; font-style: italic;">"_id"</span> : ObjectId(<span style="color: #95e454; font-style: italic;">"5216fa545b4a83d66587d397"</span>), <span style="color: #95e454; font-style: italic;">"first_name"</span> : <span style="color: #95e454; font-style: italic;">"Wayne"</span>, <span style="color: #95e454; font-style: italic;">"last_name"</span> : <span style="color: #95e454; font-style: italic;">"Ye"</span> <span style="color: #f6f3e8;">}</span><br>&gt; db.user_profiles.save<span style="color: #f6f3e8;">({</span> first_name: <span style="color: #95e454; font-style: italic;">"Wendy"</span>, last_name: <span style="color: #95e454; font-style: italic;">"Shen"</span>, gender: <span style="color: #95e454; font-style: italic;">"Female"</span> <span style="color: #f6f3e8;">})</span><br>&gt; db.user_profiles.find()<br><span style="color: #99968b; font-style: italic;"># Update</span><br>&gt; db.collection.update( <span style="color: #f6f3e8;">{</span> field: value1 <span style="color: #f6f3e8;">}</span>, <span style="color: #f6f3e8;">{</span> <span style="color: #cae682;">$set</span>: <span style="color: #f6f3e8;">{</span> field1: value2 <span style="color: #f6f3e8;">}</span> <span style="color: #f6f3e8;">}</span> ); <br><span style="color: #99968b; font-style: italic;"># View status</span><br>&gt; db.stats()<br>&gt; db.mycol.stats()</div>
+<div class="source" style="font-family: '[object HTMLOptionElement]', Consolas, 'Lucida Console', 'Courier New'; color: #f6f3e8; background-color: #242424;">
+<span style="color: #99968b; font-style: italic;"># Query subdocument using <a title="Dot Noation" href="http://docs.mongodb.org/manual/core/document/#dot-notation" target="_blank">Dot Notation</a></span><br>&gt; db.demo.insert({ "Items": [ { "Name": "Milk Powder", "Price": 9.9 }, { "Name": "Toy Car", "Price": 26 } ] })<br>&gt; db.demo.find({ "Items.Price": { $gt: 20 } })<br>{ <span style="color: #95e454; font-style: italic;">"_id"</span> : ObjectId(<span style="color: #95e454; font-style: italic;">"5216fa545b4a83d66587d397"</span>), "Items" : [  {  "Name" : "Milk Powder",  "Price" : 9.9 },  {  "Name" : "Toy Car",  "Price" : 26 } ] }</div>
+<h6> </h6>
+<h6 id="MongoDB-ExtendedProfile-BatchadministrationfromJavaScripthttp%3A%2F%2Fdocs.mongodb.org%2Fmanual%2Ftutorial%2Fwrite-scripts-for-the-mongo-shell%2Fhttp%3A%2F%2Fdocs.mongodb.org%2Fmanual%2Fcore%2Fserver-side-javascript%2F%23running-js-scripts-in-mongo-on-mon">Batch administration from JavaScript<br><a class="external-link" href="http://docs.mongodb.org/manual/tutorial/write-scripts-for-the-mongo-shell/" rel="nofollow">http://docs.mongodb.org/manual/tutorial/write-scripts-for-the-mongo-shell/</a><br><a class="external-link" href="http://docs.mongodb.org/manual/core/server-side-javascript/#running-js-scripts-in-mongo-on-mongod-host" rel="nofollow">http://docs.mongodb.org/manual/core/server-side-javascript/#running-js-scripts-in-mongo-on-mongod-host<br></a><a class="external-link" href="http://docs.mongodb.org/manual/tutorial/store-javascript-function-on-server/" rel="nofollow">http://docs.mongodb.org/manual/tutorial/store-javascript-function-on-server/</a><a class="external-link" href="http://docs.mongodb.org/manual/core/server-side-javascript/#running-js-scripts-in-mongo-on-mongod-host" rel="nofollow"> <br></a><a class="external-link" href="http://docs.mongodb.org/manual/reference/method/" rel="nofollow">http://docs.mongodb.org/manual/reference/method/</a><a class="external-link" href="http://docs.mongodb.org/manual/core/server-side-javascript/#running-js-scripts-in-mongo-on-mongod-host" rel="nofollow"> </a> (Mongo shell JS references)</h6>
+<p><em>mongo <a class="external-link" href="http://localhost:27017/mydb" rel="nofollow">localhost:27017/mydb</a> db_schema.js</em></p>
 <p><em>Or</em></p>
-<p><em><span>load("scripts/myjstest.js") OR&nbsp;load("/data/db/scripts/myjstest.js")</span></em></p>
+<p><em><span>load("scripts/myjstest.js") OR load("/data/db/scripts/myjstest.js")</span></em></p>
 <h2 id="MongoDB-ExtendedProfile-SchemaDesign"><em>Schema Design</em></h2>
 <h6 id="MongoDB-ExtendedProfile-Embedding%28de-normalizedata%29">Embedding (de-normalize data)</h6>
 <p>Store two related pieces of data in a single document.</p>
@@ -351,12 +368,14 @@
 </ul>
 <h5>Example 1: Blog with comments</h5>
 <p><b>Denormalized blog with comments</b></p>
-<div class="source" style="font-family: '[object HTMLOptionElement]', Consolas, 'Lucida Console', 'Courier New'; color: #f6f3e8; background-color: #242424;"><span style="color: #f6f3e8;">db</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">blogs</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">insert</span><span style="color: #f6f3e8;">({</span><br /> &nbsp;<span style="color: #f6f3e8;">_id</span><span style="color: #f6f3e8;">:</span> <span style="color: #e5786d;">1</span><span style="color: #f6f3e8;">,</span><br /> &nbsp;<span style="color: #f6f3e8;">title</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"Investigation on MongoDB"</span><span style="color: #f6f3e8;">,</span><br /> &nbsp;<span style="color: #f6f3e8;">content</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"some investigation contents"</span><span style="color: #f6f3e8;">,</span><br /> &nbsp;<span style="color: #f6f3e8;">post_date</span><span style="color: #f6f3e8;">:</span> <span style="color: #f6f3e8;">Date</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">now</span><span style="color: #f6f3e8;">(),</span><br /> &nbsp;<span style="color: #f6f3e8;">permalink</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"http://foo.bar/investigation_on_mongodb"</span><span style="color: #f6f3e8;">,</span><br /> &nbsp;<span style="color: #f6f3e8;">comments</span><span style="color: #f6f3e8;">:</span> <span style="color: #f6f3e8;">[</span><br /> &nbsp; &nbsp;<span style="color: #f6f3e8;">{</span> <span style="color: #f6f3e8;">content</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"Gorgeous post!!!"</span><span style="color: #f6f3e8;">,</span> <span style="color: #f6f3e8;">nickname</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"Scott"</span><span style="color: #f6f3e8;">,</span> <span style="color: #f6f3e8;">email</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"foo@bar.org"</span><span style="color: #f6f3e8;">,</span> <span style="color: #f6f3e8;">timestamp</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"1377742184305"</span> <span style="color: #f6f3e8;">},</span><br /> &nbsp; &nbsp;<span style="color: #f6f3e8;">{</span> <span style="color: #f6f3e8;">content</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"Splendid article!!!"</span><span style="color: #f6f3e8;">,</span> <span style="color: #f6f3e8;">nickname</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"Guthrie"</span><span style="color: #f6f3e8;">,</span> <span style="color: #f6f3e8;">email</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"foo@bar.org"</span><span style="color: #f6f3e8;">,</span> <span style="color: #f6f3e8;">timestamp</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"1377742184305"</span> <span style="color: #f6f3e8;">}</span><br /> &nbsp;<span style="color: #f6f3e8;">]}</span><br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; );</div>
+<div class="source" style="font-family: '[object HTMLOptionElement]', Consolas, 'Lucida Console', 'Courier New'; color: #f6f3e8; background-color: #242424;">
+<span style="color: #f6f3e8;">db</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">blogs</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">insert</span><span style="color: #f6f3e8;">({</span><br>  <span style="color: #f6f3e8;">_id</span><span style="color: #f6f3e8;">:</span> <span style="color: #e5786d;">1</span><span style="color: #f6f3e8;">,</span><br>  <span style="color: #f6f3e8;">title</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"Investigation on MongoDB"</span><span style="color: #f6f3e8;">,</span><br>  <span style="color: #f6f3e8;">content</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"some investigation contents"</span><span style="color: #f6f3e8;">,</span><br>  <span style="color: #f6f3e8;">post_date</span><span style="color: #f6f3e8;">:</span> <span style="color: #f6f3e8;">Date</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">now</span><span style="color: #f6f3e8;">(),</span><br>  <span style="color: #f6f3e8;">permalink</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"http://foo.bar/investigation_on_mongodb"</span><span style="color: #f6f3e8;">,</span><br>  <span style="color: #f6f3e8;">comments</span><span style="color: #f6f3e8;">:</span> <span style="color: #f6f3e8;">[</span><br>    <span style="color: #f6f3e8;">{</span> <span style="color: #f6f3e8;">content</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"Gorgeous post!!!"</span><span style="color: #f6f3e8;">,</span> <span style="color: #f6f3e8;">nickname</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"Scott"</span><span style="color: #f6f3e8;">,</span> <span style="color: #f6f3e8;">email</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"foo@bar.org"</span><span style="color: #f6f3e8;">,</span> <span style="color: #f6f3e8;">timestamp</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"1377742184305"</span> <span style="color: #f6f3e8;">},</span><br>    <span style="color: #f6f3e8;">{</span> <span style="color: #f6f3e8;">content</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"Splendid article!!!"</span><span style="color: #f6f3e8;">,</span> <span style="color: #f6f3e8;">nickname</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"Guthrie"</span><span style="color: #f6f3e8;">,</span> <span style="color: #f6f3e8;">email</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"foo@bar.org"</span><span style="color: #f6f3e8;">,</span> <span style="color: #f6f3e8;">timestamp</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"1377742184305"</span> <span style="color: #f6f3e8;">}</span><br>  <span style="color: #f6f3e8;">]}</span><br>               );</div>
 <h5>Example 2: Dishes and Cheves</h5>
 <p><b>Normalized Dishes and Cheves</b></p>
-<div class="source" style="font-family: '[object HTMLOptionElement]', Consolas, 'Lucida Console', 'Courier New'; color: #f6f3e8; background-color: #242424;"><span style="color: #f6f3e8;">db</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">dishes</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">insert</span><span style="color: #f6f3e8;">({</span><br /> &nbsp;<span style="color: #f6f3e8;">_id</span><span style="color: #f6f3e8;">:</span> <span style="color: #e5786d;">1</span><span style="color: #f6f3e8;">,</span><br /> &nbsp;<span style="color: #f6f3e8;">name</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"Kong Bao Ji Ding"</span><span style="color: #f6f3e8;">,</span><br /> &nbsp;<span style="color: #f6f3e8;">price</span><span style="color: #f6f3e8;">:</span> <span style="color: #e5786d;">5.5</span><span style="color: #f6f3e8;">,</span><br /> &nbsp;<span style="color: #f6f3e8;">rate</span><span style="color: #f6f3e8;">:</span> <span style="color: #e5786d;">4.5</span><span style="color: #f6f3e8;">,</span><br /> &nbsp;<span style="color: #f6f3e8;">cheves</span><span style="color: #f6f3e8;">:</span> <span style="color: #f6f3e8;">[</span> <span style="color: #95e454; font-style: italic;">"Flora Zhang"</span><span style="color: #f6f3e8;">,</span> <span style="color: #95e454; font-style: italic;">"Cristina Wang"</span> <span style="color: #f6f3e8;">]</span><br /> &nbsp;<span style="color: #f6f3e8;">}</span><br />);<br /> &nbsp;<br /><span style="color: #f6f3e8;">db</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">cheves</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">insert</span><span style="color: #f6f3e8;">({</span><br /> &nbsp;<span style="color: #f6f3e8;">_id</span><span style="color: #f6f3e8;">:</span> <span style="color: #e5786d;">1</span><span style="color: #f6f3e8;">,</span><br /> &nbsp;<span style="color: #f6f3e8;">name</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"Flora Zhang"</span><span style="color: #f6f3e8;">,</span><br /> &nbsp;<span style="color: #f6f3e8;">age</span><span style="color: #f6f3e8;">:</span> <span style="color: #e5786d;">32</span><span style="color: #f6f3e8;">,</span><br /> &nbsp;<span style="color: #f6f3e8;">avatar</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"http://www.gravatar.com/avatar.php?gravatar_id=dc654756c7c"</span><span style="color: #f6f3e8;">,</span> <br /> &nbsp;<span style="color: #f6f3e8;">dishes</span><span style="color: #f6f3e8;">:</span> <span style="color: #f6f3e8;">[</span> <span style="color: #95e454; font-style: italic;">"Kong Bao Ji Ding"</span><span style="color: #f6f3e8;">,</span> <span style="color: #95e454; font-style: italic;">"Knight Zhang Beef"</span><span style="color: #f6f3e8;">,</span> <span style="color: #95e454; font-style: italic;">"Ma Po Tou Fu"</span> <span style="color: #f6f3e8;">]</span><br /> &nbsp;<span style="color: #f6f3e8;">}</span><br />);</div>
-<p>&nbsp;</p>
-<p><b>Benefits</b>:<br />Better performance for read operations<br />Request and retrieve related data in a single database operation.</p>
+<div class="source" style="font-family: '[object HTMLOptionElement]', Consolas, 'Lucida Console', 'Courier New'; color: #f6f3e8; background-color: #242424;">
+<span style="color: #f6f3e8;">db</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">dishes</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">insert</span><span style="color: #f6f3e8;">({</span><br>  <span style="color: #f6f3e8;">_id</span><span style="color: #f6f3e8;">:</span> <span style="color: #e5786d;">1</span><span style="color: #f6f3e8;">,</span><br>  <span style="color: #f6f3e8;">name</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"Kong Bao Ji Ding"</span><span style="color: #f6f3e8;">,</span><br>  <span style="color: #f6f3e8;">price</span><span style="color: #f6f3e8;">:</span> <span style="color: #e5786d;">5.5</span><span style="color: #f6f3e8;">,</span><br>  <span style="color: #f6f3e8;">rate</span><span style="color: #f6f3e8;">:</span> <span style="color: #e5786d;">4.5</span><span style="color: #f6f3e8;">,</span><br>  <span style="color: #f6f3e8;">cheves</span><span style="color: #f6f3e8;">:</span> <span style="color: #f6f3e8;">[</span> <span style="color: #95e454; font-style: italic;">"Flora Zhang"</span><span style="color: #f6f3e8;">,</span> <span style="color: #95e454; font-style: italic;">"Cristina Wang"</span> <span style="color: #f6f3e8;">]</span><br>  <span style="color: #f6f3e8;">}</span><br>);<br>  <br><span style="color: #f6f3e8;">db</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">cheves</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">insert</span><span style="color: #f6f3e8;">({</span><br>  <span style="color: #f6f3e8;">_id</span><span style="color: #f6f3e8;">:</span> <span style="color: #e5786d;">1</span><span style="color: #f6f3e8;">,</span><br>  <span style="color: #f6f3e8;">name</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"Flora Zhang"</span><span style="color: #f6f3e8;">,</span><br>  <span style="color: #f6f3e8;">age</span><span style="color: #f6f3e8;">:</span> <span style="color: #e5786d;">32</span><span style="color: #f6f3e8;">,</span><br>  <span style="color: #f6f3e8;">avatar</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"http://www.gravatar.com/avatar.php?gravatar_id=dc654756c7c"</span><span style="color: #f6f3e8;">,</span> <br>  <span style="color: #f6f3e8;">dishes</span><span style="color: #f6f3e8;">:</span> <span style="color: #f6f3e8;">[</span> <span style="color: #95e454; font-style: italic;">"Kong Bao Ji Ding"</span><span style="color: #f6f3e8;">,</span> <span style="color: #95e454; font-style: italic;">"Knight Zhang Beef"</span><span style="color: #f6f3e8;">,</span> <span style="color: #95e454; font-style: italic;">"Ma Po Tou Fu"</span> <span style="color: #f6f3e8;">]</span><br>  <span style="color: #f6f3e8;">}</span><br>);</div>
+<p> </p>
+<p><b>Benefits</b>:<br>Better performance for read operations<br>Request and retrieve related data in a single database operation.</p>
 <h6 id="MongoDB-ExtendedProfile-Referencing%28Normalize-data%29">Referencing (Normalize-data)</h6>
 <p>store references between two documents to indicate a relationship between the data represented in each document.</p>
 <p>When:</p>
@@ -365,25 +384,33 @@
 <li><span>to represent more complex many-to-many relationships.</span></li>
 <li><span>to model large hierarchical data sets.</span></li>
 </ul>
-<p><span><span><b>Benefits</b>:<br /></span></span></p>
+<p><span><span><b>Benefits</b>:<br></span></span></p>
 <ul>
 <li><span><span>Separation of Concerns</span></span></li>
-<li><span><span>Data model independent of logic<br /></span></span><span><br /></span></li>
+<li>
+<span><span>Data model independent of logic<br></span></span><span><br></span>
+</li>
 </ul>
-<p><span><b>Drawback</b>:<br />Referencing provides more flexibility than embedding; however, to resolve the references, client-side applications must issue follow-up queries. In other words, using references requires more roundtrips to the server.&nbsp;</span></p>
+<p><span><b>Drawback</b>:<br>Referencing provides more flexibility than embedding; however, to resolve the references, client-side applications must issue follow-up queries. In other words, using references requires more roundtrips to the server. </span></p>
 <p>Example 3: Books and publisher</p>
 <p><b>Books and publishers</b></p>
-<div class="source" style="font-family: '[object HTMLOptionElement]', Consolas, 'Lucida Console', 'Courier New'; color: #f6f3e8; background-color: #242424;"><span style="color: #f6f3e8;">db</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">books</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">insert</span><span style="color: #f6f3e8;">({</span><br /> &nbsp;<span style="color: #f6f3e8;">_id</span><span style="color: #f6f3e8;">:</span> <span style="color: #e5786d;">1</span><span style="color: #f6f3e8;">,</span><br /> &nbsp;<span style="color: #f6f3e8;">name</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"MongoDB Applied Design Patterns"</span><span style="color: #f6f3e8;">,</span><br /> &nbsp;<span style="color: #f6f3e8;">price</span><span style="color: #f6f3e8;">:</span> <span style="color: #e5786d;">35</span><span style="color: #f6f3e8;">,</span><br /> &nbsp;<span style="color: #f6f3e8;">rate</span><span style="color: #f6f3e8;">:</span> <span style="color: #e5786d;">5</span><span style="color: #f6f3e8;">,</span><br /> &nbsp;<span style="color: #f6f3e8;">author</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"Rick Copeland"</span><span style="color: #f6f3e8;">,</span><br /> &nbsp;<span style="color: #f6f3e8;">ISBN</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"1449340040"</span><span style="color: #f6f3e8;">,</span><br /> &nbsp;<span style="color: #f6f3e8;">publisher_id</span><span style="color: #f6f3e8;">:</span> <span style="color: #e5786d;">1</span><span style="color: #f6f3e8;">,</span><br /> &nbsp;<span style="color: #f6f3e8;">reviews</span><span style="color: #f6f3e8;">:</span> <span style="color: #f6f3e8;">[</span><br /> &nbsp; &nbsp;<span style="color: #f6f3e8;">{</span> <span style="color: #f6f3e8;">isUseful</span><span style="color: #f6f3e8;">:</span> <span style="color: #8ac6f2;">true</span><span style="color: #f6f3e8;">,</span> <span style="color: #f6f3e8;">content</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"Cool book!"</span><span style="color: #f6f3e8;">,</span> <span style="color: #f6f3e8;">reviewer</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"Dick"</span><span style="color: #f6f3e8;">,</span> <span style="color: #f6f3e8;">timestamp</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"1377742184305"</span> <span style="color: #f6f3e8;">},</span><br /> &nbsp; &nbsp;<span style="color: #f6f3e8;">{</span> <span style="color: #f6f3e8;">isUseful</span><span style="color: #f6f3e8;">:</span> <span style="color: #8ac6f2;">true</span><span style="color: #f6f3e8;">,</span> <span style="color: #f6f3e8;">content</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"Cool book!"</span><span style="color: #f6f3e8;">,</span> <span style="color: #f6f3e8;">reviewer</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"Xiaoshen"</span><span style="color: #f6f3e8;">,</span> <span style="color: #f6f3e8;">timestamp</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"1377742184305"</span> <span style="color: #f6f3e8;">}</span><br /> &nbsp;<span style="color: #f6f3e8;">]</span><br /> &nbsp;<span style="color: #f6f3e8;">}</span><br />);<br />&nbsp;&nbsp;<br /><span style="color: #f6f3e8;">db</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">publishers</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">insert</span><span style="color: #f6f3e8;">({</span><br /> &nbsp;<span style="color: #f6f3e8;">_id</span><span style="color: #f6f3e8;">:</span> <span style="color: #e5786d;">1</span><span style="color: #f6f3e8;">,</span><br /> &nbsp;<span style="color: #f6f3e8;">name</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"Packtpub INC"</span><span style="color: #f6f3e8;">,</span><br /> &nbsp;<span style="color: #f6f3e8;">address</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"2nd Floor, Livery Place 35 Livery Street Birmingham"</span><span style="color: #f6f3e8;">,</span><br /> &nbsp;<span style="color: #f6f3e8;">telephone</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"+44 0121 265 6484"</span><span style="color: #f6f3e8;">,</span><br /> &nbsp;<span style="color: #f6f3e8;">}</span><br />);</div>
+<div class="source" style="font-family: '[object HTMLOptionElement]', Consolas, 'Lucida Console', 'Courier New'; color: #f6f3e8; background-color: #242424;">
+<span style="color: #f6f3e8;">db</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">books</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">insert</span><span style="color: #f6f3e8;">({</span><br>  <span style="color: #f6f3e8;">_id</span><span style="color: #f6f3e8;">:</span> <span style="color: #e5786d;">1</span><span style="color: #f6f3e8;">,</span><br>  <span style="color: #f6f3e8;">name</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"MongoDB Applied Design Patterns"</span><span style="color: #f6f3e8;">,</span><br>  <span style="color: #f6f3e8;">price</span><span style="color: #f6f3e8;">:</span> <span style="color: #e5786d;">35</span><span style="color: #f6f3e8;">,</span><br>  <span style="color: #f6f3e8;">rate</span><span style="color: #f6f3e8;">:</span> <span style="color: #e5786d;">5</span><span style="color: #f6f3e8;">,</span><br>  <span style="color: #f6f3e8;">author</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"Rick Copeland"</span><span style="color: #f6f3e8;">,</span><br>  <span style="color: #f6f3e8;">ISBN</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"1449340040"</span><span style="color: #f6f3e8;">,</span><br>  <span style="color: #f6f3e8;">publisher_id</span><span style="color: #f6f3e8;">:</span> <span style="color: #e5786d;">1</span><span style="color: #f6f3e8;">,</span><br>  <span style="color: #f6f3e8;">reviews</span><span style="color: #f6f3e8;">:</span> <span style="color: #f6f3e8;">[</span><br>    <span style="color: #f6f3e8;">{</span> <span style="color: #f6f3e8;">isUseful</span><span style="color: #f6f3e8;">:</span> <span style="color: #8ac6f2;">true</span><span style="color: #f6f3e8;">,</span> <span style="color: #f6f3e8;">content</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"Cool book!"</span><span style="color: #f6f3e8;">,</span> <span style="color: #f6f3e8;">reviewer</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"Dick"</span><span style="color: #f6f3e8;">,</span> <span style="color: #f6f3e8;">timestamp</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"1377742184305"</span> <span style="color: #f6f3e8;">},</span><br>    <span style="color: #f6f3e8;">{</span> <span style="color: #f6f3e8;">isUseful</span><span style="color: #f6f3e8;">:</span> <span style="color: #8ac6f2;">true</span><span style="color: #f6f3e8;">,</span> <span style="color: #f6f3e8;">content</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"Cool book!"</span><span style="color: #f6f3e8;">,</span> <span style="color: #f6f3e8;">reviewer</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"Xiaoshen"</span><span style="color: #f6f3e8;">,</span> <span style="color: #f6f3e8;">timestamp</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"1377742184305"</span> <span style="color: #f6f3e8;">}</span><br>  <span style="color: #f6f3e8;">]</span><br>  <span style="color: #f6f3e8;">}</span><br>);<br>  <br><span style="color: #f6f3e8;">db</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">publishers</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">insert</span><span style="color: #f6f3e8;">({</span><br>  <span style="color: #f6f3e8;">_id</span><span style="color: #f6f3e8;">:</span> <span style="color: #e5786d;">1</span><span style="color: #f6f3e8;">,</span><br>  <span style="color: #f6f3e8;">name</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"Packtpub INC"</span><span style="color: #f6f3e8;">,</span><br>  <span style="color: #f6f3e8;">address</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"2nd Floor, Livery Place 35 Livery Street Birmingham"</span><span style="color: #f6f3e8;">,</span><br>  <span style="color: #f6f3e8;">telephone</span><span style="color: #f6f3e8;">:</span> <span style="color: #95e454; font-style: italic;">"+44 0121 265 6484"</span><span style="color: #f6f3e8;">,</span><br>  <span style="color: #f6f3e8;">}</span><br>);</div>
 <h2>Advanced Features</h2>
 <h4>Multikey-Indexes</h4>
 <p>Mongo supports indexing subdocument's key, consider the above "Books and Publishers" collection, Mongo can index the <i>reviewer</i> key by telling him this:</p>
-<div class="source" style="font: 14px/normal '[object HTMLOptionElement]', Consolas, 'Lucida Console', 'Courier New'; text-align: left; color: #f6f3e8; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; font-size-adjust: none; font-stretch: normal; background-color: #242424; -webkit-text-stroke-width: 0px;"><span style="color: #f6f3e8;">db</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">books</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">ensureIndex</span><span style="color: #f6f3e8;">({</span><span class="Apple-converted-space">&nbsp;</span><span style="color: #95e454; font-style: italic;">"reviews.reviewer"</span><span style="color: #f6f3e8;">:</span><span class="Apple-converted-space">&nbsp;</span><span style="color: #e5786d;">1</span><span class="Apple-converted-space">&nbsp;</span><span style="color: #f6f3e8;">})</span></div>
+<div class="source" style="font: 14px/normal '[object HTMLOptionElement]', Consolas, 'Lucida Console', 'Courier New'; text-align: left; color: #f6f3e8; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; font-size-adjust: none; font-stretch: normal; background-color: #242424; -webkit-text-stroke-width: 0px;">
+<span style="color: #f6f3e8;">db</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">books</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">ensureIndex</span><span style="color: #f6f3e8;">({</span><span class="Apple-converted-space"> </span><span style="color: #95e454; font-style: italic;">"reviews.reviewer"</span><span style="color: #f6f3e8;">:</span><span class="Apple-converted-space"> </span><span style="color: #e5786d;">1</span><span class="Apple-converted-space"> </span><span style="color: #f6f3e8;">})</span>
+</div>
 <h4>Aggregation framework</h4>
 <blockquote>A MongoDB aggregation is a series of special operators applied to a collection. An operator is a JavaScript object with a single property, the operator name, which value is an option object. The core point of aggregation framework is <strong>the aggregation pipeline</strong> which is a framework for data aggregation modeled on the concept of data processing pipelines.</blockquote>
 <p>Aggregation was introduced in Mongo version 2.2, below is a table of comparison between Mongo and traditional relational DB from the aspect of aggregation functionalities:</p>
 <table style="font: 12px/normal helvetica, arial, sans-serif; border: 0px currentColor; width: 600px; color: #ffffff; text-transform: none; text-indent: 0px; letter-spacing: normal; margin-top: 1.1em; margin-bottom: 1.1em; word-spacing: 0px; white-space: normal; border-collapse: collapse; font-size-adjust: none; font-stretch: normal; background-color: transparent; -webkit-text-stroke-width: 0px;" border="1">
 <thead>
-<tr class="row-odd"><th class="head" style="border-width: 0px 0px 1px; padding: 5px 8px 5px 5px; text-align: left; border-bottom-color: #aaaaaa; border-bottom-style: solid;"><span style="font-size: small;">SQL Terms, Functions, and Concepts</span></th><th class="head" style="border-width: 0px 0px 1px; padding: 5px 8px 5px 5px; text-align: left; border-bottom-color: #aaaaaa; border-bottom-style: solid;"><span style="font-size: small;">MongoDB Aggregation Operators</span></th></tr>
+<tr class="row-odd">
+<th class="head" style="border-width: 0px 0px 1px; padding: 5px 8px 5px 5px; text-align: left; border-bottom-color: #aaaaaa; border-bottom-style: solid;"><span style="font-size: small;">SQL Terms, Functions, and Concepts</span></th>
+<th class="head" style="border-width: 0px 0px 1px; padding: 5px 8px 5px 5px; text-align: left; border-bottom-color: #aaaaaa; border-bottom-style: solid;"><span style="font-size: small;">MongoDB Aggregation Operators</span></th>
+</tr>
 </thead>
 <tbody>
 <tr class="row-even">
@@ -420,31 +447,31 @@
 </tr>
 <tr class="row-even">
 <td style="border-width: 0px 0px 1px; padding: 8px; text-align: left; border-bottom-color: #aaaaaa; border-bottom-style: solid;">join</td>
-<td style="border-width: 0px 0px 1px; padding: 8px; text-align: left; border-bottom-color: #aaaaaa; border-bottom-style: solid;">No direct corresponding operator;<span class="Apple-converted-space">&nbsp;</span><em>however</em>, the<span class="Apple-converted-space">&nbsp;</span><a class="reference internal" style="color: #003594; text-decoration: none;" title="$unwind" href="http://docs.mongodb.org/manual/reference/aggregation/unwind/#pipe._S_unwind"><span class="pre" style="font-family: 'Courier New', Courier, monospace; font-weight: bold;">$unwind</span></a><span class="Apple-converted-space">&nbsp;</span>operator allows for somewhat similar functionality, but with fields embedded within the document.</td>
+<td style="border-width: 0px 0px 1px; padding: 8px; text-align: left; border-bottom-color: #aaaaaa; border-bottom-style: solid;">No direct corresponding operator;<span class="Apple-converted-space"> </span><em>however</em>, the<span class="Apple-converted-space"> </span><a class="reference internal" style="color: #003594; text-decoration: none;" title="$unwind" href="http://docs.mongodb.org/manual/reference/aggregation/unwind/#pipe._S_unwind"><span class="pre" style="font-family: 'Courier New', Courier, monospace; font-weight: bold;">$unwind</span></a><span class="Apple-converted-space"> </span>operator allows for somewhat similar functionality, but with fields embedded within the document.</td>
 </tr>
 </tbody>
 </table>
 <p>For example, still using the above "Books and Publishers" example, image I want to query "<strong>a specific reviewer with the book(s) he/she reviewed</strong>", I can do this:</p>
-<p>&gt; &gt; db.books.aggregate({ $unwind: "$reviews" }, { $match: { "reviews.reviewer": "Xiaoshen"} })<br />{<br />&nbsp;"result" : [<br />&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;"_id" : 1,<br />&nbsp;&nbsp;&nbsp;"name" : "MongoDB Applied Design Patterns",<br />&nbsp;&nbsp;&nbsp;"price" : 35,<br />&nbsp;&nbsp;&nbsp;"rate" : 5,<br />&nbsp;&nbsp;&nbsp;"author" : "Rick Copeland",<br />&nbsp;&nbsp;&nbsp;"ISBN" : "1449340040",<br />&nbsp;&nbsp;&nbsp;"publisher_id" : 1,<br />&nbsp;&nbsp;&nbsp;"reviews" : {<br />&nbsp;&nbsp;&nbsp;&nbsp;"isUseful" : true,<br />&nbsp;&nbsp;&nbsp;&nbsp;"content" : "Cool book!",<br />&nbsp;&nbsp;&nbsp;&nbsp;"reviewer" : "Xiaoshen",<br />&nbsp;&nbsp;&nbsp;&nbsp;"timestamp" : "1377742184305"<br />&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;}<br />&nbsp;],<br />&nbsp;"ok" : 1<br />}</p>
+<p>&gt; &gt; db.books.aggregate({ $unwind: "$reviews" }, { $match: { "reviews.reviewer": "Xiaoshen"} })<br>{<br> "result" : [<br>  {<br>   "_id" : 1,<br>   "name" : "MongoDB Applied Design Patterns",<br>   "price" : 35,<br>   "rate" : 5,<br>   "author" : "Rick Copeland",<br>   "ISBN" : "1449340040",<br>   "publisher_id" : 1,<br>   "reviews" : {<br>    "isUseful" : true,<br>    "content" : "Cool book!",<br>    "reviewer" : "Xiaoshen",<br>    "timestamp" : "1377742184305"<br>   }<br>  }<br> ],<br> "ok" : 1<br>}</p>
 <p>Aggregation introduction: <a href="http://docs.mongodb.org/manual/applications/aggregation/">http://docs.mongodb.org/manual/applications/aggregation/</a></p>
-<p>One caveat: Aggregation is running upon JavaScript VM, which means - V8 after MongoDB version 2.4, although V8 is deadly fast, it cannot compete with native compiled/optimized C/C++ implementation, refer:<br /><a href="http://stackoverflow.com/questions/2599943/mongodbs-performance-on-aggregation-queries">http://stackoverflow.com/questions/2599943/mongodbs-performance-on-aggregation-queries</a></p>
-<h2 id="MongoDB-ExtendedProfile-CommonPractices"><em>Common Practices&nbsp;</em></h2>
+<p>One caveat: Aggregation is running upon JavaScript VM, which means - V8 after MongoDB version 2.4, although V8 is deadly fast, it cannot compete with native compiled/optimized C/C++ implementation, refer:<br><a href="http://stackoverflow.com/questions/2599943/mongodbs-performance-on-aggregation-queries">http://stackoverflow.com/questions/2599943/mongodbs-performance-on-aggregation-queries</a></p>
+<h2 id="MongoDB-ExtendedProfile-CommonPractices"><em>Common Practices </em></h2>
 <ul>
 <li><em>Denormalize data when frequently read together (one-to-one, one-to-many)</em></li>
 <li><em>Normalize data when where are separated queries happened frequently for both entities; or when there are too many data duplications</em></li>
 <li><em>Reduce collection size by always using short field names as a convention. This will help you save memory over time.</em></li>
-<li><em>Avoid using DBRef!&nbsp;<a class="external-link" href="http://stackoverflow.com/questions/9412341/mongodb-is-dbref-neccessary" rel="nofollow">Why</a></em></li>
-<li><em>Always test queries with .explain() to check that you&rsquo;re hitting the right index.</em></li>
+<li><em>Avoid using DBRef! <a class="external-link" href="http://stackoverflow.com/questions/9412341/mongodb-is-dbref-neccessary" rel="nofollow">Why</a></em></li>
+<li><em>Always test queries with .explain() to check that you’re hitting the right index.</em></li>
 </ul>
 <h2 id="MongoDB-ExtendedProfile-Usefulresources">Useful resources</h2>
-<p>The ultimate manual<br /><a class="external-link" href="http://docs.mongodb.org/manual/" rel="nofollow">http://docs.mongodb.org/manual/</a>&nbsp;</p>
-<p>Greate article explains differences between MongoDB and other famous Relational DBs:<br /><a class="external-link" href="http://docs.mongodb.org/manual/reference/sql-comparison/" rel="nofollow">http://docs.mongodb.org/manual/reference/sql-comparison/</a></p>
-<p>Data Modeling Considerations for MongoDB Applications<br /><a class="external-link" href="http://docs.mongodb.org/manual/core/data-modeling/" rel="nofollow">http://docs.mongodb.org/manual/core/data-modeling/</a><a href="http://wiki.autodesk.com/download/attachments/134319149/MongoDB-sharding-guide.pdf?version=1&amp;modificationDate=1377497767000&amp;api=v2">MongoDB-sharding-guide.pdf</a>&nbsp;</p>
-<p>Serialize Documents with the CSharp Driver<br /><a class="external-link" href="http://docs.mongodb.org/ecosystem/tutorial/serialize-documents-with-the-csharp-driver/" rel="nofollow">http://docs.mongodb.org/ecosystem/tutorial/serialize-documents-with-the-csharp-driver/</a>&nbsp;</p>
-<p>Schema Design --Indexes!!<br /><a class="external-link" href="http://www.slideshare.net/jrosoff/mongodb-advanced-schema-design-inboxes" rel="nofollow">http://www.slideshare.net/jrosoff/mongodb-advanced-schema-design-inboxes</a>&nbsp;</p>
-<p><em>Sharding and Mongo DB<br /><a class="external-link" href="http://docs.mongodb.org/master/MongoDB-sharding-guide.pdf" rel="nofollow">http://docs.mongodb.org/master/MongoDB-sharding-guide.pdf</a></em></p>
-<p><em>MongoDB Operations Best Practices<br /><a class="external-link" href="http://info.10gen.com/rs/10gen/images/10gen-MongoDB_Operations_Best_Practices.pdf" rel="nofollow">http://info.10gen.com/rs/10gen/images/10gen-MongoDB_Operations_Best_Practices.pdf</a>&nbsp;</em></p>
-<p><em>Sharding and Replica Sets Illustrated<br /><a href="http://www.kchodorow.com/blog/2010/08/09/sharding-and-replica-sets-illustrated/">http://www.kchodorow.com/blog/2010/08/09/sharding-and-replica-sets-illustrated/</a><br /></em></p>
+<p>The ultimate manual<br><a class="external-link" href="http://docs.mongodb.org/manual/" rel="nofollow">http://docs.mongodb.org/manual/</a> </p>
+<p>Greate article explains differences between MongoDB and other famous Relational DBs:<br><a class="external-link" href="http://docs.mongodb.org/manual/reference/sql-comparison/" rel="nofollow">http://docs.mongodb.org/manual/reference/sql-comparison/</a></p>
+<p>Data Modeling Considerations for MongoDB Applications<br><a class="external-link" href="http://docs.mongodb.org/manual/core/data-modeling/" rel="nofollow">http://docs.mongodb.org/manual/core/data-modeling/</a><a href="http://wiki.autodesk.com/download/attachments/134319149/MongoDB-sharding-guide.pdf?version=1&amp;modificationDate=1377497767000&amp;api=v2">MongoDB-sharding-guide.pdf</a> </p>
+<p>Serialize Documents with the CSharp Driver<br><a class="external-link" href="http://docs.mongodb.org/ecosystem/tutorial/serialize-documents-with-the-csharp-driver/" rel="nofollow">http://docs.mongodb.org/ecosystem/tutorial/serialize-documents-with-the-csharp-driver/</a> </p>
+<p>Schema Design --Indexes!!<br><a class="external-link" href="http://www.slideshare.net/jrosoff/mongodb-advanced-schema-design-inboxes" rel="nofollow">http://www.slideshare.net/jrosoff/mongodb-advanced-schema-design-inboxes</a> </p>
+<p><em>Sharding and Mongo DB<br><a class="external-link" href="http://docs.mongodb.org/master/MongoDB-sharding-guide.pdf" rel="nofollow">http://docs.mongodb.org/master/MongoDB-sharding-guide.pdf</a></em></p>
+<p><em>MongoDB Operations Best Practices<br><a class="external-link" href="http://info.10gen.com/rs/10gen/images/10gen-MongoDB_Operations_Best_Practices.pdf" rel="nofollow">http://info.10gen.com/rs/10gen/images/10gen-MongoDB_Operations_Best_Practices.pdf</a> </em></p>
+<p><em>Sharding and Replica Sets Illustrated<br><a href="http://www.kchodorow.com/blog/2010/08/09/sharding-and-replica-sets-illustrated/">http://www.kchodorow.com/blog/2010/08/09/sharding-and-replica-sets-illustrated/</a><br></em></p>
 
         
       </section>
@@ -556,6 +583,33 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
+        <a href="/AWS-reinvent-Las-Vegas" rel="permalink">AWS reinvent 2019 - Las Vegas
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">This is my second time attending AWS re-Invent, last time was year 2017, the purpose of this blog is to summarize what I’ve learned, impressed and entertained <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">
+
+Overall during my week staying my daily schedule was listening to sessions mixed with slack/emails during the daylight, and party/social in the evening time.
+
+All the keynotes/sessions have been uploaded here:  https://reinvent.awsevents.com/learn/keynotes/  and all announcements were summarized at this page, my personal top 5 thrilled announcements are:
+
+
+  Braket: Quantum computing is seriously coming!
+  Deep Composor: mach...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
         <a href="/Ireland-Trip-2019" rel="permalink">Ireland Trip 2019
 </a>
       
@@ -649,29 +703,6 @@ After 8 months of continuously hard working, this &lt;Master AWS Development&gt;
 </div>
 
         
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/self-improvement/passing-aws-certified-solutions-architect/" rel="permalink">Passing AWS Certified Solutions Architect
-</a>
-      
-    </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">
-
-3 years of AWS hands on experience, two months of preparation, 30 hours of course learning, 300+ exam practices, this was the work I’ve done to pass the AWS Certified Solutions Architect - Associate, my exam result is below:
-
-</p>
-  </article>
-</div>
-
-        
       </div>
     </div>
   
@@ -724,11 +755,11 @@ After 8 months of continuously hard working, this &lt;Master AWS Development&gt;
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2019 Wayne Ye. All rights reserved.
+<div class="page__footer-copyright">© 2019 Wayne Ye. All rights reserved.
  
   <!--Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>-->
 
-      </footer>
+      
     </div>
 
     
@@ -754,7 +785,8 @@ After 8 months of continuously hard working, this &lt;Master AWS Development&gt;
       (d.head || d.body).appendChild(s);
     })();
   </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
 
 
   
@@ -763,5 +795,6 @@ After 8 months of continuously hard working, this &lt;Master AWS Development&gt;
 
 
 
-  </body>
+  </footer>
+</div></body>
 </html>

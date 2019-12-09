@@ -129,19 +129,26 @@
       <nav id="site-nav" class="greedy-nav">
         
         <a class="site-title" href="/">Wayne's Geek Life</a>
-        <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/categories/" >Categories</a>
-            </li><li class="masthead__menu-item">
-              <a href="/tags/" >Tags</a>
-            </li><li class="masthead__menu-item">
-              <a href="/search/" >Search</a>
-            </li><li class="masthead__menu-item">
-              <a href="/gallery/" >Gallery</a>
-            </li><li class="masthead__menu-item">
-              <a href="/vlog/" >Vlog</a>
-            </li><li class="masthead__menu-item">
-              <a href="/about/" >About</a>
-            </li></ul>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/gallery/">Gallery</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/vlog/">Vlog</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li>
+</ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
           <span class="visually-hidden">Toggle menu</span>
@@ -286,7 +293,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="这几天研究Url Rewrite：）">
-    <meta itemprop="description" content="在开发这个自己用的Blog时，决定认真研究一下以前接触过的URL Rewrite，我见过类似这样的域名： xxx.com/Archive/2008/03/21/，一直不知道怎么实现的，正好借这次机会研究一下。从前天开始就一直在努力，基本上是第一天差了大半天资料，&lt;A href=&quot;http://msdn2.microsoft.com/en-us/library/ms972974.aspx&quot; target=_blank&gt;这篇文章&lt;/A&gt;写得非常详细，向作者致敬！第二天终于上手做出Demo，但有Bug，第三天解决了Bug，完美运行^_^其实简单点说，个人觉得对于ASP.NET开发者实现URL Rewrite基本有3种途径：1. 修改IIS ISAPI扩展，例如把”.xx”交给aspnet_isapi.dll ISAPI 扩展，就成了这样：”xxx.htm?q=blah”，这样就是最简单直接的SEO，但由于我是虚拟主机所以我仅仅只在本地试了下，不知道精英科技的管理面板是否支持，我没有试。2. 修改WebConfig，添加">
+    <meta itemprop="description" content='在开发这个自己用的Blog时，决定认真研究一下以前接触过的URL Rewrite，我见过类似这样的域名： xxx.com/Archive/2008/03/21/，一直不知道怎么实现的，正好借这次机会研究一下。从前天开始就一直在努力，基本上是第一天差了大半天资料，&lt;A href="http://msdn2.microsoft.com/en-us/library/ms972974.aspx" target=_blank&gt;这篇文章&lt;/A&gt;写得非常详细，向作者致敬！第二天终于上手做出Demo，但有Bug，第三天解决了Bug，完美运行^_^其实简单点说，个人觉得对于ASP.NET开发者实现URL Rewrite基本有3种途径：1. 修改IIS ISAPI扩展，例如把”.xx”交给aspnet_isapi.dll ISAPI 扩展，就成了这样：”xxx.htm?q=blah”，这样就是最简单直接的SEO，但由于我是虚拟主机所以我仅仅只在本地试了下，不知道精英科技的管理面板是否支持，我没有试。2. 修改WebConfig，添加'>
     <meta itemprop="datePublished" content="March 21, 2008">
     
 
@@ -303,12 +310,22 @@
         
           <aside class="sidebar__right ">
             <nav class="toc">
-              <header><h4 class="nav__title"><i class="fas fa-cog"></i> On this page</h4></header>
+              <header><h4 class="nav__title">
+<i class="fas fa-cog"></i> On this page</h4></header>
               
             </nav>
           </aside>
         
-        <P>在开发这个自己用的Blog时，决定认真研究一下以前接触过的URL Rewrite，我见过类似这样的域名： xxx.com/Archive/2008/03/21/，一直不知道怎么实现的，正好借这次机会研究一下。</P><P>从前天开始就一直在努力，基本上是第一天差了大半天资料，<A href="http://msdn2.microsoft.com/en-us/library/ms972974.aspx" target=_blank>这篇文章</A>写得非常详细，向作者致敬！第二天终于上手做出Demo，但有Bug，第三天解决了Bug，完美运行^_^</P><P>其实简单点说，个人觉得对于ASP.NET开发者实现URL Rewrite基本有3种途径：</P><P>1. 修改IIS ISAPI扩展，例如把”.xx”交给aspnet_isapi.dll ISAPI 扩展，就成了这样：”xxx.htm?q=blah”，这样就是最简单直接的SEO，但由于我是虚拟主机所以我仅仅只在本地试了下，不知道精英科技的管理面板是否支持，我没有试。<BR>2. 修改WebConfig，添加<!--more-->自己实现的IHttpModule，根据传入的URL来Rewrite到相应的页面，比如接受到类似” Archive/2008/03/21/”的URL，则Rewrite到Archive.aspx?Year=2008&amp;Month=3&amp;Day=21，这中间是用正则来匹配的。<BR>3. 使用第三方组件如：IIS Rewrite </P><P>由于鄙人一直都希望自己实现某些东西，只要不是太复杂，所以我决定使用第二种。那么一个比Hello World还简单的实例是这样做的： </P><HR><BR>写一个class实现IHttpModule：<BR>WayneHttpModule&nbsp; IHttpModule<BR>然后：<BR>public void Init(HttpApplication context)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; context.BeginRequest&nbsp;= new EventHandler(context_BeginRequest);<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void context_BeginRequest(object sender, EventArgs e)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HttpApplication app&nbsp; sender as HttpApplication;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; app.Context.RewritePath("Test.aspx");<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<BR>然后在Web.config里添加：<BR>&lt;httpModules&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lt;add name="WayneHttpModule" type="WayneBlog.Web.WayneHttpModule"/&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lt;/httpModules&gt; <HR><P></P><P>就搞定了。。。<BR>这样在当前虚拟目录下，任何以“aspx”为后缀的Url请求全部会被WayneHttpModule截获并且转向（Rwrite）到Test.aspx，需要注意的是，即使这个页面并不存在，比如IamFoo.aspx，呵呵。</P><P>那么类似这样的：” Archive/2008/03/21/”，教程作者提到必须设一个主页（比如Default.aspx），并且这个主页物理存在于” /2008/03/21/”这个目录下，如果嫌麻烦那么可以仿照.Text，截获所有的Http请求并交给aspnet_isapi.dll ISAPI 扩展。我个人觉得这样对于我来说更麻烦，我选择了去建Default.aspx，每次发表一篇新的Blog，就去生成目录并写Default.Aspx文件：）<BR></P>
+        <p>在开发这个自己用的Blog时，决定认真研究一下以前接触过的URL Rewrite，我见过类似这样的域名： xxx.com/Archive/2008/03/21/，一直不知道怎么实现的，正好借这次机会研究一下。</p>
+<p>从前天开始就一直在努力，基本上是第一天差了大半天资料，<a href="http://msdn2.microsoft.com/en-us/library/ms972974.aspx" target="_blank">这篇文章</a>写得非常详细，向作者致敬！第二天终于上手做出Demo，但有Bug，第三天解决了Bug，完美运行^_^</p>
+<p>其实简单点说，个人觉得对于ASP.NET开发者实现URL Rewrite基本有3种途径：</p>
+<p>1. 修改IIS ISAPI扩展，例如把”.xx”交给aspnet_isapi.dll ISAPI 扩展，就成了这样：”xxx.htm?q=blah”，这样就是最简单直接的SEO，但由于我是虚拟主机所以我仅仅只在本地试了下，不知道精英科技的管理面板是否支持，我没有试。<br>2. 修改WebConfig，添加<!--more-->自己实现的IHttpModule，根据传入的URL来Rewrite到相应的页面，比如接受到类似” Archive/2008/03/21/”的URL，则Rewrite到Archive.aspx?Year=2008&amp;Month=3&amp;Day=21，这中间是用正则来匹配的。<br>3. 使用第三方组件如：IIS Rewrite </p>
+<p>由于鄙人一直都希望自己实现某些东西，只要不是太复杂，所以我决定使用第二种。那么一个比Hello World还简单的实例是这样做的： </p>
+<hr>
+<br>写一个class实现IHttpModule：<br>WayneHttpModule  IHttpModule<br>然后：<br>public void Init(HttpApplication context)<br>        <br>            context.BeginRequest = new EventHandler(context_BeginRequest);<br>        <br>        void context_BeginRequest(object sender, EventArgs e)<br>        <br>            HttpApplication app  sender as HttpApplication;<br>            app.Context.RewritePath("Test.aspx");<br>        <br>然后在Web.config里添加：<br>&lt;httpModules&gt;<br>        lt;add name="WayneHttpModule" type="WayneBlog.Web.WayneHttpModule"/&gt;<br>      lt;/httpModules&gt; <hr>
+<p></p>
+<p>就搞定了。。。<br>这样在当前虚拟目录下，任何以“aspx”为后缀的Url请求全部会被WayneHttpModule截获并且转向（Rwrite）到Test.aspx，需要注意的是，即使这个页面并不存在，比如IamFoo.aspx，呵呵。</p>
+<p>那么类似这样的：” Archive/2008/03/21/”，教程作者提到必须设一个主页（比如Default.aspx），并且这个主页物理存在于” /2008/03/21/”这个目录下，如果嫌麻烦那么可以仿照.Text，截获所有的Http请求并交给aspnet_isapi.dll ISAPI 扩展。我个人觉得这样对于我来说更麻烦，我选择了去建Default.aspx，每次发表一篇新的Blog，就去生成目录并写Default.Aspx文件：）<br></p>
 
         
       </section>
@@ -385,7 +402,7 @@
       <a href="#" class="pagination--pager disabled">Previous</a>
     
     
-      <a href="/%E5%B0%8F%E7%99%BD%E5%92%8C%E5%A4%9A%E5%A4%9A" class="pagination--pager" title="小白和多多
+      <a href="/%E8%B0%B7%E6%AD%8C%E7%9A%84%E6%84%9A%E4%BA%BA%E8%8A%82%E7%A4%BC%E7%89%A9:)" class="pagination--pager" title="谷歌的愚人节礼物:)
 ">Next</a>
     
   </nav>
@@ -409,6 +426,33 @@
     <div class="page__related">
       <h4 class="page__related-title">You may also enjoy</h4>
       <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/AWS-reinvent-Las-Vegas" rel="permalink">AWS reinvent 2019 - Las Vegas
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">This is my second time attending AWS re-Invent, last time was year 2017, the purpose of this blog is to summarize what I’ve learned, impressed and entertained <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">
+
+Overall during my week staying my daily schedule was listening to sessions mixed with slack/emails during the daylight, and party/social in the evening time.
+
+All the keynotes/sessions have been uploaded here:  https://reinvent.awsevents.com/learn/keynotes/  and all announcements were summarized at this page, my personal top 5 thrilled announcements are:
+
+
+  Braket: Quantum computing is seriously coming!
+  Deep Composor: mach...</p>
+  </article>
+</div>
+
         
           
 
@@ -512,29 +556,6 @@ After 8 months of continuously hard working, this &lt;Master AWS Development&gt;
 </div>
 
         
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/self-improvement/passing-aws-certified-solutions-architect/" rel="permalink">Passing AWS Certified Solutions Architect
-</a>
-      
-    </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">
-
-3 years of AWS hands on experience, two months of preparation, 30 hours of course learning, 300+ exam practices, this was the work I’ve done to pass the AWS Certified Solutions Architect - Associate, my exam result is below:
-
-</p>
-  </article>
-</div>
-
-        
       </div>
     </div>
   
@@ -587,11 +608,11 @@ After 8 months of continuously hard working, this &lt;Master AWS Development&gt;
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2019 Wayne Ye. All rights reserved.
+<div class="page__footer-copyright">© 2019 Wayne Ye. All rights reserved.
  
   <!--Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>-->
 
-      </footer>
+      
     </div>
 
     
@@ -617,7 +638,8 @@ After 8 months of continuously hard working, this &lt;Master AWS Development&gt;
       (d.head || d.body).appendChild(s);
     })();
   </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
 
 
   
@@ -626,5 +648,6 @@ After 8 months of continuously hard working, this &lt;Master AWS Development&gt;
 
 
 
-  </body>
+  </footer>
+</div></body>
 </html>

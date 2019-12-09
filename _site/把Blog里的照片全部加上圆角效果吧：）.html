@@ -129,19 +129,26 @@
       <nav id="site-nav" class="greedy-nav">
         
         <a class="site-title" href="/">Wayne's Geek Life</a>
-        <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/categories/" >Categories</a>
-            </li><li class="masthead__menu-item">
-              <a href="/tags/" >Tags</a>
-            </li><li class="masthead__menu-item">
-              <a href="/search/" >Search</a>
-            </li><li class="masthead__menu-item">
-              <a href="/gallery/" >Gallery</a>
-            </li><li class="masthead__menu-item">
-              <a href="/vlog/" >Vlog</a>
-            </li><li class="masthead__menu-item">
-              <a href="/about/" >About</a>
-            </li></ul>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/gallery/">Gallery</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/vlog/">Vlog</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li>
+</ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
           <span class="visually-hidden">Toggle menu</span>
@@ -286,7 +293,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="把Blog里的照片全部加上圆角效果吧：）">
-    <meta itemprop="description" content="前几天在网上找到这么个酷酷的玩意，用JS给图片加上各种各样的圆角效果，官方主页：http://www.netzgesta.de/corner/看后顿时觉得很酷，今天周末，有时间来搞搞这个：）读了官网的说明后发现很简单，下载corner.js（本地下载），然后页面include后直接使用class=&quot;自己挑一个喜欢的class&quot;就ok了。那么这里有个问题，如果你的Blog上线已有时日（比如鄙博）,难道要手动更新你之前所有Blog里的图片代码给它们加上class？？呵呵，这点事根本不能称之为问题：）当然是加段JS脚本给动态注册className喽，鄙播采用了Div+Css架构以及MasterPage，所有的Blog都包含于一个名为“ContentPlaceHolder”对Div中">
+    <meta itemprop="description" content='前几天在网上找到这么个酷酷的玩意，用JS给图片加上各种各样的圆角效果，官方主页：http://www.netzgesta.de/corner/看后顿时觉得很酷，今天周末，有时间来搞搞这个：）读了官网的说明后发现很简单，下载corner.js（本地下载），然后页面include后直接使用class="自己挑一个喜欢的class"就ok了。那么这里有个问题，如果你的Blog上线已有时日（比如鄙博）,难道要手动更新你之前所有Blog里的图片代码给它们加上class？？呵呵，这点事根本不能称之为问题：）当然是加段JS脚本给动态注册className喽，鄙播采用了Div+Css架构以及MasterPage，所有的Blog都包含于一个名为“ContentPlaceHolder”对Div中'>
     <meta itemprop="datePublished" content="May 04, 2008">
     
 
@@ -303,16 +310,15 @@
         
           <aside class="sidebar__right ">
             <nav class="toc">
-              <header><h4 class="nav__title"><i class="fas fa-cog"></i> On this page</h4></header>
+              <header><h4 class="nav__title">
+<i class="fas fa-cog"></i> On this page</h4></header>
               
             </nav>
           </aside>
         
-        前几天在网上找到这么个酷酷的玩意，用JS给图片加上各种各样的圆角效果，官方主页：<br />
+        前几天在网上找到这么个酷酷的玩意，用JS给图片加上各种各样的圆角效果，官方主页：<br>
 
-<p><a href="http://www.netzgesta.de/corner/" 
-
-target="_blank">http://www.netzgesta.de/corner/</a></p>
+<p><a href="http://www.netzgesta.de/corner/" target="_blank">http://www.netzgesta.de/corner/</a></p>
 
 <p>看后顿时觉得很酷，今天周末，有时间来搞搞这个：）</p>
 
@@ -327,20 +333,27 @@ class？？</p>
 
 MasterPage，所有的Blog都包含于一个名为“ContentPlaceHolder”对Div中<!--more-->，那么好办了:</p>
 <p>
-<ul><li>1. 得到此Div的Dom</li><li>2. 遍历其下所有Tag为img的东西</li><li>3. 设置
+</p>
+<ul>
+<li>1. 得到此Div的Dom</li>
+<li>2. 遍历其下所有Tag为img的东西</li>
+<li>3. 设置
 
-className</li></ul><br />打完收工。<br /><br />完整代码如下：</p>
+className</li>
+</ul>
+<br>打完收工。<br><br>完整代码如下：
 
 <p>
+</p>
 <pre>
 // Set Corner to image
     var divBlogArtitle = document.getElementById('BlogArticle');
     
     var imgs = divBlogArtitle.getElementsByTagName('img');
     
-    for (var i = 0; i< imgs.length; i++)
+    for (var i = 0; i&lt; imgs.length; i++)
         imgs[i].className = 'corner iradius20 ishadow33';
-</pre></p>
+</pre>
 
 <p>
 需要注意的是，这段代码要加在页面尾部已确保图片文件都下载完成后再设置class。
@@ -456,6 +469,33 @@ className</li></ul><br />打完收工。<br /><br />完整代码如下：</p>
     
     <h2 class="archive__item-title" itemprop="headline">
       
+        <a href="/AWS-reinvent-Las-Vegas" rel="permalink">AWS reinvent 2019 - Las Vegas
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">This is my second time attending AWS re-Invent, last time was year 2017, the purpose of this blog is to summarize what I’ve learned, impressed and entertained <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">
+
+Overall during my week staying my daily schedule was listening to sessions mixed with slack/emails during the daylight, and party/social in the evening time.
+
+All the keynotes/sessions have been uploaded here:  https://reinvent.awsevents.com/learn/keynotes/  and all announcements were summarized at this page, my personal top 5 thrilled announcements are:
+
+
+  Braket: Quantum computing is seriously coming!
+  Deep Composor: mach...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
         <a href="/Ireland-Trip-2019" rel="permalink">Ireland Trip 2019
 </a>
       
@@ -549,29 +589,6 @@ After 8 months of continuously hard working, this &lt;Master AWS Development&gt;
 </div>
 
         
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/self-improvement/passing-aws-certified-solutions-architect/" rel="permalink">Passing AWS Certified Solutions Architect
-</a>
-      
-    </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">
-
-3 years of AWS hands on experience, two months of preparation, 30 hours of course learning, 300+ exam practices, this was the work I’ve done to pass the AWS Certified Solutions Architect - Associate, my exam result is below:
-
-</p>
-  </article>
-</div>
-
-        
       </div>
     </div>
   
@@ -624,11 +641,11 @@ After 8 months of continuously hard working, this &lt;Master AWS Development&gt;
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2019 Wayne Ye. All rights reserved.
+<div class="page__footer-copyright">© 2019 Wayne Ye. All rights reserved.
  
   <!--Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>-->
 
-      </footer>
+      
     </div>
 
     
@@ -654,7 +671,8 @@ After 8 months of continuously hard working, this &lt;Master AWS Development&gt;
       (d.head || d.body).appendChild(s);
     })();
   </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
 
 
   
@@ -663,5 +681,6 @@ After 8 months of continuously hard working, this &lt;Master AWS Development&gt;
 
 
 
-  </body>
+  </footer>
+</div></body>
 </html>

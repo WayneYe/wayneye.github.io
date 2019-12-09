@@ -10,10 +10,11 @@ permalink: 2019-12-07-SkyJump-Las-Vegas
 
 Instead of spending any cent in the money pit casinos, I'd chose to do something more meaningful and exciting :)
 
-<figure class="half">
+<figure class="third">
     <a href="/assets/images/posts/2019-12-07-SkyJump-Las-Vegas/SkyJump-1.jpg"><img src="/assets/images/posts/2019-12-07-SkyJump-Las-Vegas/SkyJump-1.jpg"></a>
     <a href="/assets/images/posts/2019-12-07-SkyJump-Las-Vegas/SkyJump-2.jpg"><img src="/assets/images/posts/2019-12-07-SkyJump-Las-Vegas/SkyJump-2.jpg"></a>
-    <figcaption>凯里之环和狂野大西洋之路的路牌</figcaption>
+    <a href="/assets/images/posts/2019-12-07-SkyJump-Las-Vegas/SkyJump-3.png"><img src="/assets/images/posts/2019-12-07-SkyJump-Las-Vegas/SkyJump-3.png"></a>
+    <figcaption>SkyJump Las Vegas</figcaption>
 </figure>
 
 >

@@ -10,7 +10,7 @@ permalink: AWS-reinvent-Las-Vegas
 
 This is my second time attending AWS re-Invent, last time was year 2017, the purpose of this blog is to summarize what I've learned, impressed and entertained :smile:
 
-<figure>
+<figure class="small">
     <a href="/assets/images/posts/2019-12-07-AWS-reinvent-Las-Vegas/at-reinvent-logo.jpg"><img src="/assets/images/posts/2019-12-07-AWS-reinvent-Las-Vegas/at-reinvent-logo.jpg"></a>
     <figcaption>At reinvent logo</figcaption>
 </figure>

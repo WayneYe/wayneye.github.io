@@ -1,5 +1,7 @@
 # Start server
 JEKYLL_ENV=production bundle exec jekyll serve
+## Better local watch performance (WYSWYG)
+bundle exec jekyll serve --strict_front_matter --watch --limit_posts 2
 
 # Common syntax
 

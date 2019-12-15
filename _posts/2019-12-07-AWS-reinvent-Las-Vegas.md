@@ -10,7 +10,7 @@ permalink: AWS-reinvent-Las-Vegas
 
 This is my second time attending AWS re-Invent, last time was year 2017, the purpose of this blog is to summarize what I've learned, impressed and entertained :smile:
 
-<figure class="small">
+<figure>
     <a href="/assets/images/posts/2019-12-07-AWS-reinvent-Las-Vegas/at-reinvent-logo.jpg"><img src="/assets/images/posts/2019-12-07-AWS-reinvent-Las-Vegas/at-reinvent-logo.jpg"></a>
     <figcaption>At reinvent logo</figcaption>
 </figure>
@@ -19,7 +19,6 @@ This is my second time attending AWS re-Invent, last time was year 2017, the pur
     <a href="/assets/images/posts/2019-12-07-AWS-reinvent-Las-Vegas/crazy-crowd-at-midnight-madness.jpg"><img src="/assets/images/posts/2019-12-07-AWS-reinvent-Las-Vegas/crazy-crowd-at-midnight-madness.jpg"></a>
     <figcaption>Crazy crowd at midnight madness party</figcaption>
 </figure>
-
 
 Overall during my week staying my daily schedule was listening to sessions mixed with slack/emails during the daylight, and party/social in the evening time.
 

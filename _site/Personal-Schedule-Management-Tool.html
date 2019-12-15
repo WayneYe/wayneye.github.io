@@ -1,0 +1,847 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.16.3 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Personal Schedule Management Tool - Wayne’s Geek Life</title>
+<meta name="description" content="Time is always ticking no matter you care it or you don’t care it, everyone knows it including myself, to remind myself don’t waste too much time on gaming, reading news or something else, I developed a little tool which I call it “Personal Schedule Management Tool” to achieve this simple goal.MechanismI create an XML file to store a serial of [time stamp/task to do] pairs, the tool will start with Windows and load the XML file, a working timer behind it will periodically check whether there is a task needs to be done at defined time stamp, once the condition is matched, the tool will  Shows Windows Balloon Tips with the task as content, screenshot below.       Invokes managed Microsoft Speech API: SpeechSynthesizer.Speak() to remind me even if I am not in front of my dev-box at that time. Here is my XML to store schedule items:&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;&lt;WayneScheduleItems&gt;  &lt;ScheduleItem TriggerHour=&quot;18&quot; TriggerMinute=&quot;20&quot; Content=&quot;Wayne, time to have your dinner.&quot; /&gt;  &lt;ScheduleItem TriggerHour=&quot;19&quot; TriggerMinute=&quot;0&quot; Content=&quot;Wayne! It is time to learn technologies and programming skills, i.e. CODING TIME!&quot; /&gt;  &lt;ScheduleItem TriggerHour=&quot;20&quot; TriggerMinute=&quot;30&quot; Content=&quot;OK, your eye and brain need rest, time to do some body execise - running, sit-ups, push-up, etc.  Enjoy:)&quot; /&gt;  &lt;ScheduleItem TriggerHour=&quot;21&quot; TriggerMinute=&quot;0&quot; Content=&quot;Well, sweat off your face and have a bath:).&quot; /&gt;  &lt;ScheduleItem TriggerHour=&quot;21&quot; TriggerMinute=&quot;30&quot; Content=&quot;All right, well come back, you know you should read some books!&quot; /&gt;  &lt;ScheduleItem TriggerHour=&quot;23&quot; TriggerMinute=&quot;0&quot; Content=&quot;Wayne, thanks for the hard work! Time to sleep, have a good night!&quot; /&gt;&lt;/WayneScheduleItems&gt;">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Wayne's Geek Life">
+<meta property="og:title" content="Personal Schedule Management Tool">
+<meta property="og:url" content="https://wayneye.com/Personal-Schedule-Management-Tool">
+
+
+  <meta property="og:description" content="Time is always ticking no matter you care it or you don’t care it, everyone knows it including myself, to remind myself don’t waste too much time on gaming, reading news or something else, I developed a little tool which I call it “Personal Schedule Management Tool” to achieve this simple goal.MechanismI create an XML file to store a serial of [time stamp/task to do] pairs, the tool will start with Windows and load the XML file, a working timer behind it will periodically check whether there is a task needs to be done at defined time stamp, once the condition is matched, the tool will  Shows Windows Balloon Tips with the task as content, screenshot below.       Invokes managed Microsoft Speech API: SpeechSynthesizer.Speak() to remind me even if I am not in front of my dev-box at that time. Here is my XML to store schedule items:&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;&lt;WayneScheduleItems&gt;  &lt;ScheduleItem TriggerHour=&quot;18&quot; TriggerMinute=&quot;20&quot; Content=&quot;Wayne, time to have your dinner.&quot; /&gt;  &lt;ScheduleItem TriggerHour=&quot;19&quot; TriggerMinute=&quot;0&quot; Content=&quot;Wayne! It is time to learn technologies and programming skills, i.e. CODING TIME!&quot; /&gt;  &lt;ScheduleItem TriggerHour=&quot;20&quot; TriggerMinute=&quot;30&quot; Content=&quot;OK, your eye and brain need rest, time to do some body execise - running, sit-ups, push-up, etc.  Enjoy:)&quot; /&gt;  &lt;ScheduleItem TriggerHour=&quot;21&quot; TriggerMinute=&quot;0&quot; Content=&quot;Well, sweat off your face and have a bath:).&quot; /&gt;  &lt;ScheduleItem TriggerHour=&quot;21&quot; TriggerMinute=&quot;30&quot; Content=&quot;All right, well come back, you know you should read some books!&quot; /&gt;  &lt;ScheduleItem TriggerHour=&quot;23&quot; TriggerMinute=&quot;0&quot; Content=&quot;Wayne, thanks for the hard work! Time to sleep, have a good night!&quot; /&gt;&lt;/WayneScheduleItems&gt;">
+
+
+
+
+
+  <meta name="twitter:site" content="@wayneye">
+  <meta name="twitter:title" content="Personal Schedule Management Tool">
+  <meta name="twitter:description" content="Time is always ticking no matter you care it or you don’t care it, everyone knows it including myself, to remind myself don’t waste too much time on gaming, reading news or something else, I developed a little tool which I call it “Personal Schedule Management Tool” to achieve this simple goal.MechanismI create an XML file to store a serial of [time stamp/task to do] pairs, the tool will start with Windows and load the XML file, a working timer behind it will periodically check whether there is a task needs to be done at defined time stamp, once the condition is matched, the tool will  Shows Windows Balloon Tips with the task as content, screenshot below.       Invokes managed Microsoft Speech API: SpeechSynthesizer.Speak() to remind me even if I am not in front of my dev-box at that time. Here is my XML to store schedule items:&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;&lt;WayneScheduleItems&gt;  &lt;ScheduleItem TriggerHour=&quot;18&quot; TriggerMinute=&quot;20&quot; Content=&quot;Wayne, time to have your dinner.&quot; /&gt;  &lt;ScheduleItem TriggerHour=&quot;19&quot; TriggerMinute=&quot;0&quot; Content=&quot;Wayne! It is time to learn technologies and programming skills, i.e. CODING TIME!&quot; /&gt;  &lt;ScheduleItem TriggerHour=&quot;20&quot; TriggerMinute=&quot;30&quot; Content=&quot;OK, your eye and brain need rest, time to do some body execise - running, sit-ups, push-up, etc.  Enjoy:)&quot; /&gt;  &lt;ScheduleItem TriggerHour=&quot;21&quot; TriggerMinute=&quot;0&quot; Content=&quot;Well, sweat off your face and have a bath:).&quot; /&gt;  &lt;ScheduleItem TriggerHour=&quot;21&quot; TriggerMinute=&quot;30&quot; Content=&quot;All right, well come back, you know you should read some books!&quot; /&gt;  &lt;ScheduleItem TriggerHour=&quot;23&quot; TriggerMinute=&quot;0&quot; Content=&quot;Wayne, thanks for the hard work! Time to sleep, have a good night!&quot; /&gt;&lt;/WayneScheduleItems&gt;">
+  <meta name="twitter:url" content="https://wayneye.com/Personal-Schedule-Management-Tool">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2010-05-19T00:00:00-07:00">
+
+
+
+
+
+  
+
+  
+    <meta property="fb:app_id" content="374223339969060">
+  
+
+
+<link rel="canonical" href="https://wayneye.com/Personal-Schedule-Management-Tool">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Wayne's Geek Life Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">Wayne's Geek Life</a>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/gallery/">Gallery</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/vlog/">Vlog</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li>
+</ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/me.jpg" alt="Wayne Ye" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Wayne Ye</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        Whatever is worth doing is worth doing well!
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">San Francisco</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:me@wayneye.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://wayneye.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/wayneye" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+          
+        
+          
+            <li><a href="https://facebook.com/WayneYeDotCom" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-facebook-square" aria-hidden="true"></i> Facebook</a></li>
+          
+        
+          
+            <li><a href="https://github.com/WayneYe/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Personal Schedule Management Tool">
+    <meta itemprop="description" content='Time is always ticking no matter you care it or you don’t care it, everyone knows it including myself, to remind myself don’t waste too much time on gaming, reading news or something else, I developed a little tool which I call it “Personal Schedule Management Tool” to achieve this simple goal.MechanismI create an XML file to store a serial of [time stamp/task to do] pairs, the tool will start with Windows and load the XML file, a working timer behind it will periodically check whether there is a task needs to be done at defined time stamp, once the condition is matched, the tool will  Shows Windows Balloon Tips with the task as content, screenshot below.       Invokes managed Microsoft Speech API: SpeechSynthesizer.Speak() to remind me even if I am not in front of my dev-box at that time. Here is my XML to store schedule items:&lt;?xml version="1.0" encoding="utf-8" ?&gt;&lt;WayneScheduleItems&gt;  &lt;ScheduleItem TriggerHour="18" TriggerMinute="20" Content="Wayne, time to have your dinner." /&gt;  &lt;ScheduleItem TriggerHour="19" TriggerMinute="0" Content="Wayne! It is time to learn technologies and programming skills, i.e. CODING TIME!" /&gt;  &lt;ScheduleItem TriggerHour="20" TriggerMinute="30" Content="OK, your eye and brain need rest, time to do some body execise - running, sit-ups, push-up, etc.  Enjoy:)" /&gt;  &lt;ScheduleItem TriggerHour="21" TriggerMinute="0" Content="Well, sweat off your face and have a bath:)." /&gt;  &lt;ScheduleItem TriggerHour="21" TriggerMinute="30" Content="All right, well come back, you know you should read some books!" /&gt;  &lt;ScheduleItem TriggerHour="23" TriggerMinute="0" Content="Wayne, thanks for the hard work! Time to sleep, have a good night!" /&gt;&lt;/WayneScheduleItems&gt;'>
+    <meta itemprop="datePublished" content="May 19, 2010">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Personal Schedule Management Tool
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title">
+<i class="fas fa-cog"></i> On this page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#">Mechanism</a></li>
+  <li><a href="#">UI Implementation</a></li>
+  <li><a href="#">Functionality implementation</a></li>
+  <li><a href="#">Source download:</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p>Time is always ticking no matter you care it or you don’t care it, everyone knows it including myself, to remind myself don’t waste too much time on gaming, reading news or something else, I developed a little tool which I call it “<strong>Personal Schedule Management Tool</strong>” to achieve this simple goal.</p>
+
+<h3>Mechanism</h3>
+
+<p>I create an XML file to store a serial of <strong>[time stamp/task to do]</strong> pairs, the tool will start with Windows and load the XML file, a working timer behind it will periodically check whether there is a task needs to be done at defined time stamp, once the condition is matched, the tool will</p>
+
+<ol>
+  <li>Shows Windows Balloon Tips with the task as content, screenshot below. 
+    <br><img class="BlogImage" title="Balloon" border="0" alt="Balloon" src="http://wayneye.files.wordpress.com/2010/10/balloon_thumb.png?w=336&amp;h=165" width="336" height="165">
+</li>
+
+  <li>Invokes managed Microsoft Speech API: SpeechSynthesizer.Speak() to remind me <strong>even if I am not in front of my dev-box at that time</strong>. </li>
+</ol>
+
+<p>Here is my XML to store schedule items:</p>
+
+<pre style="background: #f6f8ff; color: #000020"><span style="color: #004a43">&lt;?</span><span style="color: #004a43">xml</span> <span style="color: #004a43">version</span><span style="color: #308080">=</span><span style="color: #008c00">"1.0"</span> <span style="color: #004a43">encoding</span><span style="color: #308080">=</span><span style="color: #1060b6">"utf-8"</span> <span style="color: #004a43">?&gt;</span>
+<span style="color: #0057a6">&lt;</span><span style="color: #333385">WayneScheduleItems</span><span style="color: #0057a6">&gt;</span>
+  <span style="color: #0057a6">&lt;</span><span style="color: #333385">ScheduleItem</span> <span style="color: #474796">TriggerHour</span><span style="color: #308080">=</span><span style="color: #1060b6">"</span><span style="color: #1060b6">18</span><span style="color: #1060b6">"</span> <span style="color: #474796">TriggerMinute</span><span style="color: #308080">=</span><span style="color: #1060b6">"</span><span style="color: #1060b6">20</span><span style="color: #1060b6">"</span> <span style="color: #474796">Content</span><span style="color: #308080">=</span><span style="color: #1060b6">"</span><span style="color: #1060b6">Wayne, time to have your dinner.</span><span style="color: #1060b6">"</span> <span style="color: #0057a6">/&gt;</span>
+  <span style="color: #0057a6">&lt;</span><span style="color: #333385">ScheduleItem</span> <span style="color: #474796">TriggerHour</span><span style="color: #308080">=</span><span style="color: #1060b6">"</span><span style="color: #1060b6">19</span><span style="color: #1060b6">"</span> <span style="color: #474796">TriggerMinute</span><span style="color: #308080">=</span><span style="color: #1060b6">"</span><span style="color: #1060b6">0</span><span style="color: #1060b6">"</span> <span style="color: #474796">Content</span><span style="color: #308080">=</span><span style="color: #1060b6">"</span><span style="color: #1060b6">Wayne! It is time to learn technologies and programming skills, i.e. CODING TIME!</span><span style="color: #1060b6">"</span> <span style="color: #0057a6">/&gt;</span>
+  <span style="color: #0057a6">&lt;</span><span style="color: #333385">ScheduleItem</span> <span style="color: #474796">TriggerHour</span><span style="color: #308080">=</span><span style="color: #1060b6">"</span><span style="color: #1060b6">20</span><span style="color: #1060b6">"</span> <span style="color: #474796">TriggerMinute</span><span style="color: #308080">=</span><span style="color: #1060b6">"</span><span style="color: #1060b6">30</span><span style="color: #1060b6">"</span> <span style="color: #474796">Content</span><span style="color: #308080">=</span><span style="color: #1060b6">"</span><span style="color: #1060b6">OK, your eye and brain need rest, time to do some body execise - running, sit-ups, push-up, etc.  Enjoy:)</span><span style="color: #1060b6">"</span> <span style="color: #0057a6">/&gt;</span>
+  <span style="color: #0057a6">&lt;</span><span style="color: #333385">ScheduleItem</span> <span style="color: #474796">TriggerHour</span><span style="color: #308080">=</span><span style="color: #1060b6">"</span><span style="color: #1060b6">21</span><span style="color: #1060b6">"</span> <span style="color: #474796">TriggerMinute</span><span style="color: #308080">=</span><span style="color: #1060b6">"</span><span style="color: #1060b6">0</span><span style="color: #1060b6">"</span> <span style="color: #474796">Content</span><span style="color: #308080">=</span><span style="color: #1060b6">"</span><span style="color: #1060b6">Well, sweat off your face and have a bath:).</span><span style="color: #1060b6">"</span> <span style="color: #0057a6">/&gt;</span>
+  <span style="color: #0057a6">&lt;</span><span style="color: #333385">ScheduleItem</span> <span style="color: #474796">TriggerHour</span><span style="color: #308080">=</span><span style="color: #1060b6">"</span><span style="color: #1060b6">21</span><span style="color: #1060b6">"</span> <span style="color: #474796">TriggerMinute</span><span style="color: #308080">=</span><span style="color: #1060b6">"</span><span style="color: #1060b6">30</span><span style="color: #1060b6">"</span> <span style="color: #474796">Content</span><span style="color: #308080">=</span><span style="color: #1060b6">"</span><span style="color: #1060b6">All right, well come back, you know you should read some books!</span><span style="color: #1060b6">"</span> <span style="color: #0057a6">/&gt;</span>
+  <span style="color: #0057a6">&lt;</span><span style="color: #333385">ScheduleItem</span> <span style="color: #474796">TriggerHour</span><span style="color: #308080">=</span><span style="color: #1060b6">"</span><span style="color: #1060b6">23</span><span style="color: #1060b6">"</span> <span style="color: #474796">TriggerMinute</span><span style="color: #308080">=</span><span style="color: #1060b6">"</span><span style="color: #1060b6">0</span><span style="color: #1060b6">"</span> <span style="color: #474796">Content</span><span style="color: #308080">=</span><span style="color: #1060b6">"</span><span style="color: #1060b6">Wayne, thanks for the hard work! Time to sleep, have a good night!</span><span style="color: #1060b6">"</span> <span style="color: #0057a6">/&gt;</span>
+<span style="color: #0057a6">&lt;/</span><span style="color: #333385">WayneScheduleItems</span><span style="color: #0057a6">&gt;</span></pre>
+<!--more-->
+<h3>UI Implementation</h3>
+
+<p>The tool is a WinForm developed in C#, it has no Windows and starts in system tray, to achieve this I set MainWindow’s <strong>FormBorderStyle = None</strong>, <strong>ShowIcon = False</strong> and<strong> ShowInTaskBar = False</strong>, see below.</p>
+
+<p><img class="BlogImage" title="WindowProperty" border="0" alt="WindowProperty" src="http://wayneye.files.wordpress.com/2010/10/windowproperty_thumb.png?w=341&amp;h=692" width="341" height="692"></p>
+
+<p>One more thing is drag two controls onto the form: <a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.notifyicon.aspx">System.Windows.Forms.NotifyIcon</a>,<a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.contextmenustrip.aspx">System.Windows.Forms.ContextMenuStrip</a> and  and naming the instances as “systrayIcon” and “systrayMenu”.</p>
+
+<p><img class="BlogImage" title="Controls" border="0" alt="Controls" src="http://wayneye.files.wordpress.com/2010/10/controls_thumb.png?w=304&amp;h=154" width="304" height="154"></p>
+
+<p>After that I need add menu items, code snippet below:</p>
+
+<pre style="background: #f6f8ff; color: #000020"><span style="color: #200080; font-weight: bold">this</span><span style="color: #308080">.</span>editScheduleItemsToolStripMenuItem<span style="color: #308080">.</span>Name <span style="color: #308080">=</span> <span style="color: #800000">"</span><span style="color: #1060b6">editScheduleItemsToolStripMenuItem</span><span style="color: #800000">"</span><span style="color: #406080">;</span>
+<span style="color: #200080; font-weight: bold">this</span><span style="color: #308080">.</span>editScheduleItemsToolStripMenuItem<span style="color: #308080">.</span>Text <span style="color: #308080">=</span> <span style="color: #800000">"</span><span style="color: #1060b6">Edit Schedule Items</span><span style="color: #800000">"</span><span style="color: #406080">;</span>
+<span style="color: #200080; font-weight: bold">this</span><span style="color: #308080">.</span>editScheduleItemsToolStripMenuItem<span style="color: #308080">.</span>Click <span style="color: #308080">+</span><span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">new</span> System<span style="color: #308080">.</span>EventHandler<span style="color: #308080">(</span><span style="color: #200080; font-weight: bold">this</span><span style="color: #308080">.</span>editScheduleItemsToolStripMenuItem_Click<span style="color: #308080">)</span><span style="color: #406080">;</span>
+<span style="color: #200080; font-weight: bold">this</span><span style="color: #308080">.</span>systrayMenu<span style="color: #308080">.</span>Items<span style="color: #308080">.</span>Add<span style="color: #308080">(</span>editScheduleItemsToolStripMenuItem<span style="color: #308080">)</span><span style="color: #406080">;</span></pre>
+
+<p>All right, its appearance is like below:</p>
+
+<p><img class="BlogImage" title="SystrayMenu" border="0" alt="SystrayMenu" src="http://wayneye.files.wordpress.com/2010/10/systraymenu_thumb.png?w=232&amp;h=149" width="232" height="149"></p>
+
+<h3>Functionality implementation</h3>
+
+<p><strong>Timer</strong>:</p>
+
+<pre style="background: #f6f8ff; color: #000020"><span style="color: #595979">// Initializes timer</span>
+    scheduleTimer <span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">new</span> System<span style="color: #308080">.</span>Timers<span style="color: #308080">.</span>Timer<span style="color: #308080">(</span><span style="color: #308080">)</span>
+                    <span style="color: #406080">{</span>
+                        Interval <span style="color: #308080">=</span> 1000d <span style="color: #308080">*</span> <span style="color: #008c00">60</span> <span style="color: #308080">*</span> <span style="color: #008c00">10</span><span style="color: #308080">,</span> <span style="color: #595979">// 10 minutes</span>
+                        Enabled <span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">true</span>
+                    <span style="color: #406080">}</span><span style="color: #406080">;</span>
+    <span style="color: #200080; font-weight: bold">this</span><span style="color: #308080">.</span>scheduleTimer<span style="color: #308080">.</span>Start<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+    <span style="color: #200080; font-weight: bold">this</span><span style="color: #308080">.</span>scheduleTimer<span style="color: #308080">.</span>Elapsed <span style="color: #308080">+</span><span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">new</span> System<span style="color: #308080">.</span>Timers<span style="color: #308080">.</span>ElapsedEventHandler<span style="color: #308080">(</span>scheduleTimer_Elapsed<span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+<span style="color: #200080; font-weight: bold">void</span> scheduleTimer_Elapsed<span style="color: #308080">(</span><span style="color: #200080; font-weight: bold">object</span> sender<span style="color: #308080">,</span> ElapsedEventArgs e<span style="color: #308080">)</span>
+<span style="color: #406080">{</span>
+    DateTime currentTime <span style="color: #308080">=</span> e<span style="color: #308080">.</span>SignalTime<span style="color: #406080">;</span>
+
+    <span style="color: #200080; font-weight: bold">try</span>
+    <span style="color: #406080">{</span>
+        <span style="color: #200080; font-weight: bold">foreach</span> <span style="color: #308080">(</span>ScheduleItem scheduleItem <span style="color: #200080; font-weight: bold">in</span> scheduleItems<span style="color: #308080">)</span>
+        <span style="color: #406080">{</span>
+            <span style="color: #200080; font-weight: bold">if</span> <span style="color: #308080">(</span>currentTime<span style="color: #308080">.</span>Hour <span style="color: #308080">=</span><span style="color: #308080">=</span> scheduleItem<span style="color: #308080">.</span>TriggerHour
+            &amp;&amp; currentTime<span style="color: #308080">.</span>Minute <span style="color: #308080">=</span><span style="color: #308080">=</span> scheduleItem<span style="color: #308080">.</span>TriggerMinute<span style="color: #308080">)</span>
+            <span style="color: #406080">{</span>
+                LogManager<span style="color: #308080">.</span>WriteAsync<span style="color: #308080">(</span>String<span style="color: #308080">.</span>Format<span style="color: #308080">(</span><span style="color: #800000">"</span><span style="color: #1060b6">{0}, notification occurred: {1}.{2}</span><span style="color: #800000">"</span><span style="color: #308080">,</span>
+                    currentTime<span style="color: #308080">.</span>ToLocalTime<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #308080">,</span> scheduleItem<span style="color: #308080">.</span>Content<span style="color: #308080">,</span> Environment<span style="color: #308080">.</span>NewLine<span style="color: #308080">)</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+                <span style="color: #595979">// Trigger bubble/voice notification</span>
+                <span style="color: #200080; font-weight: bold">this</span><span style="color: #308080">.</span>systrayIcon<span style="color: #308080">.</span>ShowBalloonTip<span style="color: #308080">(</span><span style="color: #008c00">8000</span><span style="color: #308080">,</span> Constants<span style="color: #308080">.</span>BalloonTitle<span style="color: #308080">,</span> scheduleItem<span style="color: #308080">.</span>Content<span style="color: #308080">,</span> ToolTipIcon<span style="color: #308080">.</span>Info<span style="color: #308080">)</span><span style="color: #406080">;</span>
+                SoundNotifier<span style="color: #308080">.</span>Phonate<span style="color: #308080">(</span>scheduleItem<span style="color: #308080">.</span>Content<span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+                <span style="color: #200080; font-weight: bold">break</span><span style="color: #406080">;</span> <span style="color: #595979">// Avoid redundant check</span>
+            <span style="color: #406080">}</span>
+        <span style="color: #406080">}</span>
+    <span style="color: #406080">}</span>
+    <span style="color: #200080; font-weight: bold">catch</span> <span style="color: #308080">(</span>Exception ex<span style="color: #308080">)</span>
+    <span style="color: #406080">{</span>
+        LogManager<span style="color: #308080">.</span>WriteAsync<span style="color: #308080">(</span>ex<span style="color: #308080">.</span>Message<span style="color: #308080">)</span><span style="color: #406080">;</span>
+    <span style="color: #406080">}</span>
+
+    LogManager<span style="color: #308080">.</span>WriteAsync<span style="color: #308080">(</span>String<span style="color: #308080">.</span>Format<span style="color: #308080">(</span><span style="color: #800000">"</span><span style="color: #1060b6">Schedule check at: {0}{1}</span><span style="color: #800000">"</span><span style="color: #308080">,</span> currentTime<span style="color: #308080">.</span>ToLocalTime<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #308080">,</span> Environment<span style="color: #308080">.</span>NewLine<span style="color: #308080">)</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+<span style="color: #406080">}</span></pre>
+
+<p><strong>Load schedule items from XML using LINQ</strong>:</p>
+
+<pre style="background: #f6f8ff; color: #000020"><span style="color: #200080; font-weight: bold">public</span> <span style="color: #200080; font-weight: bold">static</span> <span style="color: #200080; font-weight: bold">class</span> ScheduleItemsReader
+<span style="color: #406080">{</span>
+    <span style="color: #200080; font-weight: bold">private</span> <span style="color: #200080; font-weight: bold">static</span> <span style="color: #200080; font-weight: bold">readonly</span> String ScheduleItemsXmlLocation <span style="color: #308080">=</span> Path<span style="color: #308080">.</span>Combine<span style="color: #308080">(</span>AppDomain<span style="color: #308080">.</span>CurrentDomain<span style="color: #308080">.</span>BaseDirectory<span style="color: #308080">,</span> <span style="color: #800000">"</span><span style="color: #1060b6">ScheduleItems.xml</span><span style="color: #800000">"</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+    <span style="color: #200080; font-weight: bold">public</span> <span style="color: #200080; font-weight: bold">static</span> IEnumerable<span style="color: #308080">&lt;</span>ScheduleItem<span style="color: #308080">&gt;</span> Load<span style="color: #308080">(</span><span style="color: #308080">)</span>
+    <span style="color: #406080">{</span>
+        IList<span style="color: #308080">&lt;</span>ScheduleItem<span style="color: #308080">&gt;</span> scheduleItems <span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">new</span> List<span style="color: #308080">&lt;</span>ScheduleItem<span style="color: #308080">&gt;</span><span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+        IEnumerable<span style="color: #308080">&lt;</span>XElement<span style="color: #308080">&gt;</span> scheduleItemsCollection <span style="color: #308080">=</span> from scheduleItem <span style="color: #200080; font-weight: bold">in</span> XElement<span style="color: #308080">.</span>Load<span style="color: #308080">(</span>ScheduleItemsXmlLocation<span style="color: #308080">)</span><span style="color: #308080">.</span>Descendants<span style="color: #308080">(</span><span style="color: #800000">"</span><span style="color: #1060b6">ScheduleItem</span><span style="color: #800000">"</span><span style="color: #308080">)</span>
+                                                        select scheduleItem<span style="color: #406080">;</span>
+
+        <span style="color: #200080; font-weight: bold">foreach</span> <span style="color: #308080">(</span>XElement ele <span style="color: #200080; font-weight: bold">in</span> scheduleItemsCollection<span style="color: #308080">)</span>
+        <span style="color: #406080">{</span>
+            ScheduleItem scheduleItem <span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">new</span> ScheduleItem<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+            scheduleItem<span style="color: #308080">.</span>TriggerHour <span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">ushort</span><span style="color: #308080">.</span>Parse<span style="color: #308080">(</span>ele<span style="color: #308080">.</span>Attribute<span style="color: #308080">(</span><span style="color: #800000">"</span><span style="color: #1060b6">TriggerHour</span><span style="color: #800000">"</span><span style="color: #308080">)</span><span style="color: #308080">.</span>Value<span style="color: #308080">)</span><span style="color: #406080">;</span>
+            scheduleItem<span style="color: #308080">.</span>TriggerMinute <span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">ushort</span><span style="color: #308080">.</span>Parse<span style="color: #308080">(</span>ele<span style="color: #308080">.</span>Attribute<span style="color: #308080">(</span><span style="color: #800000">"</span><span style="color: #1060b6">TriggerMinute</span><span style="color: #800000">"</span><span style="color: #308080">)</span><span style="color: #308080">.</span>Value<span style="color: #308080">)</span><span style="color: #406080">;</span>
+            scheduleItem<span style="color: #308080">.</span>Content <span style="color: #308080">=</span> ele<span style="color: #308080">.</span>Attribute<span style="color: #308080">(</span><span style="color: #800000">"</span><span style="color: #1060b6">Content</span><span style="color: #800000">"</span><span style="color: #308080">)</span><span style="color: #308080">.</span>Value<span style="color: #406080">;</span>
+
+            scheduleItems<span style="color: #308080">.</span>Add<span style="color: #308080">(</span>scheduleItem<span style="color: #308080">)</span><span style="color: #406080">;</span>
+        <span style="color: #406080">}</span>
+
+        <span style="color: #200080; font-weight: bold">return</span> scheduleItems<span style="color: #406080">;</span>
+    <span style="color: #406080">}</span>
+<span style="color: #406080">}</span></pre>
+
+<p><strong>Invoke Speech API</strong>:</p>
+
+<pre style="background: #f6f8ff; color: #000020"><span style="color: #200080; font-weight: bold">public</span> <span style="color: #200080; font-weight: bold">static</span> <span style="color: #200080; font-weight: bold">class</span> SoundNotifier
+<span style="color: #406080">{</span>
+    <span style="color: #200080; font-weight: bold">public</span> <span style="color: #200080; font-weight: bold">static</span> <span style="color: #200080; font-weight: bold">void</span> Phonate<span style="color: #308080">(</span>String sentence<span style="color: #308080">)</span>
+    <span style="color: #406080">{</span>
+        <span style="color: #200080; font-weight: bold">using</span> <span style="color: #308080">(</span>SpeechSynthesizer speaker <span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">new</span> SpeechSynthesizer<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #308080">)</span>  <span style="color: #595979">// Dispose the its instance as soon as it spoke fnished</span>
+        <span style="color: #406080">{</span>
+            ReadOnlyCollection<span style="color: #308080">&lt;</span>InstalledVoice<span style="color: #308080">&gt;</span> installedVoices <span style="color: #308080">=</span> speaker<span style="color: #308080">.</span>GetInstalledVoices<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+            CultureInfo cultureInfo <span style="color: #308080">=</span> CultureInfo<span style="color: #308080">.</span>GetCultureInfo<span style="color: #308080">(</span><span style="color: #800000">"</span><span style="color: #1060b6">en-US</span><span style="color: #800000">"</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+            PromptBuilder pb <span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">new</span> PromptBuilder<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+            pb<span style="color: #308080">.</span>StartVoice<span style="color: #308080">(</span>VoiceGender<span style="color: #308080">.</span>Female<span style="color: #308080">,</span> VoiceAge<span style="color: #308080">.</span>Adult<span style="color: #308080">)</span><span style="color: #406080">;</span>
+            pb<span style="color: #308080">.</span>StartStyle<span style="color: #308080">(</span><span style="color: #200080; font-weight: bold">new</span> PromptStyle<span style="color: #308080">(</span>PromptVolume<span style="color: #308080">.</span>Loud<span style="color: #308080">)</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+            pb<span style="color: #308080">.</span>StartSentence<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+            pb<span style="color: #308080">.</span>AppendText<span style="color: #308080">(</span>sentence<span style="color: #308080">,</span> PromptEmphasis<span style="color: #308080">.</span>Strong<span style="color: #308080">)</span><span style="color: #406080">;</span>
+            pb<span style="color: #308080">.</span>EndSentence<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+            pb<span style="color: #308080">.</span>EndStyle<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+            pb<span style="color: #308080">.</span>EndVoice<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+            speaker<span style="color: #308080">.</span>Speak<span style="color: #308080">(</span>pb<span style="color: #308080">)</span><span style="color: #406080">;</span>
+        <span style="color: #406080">}</span>
+    <span style="color: #406080">}</span>
+<span style="color: #406080">}</span></pre>
+
+<p><strong>LogManager</strong>:</p>
+
+<pre style="background: #f6f8ff; color: #000020"><span style="color: #200080; font-weight: bold">public</span> <span style="color: #200080; font-weight: bold">static</span> <span style="color: #200080; font-weight: bold">void</span> WriteAsync<span style="color: #308080">(</span>String content<span style="color: #308080">)</span>
+<span style="color: #406080">{</span>
+    FileStream fileStream <span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">null</span><span style="color: #406080">;</span>
+
+    LogFilePath <span style="color: #308080">=</span> String<span style="color: #308080">.</span>Format<span style="color: #308080">(</span>LogFilePath<span style="color: #308080">,</span> DateTime<span style="color: #308080">.</span>Now<span style="color: #308080">.</span>ToString<span style="color: #308080">(</span><span style="color: #800000">"</span><span style="color: #1060b6">MM-dd-yyyy</span><span style="color: #800000">"</span><span style="color: #308080">)</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+    <span style="color: #200080; font-weight: bold">if</span> <span style="color: #308080">(</span>File<span style="color: #308080">.</span>Exists<span style="color: #308080">(</span>LogFilePath<span style="color: #308080">)</span><span style="color: #308080">)</span>
+        fileStream <span style="color: #308080">=</span> File<span style="color: #308080">.</span>OpenWrite<span style="color: #308080">(</span>LogFilePath<span style="color: #308080">)</span><span style="color: #406080">;</span>
+    <span style="color: #200080; font-weight: bold">else</span>
+        fileStream <span style="color: #308080">=</span> File<span style="color: #308080">.</span>Create<span style="color: #308080">(</span>LogFilePath<span style="color: #308080">)</span><span style="color: #406080">;</span>
+    FileInfo logFile <span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">new</span> FileInfo<span style="color: #308080">(</span>LogFilePath<span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+    StringBuilder logBuilder <span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">new</span> StringBuilder<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+    logBuilder<span style="color: #308080">.</span>AppendFormat<span style="color: #308080">(</span>
+        <span style="color: #800000">"</span><span style="color: #1060b6">===================================================================================================={0}{1}{0}{0}</span><span style="color: #800000">"</span><span style="color: #308080">,</span>
+        Environment<span style="color: #308080">.</span>NewLine<span style="color: #308080">,</span>
+        content<span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+    <span style="color: #200080; font-weight: bold">byte</span><span style="color: #308080">[</span><span style="color: #308080">]</span> data <span style="color: #308080">=</span> Encoding<span style="color: #308080">.</span>UTF8<span style="color: #308080">.</span>GetBytes<span style="color: #308080">(</span>logBuilder<span style="color: #308080">.</span>ToString<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+    fileStream<span style="color: #308080">.</span>Position <span style="color: #308080">=</span> logFile<span style="color: #308080">.</span>Length<span style="color: #406080">;</span> <span style="color: #595979">// Move to the end of the existing text file</span>
+
+    fileStream<span style="color: #308080">.</span>BeginWrite<span style="color: #308080">(</span>data<span style="color: #308080">,</span> <span style="color: #008c00">0</span><span style="color: #308080">,</span> data<span style="color: #308080">.</span>Length<span style="color: #308080">,</span> <span style="color: #200080; font-weight: bold">new</span> AsyncCallback<span style="color: #308080">(</span>r <span style="color: #308080">=</span><span style="color: #308080">&gt;</span>
+    <span style="color: #406080">{</span>
+        AsyncState asyncState <span style="color: #308080">=</span> r<span style="color: #308080">.</span>AsyncState <span style="color: #200080; font-weight: bold">as</span> AsyncState<span style="color: #406080">;</span>
+
+        asyncState<span style="color: #308080">.</span>FStream<span style="color: #308080">.</span>EndWrite<span style="color: #308080">(</span>r<span style="color: #308080">)</span><span style="color: #406080">;</span>
+        asyncState<span style="color: #308080">.</span>FStream<span style="color: #308080">.</span>Close<span style="color: #308080">(</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+    <span style="color: #406080">}</span><span style="color: #308080">)</span><span style="color: #308080">,</span> <span style="color: #200080; font-weight: bold">new</span> AsyncState<span style="color: #308080">(</span>fileStream<span style="color: #308080">,</span> data<span style="color: #308080">,</span> m_ManualResetEvent<span style="color: #308080">)</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+
+    m_ManualResetEvent<span style="color: #308080">.</span>WaitOne<span style="color: #308080">(</span><span style="color: #008c00">100</span><span style="color: #308080">,</span> <span style="color: #200080; font-weight: bold">false</span><span style="color: #308080">)</span><span style="color: #406080">;</span>
+<span style="color: #406080">}</span></pre>
+
+<p> </p>
+
+<h3>Source download:</h3>
+
+<p><a href="https://www.sugarsync.com/pf/D987530_68_7303411631">Schedule Management.zip</a></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#hack" class="page__taxonomy-item" rel="tag">Hack</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#hack" class="page__taxonomy-item" rel="tag">Hack</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2010-05-19T00:00:00-07:00">May 19, 2010</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  <!---->
+    <!--<h4 class="page__share-title">Share on</h4>-->
+  <!---->
+
+  <!--<a href="https://twitter.com/intent/tweet?via=wayneye&text=Personal+Schedule+Management+Tool%20https%3A%2F%2Fwayneye.com%2FPersonal-Schedule-Management-Tool" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>-->
+
+  <!--<a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwayneye.com%2FPersonal-Schedule-Management-Tool" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>-->
+
+  <!--<a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwayneye.com%2FPersonal-Schedule-Management-Tool" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>-->
+
+  
+  <figure style="margin-top: 10px; width: 380px;">
+      <a href="/assets/images/dashang.jpg"><img src="/assets/images/dashang.jpg" alt="微信打赏"></a>
+  </figure>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/North-Korea-RedStar-OS" class="pagination--pager" title="[转]揭秘朝鲜自主操作系统：红星Red Star
+">Previous</a>
+    
+    
+      <a href="/Inter-Milan-Nerazzurri-Festival" class="pagination--pager" title="2010年5月23日 - 属于Nerazzurri的一天
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/2019-12-07-SkyJump-Las-Vegas" rel="permalink">SkyJump from Stratosphere Tower at Las Vegas - Smile all the way down
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">Instead of spending any cent in the money pit casinos, I’d chose to do something more meaningful and exciting :)
+
+
+    
+    
+    
+    SkyJump Las Vegas
+
+
+
+
+  SkyJump Las Vegas holds the Guinness World Record for highest commercial decelerator descent with an official height of 829 ft (253 m) and is located at Stratosphere Las Vegas. As part of its grand opening event, Las Vegas Mayor Oscar Goodman presented a written proclamation deeming April 20, 2010 as SkyJump Day in Las Vegas.
+  – Wikipedia (https://en.wikipedia.org/wiki/SkyJump_Las_Vegas)
+
+
+
+
+
+  
+
+
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/AWS-reinvent-Las-Vegas" rel="permalink">AWS reinvent 2019 - Las Vegas
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">This is my second time attending AWS re-Invent, last time was year 2017, the purpose of this blog is to summarize what I’ve learned, impressed and entertained <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">
+
+
+    
+    At reinvent logo
+
+
+
+    
+    Crazy crowd at midnight madness party
+
+
+Overall during my week staying my daily schedule was listening to sessions mixed with slack/emails during the daylight, and party/social in the evening time.
+
+All the keynotes/sessions have been uploaded here:  https://reinvent.awsevents.com/learn/keynotes/  and all announcements were summarized at this page, my personal top 5 thrilled announcement...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/Ireland-Trip-2019" rel="permalink">Ireland Trip 2019
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">
+  WHEN YOU ARE OLD
+
+
+
+  When you are old and grey and full of sleep, 
+And nodding by the fire, take down this book, 
+And slowly read, and dream of the soft look 
+Your eyes had once, and of their shadows deep; 
+How many loved your moments of glad grace, 
+And loved your beauty with love false or true, 
+But one man loved the pilgrim soul in you, 
+And loved the sorrows of your changing face; 
+And bending down beside the glowing bars, 
+Murmur, a little sadly, how Love fled 
+And paced upon the mountains overhead 
+And hid his face amid a crowd of stars. 
+– By William Butler Yeats
+
+
+
+  当你年老时 
+　　 　...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/Apply-UK-Visit-VISA" rel="permalink">Apply UK Visit VISA
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">Background
+
+I was planning to attend #adskfootball2019 in Dublin, Ireland from Jun 14th to Jun 16th, 2019:
+
+    
+    Autodesk Football Tournament 2019
+
+
+In order to attend, I needed applying Ireland VISA, and since I was planning to fly back to Shanghai later in June, so I thought I could just fly from SF to Dublin, then Dublin to Shanghai, and soon I realized that there is no direct flight from DUB to PVG, so a practical (and also very fun and economic) option is to fly from Dublin to London, and then London to Shanghai, bingo ^_^
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4ea2897777c94202"></script>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="mailto:admin@wayneye.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+        
+      
+        
+          <li><a href="https://wayneye.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+        
+      
+        
+          <li><a href="https://twitter.com/wayneye" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+          <li><a href="https://facebook.com/WayneYeDotCom" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-facebook-square" aria-hidden="true"></i> Facebook</a></li>
+        
+      
+        
+          <li><a href="https://github.com/WayneYe/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="https://www.paperlesspost.com" target="_blank">Paperless Post</a></li>
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2019 Wayne Ye. All rights reserved.
+ 
+  <!--Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>-->
+
+      
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://wayneye.com/Personal-Schedule-Management-Tool";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/Personal-Schedule-Management-Tool"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://wayneye.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+
+  
+
+
+
+
+
+  </footer>
+</div></body>
+</html>

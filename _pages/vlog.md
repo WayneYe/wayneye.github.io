@@ -12,6 +12,12 @@ gallery:
     alt: "SkyJump Las Vegas"
     title: "SkyJump Las Vegas"
     caption: "SkyJump Las Vegas"
+  - url: /vlog/2015-BMW-X5-xDrive35d-4-Months-of-ownership
+    image_path: /assets/images/vlog/BMW-X5.jpg
+    alt: "2015 BMW X5 xDrive35d - 4 Months of ownership"
+    title: "2015 BMW X5 xDrive35d - 4 Months of ownership"
+    caption: "2015 BMW X5 xDrive35d - 4 Months of ownership"
+
 ---
 
 {% include gallery %}

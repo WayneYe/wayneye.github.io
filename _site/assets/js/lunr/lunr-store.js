@@ -169,11 +169,6 @@ var store = [{
         "tags": ["Hack"],
         "url": "https://wayneye.com/Personal-Schedule-Windows-Service",
         "teaser":null},{
-        "title": "令人无比失望的2009上海车展",
-        "excerpt":"由于对2007年的上海车展一直印象深刻，并且当时就立誓下次的车展一定要参加，再加上这次又是公司提供的免费票，所以，这次是志在必得要一次看个够！不过有句话叫：“希望越大，失望越大。”，用在我对于09车展这件事情的关注与希望上，就再贴切不过了。  周五晚上睡觉之前发现早上9点半时火箭队开拓者的第三场季后赛争夺，并且是火箭主场迎来的本赛季第一场季后赛，所以决定先看看这场重头戏吧。大概到了12点多，比赛打完，火箭如愿以偿赢得胜利，我也就平添了一份好心情，于是和老婆赶紧出发直奔国际博览中心，经过2个多小时的不间断的拥挤与汗水，我们就不堪重负，逃跑了。。。  对于车子，我是个准外行，来车展就为了看看Porsche Cayman S,BMW&nbsp; M5, Nisson Skyline, Mazda RX-8, Lamborghini Murciélago, etc. 可发现他们中的大部分都没有来，而且，几乎80%的车子的们都是锁着的-不让进去瞧（07年，以上这些车都有，RX-8还可以坐进去瞧瞧）！至于参观的人数，则一定是创纪录的！！！门票价格坎了一半（07年100，09年50），主办方在参展人数上预计根本没打算进行任何限制！这些因素让人玩性大减。。  People Mountain People Sea….&nbsp;&nbsp;  人难受就不说了，万一发生拥挤发生事故怎么办？？？希望主办方能够更过地考虑安全因素，毕竟，在上海这样一个4000万常住人口的大都市，1000个人里有一个人买票进场那就是4万人，再加上专程赶过来参观的游客以及老外，如果人数不控制的话，任凭你这个事实上可能非民意的“国际博览中心”再大，再恢弘，也是不够D呀！  回到家，发现相机里进进拍了30张，还不如上次去七宝拍的一半。。只有奇瑞“头牌”能让人心情好一点：   ","categories": ["Life"],
-        "tags": ["Life"],
-        "url": "https://wayneye.com/%E4%BB%A4%E4%BA%BA%E6%97%A0%E6%AF%94%E5%A4%B1%E6%9C%9B%E7%9A%842009%E4%B8%8A%E6%B5%B7%E8%BD%A6%E5%B1%95",
-        "teaser":null},{
         "title": "欺实马",
         "excerpt":"欺实马，草泥马和河蟹的杂交近亲，没有生育能力。传说古代钱塘今浙江杭州有一口古井，叫交井，相传此井下压着被草泥马排泄物封印的不知名妖孽。  当时的钱塘富贾中流行着一种风俗，每每遇到灾祸，富贾们都将家中宝物钱财投入此井，以求消灾避祸，少则几万，多则几吨。奇怪的是此井被没有因此而变浅，终年寒气逼人。当地百姓甚为恐惧。  公元2009年5月，被尘封了几千年的无名妖孽终于冲开了草泥马排泄物的封印，冲出交井，再度祸害人间。经过砖家和教授的一致认定，把此妖孽取名为欺实马。  今日因诸多此类事情心情很压抑。。 “房子会被强拆，女儿会被嫖宿，发帖会被跨省追捕，小孩会吃到三聚氰胺，高考成绩都会被冒用，过个马路会被飙车党撞死 “你在辛苦读书的时候，他们在玩玩具你在休息的时候，他们在谈恋爱你拼命考了个大学，他们不费一点力占用了你的名额你在大学苦读书学技能的时候，他们在玩游戏在开车泡吧泡妞吸粉你大学毕业的你辛苦的在找工作，他们已经被ZF机关单位“考核”录用了你守交通规则走在班马线上，他开着车违规把你送上天了！你家人辛苦的的付出白费了，换来了最后他们的一点零花钱作为补偿！你的亲人一辈子在痛苦中度过，他们继续过着他们和谐的生活！！你的家人还是过着本份的日子，他们还用权钱收买着正义和公平！！不要沉默，我们不要这样的循环，到你有钱有权了也不敢欺负弱小！”  以上内容完全是复制粘贴，本人并不明白其意思，故本人不对以上内容负法律责任，请不要跨省追捕。要详查请自己联系原作者，谢谢！  有人说，如果此事有关衙门不能给“人民”（人民=贱民）们一个交代，对这个Country真的没有什么希望了，日后上街打酱油都有可能被富二代撞死。。而鄙人，是真觉得没希望了。。别人被躲猫猫，反正我这辈子不会进监狱；别人的孩子喝了三聚奶，我还没有孩子；吴保全因“诽谤ZF罪”被判处1年，不服上诉后再加一年。。。不在沉默中爆发，就在沉默中河蟹！我一个布衣，没有诺大的抱负，只是这个纸醉金迷社会中的一个低等软体动物，如之奈何？ ","categories": ["Life"],
         "tags": ["Life"],
@@ -279,11 +274,6 @@ var store = [{
         "tags": ["Hack"],
         "url": "https://wayneye.com/IPAddress-To-Geolocation",
         "teaser":null},{
-        "title": "Happy 2011",
-        "excerpt":"元旦在家休息三天，由于老婆预产期临近的关系，爸妈都过来了，但是一家人哪都不能去，我在老婆的带领下学习烤曲奇，向来不安分的我自然要做点神马：）    马上要添新丁了，希望我们全家2011年都Happy！ ","categories": ["Life"],
-        "tags": ["Life"],
-        "url": "https://wayneye.com/Happy-2011",
-        "teaser":null},{
         "title": "PMP exam passed:)",
         "excerpt":"Yesterday I received an Email from PMI, which confirmed I've passed the PMP exam and now became a certificated PMP, hum, I didn't expect the result came out in such a short duration, but anyway, feeling exicting:) I took the exam on Dec 4th, 2010, I still remember how hard...","categories": ["Project-Mgmt"],
         "tags": ["Project-Mgmt"],
@@ -323,11 +313,6 @@ var store = [{
         "excerpt":"HTML5 WebSocket defines a bi-directional, full-duplex communication channel operates through a single TCP connection, this article discusses its fantastic performance, the WebSocket protocol principle and its handshake mechanism, and develop a WebSocket application in action (Team Poker). Embeded youku video link because Youtube is outside of the largest \"intranet\" in...","categories": ["Hack"],
         "tags": ["Hack"],
         "url": "https://wayneye.com/HTML5-Web-Socket-In-Essence",
-        "teaser":null},{
-        "title": "帮助这些被遗弃的孩子 - 从身边微小的事做起",
-        "excerpt":"上个周六，我陪老婆去参加一个公益活动，感触颇多，谨以短文一篇记录下所见，所思，所想。 Shanghai Healing Home由一群工作上在上海的老外们创建，他们从各种途径（一般是医院）收养被遗弃的患有先天性唇腭裂的孩子们，起初自己出资，慢慢地呼吁有爱心的人资助，逐渐地发展到一定规模，目前一共大概收养了25个孩子，他们中的一部分已经通过好心人的捐赠以及组员的沟通与努力成功实施了手术，跟正常的孩子无异，并且有些孩子已经提交相关组织申请领养。 我们的工作是帮助搬家，下午2:30约在广兰路地铁站集合，然后帮忙把东西从广兰路的一幢房子搬到巨峰路，大概一共来了快20个人，我和老婆是这次唯二的中国人。。人齐了后，组织者Lauren开始分工，我和老婆被分到照顾小孩，（照顾小孩的都是女人，就我一公的。。我估计一来我们第一次参加跟他们不太熟，不好意思让我们干重活，也可能考虑到英美鬼畜力气大些，我想起了敢死队里杰森&middot;斯坦森对李连杰说的：&ldquo;Four and a half??&rdquo;），anyway，我只想多多了解下。 初到孩子们的&ldquo;家&rdquo;，立刻感觉到温馨与仁爱，同时又觉得有些心酸，坦白说我也非常愤怒，可谓是百感交集，。但是在3个多小时跟这些可爱的孩子们一起的时间里，一个最简单的词可以概括：开心！ @可爱的小光头他妈和一个可爱的孩子（已经做过手术） 鄙人和一个可爱的女孩子，她很乖，我抱了她1个多小时，她一会都不闹。 很多患有唇腭裂的孩子，没有办法自然吸奶，只能用软管插入胃中，把奶通过软管挤进胃里，真的非常可怜，下面这个小孩就是这样的情况，已经块一岁了，却骨瘦如柴，她也非常乖，一直躺在那里，一声都没闹，一双明亮的眼睛不停地到处看。 这个胖小子这么会睡，难怪有点吨位:) &nbsp; 幸好有这群好心人，他们其实已经算非常幸运了： &nbsp; 这个小女孩叫小五，她真是可爱的，非常非常乖，一个人坐着玩，一丁点儿都不闹，而且她好像还比较喜欢我，往我身上爬，最后我走的时候还抓着我的手不放，呵呵，我走后一会就想她了，下次一定再去巨峰路看她！ &nbsp; 听组织成员Freda介绍，为一名患有唇腭裂的孩子做手术大概只需要1-2万元，他们一方面接受捐赠，另一方面四处寻求医院的&rdquo;免费手术&ldquo;，我不是这方面专家，描述得可能有问题，但是确实有免费做这种手术的（听了这个让我感觉很欣慰，我原来老是在想，为啥谁谁谁身患绝症媒体都呼吁社会献爱心，医院呢？医院就不能献爱心？？）。 无论如何，我这个穷酸的码农今次为这些可爱的孩子们做了一丁点贡献，我像Freda询问了捐赠渠道，以及：&rdquo;你们需要码农帮忙改进/维护网站吗？&ldquo;，Freda表示非常需要，我给了她我的联系方式。 现在，鄙人向本博的极小众读者呼吁，行动起来，从身边的小事做起，给这些可爱的孩子们一点帮助，Shanghai Healing Home的捐赠方式在这个页面，一点点钱，一些您的孩子穿过的衣服，用过的用品或者玩过的玩具，都可以的！ Let's start from the... Man In the Mirror I'm gonna make a change, For once im my life It's gonna feel real good, Gonna make a diference...","categories": ["Life"],
-        "tags": ["Life"],
-        "url": "https://wayneye.com/Healing-The-Abandoned-Children",
         "teaser":null},{
         "title": "IE6真该死了",
         "excerpt":"http://ie6countdown.com 微软官方劝退IE6网站，其页面上希望您告诉朋友不要用IE6了，而且可以获取一段脚本挂在您的网站上， 并且列出了各个国家的地区的IE6份额，我天朝当然高居榜首。    &nbsp;  我们是否应该为&ldquo;世界第一&rdquo;感到羞愧？？实际上几个有关衙门是不是更应该脸上无光？   尊重知识产权！否则在这个星球上处处遭人鄙视，而且扼杀了自己的创新能力及公平竞争土壤！ 正常点吃，经济点开，少贪一点，少抽一点，把属于人民的财富还给人民！  第二条能够改善会使更多的人买得起正版，而用盗版归根结底是官方对知识产权重视不够！几年前胡哥访问Biil Gates老家，以及今年初买波音的飞机，实际上都是承认错误，钱可以送，但就是不改！实际上，恶果就是这样的土壤上难有世界级企业，为啥？刚有点好的态势就被Copy了，还没法通过法律手段起诉。  PS, wayneye.com从第一天开始就不支持IE6，您可以试试拿IE6访问是个啥情况:)  ","categories": ["IT-Industry"],

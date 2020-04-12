@@ -247,7 +247,7 @@ Ms. Margret给了我个好评:)
 显然本君不算很乖的游客^_^：
 <figure class="third">
     <a href="assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-0.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-0.jpg"></a>
-    <a href="assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-0.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-1.jpg"></a>
+    <a href="assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-1.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-1.jpg"></a>
     <a href="assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-2.jpg"><img src="assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-2.jpg"></a>
 </figure>
 <figure class="third">
@@ -290,9 +290,9 @@ Mrs.Ann精心摆好的餐具（早餐自助）：
 
 
 ## 装备
-以上所有照片都是用我的华为Mate 20X拍摄，有些自拍是用的一只华为自拍杆+脚架，坦白说吧，我实在是太懒了，也没有足够的慧根去做照片后期，好在华为4摄非常优秀，足以填补镜头后面那个头的不足:smile:
+以上所有照片都是用我的华为Mate 20X拍摄，有些自拍是用的一只华为自拍杆+脚架，坦白说吧，我实在是太懒了，也没有足够的慧根去做照片后期，好在华为浴霸四摄像头非常优秀，足以填补镜头后面那个头的不足:smile:
 
 ## 总结
-写下这篇游记只是希望留下美好记忆，我很懒，平时没太多时间码字，如果您能够耐着心看到这里，希望能带给您些许欢乐，使您有了旅游和探索的兴趣，欢迎留言，谢谢！
+写下这篇游记只是希望留下美好记忆，平时确实比较忙，没太多时间码字，如果您能够耐着心看到这里，希望能带给您些许欢乐，使您有了旅游和探索的兴趣，欢迎留言，谢谢！
 
 P.S.一个人研究攻略，制定行程有些boring，希望下次能>=2个人。

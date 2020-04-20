@@ -9,20 +9,10 @@ var store = [{
         "tags": ["IT-Industry"],
         "url": "https://wayneye.com/%E8%B0%B7%E6%AD%8C%E7%9A%84%E6%84%9A%E4%BA%BA%E8%8A%82%E7%A4%BC%E7%89%A9:)",
         "teaser":null},{
-        "title": "我的美国面签全过程",
-        "excerpt":"今天睡了个懒觉，9点多爬起来，然后乘2号线到南京西路梅陇镇广场，一去就发现好多人。。我直接去了8楼，看到保安大哥忙得不亦乐乎，我跟他说我是办美商会商务签证的，他说让我下去到1楼2号口拿牌子，此时是12点，而我的面前预约单上写的是要在12：45之前，我赶紧告诉他这个情况，他说没有关系，一定要拿牌子，我猜可能是便于管理吧，便赶紧下去了，发现下面人更多了。。。看到有一列队是美商会的， 我就过去排了，这时有个“老大”（保安们这样称呼的）过来， 说我的包要去存，手机不能带进去，这个我之前是知道的，然后我问他：“请问在哪里存？”，他告诉我往前走10米，位置给我留着，ok，我有赶紧过去存包。呵呵，看到那边一个醒目的牌子上书着几个大字：“您办签证，我们看包”，真“体贴”，费用是10块中华大钱：）等待5分钟后有位大哥让我们跟着他走，我是第一个，我便问他：“请问每天都是这么多人吗？”，答曰：“今天少了一半呢。。”，囧。。。上去之后先安检，然后按指纹，然后就进入了面签的环节，这是个漫长的等待过程，因为人很多，在我前面大概有20多位，我注意到签证官一般对年龄大点的叔叔阿姨们说这美式中文，比如“尼为什么妖取美国？”，对年轻人呢则是英文，e.g.&nbsp;Do you have any family in US?\",&nbsp;What's your purpose?\", etc. 此时我还是很紧张的，注意在观察，有的人大概半分钟到一分钟就OK了，有个女孩子英文很不错，大概侃了5分多钟，我突然听到里面的面官提到“reject”的字眼，人太多声音很杂没太听清，天那，希望她没问题。。我不要做倒霉鬼！！！过了段时间多开了几个窗口，进程加快了些。终于轮到我了，我走过去先说了声：“您好！”，面官说：“Hi!”，以下是问答：Officer: What's your purpose for going America?Me: My company send me there for training. Officer: What does your company do?Me: XXX is a software outsourcing company in China. Officer: What is it?Me: Our company helps our customers develop...","categories": ["Life"],
-        "tags": ["Life"],
-        "url": "https://wayneye.com/USA-B1-VISA-Processes",
-        "teaser":null},{
         "title": "Monica的生日Party",
         "excerpt":"今天去参加了好友Monica的Party，我们早就准备好了在Party中给她送上蛋糕给她提前庆祝生日:P Monica很开心：&nbsp;我们准备的生日蛋糕：&nbsp;Royal也很开心&nbsp;这帮家伙玩了一阵子以后。。。恶作剧开始了，最先受难的当然是寿星。。。&nbsp;Ati的“毒手”指向了Carrie。。。。&nbsp;然后是Evelyn和Carrie互相“残杀”&nbsp;不能亏待自己的秀发&nbsp;连俺家“姐姐”也。。。&nbsp;她们对着我叫嚷着“Sweet！！^^”，此时我还独善其身，心想，我可不能像那样子，她们应该也不会拿“摄影师”开到吧，嘿嘿结果，我错了，我是最“惨”的。。。&nbsp;我的“造型师”：　我的“杰作”真棒！&nbsp;所有人都不能幸免，一群“粉刷匠”在电梯里：&nbsp;合影留念1. 2. 3.  ","categories": ["Life"],
         "tags": ["Life"],
         "url": "https://wayneye.com/Monica-Birthday-Party",
-        "teaser":null},{
-        "title": "人生中那些重要的第一次 - 从浦东到仁川",
-        "excerpt":"今天，2008年4月13日。注定是鄙人人生中最重要的一天之一，经过几个月的漫长等待之后，我将于今天搭乘大韩航空的航班经韩国首尔仁川国际机场转机飞往西雅图塔科马国际机场。首次出国，心中虽难免激动，但自认为头脑还是非常清醒的，昨晚在床上辗转了半小时：） 大概在上午10点4X和Wendy到了浦东机场，离别的惆怅藏于心中，但我没有表露出来，只是抱着她时，我立刻就想到今后的2或3个月，我们都没办法离彼此如此之近。。。拿到登记牌以及安检都非常顺利，之前由于考虑的到毕竟是首次出去也许有很多不明白，不了解到地方，可能会花掉很多时间这种担忧显得有些多余。进入到候机室的时间大概是11点10分左右，心想这下要等2跟多小时了。。。嘿嘿！！这边好多商店免税商店？没听说过，免了税自然会便宜，但问题在于便宜多少，这里可是机场，再便宜又能怎么样？就这样带着疑问进去了。。。很多小日本和高丽棒子在购物，有两位小姐都用日文跟我打招呼，我没有鸟她们，叹口气，心里骂两句，走人！看见好多香烟，N多都没见过，陡然发现几个真的很便宜，8块的双喜（我不爱抽）买57块一条，400一条（有的地方更贵）的中华仅卖257，我斟酌了一番花100块买了条很酷的黑色的。等了一会同事也到了，就这么聊着聊着很快就开始登机了。从在飞机内看浦东机场起飞后前方的发屏幕不断地显示着各种飞行信息，起先我们离开上海，进入中华东海上空过段时间到了这这个时候呢，开饭啦^_^吃个饭，看看报纸，马上就到了高丽地界依稀可见落地前一刹那就这样，我到了仁川机场。Wayne写于4月13日8时左右，太平洋上空 ","categories": ["Life"],
-        "tags": ["Life"],
-        "url": "https://wayneye.com/%E4%BA%BA%E7%94%9F%E4%B8%AD%E9%82%A3%E4%BA%9B%E9%87%8D%E8%A6%81%E7%9A%84%E7%AC%AC%E4%B8%80%E6%AC%A1---%E4%BB%8E%E6%B5%A6%E4%B8%9C%E5%88%B0%E4%BB%81%E5%B7%9D",
         "teaser":null},{
         "title": "人生中那些重要的第一次 - 在仁川机场",
         "excerpt":"当地时间下午4点47也有免税店看了很多家，仁川机场的商店比浦东要多很多，价格嘛。。。贵很多。。。随手看看一件衣服，上标500多美刀，我只有乍舌的份。数码产品的价格则厚道些，Nikon D60 大概RMB2700的样子，Sony A200&nbsp;888，我不清楚现在国内的价格，但估计应该差不太多，再怎么着比服装，手表，香水等奢侈品强多了！KFC全球都有我走过去看了看，几个鸡块儿（不知是否上校鸡块或者高丽鸡块？）17000韩元，算下来好像7，80大洋了，贵贵贵！！！我猜这应该是首尔这边的某旅游景点，就跟国内很多古代楼宇十分相似，中华文化的印记！打开手机看看还有信号吗？结果却出乎想象。左上角显示信号非常好，只是左边有个“R”，不懂什么意思，先不管，给姐姐打个电话看看，结果那头直接是女声电脑韩文，等到英文后我明白了，无效号码。我猜应该是我正处于联通韩国分公司管辖范围内，而我又不是全球通，所以加个86什么用都没有。呵呵，留个影抽根烟^_^然后就再次安检并登上去雷蒙德-塔科马的飞机了。。。Wayne写于4月13日8时左右，太平洋上空 ","categories": ["Life"],
@@ -78,11 +68,6 @@ var store = [{
         "excerpt":"标题便是我这几天的真实情况，每当我坐在电脑前，无论是在公司还是在家里，我唯一做的事情就是不断地点击阅读着一篇又一篇的文章，焦急，沉痛，内心在泣血。 今天早上起床的时候发现外面阳光明媚，天气预报说今天西雅图会有28摄氏度，果不其然。 脑子里空空的，昨日的疲惫似乎在睡眠中稀释了，我暗想今天还是好好工作吧，灾难发生了，活着的人应该尽其所能提供帮助，或者祈祷，祈福，于此同时，更应了解在大自然的灾害面前人类依旧非常渺小，所以更应珍惜眼前的生活，过好每一天，不虚度时光！ 一边在往车站走着，一边想着，块到245车站，猛然发现公牌忘带了，没办法，只能回去拿。由于此事，我错过了定点的班车，大概是从这时起，我的心情就开始再次变得沉重起来。我步行到了40号楼，找前台小姐叫了辆Shuttle，小姐说754，8分钟，我感谢之后就坐在路边的椅子上等着。。。直到。。突然觉得不对劲，那个司机好像在问我！我一看，“哦！”754，都到了。赶紧上车，说声“Sorry！I was thinking about something:)”，司机师傅说没关系的，只是我们只能在这里等一分钟就得走，所以我看到你一个人坐那里猜是你订的车，我表示感谢并自己笑笑，唉！满脑子都是这件事！ 转几张令我泪下的照片： &nbsp;下面这段采访四川省广元市长的视频，鄙人看一次哭一次。。。&nbsp;&nbsp;&nbsp; 在百度地震吧看到，有网友发现一位北川中学的老师在5月11日上网发了篇帖子，内容是北川中学高三年级为了缓解高考迎考压力而举行的一次文体活动，“时间在此刻定格”。。。作者祈祷：“企盼着他的下一次更新”。 。。。实在是太多了啊！！！现在所有的汉字媒体都聚焦在这次灾难上，非汉字媒体要么在头版头条予以及时报道，要么开辟了专题进行报道，我看了很多很多，善良的人永远是多数！比如：近距离看前往四川灾区的日本救援队中国首支自发抗震救灾队伍The scale of devastation is so great that even as the government has mobilized a mammoth rescue effort, much of the manpower is focused on the most populated places, like Wenchuan and Beichuan, in hopes that more lives can...","categories": ["Life"],
         "tags": ["Life"],
         "url": "https://wayneye.com/%E6%BB%A1%E8%84%91%E5%AD%90%E5%8F%AA%E6%83%B3%E7%9D%80%E9%9C%87%E6%83%85,%E9%9A%BE%E4%BB%A5%E5%85%A5%E7%9D%A1,%E6%97%A0%E6%B3%95%E4%B8%93%E5%BF%83%E5%B7%A5%E4%BD%9C",
-        "teaser":null},{
-        "title": "Outlet的悲喜两重天",
-        "excerpt":"今天从Outlet败家归来，本来开开心心的，给Wendy买了洗面奶和一件Nike粉色T-Shirt，然后是一个3刀的Sony耳机和8刀的收音机（给爷爷的），觉得蛮划算的。      &nbsp;  &nbsp;  &nbsp;  &nbsp; Sony返厂耳机，被一个普通的盒子装着，我一看见“Refurbished”就有点来劲，俺MP3正缺耳塞呢    侧面：  &nbsp;  嘿嘿  &nbsp;  Sony Walkman运动型收音机，外观很前卫，爷爷估计猜不到：）    回家后想也没想就把衣服（这个星期的衣服^_^）扔洗衣机里洗了，洗之前看衣服并不多就跟新来俩同事说一起洗吧，节约能源，现在真后悔。。。  这件粉色Nike女士T-shirt，在洗衣机里洗的时候，把同事的一条裤子和衣服，原来都是白色的，全部染成了浅蓝色，我自己的一条短裤，被染成浅红色，那件T-shirt， 变成了惨不忍睹的青白色：    &nbsp;  本来败家指数很低的，2. 如果Nike不Return这件垃圾的话。。。败家指数：8！ ","categories": ["Life"],
-        "tags": ["Life"],
-        "url": "https://wayneye.com/2008-Shopping-In-Seattle-Outlet",
         "teaser":null},{
         "title": "美丽的西雅图海滩公园(Alki beach park)",
         "excerpt":"感谢Officemate Jac先生，是他善良而耐心地一次又一次带我领略西雅图的美丽风光，上次是Snoqualmie Water Falls（卢高美瀑布），今天，则是Alki beach park（西雅图海滩公园）。 下午我们先去了中华长城销品茂(Great Wall Shopping Mall)，两人空手而归，我嘛。。。懒汉一个，里面食品居多，非食品的都不稀罕，国内比这里便宜太多了，呵呵。 然后开车来到海滨公园，无法用语言形容，真的太美了，发达都市与自然景观的完美结合，美国的月亮不一定比中国园，但可悲的是，美国的空气一定比中国清新，天一定比中国蓝。唉！世界工厂，希望在有生之年能够看到祖国真正的强大，世界各国同胞都在埋头苦学方块字，都在抱怨去中国的签证咋就这么难并到处打听如何不被拒签，都梦想着能够去中国工作，生活。。。意淫吧。。。但一定会有那么一天的！ OK！先抄起家伙开战！由于已经是傍晚时分，所以照片亮度不是很够,考虑再三决定还是保留原始数据吧。 这张打了15倍焦距，手持拍摄，后期增加了曝光和亮度，决定拿这张做为新WayneYe.cn的Blog Banner。 受资本主义食物腐蚀，已经发福。。。 特别喜欢这张！ 惬意的海滩 享受沙滩：） 享受沙滩2：） 我的“恩人”，感谢您！他答应了我的请求，明天请他海吃一顿墨西哥大餐^_^ 可爱的孩子们 这里比较有意思，Jac说，\"Hay! You can take pictures for the Fireman.\" 我的第一反应是：消防队员有必要拍照吗？？结果看过去发现有好多人都在拍，形成围观之势。。。不解，问之，答曰：人们爱戴他们，因为一旦有危险，他们一般是第一时间赶到的。我也就赶紧过去，拍了几张美国的人民英雄。 之后就一直跟Jac做在海边聊天，我是无比的感慨啊。对他说：“I suppose I am traveling in my dream!People live here is living in paradise!”（我觉得我是在我的梦想里旅行，这里的居民真是住在天堂里！）。是啊，一个洋房，每天早上起来就可以看到无敌海景，对面就是繁华的Down Town Seattle，不是生活在天堂里那在哪里！ 日落了，唉，鄙人摄影技巧函待提高，书到用时方恨少啊。。。Jac笑着安慰道：“明天还有机会啊：）”，呵呵。 夜色渐渐降临，这对父子已经准备好了烧烤的装备和食物，准备享受夜间美景了。 临走前去停车处时，看见对面有一个男的肩上扛着一块大木头，正不解，Jac已经开口告诉我：“这家伙准备去烧烤了。”OK，再次感慨美国人对生活乐观的态度。 拍两张梦想中的洋房，努力吧！我这辈子一定会住进去的：）...","categories": ["Life"],
@@ -223,11 +208,6 @@ var store = [{
         "excerpt":"Background During my work I got one requirement of pinning a specific shortcut file (*.lnk) onto the Windows 7 Taskbar, after investigating I found programmtically achive this is “not permitted”, refer MSDN article: http://msdn.microsoft.com/en-us/library/dd378460(VS.85).aspx A small set of applications are pinned by default for new installations. Other than these, only...","categories": ["Hack"],
         "tags": ["Hack"],
         "url": "https://wayneye.com/Programmatically-PIN-shortcut-Onto-Taskbar-on-Win7",
-        "teaser":null},{
-        "title": "My wife is a little “talent”",
-        "excerpt":" ","categories": ["Life"],
-        "tags": ["Life"],
-        "url": "https://wayneye.com/Wife-Is-Little-Talent",
         "teaser":null},{
         "title": "A complete Impersonation Demo in C#.NET",
         "excerpt":"Under some scenarios we need impersonate another Windows account and do some work under that user’s session, for example: An enterprise ASP.NET web application provides server administrators’ ability to access the server under some specific privilege set; Server admin input their NT account information (domain\\account + password) on the page,...","categories": ["Hack"],

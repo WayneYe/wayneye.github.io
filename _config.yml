@@ -29,19 +29,16 @@ author:
     - label: "Website"
       icon: "fas fa-fw fa-link"
       url: "https://wayneye.com"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/wayneye"
-    - label: "Facebook"
-      icon: "fab fa-fw fa-facebook-square"
-      url: "https://facebook.com/WayneYeDotCom"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/wayneye"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/WayneYe/"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/wayneye"
 
-facebook:
-  app_id:  374223339969060
-  username: WayneYeDotCom
 twitter:
   username: "wayneye"
 

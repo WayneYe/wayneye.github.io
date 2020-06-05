@@ -8,11 +8,11 @@ share: true
 ### 2015 BMW X5 xDrive35d - 4 Months of ownership
 {% include video id="cW-8o_rfh8s" provider="youtube" %}
 
-### 载歌在谷云生活线上分享宅家健身器械与经验
-{% include video id="040oHx8_mKY?start=1436" provider="youtube" %}
-
 ### SkyJump from Stratosphere Tower at Las Vegas - Smile all the way down
 {% include video id="Q1987wC9ODA" provider="youtube" %}
+
+### 载歌在谷云生活线上分享宅家健身器械与经验
+{% include video id="040oHx8_mKY?start=1436" provider="youtube" %}
 
 ### Mt Rose (Faceruns black trail) - casual snowboard down
 {% include video id="_jWOVP_So4w" provider="youtube" %}

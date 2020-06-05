@@ -348,4 +348,9 @@ var store = [{
         "excerpt":"Instead of spending any cent in the money pit casinos, I’d chose to do something more meaningful and exciting :) SkyJump Las Vegas SkyJump Las Vegas holds the Guinness World Record for highest commercial decelerator descent with an official height of 829 ft (253 m) and is located at Stratosphere...","categories": ["Life"],
         "tags": ["Life","Travel"],
         "url": "https://wayneye.com/2019-12-07-SkyJump-Las-Vegas",
+        "teaser":null},{
+        "title": "BMW Convertible As My Beater Car",
+        "excerpt":"Life is too short to drive boring cars I bought a 2015 BMW X5 Dec last year, it has been half a year so far (with 2 months she stayed inside the garage for most of the time due to the pandemic), I am pretty satisfied with it, her condition...","categories": ["Life"],
+        "tags": ["Car","Life"],
+        "url": "https://wayneye.com/BMW-Convertible-As-My-Beater-Car",
         "teaser":null}]

@@ -13,11 +13,11 @@ permalink: BMW-Convertible-As-My-Beater-Car
 <a href="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/Life_s_Too_Short_to_Drive_Boring_Cars.png"><img src="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/Life_s_Too_Short_to_Drive_Boring_Cars.png"></a>
 </figure>
 
-I [bought a 2015 BMW X5](https://youtu.be/cW-8o_rfh8s) Dec last year, it has been half a year so far (with 2 months she stayed inside the garage for most of the time due to the pandemic), I am pretty satisfied with it, her condition is absolutely excellent, everything works, yes you see it correctly, after 5 years of its life, there was nothing broken, as BMW vehicle built in recent years, this is something not VERY easy.  My plan is to keep it as long as possible before it [turns into an endless money pit](https://www.motor1.com/reviews/406108/bmw-maintenance-cost/), and keeping her value as high as possible, one of the major reason I bought her was its AWD and comfortable so that I can drive it to Lake Tahoe often during winter season, for other seasons I was seriously thinking about buying a beater car, to put my mileage on it instead of this pricy Bimmer.
+I [bought a 2015 BMW X5](https://youtu.be/cW-8o_rfh8s) Dec last year, it has been half a year so far (with 2 months she stayed inside the garage for most of the time due to the pandemic), I am pretty satisfied with it, her condition is absolutely excellent, everything works, yes you see it correctly, after 5 years of its life, there was nothing broken, as BMW vehicle built in recent years, this is something not VERY easy.  My plan is to keep it as long as possible before it [turns into an endless money pit](https://www.motor1.com/reviews/406108/bmw-maintenance-cost/), and keeping her value as high as possible, one of the major reason I bought her was its AWD and comfortable so that I can drive it to Lake Tahoe often during winter season, for other seasons I was seriously thinking about buying a beater car, to put my mileage on it instead of this pricey Bimmer.
 
 The requirements I've considers are listed & ranked below:
 
-**
+>
 1. Must be a stick shift
 2. Must be a convertible (I rented a few times but never owned one)
 3. Must have two rows of seats
@@ -25,7 +25,7 @@ The requirements I've considers are listed & ranked below:
 5. Must look very cool to me
 6. Color is NOT one of: <span style="color: red">red</span> (sir, pull me over, aren't you see I am shining and I am driving aggressively?), <span style="color: dark green">dark green</span> (especially [late 1990s green](https://www.miata.net/gallery/images/91brg.jpg), on gosh, I couldn't tolerate it), <span style="color: black">black</span> (I like sunshine and I keep extreme hot all around the year, and I work even hotter for convertibles ^_^, yes since I am in bay area).
 7. Gas saver
-**
+
 
 (Reliability is mandatory, I didn't mention it because majority of the case, an old manual transmission car is much more reliable than an auto one).
 
@@ -57,4 +57,4 @@ So I ordered the following:
 <a href="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/amz-orders.png"><img src="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/amz-orders.png"></a>
 </figure>
 
-So far I've driven it for about 100 miles so far about 1 week, I can simply describe my experience as: *a stick shift, a steering wheel and a smiling face*.  Compare with my X5, due to 330CI's lighter weight, lower gravity point, I admit: it is much more fun of driving this 330CI convertible!  And since it is my beater, my plan is to drive it for at least another 5 years.
+So far I've driven it for about 100 miles so far about 1 week, I can simply describe my experience as: **a stick shift, a steering wheel and a smiling face**:smiley:.  Compare with my X5, due to 330CI's lighter weight, lower gravity point, I admit: it is much more fun of driving this 330CI convertible!  And since it is my beater, my plan is to drive it for at least another 5 years.

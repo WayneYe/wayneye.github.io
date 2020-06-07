@@ -58,3 +58,11 @@ So I ordered the following:
 </figure>
 
 So far I've driven it for about 100 miles so far about 1 week, I can simply describe my experience as: **a stick shift, a steering wheel and a smiling face**:smiley:.  Compare with my X5, due to 330CI's lighter weight, lower gravity point, I admit: it is much more fun of driving this 330CI convertible!  And since it is my beater, my plan is to drive it for at least another 5 years.
+
+A side interesting story, the convertible top was broken after only two days, so I made an appt at BMW of Mountain View and had them inspected it.  They charged me $256 for manually closing it, and estimated $500-600 parts + 10 hours of labor = $3200 for fixing the top, no doubt, I even didn’t bother negotiating…
+However, since it was weekend and they were pretty short of mechanics, so while I parked my car there, they said they can provide me a loaner car, I asked without thinking: "well, please give me M2 Competition", the loaner car manager said: "sorry sir, you got the right choice but we don't have it at the moment", he recommended me this 2020 740i, it is too luxury... With [BMW driving assistance](https://www.bmw.com/en/innovation/the-main-driver-assistance-systems.html) (similar with Tesla’s auto pilot), I probably would never buy a luxury car like this:smile:
+<figure class="third">
+    <a href="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/740i-1.jpg"><img src="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/740i-1.jpg"></a>
+    <a href="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/740i-2.jpg"><img src="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/740i-2.jpg"></a>
+    <a href="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/740i-drive.png"><img src="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/740i-drive.png"></a>
+</figure>

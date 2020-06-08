@@ -46,14 +46,18 @@ After 3+ months of patient (hours after hours) market search, I bought this beau
     <a href="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/330CI-Spec.png"><img src="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/330CI-Spec.png"></a>
 </figure>
 
-It got 166,6xx miles on it, and I paid $3800, plus $15 DMV title transfer fee.
+It got 166,6xx miles on it, and I paid $3800, plus $15 DMV title transfer fee.  It looks *very stylish* to me, it was designed by DesignWorksUSA, after 19 years, it still looks gorgeous to me!  Especially compare with modern BMW models:
+
+<figure>
+<a href="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/BWM-kidney-future.png"><img src="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/BWM-kidney-future.png"></a>
+</figure>
 
 This legendary bimmer is equipped with a naturally aspirated inline six [M54 engine](https://en.wikipedia.org/wiki/BMW_M54) (which many people believe it was [one of the best engine BMW ever made](https://bimmerlife.com/2018/10/19/the-5-best-bmw-engines-post-1990/)), it produces a very respectful 225HP, 214 ft-lbs. @ 3500 rpm, 0-60 miles takes less than 8 seconds.
 
 The condition of this car is really decent, all the major components should work are working: engine/manual transmission runs strong, all the fluid are well maintained, tires/breaks have some life left, painting is shining, the rest nice to have features were broken: convertible top sometimes failed (I had to operate manually), cruise control not work at all, passenger side turn light was broken, and driver side turn light got dropped and flied few days ago while I was "flying" on highway 101^_^  Battery T bolt was missing as well.
 
 So I ordered the following:
-<figure class="third">
+<figure>
 <a href="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/amz-orders.png"><img src="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/amz-orders.png"></a>
 </figure>
 
@@ -64,5 +68,5 @@ However, since it was weekend and they were pretty short of mechanics, so while 
 <figure class="third">
     <a href="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/740i-1.jpg"><img src="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/740i-1.jpg"></a>
     <a href="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/740i-2.jpg"><img src="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/740i-2.jpg"></a>
-    <a href="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/740i-drive.png"><img src="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/740i-drive.png"></a>
+    <a href="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/740i-drive.jpg"><img src="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/740i-drive.jpg"></a>
 </figure>

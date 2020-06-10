@@ -46,13 +46,15 @@ After 3+ months of patient (hours after hours) market search, I bought this beau
     <a href="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/330CI-Spec.png"><img src="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/330CI-Spec.png"></a>
 </figure>
 
-It got 166,6xx miles on it, and I paid $3800, plus $15 DMV title transfer fee.  It looks *very stylish* to me, it was designed by DesignWorksUSA, after 19 years, it still looks gorgeous to me!  Especially compare with modern BMW models:
+It got 166,6xx miles on it, and I paid $3800, plus $15 DMV title transfer fee.  Her body style was originally designed by DesignWorksUSA back to 1990s and she still looks **gorgeous and very stylish** to me, believe it or not, even after 19 years!  Especially compare with modern BMW models:
 
 <figure>
 <a href="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/BWM-kidney-future.png"><img src="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/BWM-kidney-future.png"></a>
 </figure>
 
-This legendary bimmer is equipped with a naturally aspirated inline six [M54 engine](https://en.wikipedia.org/wiki/BMW_M54) (which many people believe it was [one of the best engine BMW ever made](https://bimmerlife.com/2018/10/19/the-5-best-bmw-engines-post-1990/)), it produces a very respectful 225HP, 214 ft-lbs. @ 3500 rpm, 0-60 miles takes less than 8 seconds.
+...:rofl:
+
+This legendary bimmer is equipped with a naturally aspirated inline six [M54 engine](https://en.wikipedia.org/wiki/BMW_M54) (which many people believe it was [one of the best engine BMW ever made](https://bimmerlife.com/2018/10/19/the-5-best-bmw-engines-post-1990/)), it produces a very respectful 225HP, 214 ft-lbs. @ 3500 rpm, 0-60 miles takes less than 7 seconds.
 
 The condition of this car is really decent, all the major components should work are working: engine/manual transmission runs strong, all the fluid are well maintained, tires/breaks have some life left, painting is shining, the rest nice to have features were broken: convertible top sometimes failed (I had to operate manually), cruise control not work at all, passenger side turn light was broken, and driver side turn light got dropped and flied few days ago while I was "flying" on highway 101^_^  Battery T bolt was missing as well.
 
@@ -64,7 +66,7 @@ So I ordered the following:
 So far I've driven it for about 100 miles so far about 1 week, I can simply describe my experience as: **a stick shift, a steering wheel and a smiling face**:smiley:.  Compare with my X5, due to 330CI's lighter weight, lower gravity point, I admit: it is much more fun of driving this 330CI convertible!  And since it is my beater, my plan is to drive it for at least another 5 years.
 
 A side interesting story, the convertible top was broken after only two days, so I made an appt at BMW of Mountain View and had them inspected it.  They charged me $256 for manually closing it, and estimated $500-600 parts + 10 hours of labor = $3200 for fixing the top, no doubt, I even didn’t bother negotiating…
-However, since it was weekend and they were pretty short of mechanics, so while I parked my car there, they said they can provide me a loaner car, I asked without thinking: "well, please give me M2 Competition", the loaner car manager said: "sorry sir, you got the right choice but we don't have it at the moment", he recommended me this 2020 740i, it is too luxury... With [BMW driving assistance](https://www.bmw.com/en/innovation/the-main-driver-assistance-systems.html) (similar with Tesla’s auto pilot), I probably would never buy a luxury car like this:smile:
+However, since it was weekend and they were pretty short of mechanics, so while I parked my car there, they said they can provide me a loaner car, I asked without thinking: "well, please give me M2 Competition", the loaner car manager said: "sorry sir, you got the right choice but we don't have it at the moment", he recommended me this 2020 740i, it is too luxury... With [BMW driving assistance](https://www.bmw.com/en/innovation/the-main-driver-assistance-systems.html) (similar with Tesla’s auto pilot), I probably would never buy a luxury car like this:sweat_smile:  Unless there is a right person who encourages me to buy one:wink:
 <figure class="third">
     <a href="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/740i-1.jpg"><img src="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/740i-1.jpg"></a>
     <a href="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/740i-2.jpg"><img src="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/740i-2.jpg"></a>

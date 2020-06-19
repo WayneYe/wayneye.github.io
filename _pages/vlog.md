@@ -11,6 +11,9 @@ share: true
 ### SkyJump from Stratosphere Tower at Las Vegas - Smile all the way down
 {% include video id="Q1987wC9ODA" provider="youtube" %}
 
+### <Mastering AWS Development Overview>
+{% include video id="yzZ7u5k7Q7M" provider="youtube" %}
+
 ### 载歌在谷云生活线上分享宅家健身器械与经验
 {% include video id="040oHx8_mKY?start=1436" provider="youtube" %}
 
@@ -20,5 +23,7 @@ share: true
 ### My personal Fitness Journey - 2018
 {% include video id="Vxm4Ikqjxhs" provider="youtube" %}
 
+<!--
 ### Land of Dreams
 {% include video id="1AIs2Ukz7dY" provider="youtube" %}
+-->

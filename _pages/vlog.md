@@ -25,8 +25,3 @@ share: true
 
 ### My personal Fitness Journey - 2018
 {% include video id="Vxm4Ikqjxhs" provider="youtube" %}
-
-<!--
-### Land of Dreams
-{% include video id="1AIs2Ukz7dY" provider="youtube" %}
--->

@@ -17,6 +17,9 @@ share: true
 ### 载歌在谷云生活线上分享宅家健身器械与经验
 {% include video id="040oHx8_mKY?start=1436" provider="youtube" %}
 
+### Ski At Northstar California
+{% include video id="efSwvJk5TgY" provider="youtube" %}
+
 ### Mt Rose (Faceruns black trail) - casual snowboard down
 {% include video id="_jWOVP_So4w" provider="youtube" %}
 

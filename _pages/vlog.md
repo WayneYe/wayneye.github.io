@@ -23,5 +23,8 @@ share: true
 ### Mt Rose (Faceruns black trail) - casual snowboard down
 {% include video id="_jWOVP_So4w" provider="youtube" %}
 
+### Drive through Golden Gate Bridge
+{% include video id="jmuyIp6CgMo" provider="youtube" %}
+
 ### My personal Fitness Journey - 2018
 {% include video id="Vxm4Ikqjxhs" provider="youtube" %}

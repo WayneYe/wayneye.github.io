@@ -15,7 +15,9 @@ permalink: BMW-Convertible-As-My-Beater-Car
 
 I [bought a 2015 BMW X5](https://youtu.be/cW-8o_rfh8s) Dec last year, it has been half a year so far (with 2 months she stayed inside the garage for most of the time due to the pandemic), I am pretty satisfied with it, her condition is absolutely excellent, everything works, yes you see it correctly, after 5 years of its life, there was nothing broken, as BMW vehicle built in recent years, this is something not VERY easy.  My plan is to keep it as long as possible before it [turns into an endless money pit](https://www.motor1.com/reviews/406108/bmw-maintenance-cost/), and keeping her value as high as possible, one of the major reason I bought her was its AWD and comfortable so that I can drive it to Lake Tahoe often during winter season, for other seasons I was seriously thinking about buying a beater car, to put my mileage on it instead of this pricey Bimmer.
 
-The requirements I've considers are listed & ranked below:
+## My requirements 
+
+I've considers are listed & ranked below:
 
 >
 1. Must be a stick shift
@@ -32,6 +34,8 @@ The requirements I've considers are listed & ranked below:
 My ideal candidates were: Toyota Celica, BMW E46, Ford Mustang, Nissan 350Z, Mercedes Benz CLK and SLK (yes since it looks gorgeous to me and if it is a manual I can compromise on #3 above)
 
 Wait!! Mazda Miata??  I am really sorry I have so many friends who are Miata lovers, but due to #3 above, I didn't look for it(in the future for sure).
+
+## We met with love
 
 After 3+ months of patient (hours after hours) market search, I bought this beautiful 2001 BMW 330CI on May 28 2020:
 
@@ -65,6 +69,7 @@ So I ordered the following:
 
 So far I've driven it for about 100 miles so far about 1 week, I can simply describe my experience as: **a stick shift, a steering wheel and a smiling face**:smiley:.  Compare with my X5, due to 330CI's lighter weight, lower gravity point, I admit: it is much more fun of driving this 330CI convertible!  And since it is my beater, my plan is to drive it for at least another 5 years.
 
+# Side story with 2020 740i
 A side interesting story, the convertible top was broken after only two days, so I made an appt at BMW of Mountain View and had them inspected it.  They charged me $256 for manually closing it, and estimated $500-600 parts + 10 hours of labor = $3200 for fixing the top, no doubt, I even didn’t bother negotiating…
 However, since it was weekend and they were pretty short of mechanics, so while I parked my car there, they said they can provide me a loaner car, I asked without thinking: "well, please give me M2 Competition", the loaner car manager said: "sorry sir, you got the right choice but we don't have it at the moment", he recommended me this 2020 740i, it is too luxury... With [BMW driving assistance](https://www.bmw.com/en/innovation/the-main-driver-assistance-systems.html) (similar with Tesla’s auto pilot), I probably would never buy a luxury car like this:sweat_smile:  Unless there is a right person who encourages me to buy one:wink:
 <figure class="third">
@@ -72,3 +77,9 @@ However, since it was weekend and they were pretty short of mechanics, so while 
     <a href="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/740i-2.jpg"><img src="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/740i-2.jpg"></a>
     <a href="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/740i-drive.jpg"><img src="/assets/images/posts/2020-06-03-BMW-As-My-Beater-Car/740i-drive.jpg"></a>
 </figure>
+
+## Drive through Golden Gate Bridge
+{% include video id="jmuyIp6CgMo" provider="youtube" %}
+
+## Driving my beater 330CI With my buddy - Teddy
+{% include video id="u2MdmPj0tQs" provider="youtube" %}

@@ -27,7 +27,7 @@ layout: raw-page
     <a class="btn" href="https://github.com/WayneYe/wayneye.github.io/raw/master/resume/Wayne_Ye_Resume.docx">Download Word</a>
   </div>
   <div id="downloadPdf">
-    <a class="btn" href="https://github.com/WayneYe/wayneye.github.io/raw/master/resume/Download/Wayne_Ye_Resume.pdf">Download PDF</a>
+    <a class="btn" href="https://github.com/WayneYe/wayneye.github.io/raw/master/resume/Wayne_Ye_Resume.pdf">Download PDF</a>
   </div>
   <div id="doc2" class="yui-t7">
     <div id="inner">

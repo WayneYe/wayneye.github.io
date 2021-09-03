@@ -6,7 +6,6 @@ author_profile: false
 layout: raw-page
 ---
 
-<!DOCTYPE html>
 <html lang="en">
 
 <head>

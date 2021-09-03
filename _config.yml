@@ -54,6 +54,7 @@ plugins:
   - jekyll-archives
   - jemoji
   - jekyll-include-cache
+  - jekyll-feed
   - jekyll-seo-tag
 
 defaults:

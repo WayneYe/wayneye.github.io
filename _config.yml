@@ -2,9 +2,9 @@ name: "Wayne Ye"
 title: Wayne's Geek Life
 title_separator: "-"
 email: xiaotianpop@gmail.com
-keyword: "Wayne Ye,WayneYe.com,Geek,Programming,C#,ASP.NET,GO,Python,Ruby,Rails,Cucumber,JavaScript,nodejs,HTML5,SOLID,AWS,Microservices"
+keyword: "Wayne Ye,WayneYe.me,Geek,Programming,C#,ASP.NET,GO,Python,Ruby,Rails,Cucumber,JavaScript,nodejs,HTML5,SOLID,AWS,Microservices"
 description: "I am a software engineer, technical lead and also a geek, I've immersed in software/web development for 14 years, I hack using these languages: Python, Golang, JavaScript/nodejs, Ruby/RoR, C#. I am an AWS Certified Solutions Architect (2017-2019), PMP and CodeProject MVP."
-url: "https://wayneye.com"
+url: "https://wayneye.me"
 SEOTitle: Wayne's Geek Life
 locale: "en-US"
 header-img: assets/images/Banner.jpg
@@ -26,10 +26,10 @@ author:
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: mailto:me@wayneye.com
+      url: mailto:me@wayneye.me
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      url: "https://wayneye.com"
+      url: "https://wayneye.me"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/wayneye"
@@ -188,10 +188,10 @@ footer:
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: mailto:admin@wayneye.com
+      url: mailto:me@wayneye.me
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      url: "https://wayneye.com"
+      url: "https://wayneye.me"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       url: "https://twitter.com/wayneye"

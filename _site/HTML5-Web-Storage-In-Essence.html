@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Wayne's Geek Life">
 <meta property="og:title" content="HTML5 Web Storage in Essence">
-<meta property="og:url" content="https://wayneye.com/HTML5-Web-Storage-In-Essence">
+<meta property="og:url" content="https://wayneye.me/HTML5-Web-Storage-In-Essence">
 
 
   <meta property="og:description" content="Background Web Storage (also named Dom storage) is a brand new mechanism of storing temporary/permanent data introduced in HTML5 to replace cookie, it contains two new DOM objects: sessionStoragy and localStorage), in Web Storage Spec, Ian Hickson documented that Web Storage are intended to solve two cases that &quot;not handled well by Cookie&quot;, they are:  The first is designed for scenarios where the user is carrying out a single transaction, but could be carrying out multiple transactions in different windows at the same time.       The second storage mechanism is designed for storage that spans multiple windows, and lasts beyond the current session. In particular, Web applications may wish to store megabytes of user data, such as entire user-authored documents or a user&#39;s mailbox, on the client side for performance reasons. sessionStorage and localStorage are introduced by W3 in HTML5 to solve problems above, let&#39;s begin with a review of how Cookie currently works.Current HTTP State Storage – CookieMechanism An HTTP Cookie was a set of key/value pairs which an HTTP web server requests a concrete client browser (i.e. User Agent - UA) to store on client&#39;s hard disk, when the UA request to the web server further, UA will wrap all the cookie data within the HTTP request header as long as following conditions are all satisfied:  The cookie data has not expired.   The requested domain is under exactly the same domain when cookie was stored.   The requested path under the domain is the same one where cookie was stored. Once the cookie expires, browser will delete it from local hard disk.A common cookie example:  An end user types www.foo.net in a browser&#39;s navigation bar and hit enter.   www.foo.net returns HTTP status 200 message below (In the Green part, web server expected client browser to store two Cookie key/value pairs: WayneKey1=value1;WayneKey2=Value2, they could be accessible from the entire domain, and they will expire after 1 year):               HTTP/1.1 200 OK             Content-type: text/html             Set-Cookie: WayneKey1=value1;WayneKey2=Value2;domain=www.foo.net; expires=Tue, 24-Feb-2012 07:13:22 GMT; path=/; HttpOnly             &#160; (Response HTTP body)      ">
@@ -30,7 +30,7 @@
   <meta name="twitter:site" content="@wayneye">
   <meta name="twitter:title" content="HTML5 Web Storage in Essence">
   <meta name="twitter:description" content="Background Web Storage (also named Dom storage) is a brand new mechanism of storing temporary/permanent data introduced in HTML5 to replace cookie, it contains two new DOM objects: sessionStoragy and localStorage), in Web Storage Spec, Ian Hickson documented that Web Storage are intended to solve two cases that &quot;not handled well by Cookie&quot;, they are:  The first is designed for scenarios where the user is carrying out a single transaction, but could be carrying out multiple transactions in different windows at the same time.       The second storage mechanism is designed for storage that spans multiple windows, and lasts beyond the current session. In particular, Web applications may wish to store megabytes of user data, such as entire user-authored documents or a user&#39;s mailbox, on the client side for performance reasons. sessionStorage and localStorage are introduced by W3 in HTML5 to solve problems above, let&#39;s begin with a review of how Cookie currently works.Current HTTP State Storage – CookieMechanism An HTTP Cookie was a set of key/value pairs which an HTTP web server requests a concrete client browser (i.e. User Agent - UA) to store on client&#39;s hard disk, when the UA request to the web server further, UA will wrap all the cookie data within the HTTP request header as long as following conditions are all satisfied:  The cookie data has not expired.   The requested domain is under exactly the same domain when cookie was stored.   The requested path under the domain is the same one where cookie was stored. Once the cookie expires, browser will delete it from local hard disk.A common cookie example:  An end user types www.foo.net in a browser&#39;s navigation bar and hit enter.   www.foo.net returns HTTP status 200 message below (In the Green part, web server expected client browser to store two Cookie key/value pairs: WayneKey1=value1;WayneKey2=Value2, they could be accessible from the entire domain, and they will expire after 1 year):               HTTP/1.1 200 OK             Content-type: text/html             Set-Cookie: WayneKey1=value1;WayneKey2=Value2;domain=www.foo.net; expires=Tue, 24-Feb-2012 07:13:22 GMT; path=/; HttpOnly             &#160; (Response HTTP body)      ">
-  <meta name="twitter:url" content="https://wayneye.com/HTML5-Web-Storage-In-Essence">
+  <meta name="twitter:url" content="https://wayneye.me/HTML5-Web-Storage-In-Essence">
 
   
     <meta name="twitter:card" content="summary">
@@ -48,7 +48,7 @@
 
 
 
-<link rel="canonical" href="https://wayneye.com/HTML5-Web-Storage-In-Essence">
+<link rel="canonical" href="https://wayneye.me/HTML5-Web-Storage-In-Essence">
 
 
 
@@ -201,11 +201,11 @@
       
         
           
-            <li><a href="mailto:me@wayneye.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+            <li><a href="mailto:me@wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
           
         
           
-            <li><a href="https://wayneye.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+            <li><a href="https://wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
           
         
           
@@ -817,11 +817,11 @@ function onStorageChanged(e) {
     <!--<h4 class="page__share-title">Share on</h4>-->
   <!---->
 
-  <!--<a href="https://twitter.com/intent/tweet?via=wayneye&text=HTML5+Web+Storage+in+Essence%20https%3A%2F%2Fwayneye.com%2FHTML5-Web-Storage-In-Essence" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>-->
+  <!--<a href="https://twitter.com/intent/tweet?via=wayneye&text=HTML5+Web+Storage+in+Essence%20https%3A%2F%2Fwayneye.me%2FHTML5-Web-Storage-In-Essence" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>-->
 
-  <!--<a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwayneye.com%2FHTML5-Web-Storage-In-Essence" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>-->
+  <!--<a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwayneye.me%2FHTML5-Web-Storage-In-Essence" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>-->
 
-  <!--<a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwayneye.com%2FHTML5-Web-Storage-In-Essence" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>-->
+  <!--<a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwayneye.me%2FHTML5-Web-Storage-In-Essence" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>-->
 
   
   <figure style="margin-top: 10px; width: 380px;">
@@ -1028,11 +1028,11 @@ And hid his face amid a crowd of stars.
     
       
         
-          <li><a href="mailto:admin@wayneye.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          <li><a href="mailto:me@wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
         
       
         
-          <li><a href="https://wayneye.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+          <li><a href="https://wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
         
       
         
@@ -1053,7 +1053,7 @@ And hid his face amid a crowd of stars.
   </ul>
 </div>
 
-<div class="page__footer-copyright">© 2021 Wayne Ye. All rights reserved.
+<div class="page__footer-copyright">© 2022 Wayne Ye. All rights reserved.
  
   <!--Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>-->
 
@@ -1073,7 +1073,7 @@ And hid his face amid a crowd of stars.
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://wayneye.com/HTML5-Web-Storage-In-Essence";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.url = "https://wayneye.me/HTML5-Web-Storage-In-Essence";  // Replace PAGE_URL with your page's canonical URL variable
       this.page.identifier = "/HTML5-Web-Storage-in-Essence"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     (function() { // DON'T EDIT BELOW THIS LINE

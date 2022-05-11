@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Wayne's Geek Life">
 <meta property="og:title" content="Exception handling particulars in C#">
-<meta property="og:url" content="https://wayneye.com/Exception-Handling-Particulars-In-Csharp">
+<meta property="og:url" content="https://wayneye.me/Exception-Handling-Particulars-In-Csharp">
 
 
   <meta property="og:description" content="BackgroundException handling appears in most .NET applications, this post is trying to describe some &nbsp;Exception handling particulars in C# which might not take enough awareness from C# developers.&nbsp;Differences between throw and throw ex&nbsp;I guess every C# developer has seen code snippet below: try { &nbsp;&nbsp;&nbsp; // Do some work, exception occurs } catch (IOException ex) { &nbsp;&nbsp;&nbsp; // Exception caught, re-throw it to bubble up &nbsp;&nbsp;&nbsp; throw ex; }In the catch block, we can rethrow the caught exception instance of IOException&nbsp;to higher level, and we may also saw another way in a little different: try { &nbsp;&nbsp;&nbsp; // Do some work, exception occurs } catch (IOException ex) { &nbsp;&nbsp;&nbsp; // Exception caught, re-throw it to bubble up &nbsp;&nbsp;&nbsp; throw; }Is there any different?&nbsp;The answer is yes! To prove that I wrote a simple snippet of code below, first is a simple customized Exception: DummyException. internal class DummyException : Exception { &nbsp;&nbsp;&nbsp; public DummyException(String dummymsg) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : base(dummymsg) &nbsp;&nbsp;&nbsp; {  &nbsp;&nbsp;&nbsp; }  &nbsp;&nbsp;&nbsp; public DummyException(String dummymsg, Exception innerException) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : base(dummymsg, innerException) &nbsp;&nbsp;&nbsp; {  &nbsp;&nbsp;&nbsp; } }&nbsp;And then I manually throw the DummyException within one method, while handle it in different way mentioned above: class Program { &nbsp;&nbsp;&nbsp; private static void DoLowLevelOperation() &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Do some low level operation &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw new DummyException(&quot;A dummy exception message!&quot;); &nbsp;&nbsp;&nbsp; }  &nbsp;&nbsp;&nbsp; public static void MethodThrowException1() &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DoLowLevelOperation(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; catch (DummyException de) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp; public static void MethodThrowException2() &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DoLowLevelOperation(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; catch (DummyException de) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw de; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp; }  &nbsp;&nbsp;&nbsp; static void Main(string[] args) &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MethodThrowException1(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; catch (DummyException de1) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Console.WriteLine(de1.Message); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Console.WriteLine(de1.StackTrace); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MethodThrowException2(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; catch (DummyException de2) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Console.WriteLine(de2.Message); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Console.WriteLine(de2.StackTrace); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp; } }&nbsp;The result will be:">
@@ -30,7 +30,7 @@
   <meta name="twitter:site" content="@wayneye">
   <meta name="twitter:title" content="Exception handling particulars in C#">
   <meta name="twitter:description" content="BackgroundException handling appears in most .NET applications, this post is trying to describe some &nbsp;Exception handling particulars in C# which might not take enough awareness from C# developers.&nbsp;Differences between throw and throw ex&nbsp;I guess every C# developer has seen code snippet below: try { &nbsp;&nbsp;&nbsp; // Do some work, exception occurs } catch (IOException ex) { &nbsp;&nbsp;&nbsp; // Exception caught, re-throw it to bubble up &nbsp;&nbsp;&nbsp; throw ex; }In the catch block, we can rethrow the caught exception instance of IOException&nbsp;to higher level, and we may also saw another way in a little different: try { &nbsp;&nbsp;&nbsp; // Do some work, exception occurs } catch (IOException ex) { &nbsp;&nbsp;&nbsp; // Exception caught, re-throw it to bubble up &nbsp;&nbsp;&nbsp; throw; }Is there any different?&nbsp;The answer is yes! To prove that I wrote a simple snippet of code below, first is a simple customized Exception: DummyException. internal class DummyException : Exception { &nbsp;&nbsp;&nbsp; public DummyException(String dummymsg) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : base(dummymsg) &nbsp;&nbsp;&nbsp; {  &nbsp;&nbsp;&nbsp; }  &nbsp;&nbsp;&nbsp; public DummyException(String dummymsg, Exception innerException) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : base(dummymsg, innerException) &nbsp;&nbsp;&nbsp; {  &nbsp;&nbsp;&nbsp; } }&nbsp;And then I manually throw the DummyException within one method, while handle it in different way mentioned above: class Program { &nbsp;&nbsp;&nbsp; private static void DoLowLevelOperation() &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Do some low level operation &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw new DummyException(&quot;A dummy exception message!&quot;); &nbsp;&nbsp;&nbsp; }  &nbsp;&nbsp;&nbsp; public static void MethodThrowException1() &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DoLowLevelOperation(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; catch (DummyException de) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp; public static void MethodThrowException2() &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DoLowLevelOperation(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; catch (DummyException de) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw de; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp; }  &nbsp;&nbsp;&nbsp; static void Main(string[] args) &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MethodThrowException1(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; catch (DummyException de1) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Console.WriteLine(de1.Message); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Console.WriteLine(de1.StackTrace); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MethodThrowException2(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; catch (DummyException de2) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Console.WriteLine(de2.Message); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Console.WriteLine(de2.StackTrace); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp; } }&nbsp;The result will be:">
-  <meta name="twitter:url" content="https://wayneye.com/Exception-Handling-Particulars-In-Csharp">
+  <meta name="twitter:url" content="https://wayneye.me/Exception-Handling-Particulars-In-Csharp">
 
   
     <meta name="twitter:card" content="summary">
@@ -48,7 +48,7 @@
 
 
 
-<link rel="canonical" href="https://wayneye.com/Exception-Handling-Particulars-In-Csharp">
+<link rel="canonical" href="https://wayneye.me/Exception-Handling-Particulars-In-Csharp">
 
 
 
@@ -201,11 +201,11 @@
       
         
           
-            <li><a href="mailto:me@wayneye.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+            <li><a href="mailto:me@wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
           
         
           
-            <li><a href="https://wayneye.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+            <li><a href="https://wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
           
         
           
@@ -417,11 +417,11 @@
     <!--<h4 class="page__share-title">Share on</h4>-->
   <!---->
 
-  <!--<a href="https://twitter.com/intent/tweet?via=wayneye&text=Exception+handling+particulars+in+C%23%20https%3A%2F%2Fwayneye.com%2FException-Handling-Particulars-In-Csharp" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>-->
+  <!--<a href="https://twitter.com/intent/tweet?via=wayneye&text=Exception+handling+particulars+in+C%23%20https%3A%2F%2Fwayneye.me%2FException-Handling-Particulars-In-Csharp" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>-->
 
-  <!--<a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwayneye.com%2FException-Handling-Particulars-In-Csharp" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>-->
+  <!--<a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwayneye.me%2FException-Handling-Particulars-In-Csharp" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>-->
 
-  <!--<a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwayneye.com%2FException-Handling-Particulars-In-Csharp" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>-->
+  <!--<a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwayneye.me%2FException-Handling-Particulars-In-Csharp" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>-->
 
   
   <figure style="margin-top: 10px; width: 380px;">
@@ -628,11 +628,11 @@ And hid his face amid a crowd of stars.
     
       
         
-          <li><a href="mailto:admin@wayneye.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          <li><a href="mailto:me@wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
         
       
         
-          <li><a href="https://wayneye.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+          <li><a href="https://wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
         
       
         
@@ -653,7 +653,7 @@ And hid his face amid a crowd of stars.
   </ul>
 </div>
 
-<div class="page__footer-copyright">© 2021 Wayne Ye. All rights reserved.
+<div class="page__footer-copyright">© 2022 Wayne Ye. All rights reserved.
  
   <!--Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>-->
 
@@ -673,7 +673,7 @@ And hid his face amid a crowd of stars.
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://wayneye.com/Exception-Handling-Particulars-In-Csharp";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.url = "https://wayneye.me/Exception-Handling-Particulars-In-Csharp";  // Replace PAGE_URL with your page's canonical URL variable
       this.page.identifier = "/Exception-handling-particulars-in-C#"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     (function() { // DON'T EDIT BELOW THIS LINE

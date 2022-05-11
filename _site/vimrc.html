@@ -1,0 +1,863 @@
+<html lang="en">
+
+<head>
+  <title>Wayne Ye - vimrc</title>
+  <meta http-equiv="content-type" content="text/plain; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+</head>
+
+<body>
+  <pre>
+"****************************
+"Wayne's vimrc: http://wayneye.me/vimrc
+"****************************
+
+
+"***Vim Plugins***
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+call plug#begin('~/.vim/plugged')
+" Original repos on github
+Plug 'flazz/vim-colorschemes'
+"Plug 'vim-scripts/Colour-Sampler-Pack.git'
+
+Plug 'scrooloose/nerdtree'
+Plug 'majutsushi/tagbar'
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-surround'
+"Plug 'Lokaltog/vim-easymotion'
+Plug 'scrooloose/nerdcommenter'
+Plug 'mileszs/ack.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+"Plug 'mlaursen/vim-react-snippets'
+Plug 'w0rp/ale' " Asynchronous Lint Engine
+Plug 'maksimr/vim-jsbeautify'
+"Plug 'suan/vim-instant-markdown'  " sudo npm -g install instant-markdown-d
+" Plug 'Valloric/YouCompleteMe'
+" Notice: Need complete YCM installation below:
+" cd ~/.vim/bundle/YouCompleteMe &amp;&amp; ./install.sh --clang-completer --omnisharp-completer
+" git submodule update --init --recursive
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile &amp;&amp; yarn build' }
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes' " https:/hub.com/Lokaltog/vim-powerline/tree/develop/fontpatcher#font-patching-guide
+Plug 'ryanoasis/vim-devicons' " https://github.com/ryanoasis/nerd-fonts#option-6-ad-hoc-curl-download or simply: https://github.com/powerline/fonts
+Plug 'godlygeek/tabular'
+Plug 'cohama/lexima.vim' " Auto close plugin, pretty cool!
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'jlanzarotta/bufexplorer'
+
+" Languages
+Plug 'sheerun/vim-polyglot' " This plugin provides 130+ lang support
+Plug 'rstacruz/sparkup', {'rtp': 'vim'}
+Plug 'skammer/vim-css-color'  " Show actual color in CSS, pretty handy
+Plug 'alfredodeza/pytest.vim' " pip install -U pytest
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'puremourning/vimspector'
+" GoInstallBinaries to install all the necessary binaries
+" go get -u github.com/go-delve/delve/cmd/dlv
+"Plug 'nosami/Omnisharp'
+" Vim-scripts repos
+"Plug 'winmanager'
+Plug 'vim-scripts/Visual-Mark'
+"Plug 'HTML-AutoCloseTag'
+"Plug 'matchit.zip'
+" Automatically insert image from clipboard to md (requires xclip) <leader>p
+Plug 'ferrine/md-img-paste.vim'
+
+" Interesting
+"Plug 'wakatime/vim-wakatime'
+call plug#end()
+
+syntax on
+syntax enable
+filetype on
+filetype indent plugin on
+
+"***Global settings***
+set wildmenu " Use wildmenu - enhanced command-line completion, I've missed a lot:)
+set wildmode=list:longest,full
+set hidden " hide files instead of forcing save it when create a new file.
+set number " Always show line numbers
+set ruler  " Show [row],[col] and % of the currant cursor location
+set paste  " Do not auto indent when paste
+set autoindent
+set smartindent
+set copyindent    " copy the previous indentation on autoindenting
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop
+set shiftround    " use multiple of shiftwidth when indenting with '&lt;' and '&gt;'
+set ignorecase    " ignore case when searching
+set smartcase     " ignore case if search pattern is all lowercase, case-sensitive otherwise
+set history=1000         " remember more commands and search history
+set undolevels=1000      " use many muchos levels of undo
+set showmatch     " set show matching parenthesis
+set autoread  " Automatically load file change
+set nobackup
+set noswapfile
+set exrc          " Project/dir level vimrc exrc
+set nofixendofline
+set hlsearch
+set incsearch " Focus on the search result as I type
+set textwidth=100 " I got high resolution monitors!
+if (has("termguicolors"))
+  set termguicolors
+endif
+highlight Visual cterm=NONE ctermbg=0 ctermfg=NONE guibg=Grey40
+
+"***OS Specific***
+silent function! OSX()    " Mac OSX
+    let os=substitute(system('uname'), '\n', '', '')
+    return os == 'Darwin' || os == 'Mac'
+endfunction
+silent function! LINUX()
+    let os=substitute(system('uname'), '\n', '', '')
+    return os == 'Linux'
+endfunction
+silent function! WINDOWS()
+    return  (has('win16') || has('win32') || has('win64'))
+endfunction
+
+if OSX()
+    " set wildignore+=
+    " On Mac, I need to remap Alt/Meta to Command key
+    nnoremap <D-j> :m+<CR>==
+    nnoremap <D-k> :m-2<CR>==
+    inoremap <D-j> <Esc>:m+<CR>==gi
+    inoremap <D-k> <Esc>:m-2<CR>==gi
+    vnoremap <D-j> :m'&gt;+<CR>gv=gv
+    vnoremap <D-k> :m-2<CR>gv=gv
+elseif LINUX()
+    source ~/mswin.vim
+    set guifont=Monospace\ 11
+    " set wildignore+=
+elseif WINDOWS()
+    set guifont=Consolas:h14
+    set wildignore+=tmp\*,*.swp,*.zip,*.exe,*.dll
+endif
+"***VIM Specific***
+if has("gui_macvim") || has("gui_running")
+    "set guifont=Consolas:h16
+    "set guifont=Inconsolata-dz\ for\ Powerline:h18
+    set guifont=DroidSansMono_Nerd_Font:h16
+endif
+if has("gui_vimr")
+    color dracula
+    "colorscheme OceanicNext
+    let g:airline_theme='oceanicnext'
+endif
+" All platforms
+set wildignore+=*.o,*.obj,*.pyc,*/.DS_Store/*,*/.git/*,*/.hg/*,*/.svn/*
+
+"***GUI settings***
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+" My favorate wombat theme and consolas font
+colorscheme wombat
+set background=dark
+
+" Start VIM in MAX Window size
+if has("gui_running")
+  " GUI is running or is about to start.
+  " Maximize gvim window.
+  set lines=1200 columns=1600
+  set cursorline
+  "set transparency=5
+  "au GUIEnter * simalt ~x "x on an English Windows version. n on a French one
+else " This is console Vim.
+  set paste
+  set nonumber
+  "if exists("+lines")
+    "set lines=36
+  "endif
+  "if exists("+columns")
+    "set columns=120
+  "endif
+
+  " Integrate with system clipboard
+  set clipboard=unnamed
+endif
+
+" Spell check
+:setlocal spelllang=en_us
+" Auto save when loss focus. Refer: http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
+set autowrite
+:au FocusLost * silent! wa
+
+" Unicode
+if has("multi_byte")
+  if &amp;termencoding == ""
+    let &amp;termencoding = &amp;encoding
+  endif
+  set encoding=utf-8
+  setglobal fileencoding=utf-8
+  "setglobal bomb
+  set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+endif
+
+" Let myself control the text folding behavior
+set foldmethod=manual
+
+" Don't show line numbers for output HTML code
+let html_number_lines = 0
+
+
+"***Shortcut mappings***
+let mapleader="," " change the mapleader from \ to ','
+nmap Y y$
+nmap <leader>t :terminal<CR>
+nmap <leader>pv :py3 import sys;print(sys.version)<CR>
+nmap <leader>gb :Git blame<CR>
+
+" mapping to make movements operate on 1 screen line in wrap mode
+function! ScreenMovement(movement)
+  if &amp;wrap
+      return "g" . a:movement
+  else
+      return a:movement
+  endif
+endfunction
+onoremap <silent> <expr> j ScreenMovement("j")
+onoremap <silent> <expr> k ScreenMovement("k")
+onoremap <silent> <expr> 0 ScreenMovement("0")
+onoremap <silent> <expr> ^ ScreenMovement("^")
+onoremap <silent> <expr> $ ScreenMovement("$")
+nnoremap <silent> <expr> j ScreenMovement("j")
+nnoremap <silent> <expr> k ScreenMovement("k")
+nnoremap <silent> <expr> 0 ScreenMovement("0")
+nnoremap <silent> <expr> ^ ScreenMovement("^")
+nnoremap <silent> <expr> $ ScreenMovement("$")
+vnoremap <silent> <expr> j ScreenMovement("j")
+vnoremap <silent> <expr> k ScreenMovement("k")
+
+" Ctrl-J to break current line
+nnoremap <NL> i<CR><ESC>
+"nnoremap ; :     " I might do not use this because ; is really useful to redo the previous jump
+" Quickly edit/reload the vimrc file
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+" Switch between splits windows. http://vim.wikia.com/wiki/Switch_between_Vim_window_splits_easily
+"set wmh=0
+"map <C-J> <C-W>j<C-W>_
+"map <C-K> <C-W>k<C-W>_
+
+" Switch/create tab(s) in quick - Really handy!
+map <C-l> :tabn<CR>
+map <C-h> :tabp<CR>
+map <C-t> :tabnew<CR>
+map <C-w> :tabclose<CR>
+
+" Search for selected text, forwards or backwards. http://vim.wikia.com/wiki/Search_for_visually_selected_text
+"vnoremap <silent> * :<C-U>
+    "\let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+    "\gvy/<C-R><C-R>=substitute(
+    "\escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+    "\gV:call setreg('"', old_reg, old_regtype)<CR>
+"vnoremap <silent> # :<C-U>
+    "\let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+    "\gvy?<C-R><C-R>=substitute(
+    "\escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+    "\gV:call setreg('"', old_reg, old_regtype)<CR>
+" Visual mode pressing * or # searches for the current selection
+" Super useful! From an idea by Michael Naumann
+vnoremap <silent> * :call VisualSelection('f')<CR>
+vnoremap <silent> # :call VisualSelection('b')<CR>
+" When I press <leader>r I can search and replace the selected text
+vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
+
+" Alternative using Tab/Shift-Tab (for gvim).
+:vnoremap <Tab> &gt;gv
+:vnoremap <S-Tab> &lt;gv
+
+" WOW, this rocks!! This is a pretty good replace for default OmniCompletion
+" shortcuts: C-X C-O.
+" http://blogs.gnome.org/lharris/2008/07/20/code-completion-with-vim-7/
+"function! SuperCleverTab()
+    "if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
+        "return "\<Tab>"
+    "else
+        "if &amp;omnifunc != ''
+            "return "\<C-X>\<C-O>"
+        "elseif &amp;dictionary != ''
+            "return "\<C-K>"
+        "else
+            "return "\<C-N>"
+        "endif
+    "endif
+"endfunction
+
+"inoremap <Tab> <C-R>=SuperCleverTab()<cr>
+
+" Shift-Enter to insert a new line before the cursor
+" Ctrl-Enter to insert a new line after the cursor
+map <S-Enter> O<Esc>
+map <C-Enter> o<Esc>
+
+" Quickly preview HTML files/link in browser
+if OSX()
+    autocmd FileType html nnoremap <leader>b :update<CR>:!open -a Safari %<CR><CR>
+elseif WINDOWS()
+    map <leader>f :update<CR>:silent !start c:\progra~1\intern~1\iexplore.exe file://%:p<CR>
+    map <leader>i :update<CR>: !start c:\progra~1\intern~1\iexplore.exe <cWORD><CR>
+endif
+
+" Use ,-w to switch to next window
+nmap <leader>w :wincmd w<CR>
+nmap <leader>W :wincmd W<CR>
+
+" Alt+j/k to move current line/selected lines up and down
+nnoremap <A-j> :m+<CR>==
+nnoremap <A-k> :m-2<CR>==
+inoremap <A-j> <Esc>:m+<CR>==gi
+inoremap <A-k> <Esc>:m-2<CR>==gi
+vnoremap <A-j> :m'&gt;+<CR>gv=gv
+vnoremap <A-k> :m-2<CR>gv=gv
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" =&gt; Spell checking
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Pressing ,sc will toggle/untoggle spell checking
+map <leader>sc :setlocal spell!<cr>
+" Shortcuts using <leader>
+map <leader>sn ]s
+map <leader>sp [s
+map <leader>sa zg
+map <leader>s? z=
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" =&gt; Utility Functions
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Usage: select word I want to encode, go to command mode: call EncodeHTML()
+function! EncodeHTML()
+  silent s/&amp;/\&amp;/eg
+  silent s/&lt;/\&lt;/eg
+  silent s/&gt;/\&gt;/eg
+endfunction
+
+function! DecodeHTML()
+  silent s/&lt;/&lt;/eg
+  silent s/&gt;/&gt;/eg
+  silent s/&amp;/\&amp;/eg
+endfunction
+
+"function! CmdLine(str)
+    "exe "menu Foo.Bar :" . a:str
+    "emenu Foo.Bar
+    "unmenu Foo
+"endfunction
+function! CmdLine(str)
+    call feedkeys(":" . a:str)
+endfunction
+
+function! VisualSelection(direction) range
+    let l:saved_reg = @"
+    execute "normal! vgvy"
+
+    let l:pattern = escape(@", '\\/.*$^~[]')
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+    if a:direction == 'b'
+        execute "normal ?" . l:pattern . "^M"
+    elseif a:direction == 'gv'
+        call CmdLine("vimrep " . '/'. l:pattern . '/' . ' **/*.')
+    elseif a:direction == 'replace'
+        call CmdLine("%s" . '/'. l:pattern . '/')
+    elseif a:direction == 'f'
+        execute "normal /" . l:pattern . "^M"
+    endif
+
+    let @/ = l:pattern
+    let @" = l:saved_reg
+endfunction
+
+" ----------------------------------------------------------------------------
+" R | Replace
+" ----------------------------------------------------------------------------
+function! s:replace()
+  if visualmode() ==# 'V'
+    if line("'&gt;") == line('$')
+      normal! gv"_dp
+    else
+      normal! gv"_dP
+    endif
+  else
+    if col("'&gt;") == col('$') - 1
+      normal! gv"_dp
+    else
+      normal! gv"_dP
+    endif
+  endif
+endfunction
+" vnoremap R "_dP
+vnoremap R :<C-U>call <SID>replace()<cr>
+
+function! StripTrailingWhitespace()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " do the business:
+    %s/\s\+$//e
+    " clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+
+" Shell command {
+function! s:RunShellCommand(cmdline)
+    botright new
+
+    setlocal buftype=nofile
+    setlocal bufhidden=delete
+    setlocal nobuflisted
+    setlocal noswapfile
+    setlocal nowrap
+    setlocal filetype=shell
+    setlocal syntax=shell
+
+    call setline(1, a:cmdline)
+    call setline(2, substitute(a:cmdline, '.', '=', 'g'))
+    execute 'silent $read !' . escape(a:cmdline, '%#')
+    setlocal nomodifiable
+    1
+endfunction
+
+command! -complete=file -nargs=+ Shell call s:RunShellCommand(<q-args>)
+
+vnoremap <leader>64 y:echo system('base64 --decode', @")<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" =&gt; Plugins &lt;=
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"******** NERDtree********
+map <F1> :NERDTreeToggle<CR>
+"autocmd vimenter * NERDTree  " Starts NERDtree as soon as Vim starts
+if has("gui_running")
+    autocmd vimenter * if !argc() | NERDTree | endif " Starts NERDTree is no file was specified
+endif
+autocmd bufenter * if (winnr("$") == 1 &amp;&amp; exists("b:NERDTreeType") &amp;&amp; b:NERDTreeType == "primary") | q | endif " Close Vim if NERDTree is the only window left
+nmap <leader>nf :NERDTreeFind<CR>
+let NERDTreeIgnore = ['\.o$', '\.out$', '\~$', '\.so$', '\.a$', '\.DS_Store$', '^tags$', '\.pyc$', '__pycache__$'] " Ignore files I never edit
+
+"******** WinManager ********
+"let g:winManagerWindowLayout='FileExplorer|TagList'
+"nmap wm :WMToggle<CR>
+
+"******** ctrlp********
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+
+"******** fzf********
+set rtp+=/usr/local/opt/fzf
+" -m to enable multi selection
+"nnoremap <silent> <Leader>f :FZF -m<CR>
+nnoremap <C-T> :FZF -m<CR>
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+"******** easy align********
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+" Align GitHub-flavored Markdown tables: select table and press ,\
+au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
+
+"******** Tagbar********
+nmap tt :TagbarToggle<CR>
+let g:tagbar_ctags_bin='/usr/local/bin/ctags'
+
+"******** EasyMotion********
+"let g:EasyMotion_leader_key = '<Leader>'
+
+"******** FuzzyFind********
+nmap <leader>ff :FufFile **/<CR>
+nmap <leader>ft :FufFile<CR>
+nmap <leader>fb :FufBuffer<CR>
+nmap <leader>fl :FufLine<CR>
+nmap <leader>fr :FufRenewCache<CR>
+
+"******** Vim Airline********
+" https://github.com/bling/vim-airline/wiki/Screenshots
+" echo g:airline_theme_map or cd ~/.vim/bundle/vim-airline/autoload/airline/themes/
+let g:airline_theme="wombat"
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_left_sep='›'  " Slightly fancier than '&gt;'
+let g:airline_right_sep='‹' " Slightly fancier than '&lt;'
+let g:airline#extensions#ale#enabled = 1 " Enable ALE integration
+
+" Fancy symbols
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+"******** tabular********
+nmap <leader>a= :Tabularize /=<CR>
+vmap <leader>a= :Tabularize /=<CR>
+nmap <leader>a: :Tabularize /:\zs<CR>
+vmap <leader>a: :Tabularize /:\zs<CR>
+
+"******** YouCompleteMe********
+let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
+let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
+let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
+let g:ycm_complete_in_comments = 1 " Completion in comments
+let g:ycm_complete_in_strings = 1 " Completion in string
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:UltiSnipsSnippetDirectories = ["UltiSnips", ""] " :h UltiSnips-how-snippets-are-loaded
+"let g:ycm_path_to_python_interpreter = '/usr/local/bin/python'  " Needed sometime
+nnoremap <F5> :YcmForceCompileAndDiagnostics<CR> " Force a full, blocking compilation cycle
+"let g:ycm_server_use_vim_stdout = 1
+"let g:ycm_server_log_level = 'debug'
+
+"******** ultisnip********
+let g:UltiSnipsExpandTrigger       = "<c-j>"
+let g:UltiSnipsJumpForwardTrigger  = "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-p>"
+let g:UltiSnipsListSnippets        = "<c-k>" "List possible snippets based on current file
+
+"******** pytest********
+autocmd FileType python map <C-A-F> <Esc>:Pytest file<CR>
+autocmd FileType python map <C-A-C> <Esc>:Pytest class<CR>
+autocmd FileType python map <C-A-M> <Esc>:Pytest method<CR>
+autocmd FileType python map <C-A-D> <Esc>:Pytest method --pdb<CR>
+autocmd FileType python map <C-A-S> <Esc>:Pytest method -s<CR>
+if OSX() &amp;&amp; has("gui_running")
+    set macmeta " Only on MacVim GUI, treat the mac "option" key as Meta key
+    autocmd FileType python map <C-M-F> <Esc>:Pytest file<CR>
+    autocmd FileType python map <C-M-C> <Esc>:Pytest class<CR>
+    autocmd FileType python map <C-M-M> <Esc>:Pytest method<CR>
+    autocmd FileType python map <C-M-D> <Esc>:Pytest method --pdb<CR>
+    autocmd FileType python map <C-M-S> <Esc>:Pytest method -s<CR>
+endif
+
+"******** js-beautify********
+" æ is ALT+f on Mac
+nnoremap æ :call JsBeautify() <CR>
+autocmd FileType css noremap <buffer> æ :call CSSBeautify()<CR>
+autocmd FileType html noremap <buffer> æ :call HtmlBeautify()<CR>
+autocmd FileType javascript vnoremap <buffer> æ :call RangeJsBeautify()<cr>
+autocmd FileType html vnoremap <buffer> æ :call RangeHtmlBeautify()<cr>
+autocmd FileType css vnoremap <buffer> æ :call RangeCSSBeautify()<cr>
+let g:config_Beautifier = {}
+let g:config_Beautifier['js'] = {}
+let g:config_Beautifier['css'] = {}
+let g:config_Beautifier['html'] = {}
+let g:config_Beautifier['js'].indent_size = '2'
+let g:config_Beautifier['css'].indent_size = '2'
+let g:config_Beautifier['html'].indent_size = '2'
+
+"******** Rust********
+let g:LanguageClient_serverCommands = {
+\ 'rust': ['rust-analyzer'],
+\ }
+
+
+"******** ale********
+let g:ale_linters = {
+\   'vim': ['vimls', 'vint'],
+\   'sh': ['shellcheck'],
+\   'python': ['flake8'],
+\   'javascript': ['standard'],
+\   'javascript.jsx': ['standard'],
+\   'rust': ['analyzer'],
+\}
+" , 'black --skip-string-normalization'
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'python': ['black'],
+\   'javascript': ['standard'],
+\   'javascript.jsx': ['standard'],
+\   'rust': ['rustfmt'],
+\}
+"let g:ale_python_autopep8_options = '--aggressive'
+let g:ale_pattern_options = {
+\ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
+\ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
+\}
+let g:ale_python_flake8_options = '--max-line-length=88'
+let g:ale_go_langserver_executable = 'gopls'
+let g:ale_lint_on_save = 1
+let g:ale_fix_on_save = 1
+
+" Vimspector
+let g:vimspector_base_dir='$HOME/.vim/plugged/vimspector'
+"let g:vimspector_base_dir=expand( '$HOME/.vim/vimspector-config' )
+let g:vimspector_enable_mappings = 'HUMAN'
+let g:vimspector_install_gadgets = [ 'debugpy', 'vscode-node', 'CodeLLDB' ]
+nmap <Leader>db <Plug>VimspectorBreakpoints
+" for normal mode - the word under the cursor ('debug inspect')
+nmap <Leader>di <Plug>VimspectorBalloonEval
+" for visual mode, the visually selected text
+xmap <Leader>di <Plug>VimspectorBalloonEval
+let g:vimspector_adapters = #{
+      \   test_debugpy: #{ extends: 'debugpy' }
+      \ }
+
+let g:vimspector_configurations = {
+      \ "test_debugpy_config": {
+      \   "adapter": "test_debugpy",
+      \   "filetypes": [ "python" ],
+      \   "configuration": {
+      \     "request": "launch",
+      \     "type": "python",
+      \     "cwd": "${fileDirname}",
+      \     "args": [],
+      \     "program": "${file}",
+      \     "stopOnEntry": v:false,
+      \     "console": "integratedTerminal",
+      \     "integer": 123,
+      \   },
+      \   "breakpoints": {
+      \     "exception": {
+      \       "raised": "N",
+      \       "uncaught": "",
+      \       "userUnhandled": ""
+      \     }
+      \   }
+      \ } }
+
+"******** lateX********
+"set shellslash
+"set grepprg=grep\ -nH\ $*
+"let g:tex_flavor='latex'
+"autocmd FileType tex set sw=2
+" TIP: if you write your \label's as \label{fig:something}, then if you
+" type in \ref{fig: and press <C-n> you will automatically cycle through
+" all the figure labels. Very useful!
+
+
+"***Language specified***
+" shell (tab width 2 chr)
+autocmd FileType sh set sw=2
+autocmd FileType sh set ts=2
+autocmd FileType sh set sts=2
+autocmd FileType sh set textwidth=0 expandtab
+autocmd FileType sh map <buffer> <C-S-e> :w<CR>:!/bin/sh % <CR>
+" ruby (tab width 2 chr)
+autocmd FileType ruby set sw=2
+autocmd FileType ruby set ts=2
+autocmd FileType ruby set sts=2
+autocmd FileType ruby map <buffer> <C-S-e> :w<CR>:!/usr/bin/env ruby % <CR>
+" HTML (tab width 2 chr, no wrapping)
+autocmd FileType html,htmldjango set sw=2
+autocmd FileType html,htmldjango set ts=2
+autocmd FileType html,htmldjango set sts=2
+autocmd FileType html,htmldjango set textwidth=0 expandtab
+" YAML (tab width 2 chr, no wrapping)
+autocmd FileType yaml set sw=2
+autocmd FileType yaml set ts=2
+autocmd FileType yaml set sts=2
+autocmd FileType yaml set textwidth=0 expandtab
+" terraform (tab width 2 chr, no wrapping)
+autocmd FileType tf set sw=2
+autocmd FileType tf set ts=2
+autocmd FileType tf set sts=2
+autocmd FileType tf set textwidth=0 expandtab
+" Python (tab width 4 chr)
+set pythondll=~/.pyenv/versions/3.9.9/Library/Frameworks/Python.framework/Versions/3.9/Python
+set pythonhome=~/.pyenv/versions/3.9.9/Library/Frameworks/Python.framework/Versions/3.9
+set pythonthreedll=~/.pyenv/versions/3.9.9/Library/Frameworks/Python.framework/Versions/3.9/Python
+set pythonthreehome=~/.pyenv/versions/3.9.9/Library/Frameworks/Python.framework/Versions/3.9
+autocmd FileType python set sw=4
+autocmd FileType python set ts=4
+autocmd FileType python set sts=4
+autocmd FileType python map <buffer> <C-S-e> :w<CR>:!/usr/bin/env python % <CR>
+" Note: the below line will override CommandT's shortcut: CommandTMRU
+autocmd FileType python nnoremap <leader>b Oimport ipdb; ipdb.set_trace()<Esc>
+" CSS (tab width 2 chr)
+autocmd FileType css set sw=2
+autocmd FileType css set ts=2
+autocmd FileType css set sts=2
+autocmd FileType css set textwidth=0 expandtab
+" JavaScript (tab width 4 chr)
+autocmd FileType javascript,javascript.jsx set sw=2
+autocmd FileType javascript,javascript.jsx set ts=2
+autocmd FileType javascript,javascript.jsx set sts=2
+autocmd FileType javascript,javascript.jsx set textwidth=0 expandtab
+autocmd FileType javascript,javascript.jsx map <buffer> <C-S-e> :w<CR>:!/usr/bin/env node % <CR>
+" Typescript
+autocmd FileType typescript,typescriptreact map <buffer> <C-S-e> :w<CR>:!ts-node % <CR>
+" Json (tab width 2 chr)
+autocmd FileType json set sw=2
+autocmd FileType json set ts=2
+autocmd FileType json set sts=2
+autocmd FileType json set textwidth=0 expandtab
+autocmd FileType json syntax match Comment +\/\/.\+$+  " Support jsonc (comment inside JSON)
+" groovy (tab width 2 chr, no wrapping)
+autocmd FileType groovy set sw=4
+autocmd FileType groovy set ts=4
+autocmd FileType groovy set sts=4
+autocmd FileType groovy set textwidth=0 expandtab
+" Golang and vim-go
+" TIPs:
+"   dif: delete func body
+"   vif: select func body
+"   yif: yank func body
+"   :GoImport s  then just tab to choose packages  (Also: GoImportAs and GoDrop)
+"   gd|ctrl+]: GoDef
+"   :GoDoc
+"   :GoReferrers
+"   :GoDescribe
+"   :GoImpl <TAB>; GoImplements to show all implements of an interface
+"   :GoPlay to post it on http://play.golang.org/ and cp the URL for you
+let g:go_bin_path = $HOME."/go/bin"
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+autocmd FileType go set textwidth=0 expandtab
+autocmd FileType go nnoremap <Leader>i :GoInfo <CR>
+"let g:go_auto_type_info = 1  " Automatically show info following cursor's move, update every 100ms
+let g:go_auto_sameids = 1  " Automatically highlight matching identifiers.
+set updatetime=100
+"autocmd FileType go map <buffer> <C-S-e> :w<CR>:!/usr/bin/env go run % <CR>
+autocmd FileType go map <buffer> <C-S-e> <Plug>(go-run)
+autocmd FileType go nnoremap <leader>gt :GoTest <CR>
+"autocmd FileType go nnoremap <leader>gtf :GoTestFunc <CR>
+autocmd FileType go nnoremap <leader>b :GoDebugBreakpoint <CR>
+autocmd FileType go nnoremap <leader>ds :GoDebugStart <CR>
+let g:go_fmt_autosave = 1  " Auto gofmt
+let g:go_fmt_options = {
+    \ 'gofmt': '-s',
+    \ 'goimports': '',
+    \ }
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+"autocmd FileType go nnoremap <leader>gb :GoBuild <CR>
+autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+let g:go_metalinter_deadline = "5s"
+
+" Markdown
+autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+" there are some defaults for image directory and image name, you can change them
+" let g:mdip_imgdir = 'img'
+" let g:mdip_imgname = 'image'
+
+" PHP (tab width 2 chr)
+autocmd FileType php set sw=2
+autocmd FileType php set ts=2
+autocmd FileType php set sts=2
+" Cucumber (tab width 2 chr)
+autocmd FileType Cucumber set sw=2
+autocmd FileType Cucumber set ts=2
+autocmd FileType Cucumber set sts=2
+" CoffeeScript
+au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
+au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
+
+" Setup Omnicompletion
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType c set omnifunc=ccomplete#Complete
+autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+"improve autocomplete menu color
+highlight Pmenu ctermbg=238 gui=bold
+
+" Turn on javascript folding
+"let b:javascript_fold=1
+" Enabling javascript support for dom,html and css
+let javascript_enable_domhtmlcss=1
+
+" Cscope
+"if has('cscope')
+  "set cscopetag cscopeverbose
+
+  "if has('quickfix')
+    "set cscopequickfix=s-,c-,d-,i-,t-,e-
+  "endif
+
+  "cnoreabbrev csa cs add
+  "cnoreabbrev csf cs find
+  "cnoreabbrev csk cs kill
+  "cnoreabbrev csr cs reset
+  "cnoreabbrev css cs show
+  "cnoreabbrev csh cs help
+
+  "command -nargs=0 Cscope cs add $VIMSRC/src/cscope.out $VIMSRC/src
+"endif
+
+
+" System related
+" Don't write backup file if vim is being called by "crontab -e"
+au BufWrite /private/tmp/crontab.* set nowritebackup
+" Don't write backup file if vim is being called by "chpass"
+au BufWrite /private/etc/pw.* set nowritebackup
+
+" My custom snips:)
+" Enter wy+Space
+iab wy Wayne Ye
+iab wyc http://WayneYe.com
+iab wm http://WayneYe.me
+iab mwy me@wayneye.com
+iab wym wei.ye@me.com
+iab xtg xiaotianpop@gmail.com
+iab vo http://www.vim.org
+
+set secure    " Prevent :autocmd , shell and write commands from being run inside project-specific .vimrc files unless they’re owned by me.
+    &lt;/pre&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</CR></leader></silent></buffer></CR></SID></C-u></leader></CR></leader></CR></leader></CR></leader></CR></leader></CR></leader></Plug></C-S-e></buffer></CR></CR></C-S-e></buffer></CR></Leader></TAB></CR></CR></C-S-e></buffer></CR></CR></C-S-e></buffer></Esc></leader></CR></CR></C-S-e></buffer></CR></CR></C-S-e></buffer></CR></CR></C-S-e></buffer></C-n></Plug></Leader></Plug></Leader></Plug></Leader></cr></buffer></cr></buffer></cr></buffer></CR></buffer></CR></buffer></CR></CR></Esc></C-M-S></CR></Esc></C-M-D></CR></Esc></C-M-M></CR></Esc></C-M-C></CR></Esc></C-M-F></CR></Esc></C-A-S></CR></Esc></C-A-D></CR></Esc></C-A-M></CR></Esc></C-A-C></CR></Esc></C-A-F></c-k></c-p></c-j></c-j></CR></F5></CR></leader></CR></leader></CR></leader></CR></leader></CR></leader></CR></leader></CR></leader></CR></leader></CR></leader></Leader></CR></Enter></Bar></Bslash></Leader></Plug></Plug></CR></C-T></CR></Leader></silent></c-p></CR></CR></leader></CR></F1></cr></leader></q-args></cr></SID></C-U></leader></leader></leader></leader></leader></cr></leader></CR></A-k></CR></A-j></CR></Esc></A-k></CR></Esc></A-j></CR></A-k></CR></A-j></CR></leader></CR></leader></CR></cWORD></CR></leader></CR></CR></leader></CR></CR></CR></leader></Esc></C-Enter></Esc></S-Enter></cr></C-R></Tab></C-N></C-K></C-O></C-X></Tab></S-Tab></Tab></CR></leader></silent></leader></CR></silent></CR></silent></CR></CR></CR></C-R></C-R></CR></Bar></C-U></silent></CR></CR></CR></C-R></C-R></CR></Bar></C-U></silent></CR></C-w></CR></C-t></CR></C-h></CR></C-l></C-W></C-W></C-K></C-W></C-W></C-J></CR></leader></silent></CR></leader></silent></ESC></CR></NL></expr></silent></expr></silent></expr></silent></expr></silent></expr></silent></expr></silent></expr></silent></expr></silent></expr></silent></expr></silent></expr></silent></expr></silent></CR></leader></CR></leader></CR></leader></CR></D-k></CR></D-j></CR></Esc></D-k></CR></Esc></D-j></CR></D-k></CR></D-j></leader></pre></body></html>
+

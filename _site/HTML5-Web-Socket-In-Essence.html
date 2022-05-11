@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Wayne's Geek Life">
 <meta property="og:title" content="HTML5 Web Socket in Essence">
-<meta property="og:url" content="https://wayneye.com/HTML5-Web-Socket-In-Essence">
+<meta property="og:url" content="https://wayneye.me/HTML5-Web-Socket-In-Essence">
 
 
   <meta property="og:description" content="HTML5 WebSocket defines a bi-directional, full-duplex communication channel operates through a single TCP connection, this article discusses its fantastic performance, the WebSocket protocol principle and its handshake mechanism, and develop a WebSocket application in action (Team Poker).&lt;/embed&gt;Embeded youku video link because Youtube is outside of the largest &quot;intranet&quot; in the entire universe!!Table of ContentIntroductionBackgroundWebSocket In EssenceExperimental DemosBrowser SupportWebSocket JavaScript APIDevelop WebSocket In Action - Team PokerOpen IssuesConclusionReferences &amp; Resources&nbsp;IntroductionHTML5 WebSocket&nbsp;defines a bi-directional, full-duplex communication channel that operates through a single TCP socket over the Web, it provides efficient, low-latency and low cost connection between web client and server, based on WebSocket, developers can build&nbsp;scalable,&nbsp;real-time&nbsp;web applications in the future. Section below is the official definition of WebSocket copied from&nbsp;IETF WebSocket protocol&nbsp;page:&nbsp;The WebSocket protocol enables two-way communication between a user agent running untrusted code running in a controlled environment to a remote host that has opted-in to communications from that code. &nbsp;The security model used for this is the Origin-based security model commonly used by Web browsers. &nbsp;The protocol consists of an initial handshake followed by basic message framing, layered over TCP. &nbsp;The goal of this technology is to provide a mechanism for browser-based applications that need two-way communication with servers that does not rely on opening multiple HTTP connections (e.g. using XMLHttpRequest or &lt;iframe&gt;s and long polling).This article is trying to go through WebSocket basic concept, the problems it is going to solve, explain it in essence,&nbsp;watch some experimental Demos, develop a simple WebSocket&nbsp;application in action (Team Poker), and describe current open issues of WebSocket. I sincerely hope it will be&nbsp;systematically,&nbsp;easy to understand,&nbsp;from surface to deep&nbsp;so that eventually readers would not only learn what WebSocket is from high level but also&nbsp;understand it in depth!&nbsp;Any thoughts, suggestions or criticism&nbsp;you may have after reading this article will help me to improve in the future, i would appreciate it if you could leave a comment.BackgroundIn traditional web applications, in order to achieve some real-time interaction with server, developers had to employ several tricky ways such as Ajax polling,&nbsp;Comet&nbsp;(A.K.A Ajax push,&nbsp;Full Duplex Ajax,&nbsp;HTTP Streaming, etc.),&nbsp;those technologies either periodically fire HTTP requests to server or hold the HTTP connection with server for a long time, which&nbsp;&quot;contain lots of additional, unnecessary header data and introduce latency&quot; and resulted in &quot;an outrageously high price tag&quot;.&nbsp;websocket.org explained the problems exhaustively, compared the performance&nbsp;of Ajax polling and WebSocket in detail, built up two simple web pages, one periodically communicated with server using traditional HTTP and the other used HTML5 WebSocket, in the testing each HTTP&nbsp;request/response header is approximate 871 byte, while data length of WebSocket connection is much shorter: 2 bytes after connection established, as the transfer count getting larger, the result will be:Traditional HTTP Request&nbsp;Use case A: 1,000 clients polling every second: Network throughput is (871 x 1,000) = 871,000 bytes = 6,968,000 bits per second (6.6 Mbps)Use case B: 10,000 clients polling every second: Network throughput is (871 x 10,000) = 8,710,000 bytes = 69,680,000 bits per second (66 Mbps)Use case C: 100,000 clients polling every 1 second: Network throughput is (871 x 100,000) = 87,100,000 bytes = 696,800,000 bits per second (665 Mbps)HTML5 WebSocketUse case A: 1,000 clients receive 1 message per second: Network throughput is (2 x 1,000) = 2,000 bytes = 16,000 bits per second (0.015 Mbps)Use case B: 10,000 clients receive 1 message per second: Network throughput is (2 x 10,000) = 20,000 bytes = 160,000 bits per second (0.153 Kbps)Use case C: 100,000 clients receive 1 message per second: Network throughput is (2 x 100,000) = 200,000 bytes = 1,600,000 bits per second (1.526 Kbps)Finally a more readable diagram:&nbsp;&quot;HTML5 Web Sockets can provide a 500:1 or &mdash; depending on the size of the HTTP headers &mdash; even a 1000:1 reduction in unnecessary HTTP header traffic and 3:1 reduction in latency&quot;. &nbsp;--WebSocket.orgWebSocket In EssenceThe motivation of creating WebSocket is to replace polling and long polling(Comet), and endow HTML5 web application the ability of real-time communication. Browser based web application can fire WebSocket connection request through JavaScript API, and then transfer data with server over only one TCP connection.">
@@ -30,7 +30,7 @@
   <meta name="twitter:site" content="@wayneye">
   <meta name="twitter:title" content="HTML5 Web Socket in Essence">
   <meta name="twitter:description" content="HTML5 WebSocket defines a bi-directional, full-duplex communication channel operates through a single TCP connection, this article discusses its fantastic performance, the WebSocket protocol principle and its handshake mechanism, and develop a WebSocket application in action (Team Poker).&lt;/embed&gt;Embeded youku video link because Youtube is outside of the largest &quot;intranet&quot; in the entire universe!!Table of ContentIntroductionBackgroundWebSocket In EssenceExperimental DemosBrowser SupportWebSocket JavaScript APIDevelop WebSocket In Action - Team PokerOpen IssuesConclusionReferences &amp; Resources&nbsp;IntroductionHTML5 WebSocket&nbsp;defines a bi-directional, full-duplex communication channel that operates through a single TCP socket over the Web, it provides efficient, low-latency and low cost connection between web client and server, based on WebSocket, developers can build&nbsp;scalable,&nbsp;real-time&nbsp;web applications in the future. Section below is the official definition of WebSocket copied from&nbsp;IETF WebSocket protocol&nbsp;page:&nbsp;The WebSocket protocol enables two-way communication between a user agent running untrusted code running in a controlled environment to a remote host that has opted-in to communications from that code. &nbsp;The security model used for this is the Origin-based security model commonly used by Web browsers. &nbsp;The protocol consists of an initial handshake followed by basic message framing, layered over TCP. &nbsp;The goal of this technology is to provide a mechanism for browser-based applications that need two-way communication with servers that does not rely on opening multiple HTTP connections (e.g. using XMLHttpRequest or &lt;iframe&gt;s and long polling).This article is trying to go through WebSocket basic concept, the problems it is going to solve, explain it in essence,&nbsp;watch some experimental Demos, develop a simple WebSocket&nbsp;application in action (Team Poker), and describe current open issues of WebSocket. I sincerely hope it will be&nbsp;systematically,&nbsp;easy to understand,&nbsp;from surface to deep&nbsp;so that eventually readers would not only learn what WebSocket is from high level but also&nbsp;understand it in depth!&nbsp;Any thoughts, suggestions or criticism&nbsp;you may have after reading this article will help me to improve in the future, i would appreciate it if you could leave a comment.BackgroundIn traditional web applications, in order to achieve some real-time interaction with server, developers had to employ several tricky ways such as Ajax polling,&nbsp;Comet&nbsp;(A.K.A Ajax push,&nbsp;Full Duplex Ajax,&nbsp;HTTP Streaming, etc.),&nbsp;those technologies either periodically fire HTTP requests to server or hold the HTTP connection with server for a long time, which&nbsp;&quot;contain lots of additional, unnecessary header data and introduce latency&quot; and resulted in &quot;an outrageously high price tag&quot;.&nbsp;websocket.org explained the problems exhaustively, compared the performance&nbsp;of Ajax polling and WebSocket in detail, built up two simple web pages, one periodically communicated with server using traditional HTTP and the other used HTML5 WebSocket, in the testing each HTTP&nbsp;request/response header is approximate 871 byte, while data length of WebSocket connection is much shorter: 2 bytes after connection established, as the transfer count getting larger, the result will be:Traditional HTTP Request&nbsp;Use case A: 1,000 clients polling every second: Network throughput is (871 x 1,000) = 871,000 bytes = 6,968,000 bits per second (6.6 Mbps)Use case B: 10,000 clients polling every second: Network throughput is (871 x 10,000) = 8,710,000 bytes = 69,680,000 bits per second (66 Mbps)Use case C: 100,000 clients polling every 1 second: Network throughput is (871 x 100,000) = 87,100,000 bytes = 696,800,000 bits per second (665 Mbps)HTML5 WebSocketUse case A: 1,000 clients receive 1 message per second: Network throughput is (2 x 1,000) = 2,000 bytes = 16,000 bits per second (0.015 Mbps)Use case B: 10,000 clients receive 1 message per second: Network throughput is (2 x 10,000) = 20,000 bytes = 160,000 bits per second (0.153 Kbps)Use case C: 100,000 clients receive 1 message per second: Network throughput is (2 x 100,000) = 200,000 bytes = 1,600,000 bits per second (1.526 Kbps)Finally a more readable diagram:&nbsp;&quot;HTML5 Web Sockets can provide a 500:1 or &mdash; depending on the size of the HTTP headers &mdash; even a 1000:1 reduction in unnecessary HTTP header traffic and 3:1 reduction in latency&quot;. &nbsp;--WebSocket.orgWebSocket In EssenceThe motivation of creating WebSocket is to replace polling and long polling(Comet), and endow HTML5 web application the ability of real-time communication. Browser based web application can fire WebSocket connection request through JavaScript API, and then transfer data with server over only one TCP connection.">
-  <meta name="twitter:url" content="https://wayneye.com/HTML5-Web-Socket-In-Essence">
+  <meta name="twitter:url" content="https://wayneye.me/HTML5-Web-Socket-In-Essence">
 
   
     <meta name="twitter:card" content="summary">
@@ -48,7 +48,7 @@
 
 
 
-<link rel="canonical" href="https://wayneye.com/HTML5-Web-Socket-In-Essence">
+<link rel="canonical" href="https://wayneye.me/HTML5-Web-Socket-In-Essence">
 
 
 
@@ -201,11 +201,11 @@
       
         
           
-            <li><a href="mailto:me@wayneye.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+            <li><a href="mailto:me@wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
           
         
           
-            <li><a href="https://wayneye.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+            <li><a href="https://wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
           
         
           
@@ -664,11 +664,11 @@ HTML5 WebSocket defines a bi-directional, full-duplex communication channel oper
     <!--<h4 class="page__share-title">Share on</h4>-->
   <!---->
 
-  <!--<a href="https://twitter.com/intent/tweet?via=wayneye&text=HTML5+Web+Socket+in+Essence%20https%3A%2F%2Fwayneye.com%2FHTML5-Web-Socket-In-Essence" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>-->
+  <!--<a href="https://twitter.com/intent/tweet?via=wayneye&text=HTML5+Web+Socket+in+Essence%20https%3A%2F%2Fwayneye.me%2FHTML5-Web-Socket-In-Essence" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>-->
 
-  <!--<a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwayneye.com%2FHTML5-Web-Socket-In-Essence" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>-->
+  <!--<a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwayneye.me%2FHTML5-Web-Socket-In-Essence" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>-->
 
-  <!--<a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwayneye.com%2FHTML5-Web-Socket-In-Essence" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>-->
+  <!--<a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwayneye.me%2FHTML5-Web-Socket-In-Essence" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>-->
 
   
   <figure style="margin-top: 10px; width: 380px;">
@@ -876,11 +876,11 @@ And hid his face amid a crowd of stars.
     
       
         
-          <li><a href="mailto:admin@wayneye.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          <li><a href="mailto:me@wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
         
       
         
-          <li><a href="https://wayneye.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+          <li><a href="https://wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
         
       
         
@@ -901,7 +901,7 @@ And hid his face amid a crowd of stars.
   </ul>
 </div>
 
-<div class="page__footer-copyright">© 2021 Wayne Ye. All rights reserved.
+<div class="page__footer-copyright">© 2022 Wayne Ye. All rights reserved.
  
   <!--Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>-->
 
@@ -921,7 +921,7 @@ And hid his face amid a crowd of stars.
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://wayneye.com/HTML5-Web-Socket-In-Essence";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.url = "https://wayneye.me/HTML5-Web-Socket-In-Essence";  // Replace PAGE_URL with your page's canonical URL variable
       this.page.identifier = "/HTML5-Web-Socket-in-Essence"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     (function() { // DON'T EDIT BELOW THIS LINE

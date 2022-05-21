@@ -1,7 +1,7 @@
 name: "Wayne Ye"
 title: Wayne's Geek Life
 title_separator: "-"
-email: xiaotianpop@gmail.com
+email: hi@wayneye.me
 keyword: "Wayne Ye,WayneYe.me,Geek,Programming,C#,ASP.NET,GO,Python,Ruby,Rails,Cucumber,JavaScript,nodejs,HTML5,SOLID,AWS,Microservices"
 description: "I am a software engineer, technical lead and also a geek, I've immersed in software/web development for 14 years, I hack using these languages: Python, Golang, JavaScript/nodejs, Ruby/RoR, C#. I am an AWS Certified Solutions Architect (2017-2019), PMP and CodeProject MVP."
 url: "https://wayneye.me"
@@ -26,7 +26,7 @@ author:
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: mailto:me@wayneye.me
+      url: mailto:hi@wayneye.me
     - label: "Website"
       icon: "fas fa-fw fa-link"
       url: "https://wayneye.me"
@@ -193,7 +193,7 @@ footer:
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: mailto:me@wayneye.me
+      url: mailto:hi@wayneye.me
     - label: "Website"
       icon: "fas fa-fw fa-link"
       url: "https://wayneye.me"

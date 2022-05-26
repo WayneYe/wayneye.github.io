@@ -34,20 +34,14 @@ layout: raw-page
         <div id="hd">
           <div class="yui-gc">
             <div class="yui-u first">
-              <h1>
-                Wei Ye (Wayne)</h1>
-              <h2>
-                Full Stack Developer/Tech Lead</h2>
+              <h1>Wei Ye (Wayne)</h1>
+              <h2>Full Stack Developer/Tech Lead</h2>
               <!--Contact info -->
               <div class="contact-info">
-                <h3>
-                  Website: <a href="http://wayneye.com">http://WayneYe.com</a></h3>
-                <h3>
-                  Email: <a href="mailto:admin@wayneye.com">me@wayneye.com</a></h3>
-                <h3>
-                  Mobile: +1-415-494-1873</h3>
-                <h3>
-                  Birthday: October 3rd, 1982</h3>
+                <h3>Website: <a href="http://wayneye.com">http://WayneYe.com</a></h3>
+                <h3>Email: <a href="mailto:wei.ye@me.com">wei.ye@me.com</a></h3>
+                <h3>Mobile: +1-415-494-1873</h3>
+                <h3>Constellation: Libra</h3>
               </div>
             </div>
             <div class="yui-u">

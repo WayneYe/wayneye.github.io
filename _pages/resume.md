@@ -11,7 +11,7 @@ layout: raw-page
 <head>
   <title>Wayne Ye - Resume</title>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <meta name="keywords" content="Wayne Ye, Geek, CV, Resume, WayneYe.com" />
+  <meta name="keywords" content="Wayne Ye, Geek, CV, Resume, wayneye.me" />
   <meta name="description" content="Wayne's resume." />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <link rel="stylesheet" type="text/css" href="/assets/css/resume/yui-reset.css" media="all" />
@@ -19,13 +19,13 @@ layout: raw-page
 </head>
 
 <body>
-  <div id="printBtn">
+  <div id="printBtn" class="func-btn">
     <a class="btn" href="javascript:window.print();">Print</a>
   </div>
-  <div id="downloadWord">
+  <div id="downloadWord" class="func-btn">
     <a class="btn" href="https://github.com/WayneYe/wayneye.github.io/raw/master/resume/Wayne_Ye_Resume.docx">Download Word</a>
   </div>
-  <div id="downloadPdf">
+  <div id="downloadPdf" class="func-btn">
     <a class="btn" href="https://github.com/WayneYe/wayneye.github.io/raw/master/resume/Wayne_Ye_Resume.pdf">Download PDF</a>
   </div>
   <div id="doc2" class="yui-t7">
@@ -35,12 +35,12 @@ layout: raw-page
           <div class="yui-gc">
             <div class="yui-u first">
               <h1>Wei Ye (Wayne)</h1>
-              <h2>Full Stack Developer/Tech Lead</h2>
+              <h2>Full Stack/Staff Software Engineer</h2>
               <!--Contact info -->
               <div class="contact-info">
-                <h3>Website: <a href="http://wayneye.com">http://WayneYe.com</a></h3>
+                <h3>Website: <a href="https://wayneye.me" target="_blank">https://wayneye.me</a></h3>
                 <h3>Email: <a href="mailto:wei.ye@me.com">wei.ye@me.com</a></h3>
-                <h3>Mobile: +1-415-494-1873</h3>
+                <h3>Mobile: +(1)415-494-1873</h3>
                 <h3>Constellation: Libra</h3>
               </div>
             </div>
@@ -62,7 +62,7 @@ layout: raw-page
               <div class="yui-u">
                 <p>
                   Veteran full stack engineer/technical lead, certified AWS Solutions Architect, CodeProject MVP, over
-                  <script>document.write((new Date()).getFullYear() - 2005)</script> years' solid experience in a wide range of programming languages/platforms including in C# (ASP.NET), Python (Django/Flask), JavaScript/Nodejs, Ruby (RoR), team player, hard problem solver, with strong expertise and passion in delivering highly available, scalable web/cloud services.
+                  <script>document.write((new Date()).getFullYear() - 2005)</script> years' solid experience in a wide range of programming languages/platforms including in C# (ASP.NET), Python (Django/Flask), JavaScript/TypeScript, Ruby (RoR), team player and problem solver, with strong expertise and passion in delivering highly available, scalable web/cloud services.
                 </p>
               </div>
             </div>
@@ -82,7 +82,8 @@ layout: raw-page
                     )
                   </li>
                   <li><a href="http://www.codeproject.com/script/Awards/MVPWinners.aspx" target="_blank">CodeProject MVP</a>.</li>
-                  <li>First prize winner in <a href="http://www.codeproject.com/script/Awards/Winners.aspx?obtid=2&cmpTpId=3&cid=494" target="_blank">CodeProject HTML5 &amp; CSS3 Competition</a>, the award was an Ipad 2.</li>
+                  <li>First prize winner in <a href="https://www.codeproject.com/script/contests/Winners.aspx?pgnum=4" target="_blank">CodeProject HTML5 &amp; CSS3 Competition</a> in year 2011, the award was an Ipad 2.</li>
+                  <li>PSIA Certified Ski instructor (Alpine Level 1)</li>
                 </ul>
               </div>
             </div>
@@ -98,7 +99,13 @@ layout: raw-page
                   <h3>Staff Software Engineer</h3>
                   <h4>Oct 2021 - Now</h4>
                   <p>
-                    Helping Sisu builing industrial leading decision making engine based on KDA (Key Driver Analysis). I worked with PMs, engineering leads in designing/developing service architecture, RESTful APIs, and AWS infra.  Using technologies: Python, Rust, Docker/Kubernetes, Snowflake, React.
+                    <ul>
+                        <li>Helping Sisu builing industrial leading decision making engine based on KDA (Key Driver Analysis). I worked closly with senior/staff engineers in designing service architecture and technical solution.</li>
+                        <li>Administrate Sisu infrastructure on both AWS and GCP, achieved higher availability and 40% cost reduction within 6 months.</li>
+                    </ul>
+                  </p>
+                  <p>
+                    Key technologies: Python, Rust, TypeScript, Kubernetes (EKS/GKE), Snowflake, CircleCI.
                   </p>
                 </div>
                 <div class="job">
@@ -106,16 +113,19 @@ layout: raw-page
                   <h3>Principle Engineer/Technical Lead</h3>
                   <h4>Jan 2015 - Oct 2021</h4>
                   <p>
-                    Led a development team and built the <a href="https://health.autodesk.com" target="_blank">Autodesk Health Dashboard</a> from scratch, it is the centralized health platform for Autodesk customers around the globe for real time services status/maintenance schedule updates, it monitors 300+ products/micro services, built for accuracy, elesticity and scalability, core technologies including: Python+Django+Flask, React, it runs 100% on AWS (ECS/Lambda 2000+/Aurora/Elasticache(Redis)/DynamoDB/CloudFront, etc).
+                    <ul>
+                        <li>Designed/cofounded <a href="https://health.autodesk.com" target="_blank">Autodesk Health Dashboard</a>, it is the centralized health platform for Autodesk customers around the globe for real time services status/maintenance schedule updates, it also monitors 500+ Autodesk products/micro services, built for real-time accurate detecting, alerting, fully elestic and scalabal.</li>
+                        <li>Fullstack engineer (working with PM, designer) for <a href="https://drive.autodesk.com/" _target="_blank">Autodesk Drive</a> and <a href="https://forge.autodesk.com/" target="_blank">Autodesk Forge</a>, <a href="https://accounts.autodesk.com/" _target="blank">Autodesk Accounts</a></li>
+                    </ul>
+                    <p>Key technologies including: Python+Django+Flask, React, AWS ECS/Lambda/Aurora/Elasticache(Redis)/DynamoDB/CloudFront, etc.</p>
                   </p>
-                  <p>Other projects I worked on: <a href="https://drive.autodesk.com/" _target="_blank">Autodesk Drive</a>, <a href="https://forge.autodesk.com/" target="_blank">Autodesk Forge</a>, <a href="https://accounts.autodesk.com/" _target="blank">Autodesk Accounts</a></p>
                 </div>
                 <div class="job">
                   <h2 id="adsk-sgp">Autodesk (Singapore)</h2>
                   <h3>Technical Lead</h3>
                   <h4>May 2013 - Dec 2014</h4>
                   <p>
-                    Led a development team and built <a href="https://forge.autodesk.com" target="_blank">Autodesk Developer Platform</a>, it provids a SaaS development portal for Autodesk developers around the globe, technical stacks including Python+Django, Nodejs, C#, MongoDB/Cassandra, Docker, Mesos, ZooKeeper, etc.
+                    Led a development team and built <a href="https://forge.autodesk.com" target="_blank">Autodesk Developer Platform</a> from scratch, it provids a SaaS development portal for Autodesk developers around the globe, technical stacks including Python+Django, Nodejs, C#, MongoDB/Cassandra, Docker, Mesos, ZooKeeper, etc.
                   </p>
                 </div>
                 <div class="job">
@@ -174,8 +184,8 @@ layout: raw-page
                   <h4>Jul 2005 - Nov 2007</h4>
                   <p>
                     Developed several web projects for Kintera, including: <a href="http://www.kintera.org/site/pp.asp?c=gqLRI0ODKpF&amp;b=2455257" target="_blank">
-                                            Import Center</a>, Transaction Platform, Financial Link and <a href="http://www.kintera.org/site/pp.asp?c=gqLRI0ODKpF&amp;b=2455275" target="_blank">
-                                            Single Gift Entry</a>, using technologies including C#, ASP.NET, Ajax, etc.
+                      Import Center</a>, Transaction Platform, Financial Link and <a href="http://www.kintera.org/site/pp.asp?c=gqLRI0ODKpF&amp;b=2455275" target="_blank">
+                      Single Gift Entry</a>, using technologies including C#, ASP.NET, Ajax, etc.
                   </p>
                 </div>
               </div>
@@ -193,14 +203,16 @@ layout: raw-page
               </div>
             </div>
             <!--Hobby-->
-            <div class="yui-gf">
-              <div class="yui-u first">
-                <h2>Hobby</h2>
-              </div>
-              <div class="yui-u">
-                <p>Traveling, computer hardware, electronics, driving, coding, writing technical articles/blogs.</p>
-              </div>
-            </div>
+            <!--
+               -<div class="yui-gf">
+               -  <div class="yui-u first">
+               -    <h2>Hobby</h2>
+               -  </div>
+               -  <div class="yui-u">
+               -    <p>Traveling, computer hardware, electronics, driving, coding, writing technical articles/blogs.</p>
+               -  </div>
+               -</div>
+            -->
             <!--Education-->
             <div class="yui-gf last">
               <div class="yui-u first">
@@ -208,7 +220,7 @@ layout: raw-page
               </div>
               <div class="yui-u">
                 <h2>Wuhan Jianghan University (2001 - 2005)</h2>
-                <h3>Computer Science & Technology</h3>
+                <h3>Bachelor Degree, Computer Science and Technology</h3>
               </div>
             </div>
           </div>
@@ -224,5 +236,4 @@ layout: raw-page
   <!--Resume End-->
 
 </body>
-
 </html>

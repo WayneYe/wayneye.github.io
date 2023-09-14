@@ -114,7 +114,7 @@ layout: raw-page
                   <h4>Jan 2015 - Oct 2021</h4>
                   <p>
                     <ul>
-                        <li>Designed/cofounded <a href="https://health.autodesk.com" target="_blank">Autodesk Health Dashboard</a>, it is the centralized health platform for Autodesk customers around the globe for real time services status/maintenance schedule updates, it also monitors 500+ Autodesk products/micro services, built for real-time accurate detecting, alerting, fully elestic and scalabal.</li>
+                        <li>Designed/cofounded <a href="ttps://health.autodesk.com" target="_blank">Autodesk Health Dashboard</a>, it is the centralized health platform for Autodesk customers around the globe for real time services status/maintenance schedule updates, it also monitors 500+ Autodesk products/micro services, built for real-time accurate detecting, alerting, fully elestic and scalable.</li>
                         <li>Fullstack engineer (working with PM, designer) for <a href="https://drive.autodesk.com/" _target="_blank">Autodesk Drive</a> and <a href="https://forge.autodesk.com/" target="_blank">Autodesk Forge</a>, <a href="https://accounts.autodesk.com/" _target="blank">Autodesk Accounts</a></li>
                     </ul>
                     <p>Key technologies including: Python+Django+Flask, React, AWS ECS/Lambda/Aurora/Elasticache(Redis)/DynamoDB/CloudFront, etc.</p>
@@ -191,6 +191,7 @@ layout: raw-page
               </div>
             </div>
             <!--Motto-->
+            <!--
             <div class="yui-gf">
               <div class="yui-u first">
                 <h2>Motto</h2>
@@ -202,6 +203,7 @@ layout: raw-page
                 <p>High cohesion, lose coupling.</p>
               </div>
             </div>
+            -->
             <!--Hobby-->
             <!--
                -<div class="yui-gf">
@@ -219,7 +221,7 @@ layout: raw-page
                 <h2>Education</h2>
               </div>
               <div class="yui-u">
-                <h2>Wuhan Jianghan University (2001 - 2005)</h2>
+                <h2>Wuhan JiangHan University (2001 - 2005)</h2>
                 <h3>Bachelor Degree, Computer Science and Technology</h3>
               </div>
             </div>
@@ -227,13 +229,7 @@ layout: raw-page
         </div>
       </div>
     </div>
-    <div id="downloadBtnBottom">
-      <a class="btn" href="javascript:window.print();">Print</a>&nbsp;
-      <a class="btn" href="resume/Wayne_Ye_Resume.docx">Download Word</a>&nbsp;
-      <a class="btn" href="resume/Wayne_Ye_Resume.pdf">Download PDF</a>
-    </div>
   </div>
   <!--Resume End-->
-
 </body>
 </html>

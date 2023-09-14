@@ -21,7 +21,7 @@ permalink: {2}
 """
 
 blogs = []
-with open('/Users/yewe/Documents/blogs.csv', 'r') as csv_file:
+with open('/Users/wayne/Documents/blogs.csv', 'r') as csv_file:
     csv_reader = csv.reader(csv_file)
 
     counter = 0
@@ -41,7 +41,7 @@ with open('/Users/yewe/Documents/blogs.csv', 'r') as csv_file:
             content = row[4]
             date_str = row[5]
             date_str = date_str[0:date_str.index(' ')]
-            blog_file = '/Users/yewe/projects/wayneye.github.io/_posts/' + date_str + '-' + url_safe_title + '.html'
+            blog_file = '/Users/wayne/projects/wayneye.github.io/_posts/' + date_str + '-' + url_safe_title + '.html'
             blog_content = BLOG_CONTENT.format(title, category, permalink, content)
             with open(blog_file, 'w') as w:
                 w.write(blog_content)
@@ -50,7 +50,7 @@ with open('/Users/yewe/Documents/blogs.csv', 'r') as csv_file:
 
 
 # Write CSV file
-# with open('/Users/yewe/Desktop/all_subscribers_count.csv', 'w', newline='') as csvoutput:
+# with open('/Users/wayne/Desktop/all_subscribers_count.csv', 'w', newline='') as csvoutput:
     # writer = csv.writer(csvoutput)
     # for row in blogs:
     # writer.writerows(blogs)

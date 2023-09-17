@@ -353,4 +353,9 @@ var store = [{
         "excerpt":"Life is too short to drive boring cars I bought a 2015 BMW X5 Dec last year, it has been half a year so far (with 2 months she stayed inside the garage for most of the time due to the pandemic), I am pretty satisfied with it, her condition...","categories": ["Life"],
         "tags": ["Car","Life"],
         "url": "https://wayneye.me/BMW-Convertible-As-My-Beater-Car",
+        "teaser":null},{
+        "title": "RIP Bram Moolenaar - Father of Vim",
+        "excerpt":"From the most recent MacVim release note: As some of you may have read, Bram Moolenaar, the creator and maintainer of Vim, has passed away recently. He has worked tirelessly on Vim for more than 30 years and this release is dedicated to him. If you would like, you could...","categories": ["Life"],
+        "tags": ["Tech","Vim"],
+        "url": "https://wayneye.me/RIP-Bram-Moolenaar",
         "teaser":null}]

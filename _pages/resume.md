@@ -82,7 +82,7 @@ layout: raw-page
                     )
                   </li>
                   <li><a href="http://www.codeproject.com/script/Awards/MVPWinners.aspx" target="_blank">CodeProject MVP</a>.</li>
-                  <li>First prize winner in <a href="https://www.codeproject.com/script/contests/Winners.aspx?pgnum=4" target="_blank">CodeProject HTML5 &amp; CSS3 Competition</a> in year 2011, the award was an iPad 2.</li>
+                  <li>First prize winner in <a href="https://www.codeproject.com/script/contests/Winners.aspx?pgnum=4" target="_blank">CodeProject HTML5 &amp; CSS3 Competition</a> in 2011, the award was an iPad 2.</li>
                   <li>PSIA Certified Ski instructor (Alpine Level 1)</li>
                 </ul>
               </div>
@@ -100,7 +100,7 @@ layout: raw-page
                   <h4>Oct 2021 - Now</h4>
                   <p>
                     <ul>
-                        <li>Helping Sisu builing industrial leading decision making engine based on KDA (Key Driver Analysis). I worked closly with senior/staff engineers in designing service architecture and technical solution.</li>
+                        <li>Helping Sisu build industrial-leading decision-making engine based on KDA (Key Driver Analysis). I worked closely with senior/staff engineers in designing service architecture and technical solutions.</li>
                         <li>Administrate Sisu infrastructure on both AWS and GCP, achieved higher availability and 40% cost reduction within 6 months.</li>
                     </ul>
                   </p>
@@ -147,7 +147,7 @@ layout: raw-page
                   <h2 id="sap">SAP Labs Shanghai</h2>
                   <h3>Tech Lead</h3>
                   <h4>Dec 2011 - Apr 2012</h4>
-                  <p>Led a engineer team which was responsible to build the HTML5 + JavaScript web client of <a href="http://www.youtube.com/watch?v=CciipM5ttsc" target="_blank">SAP Business One&reg;</a> OnDemand Control Center.
+                  <p>Led an engineering team that was responsible for building the HTML5 + JavaScript web client of <a href="http://www.youtube.com/watch?v=CciipM5ttsc" target="_blank">SAP Business One&reg;</a> OnDemand Control Center.
                   </p>
                   <ul>
                     <li>Designed JavaScript architecture and built up core framework.</li>
@@ -162,7 +162,7 @@ layout: raw-page
                   <h4>
                     Mar 2009 - Dec 2011</h4>
                   <p>
-                    As a tech lead, I led a development team in Shanghai cooperated with US team on delivering several HP Software Products:
+                    As a tech lead, I led a development team in Shanghai and collaborated with US team on delivering several HP Software Products:
                     <a href="http://www8.hp.com/us/en/support-drivers/total-care/hp-advisor.html?_sm_au_=iVVqvRFSZ0S630Hr" target="_blank">HP Total Care Advisor&reg;</a>,
                     <a href="http://h10025.www1.hp.com/ewfrf/wc/document?docname=c02604915&cc=us&dlc=en&lc=en&jumpid=reg_R1002_USEN" target="_blank">HP Customer Experience Enhancement</a>.
                   </p>

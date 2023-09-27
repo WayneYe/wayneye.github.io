@@ -111,10 +111,10 @@ layout: raw-page
                 <div class="job">
                   <h2 id="adsk">Autodesk (San Francisco)</h2>
                   <h3>Principle Engineer/Technical Lead</h3>
-                  <h4>Jan 2015 - Oct 2021</h4>
+                  <h4>Jan 2015 - Mar 2019</h4>
                   <p>
                     <ul>
-                        <li>Designed/co-founded <a href="ttps://health.autodesk.com" target="_blank">Autodesk Health Dashboard</a>, it is the centralized health platform for Autodesk customers around the globe for real time services status/maintenance schedule updates, it also monitors 500+ Autodesk products/micro services, built for real-time accurate detecting, alerting, fully elastic and scalable.</li>
+                        <li>Designed/co-founded <a href="ttps://health.autodesk.com" target="_blank">Autodesk Health Dashboard</a>, a real-time health mornitoring/alerting platform, it monitors/measures 800+ Autodesk micro services, providing SLOs/SLAs and error budget comsumption reports, it was designed and built for highly availability, fully elastic and scalable.</li>
                         <li>Full-stack engineer (working with PM, designer) for <a href="https://drive.autodesk.com/" _target="_blank">Autodesk Drive</a> and <a href="https://forge.autodesk.com/" target="_blank">Autodesk Forge</a>, <a href="https://accounts.autodesk.com/" _target="blank">Autodesk Accounts</a></li>
                     </ul>
                     <p>Key technologies including: Python+Django+Flask, React, AWS ECS/Lambda/Aurora/Elasticache(Redis)/DynamoDB/CloudFront, etc.</p>

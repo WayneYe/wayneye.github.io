@@ -100,7 +100,7 @@ layout: raw-page
                   <h4>Oct 2021 - Now</h4>
                   <p>
                     <ul>
-                        <li>Helping Sisu build industrial-leading decision-making engine based on KDA (Key Driver Analysis). I worked closely with senior/staff engineers in designing service architecture and technical solutions.</li>
+                        <li>Build backend APIs for KDA (Key Driver Analysis) based decision-making engine; optimize terabyte data warehouse ingesting performance.</li>
                         <li>Administrate Sisu infrastructure on both AWS and GCP, achieved higher availability and 40% cost reduction within 6 months.</li>
                     </ul>
                   </p>

@@ -95,6 +95,17 @@ layout: raw-page
               </div>
               <div class="yui-u">
                 <div class="job">
+                  <h2 id="sisu">Hewlett-Packard Enterprise</h2>
+                  <h3>Senior Cloud Engineer</h3>
+                  <h4>Nov 2023 - Now</h4>
+                  <p>
+                    Building the next generation of enterprise AP authentication/authorization platform under the HPE Greenlake cloud.
+                  </p>
+                  <p>
+                    Key technologies: Rust, Python, Golang, TypeScript, Kubernetes (EKS/GKE).
+                  </p>
+                </div>
+                <div class="job">
                   <h2 id="sisu">Sisu Data</h2>
                   <h3>Staff Software Engineer</h3>
                   <h4>Oct 2021 - Now</h4>

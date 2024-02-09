@@ -1,7 +1,6 @@
 # Start server
-JEKYLL_ENV=production bundle exec jekyll serve
-## Better local watch performance (WYSWYG)
-bundle exec jekyll serve --strict_front_matter --watch --limit_posts 2
+Local live reloading: `bundle exec jekyll serve --strict_front_matter --livereload --limit_posts 5`
+Production: `JEKYLL_ENV=production bundle exec jekyll serve`
 
 # Common syntax
 

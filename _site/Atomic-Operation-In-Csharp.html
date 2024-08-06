@@ -1,0 +1,747 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.16.3 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Atomic Operation in C#.Net - Wayne’s Geek Life</title>
+<meta name="description" content="IntroductionAtomic Operation is named academic to Linearizability,&nbsp;Atomicity is a guarantee of isolation from concurrent processes, it can be enfored by hardware level build on Cache&nbsp;Coherence protocol, or software level exclusive lock. In this blog post, I am going to explore a few number of mechanisms to achieve atomic operation in .Net.What are Atomic operations and what are not?In C# Specification, the stamement about atomic operation is:&ldquo;Reads and writes of the following data types shall be atomic: bool, char, byte, sbyte, short, ushort, uint, int, float, and reference types.&rdquo; Also: &ldquo;&hellip;there is no guarantee of atomic read-modify-write, such as in the case of increment or decrement.&rdquo;.Threading In C#&nbsp;by Joseph Albahari described:&quot;Read/write on a field of 32-bit or less is always atomic, operations on 64-bit are guaranteed to be atomic only in 64-bit OS, statements that combine more than one read/write operation are never atomic.&quot;For example, following operations are guaranteed to be atomic operations: int i = 3; // Always atomic long l = Int64.MaxValue; // Atomic in 64-bit enviroment, non-atomic on 32-bit environmentCode like below are never atomic: int i = 0; int j += i;&nbsp; // Non-atomic, read and write operation i++;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Non-atomic, read and write operationAnd I am trying to document atomic operation in a lower level in the section below.EssenceComsidering two threads (or two processes) are running simultaneously: T1 and T2, there is a field stored in memory, T1 reads its value and do some calculation on the value and finally write the new value back to memory, during the period T2 was actually doing exact same task - i.e. read/calculate/write value back, so possibly one operation on this field overrides another - in other word:&nbsp;the later executed thread (T2) might override the earlier executed one (T1) because when it read the field&#39;s value another thread was just manipulating on it, and after T1 finished writing the new value back to memory, T2 writes back.So a simple example is the increament/decrement operation, as I showed above, it is NOT an atomic operation, it requires both read and write, if many thread simultaneously doing increment on one field, it will very possible cause race condition (the more threads, the more increment operation going to do, the more possibility race condition happen).Atomicity exampleI wrote a Winform application, it do simple work:Create 10 threads at runtime and simultaneously operates on a private interger, there is a volatile counter with initial value 0, every thread finishes its work will:Print information on UI.Increment the counterCheck whether the counter reachs 10, if yes, print CalculatingFinished method which will print the final result.And I wish UI won&#39;t block during the calculation, otherwise I can simply join every created thread. My code skeleton is showing below: private const int MaxThraedCount = 10; private Thread[] m_Workers = new Thread[MaxThraedCount]; private volatile int m_Counter = 0; private Int32 x = 0;  protected void btn_DoWork_Click(object sender, EventArgs e) { &nbsp;&nbsp;&nbsp; ShowStatus(&quot;Starting...&quot;);  &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; MaxThraedCount; i++) &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m_Workers[i] = new Thread(IncreaseNumber) { Name = &quot;Thread &quot; + (i + 1) }; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m_Workers[i].Start(); &nbsp;&nbsp;&nbsp; } }  void IncreaseNumber() { &nbsp;&nbsp;&nbsp; try &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 10000; i++) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Different strategy to increment x &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ShowStatus(String.Format(&quot;{0} finished at {1}&quot;, Thread.CurrentThread.Name, m_Watcher.Elapsed.TotalMilliseconds)); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Increases Counter and decides whether or not sets the finish signal &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m_Counter++; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (m_Counter == MaxThraedCount) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Print finish information on UI &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CalculatingFinished(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m_Counter = 0; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp; catch (Exception ex) &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw; &nbsp;&nbsp;&nbsp; } }  public void ShowStatus(string info) { &nbsp;&nbsp;&nbsp; this.InvokeAction(() =&gt; listInfo.Items.Add(info)); }  private void CalculatingFinished() { &nbsp;&nbsp;&nbsp; ShowStatus(&quot;\r\nAll Done at: &quot; + m_Watcher.Elapsed.TotalMilliseconds); &nbsp;&nbsp;&nbsp; ShowStatus(&quot;The result: &quot; + x.ToString()); }I highlighted &quot;// Different strategy to increment x&quot;, and will try a few number of ways to achieve atomicity using FCL libriries.Let&#39;s first see the non-atomic routine - simple do x++ in each thread:&nbsp; for (int i = 0; i &lt; 10000; i++) { &nbsp;&nbsp;&nbsp; x++; }Since x++&nbsp;is NOT atomicity, in additional, I made a large loop - 10 thousand times, in my experience, I NEVER get the correct result, the screenshot is below:Analysis and solutionsTo solve the issue and ensure atomicity, by more than 2 weeks brokenly study&nbsp;I found the following feasible ways (in theory, not considering performance):Interlocked.IncrementApply exclusive lock (or&nbsp;Moniter.Enter) outside the for loop.AutoResetEvent to ensure threads doing task one by one.&nbsp;Create a temp integer in each thread and once finish add temp onto x under an exclusive lock.ReaderWriterLockSlim.Parallel.For coordinate with Interlocked.Increment.&nbsp;All of above can achieve atomic operation on incresing x&#39;s value, and got expected result:In fact I did try other ways such as using MemoryBarrier, Thread.VolatileRead/VolatileWrite - StackOverFlow question link, but failed, if dear readers know there is way to use them to achieve the goal please kindly guide me. &nbsp;Demonstration codeIn this section I will listed key code for implementing the 5 solutions above.Solution #1:&nbsp;Interlocked.Increment for (int i = 0; i &lt; 10000; i++) &nbsp;&nbsp;&nbsp; Interlocked.Increment(ref x);Solution #2:&nbsp;Apply exclusive lock (Moniter) outside the for loop. private readonly string m_Locker = &quot;THREAD_LOCKER&quot;;  Monitor.Enter(m_Locker); for (int i = 0; i &lt; 10000; i++) &nbsp;&nbsp;&nbsp; x++; Monitor.Exit(m_Locker);Solution #3:&nbsp;AutoResetEvent to ensure threads doing task one by one. private static AutoResetEvent m_AutoReset = new AutoResetEvent(false);  protected void btn_DoWork_Click(object sender, EventArgs e) { &nbsp;&nbsp;&nbsp; ShowStatus(&quot;Starting...&quot;);  &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; MaxThraedCount; i++) &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m_Workers[i] = new Thread(IncreaseNumber) { Name = &quot;Thread &quot; + (i + 1) }; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m_Workers[i].Start(); &nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; m_AutoReset.Set(); }  void IncreaseNumber() { &nbsp;&nbsp;&nbsp; m_AutoReset.WaitOne(); &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 10000; i++) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x++; &nbsp;&nbsp;&nbsp; m_AutoReset.Set(); }One notable point is in this case (UI non-blocking) it is not easy to use Monitor.Enter/Monitor.Pulse pair to replace AutoResetEvent and implement &quot;one by one&quot; logic becasue Monitor.Pulse won&#39;t maitain state, below is the description in MSDN:ImportantThe&nbsp;Monitor&nbsp;class does not maintain state indicating that the&nbsp;Pulse&nbsp;method has been called. Thus, if you call&nbsp;Pulse&nbsp;when no threads are waiting, the next thread that calls&nbsp;Wait&nbsp;blocks as if&nbsp;Pulse&nbsp;had never been called. If two threads are using&nbsp;Pulse&nbsp;and&nbsp;Wait&nbsp;to interact, this could result in a deadlock. Contrast this with the behavior of the&nbsp;AutoResetEvent&nbsp;class: If you signal an&nbsp;AutoResetEvent&nbsp;by calling its&nbsp;Set&nbsp;method, and there are no threads waiting, the&nbsp;AutoResetEvent&nbsp;remains in a signaled state until a thread calls&nbsp;WaitOne,&nbsp;WaitAny, or&nbsp;WaitAll. The&nbsp;AutoResetEvent&nbsp;releases that thread and returns to the unsignaled state.In my Winform application, if I call Monitor.Pulse() in button click event, many threads will not receive the signal (whereas AutoResetEvent will remain signaled state)! I wrote a simple routine to demonstrate this: private static readonly string _locker = &quot;THREAD_LOCKER&quot;; public static void Main() { &nbsp;&nbsp;&nbsp; for(int i = 0;i&lt;5;i++) &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Thread t = new Thread(DoWork); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t.Name = &quot;T&quot; + (i + 1); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t.IsBackground = true; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t.Start(); &nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; //Thread.Sleep(500); &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; Monitor.Enter(_locker); &nbsp;&nbsp;&nbsp; Console.WriteLine(&quot;Main thread&quot;); &nbsp;&nbsp;&nbsp; Monitor.Pulse(_locker); &nbsp;&nbsp;&nbsp; Monitor.Exit(_locker); }  private static void DoWork() { &nbsp;&nbsp;&nbsp; Monitor.Enter(_locker); &nbsp;&nbsp;&nbsp; Monitor.Wait(_locker); &nbsp;&nbsp;&nbsp; Monitor.Pulse(_locker); &nbsp;&nbsp;&nbsp; Monitor.Exit(_locker); &nbsp;&nbsp;&nbsp; Console.WriteLine(Thread.CurrentThread.Name + &quot; finished and exist&quot;); }Removing &quot;Thread.Sleep(500)&quot; will *VERY POSSIBLY* lead less than 5 thread working, because creating 5 threads requires not short time (kenel object, TEB, kenel/user stack), during the period one just created thread (T2) might get the signal or might not (much more possible), because when the previously created thread (T1) calling &quot;Monitor.Pulse(_locker)&quot; T2 had NOT been setup, T2 and the thread created later will have no chance to get signal! They will be waiting... So the 0.5 seconds is used to give time to create 5 thread, otherwise main thread will quit immediately and background thread will be collected.Solution #4:&nbsp;Create a temp integer in each thread and once finish add temp onto x under a exclusive lock. private readonly string m_Locker = &quot;THREAD_LOCKER&quot;;  void IncreaseNumber(object objThreadName) { &nbsp;&nbsp;&nbsp; int tmp = 0; &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 10000; i++) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tmp++;  &nbsp;&nbsp;&nbsp; lock (m_Locker) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x += tmp; }Solution #5:&nbsp;ReaderWriterLockSlim. void IncreaseNumber(object objThreadName) { &nbsp;&nbsp;&nbsp; // Or we can use ReaderWriterLock.AcquireWriterLock(500) but it has more performance overhead and is not recommended &nbsp;&nbsp;&nbsp; m_ReaderWriterLocker.EnterWriteLock();  &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 10000; i++) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x++; &nbsp;&nbsp;&nbsp; m_ReaderWriterLocker.ExitWriteLock();&nbsp; // Or ReaderWriterLock.ReleaseWriterLock(); }Please note that ReaderWriterLock class is not recommended, it &quot;take about five times longer to execute than a call to Monitor&#39;s Enter method.&quot; please refer:&nbsp;Reader/Writer Locks and the ResourceLock Library by Jeffery Richter.Solution #6:&nbsp;Parallel.Forcoordinate with Interlocked.Increment. Parallel.For(0, 100000, (i) =&gt; Interlocked.Increment(ref x));ConclusionIn this post I took a simple &amp; straight-forward example: 10 threads simultaneously operating on on field, to experiment atomicity operation in C#.Net, using synchronization technology including exclusive locking, signaling, non-blocking synchronization, I guess this is a very good example to master basic FCL thread libraries/concepts such as Interlocked, Monitor, MemoryBarrier, volatile, AutoResetEvent, ReaderWriterLockSlim, etc.Multi-threading programming is indeed very complex, during my investigation I happened to saw even Jon Skeet admitted he had &ldquo;his eyes opened to the precise meaning of volatile which isn&#39;t &quot;always read from main memory, always write directly to main memory&quot; (link), so as a&nbsp;rookie in this field I should invest more effort on it:)Further ReadingThreading In C#&nbsp;(Strongly recommended!!!)Linearizability&nbsp;WikipediaIntroducing the new ReaderWriterLockSlim in OrcasAsynchronous Code BlocksAtomic OperationsBoosting Performance with Atomic Operations in .NET 4">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Wayne's Geek Life">
+<meta property="og:title" content="Atomic Operation in C#.Net">
+<meta property="og:url" content="https://wayneye.me/Atomic-Operation-In-Csharp">
+
+
+  <meta property="og:description" content="IntroductionAtomic Operation is named academic to Linearizability,&nbsp;Atomicity is a guarantee of isolation from concurrent processes, it can be enfored by hardware level build on Cache&nbsp;Coherence protocol, or software level exclusive lock. In this blog post, I am going to explore a few number of mechanisms to achieve atomic operation in .Net.What are Atomic operations and what are not?In C# Specification, the stamement about atomic operation is:&ldquo;Reads and writes of the following data types shall be atomic: bool, char, byte, sbyte, short, ushort, uint, int, float, and reference types.&rdquo; Also: &ldquo;&hellip;there is no guarantee of atomic read-modify-write, such as in the case of increment or decrement.&rdquo;.Threading In C#&nbsp;by Joseph Albahari described:&quot;Read/write on a field of 32-bit or less is always atomic, operations on 64-bit are guaranteed to be atomic only in 64-bit OS, statements that combine more than one read/write operation are never atomic.&quot;For example, following operations are guaranteed to be atomic operations: int i = 3; // Always atomic long l = Int64.MaxValue; // Atomic in 64-bit enviroment, non-atomic on 32-bit environmentCode like below are never atomic: int i = 0; int j += i;&nbsp; // Non-atomic, read and write operation i++;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Non-atomic, read and write operationAnd I am trying to document atomic operation in a lower level in the section below.EssenceComsidering two threads (or two processes) are running simultaneously: T1 and T2, there is a field stored in memory, T1 reads its value and do some calculation on the value and finally write the new value back to memory, during the period T2 was actually doing exact same task - i.e. read/calculate/write value back, so possibly one operation on this field overrides another - in other word:&nbsp;the later executed thread (T2) might override the earlier executed one (T1) because when it read the field&#39;s value another thread was just manipulating on it, and after T1 finished writing the new value back to memory, T2 writes back.So a simple example is the increament/decrement operation, as I showed above, it is NOT an atomic operation, it requires both read and write, if many thread simultaneously doing increment on one field, it will very possible cause race condition (the more threads, the more increment operation going to do, the more possibility race condition happen).Atomicity exampleI wrote a Winform application, it do simple work:Create 10 threads at runtime and simultaneously operates on a private interger, there is a volatile counter with initial value 0, every thread finishes its work will:Print information on UI.Increment the counterCheck whether the counter reachs 10, if yes, print CalculatingFinished method which will print the final result.And I wish UI won&#39;t block during the calculation, otherwise I can simply join every created thread. My code skeleton is showing below: private const int MaxThraedCount = 10; private Thread[] m_Workers = new Thread[MaxThraedCount]; private volatile int m_Counter = 0; private Int32 x = 0;  protected void btn_DoWork_Click(object sender, EventArgs e) { &nbsp;&nbsp;&nbsp; ShowStatus(&quot;Starting...&quot;);  &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; MaxThraedCount; i++) &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m_Workers[i] = new Thread(IncreaseNumber) { Name = &quot;Thread &quot; + (i + 1) }; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m_Workers[i].Start(); &nbsp;&nbsp;&nbsp; } }  void IncreaseNumber() { &nbsp;&nbsp;&nbsp; try &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 10000; i++) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Different strategy to increment x &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ShowStatus(String.Format(&quot;{0} finished at {1}&quot;, Thread.CurrentThread.Name, m_Watcher.Elapsed.TotalMilliseconds)); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Increases Counter and decides whether or not sets the finish signal &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m_Counter++; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (m_Counter == MaxThraedCount) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Print finish information on UI &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CalculatingFinished(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m_Counter = 0; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp; catch (Exception ex) &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw; &nbsp;&nbsp;&nbsp; } }  public void ShowStatus(string info) { &nbsp;&nbsp;&nbsp; this.InvokeAction(() =&gt; listInfo.Items.Add(info)); }  private void CalculatingFinished() { &nbsp;&nbsp;&nbsp; ShowStatus(&quot;\r\nAll Done at: &quot; + m_Watcher.Elapsed.TotalMilliseconds); &nbsp;&nbsp;&nbsp; ShowStatus(&quot;The result: &quot; + x.ToString()); }I highlighted &quot;// Different strategy to increment x&quot;, and will try a few number of ways to achieve atomicity using FCL libriries.Let&#39;s first see the non-atomic routine - simple do x++ in each thread:&nbsp; for (int i = 0; i &lt; 10000; i++) { &nbsp;&nbsp;&nbsp; x++; }Since x++&nbsp;is NOT atomicity, in additional, I made a large loop - 10 thousand times, in my experience, I NEVER get the correct result, the screenshot is below:Analysis and solutionsTo solve the issue and ensure atomicity, by more than 2 weeks brokenly study&nbsp;I found the following feasible ways (in theory, not considering performance):Interlocked.IncrementApply exclusive lock (or&nbsp;Moniter.Enter) outside the for loop.AutoResetEvent to ensure threads doing task one by one.&nbsp;Create a temp integer in each thread and once finish add temp onto x under an exclusive lock.ReaderWriterLockSlim.Parallel.For coordinate with Interlocked.Increment.&nbsp;All of above can achieve atomic operation on incresing x&#39;s value, and got expected result:In fact I did try other ways such as using MemoryBarrier, Thread.VolatileRead/VolatileWrite - StackOverFlow question link, but failed, if dear readers know there is way to use them to achieve the goal please kindly guide me. &nbsp;Demonstration codeIn this section I will listed key code for implementing the 5 solutions above.Solution #1:&nbsp;Interlocked.Increment for (int i = 0; i &lt; 10000; i++) &nbsp;&nbsp;&nbsp; Interlocked.Increment(ref x);Solution #2:&nbsp;Apply exclusive lock (Moniter) outside the for loop. private readonly string m_Locker = &quot;THREAD_LOCKER&quot;;  Monitor.Enter(m_Locker); for (int i = 0; i &lt; 10000; i++) &nbsp;&nbsp;&nbsp; x++; Monitor.Exit(m_Locker);Solution #3:&nbsp;AutoResetEvent to ensure threads doing task one by one. private static AutoResetEvent m_AutoReset = new AutoResetEvent(false);  protected void btn_DoWork_Click(object sender, EventArgs e) { &nbsp;&nbsp;&nbsp; ShowStatus(&quot;Starting...&quot;);  &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; MaxThraedCount; i++) &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m_Workers[i] = new Thread(IncreaseNumber) { Name = &quot;Thread &quot; + (i + 1) }; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m_Workers[i].Start(); &nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; m_AutoReset.Set(); }  void IncreaseNumber() { &nbsp;&nbsp;&nbsp; m_AutoReset.WaitOne(); &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 10000; i++) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x++; &nbsp;&nbsp;&nbsp; m_AutoReset.Set(); }One notable point is in this case (UI non-blocking) it is not easy to use Monitor.Enter/Monitor.Pulse pair to replace AutoResetEvent and implement &quot;one by one&quot; logic becasue Monitor.Pulse won&#39;t maitain state, below is the description in MSDN:ImportantThe&nbsp;Monitor&nbsp;class does not maintain state indicating that the&nbsp;Pulse&nbsp;method has been called. Thus, if you call&nbsp;Pulse&nbsp;when no threads are waiting, the next thread that calls&nbsp;Wait&nbsp;blocks as if&nbsp;Pulse&nbsp;had never been called. If two threads are using&nbsp;Pulse&nbsp;and&nbsp;Wait&nbsp;to interact, this could result in a deadlock. Contrast this with the behavior of the&nbsp;AutoResetEvent&nbsp;class: If you signal an&nbsp;AutoResetEvent&nbsp;by calling its&nbsp;Set&nbsp;method, and there are no threads waiting, the&nbsp;AutoResetEvent&nbsp;remains in a signaled state until a thread calls&nbsp;WaitOne,&nbsp;WaitAny, or&nbsp;WaitAll. The&nbsp;AutoResetEvent&nbsp;releases that thread and returns to the unsignaled state.In my Winform application, if I call Monitor.Pulse() in button click event, many threads will not receive the signal (whereas AutoResetEvent will remain signaled state)! I wrote a simple routine to demonstrate this: private static readonly string _locker = &quot;THREAD_LOCKER&quot;; public static void Main() { &nbsp;&nbsp;&nbsp; for(int i = 0;i&lt;5;i++) &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Thread t = new Thread(DoWork); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t.Name = &quot;T&quot; + (i + 1); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t.IsBackground = true; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t.Start(); &nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; //Thread.Sleep(500); &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; Monitor.Enter(_locker); &nbsp;&nbsp;&nbsp; Console.WriteLine(&quot;Main thread&quot;); &nbsp;&nbsp;&nbsp; Monitor.Pulse(_locker); &nbsp;&nbsp;&nbsp; Monitor.Exit(_locker); }  private static void DoWork() { &nbsp;&nbsp;&nbsp; Monitor.Enter(_locker); &nbsp;&nbsp;&nbsp; Monitor.Wait(_locker); &nbsp;&nbsp;&nbsp; Monitor.Pulse(_locker); &nbsp;&nbsp;&nbsp; Monitor.Exit(_locker); &nbsp;&nbsp;&nbsp; Console.WriteLine(Thread.CurrentThread.Name + &quot; finished and exist&quot;); }Removing &quot;Thread.Sleep(500)&quot; will *VERY POSSIBLY* lead less than 5 thread working, because creating 5 threads requires not short time (kenel object, TEB, kenel/user stack), during the period one just created thread (T2) might get the signal or might not (much more possible), because when the previously created thread (T1) calling &quot;Monitor.Pulse(_locker)&quot; T2 had NOT been setup, T2 and the thread created later will have no chance to get signal! They will be waiting... So the 0.5 seconds is used to give time to create 5 thread, otherwise main thread will quit immediately and background thread will be collected.Solution #4:&nbsp;Create a temp integer in each thread and once finish add temp onto x under a exclusive lock. private readonly string m_Locker = &quot;THREAD_LOCKER&quot;;  void IncreaseNumber(object objThreadName) { &nbsp;&nbsp;&nbsp; int tmp = 0; &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 10000; i++) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tmp++;  &nbsp;&nbsp;&nbsp; lock (m_Locker) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x += tmp; }Solution #5:&nbsp;ReaderWriterLockSlim. void IncreaseNumber(object objThreadName) { &nbsp;&nbsp;&nbsp; // Or we can use ReaderWriterLock.AcquireWriterLock(500) but it has more performance overhead and is not recommended &nbsp;&nbsp;&nbsp; m_ReaderWriterLocker.EnterWriteLock();  &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 10000; i++) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x++; &nbsp;&nbsp;&nbsp; m_ReaderWriterLocker.ExitWriteLock();&nbsp; // Or ReaderWriterLock.ReleaseWriterLock(); }Please note that ReaderWriterLock class is not recommended, it &quot;take about five times longer to execute than a call to Monitor&#39;s Enter method.&quot; please refer:&nbsp;Reader/Writer Locks and the ResourceLock Library by Jeffery Richter.Solution #6:&nbsp;Parallel.Forcoordinate with Interlocked.Increment. Parallel.For(0, 100000, (i) =&gt; Interlocked.Increment(ref x));ConclusionIn this post I took a simple &amp; straight-forward example: 10 threads simultaneously operating on on field, to experiment atomicity operation in C#.Net, using synchronization technology including exclusive locking, signaling, non-blocking synchronization, I guess this is a very good example to master basic FCL thread libraries/concepts such as Interlocked, Monitor, MemoryBarrier, volatile, AutoResetEvent, ReaderWriterLockSlim, etc.Multi-threading programming is indeed very complex, during my investigation I happened to saw even Jon Skeet admitted he had &ldquo;his eyes opened to the precise meaning of volatile which isn&#39;t &quot;always read from main memory, always write directly to main memory&quot; (link), so as a&nbsp;rookie in this field I should invest more effort on it:)Further ReadingThreading In C#&nbsp;(Strongly recommended!!!)Linearizability&nbsp;WikipediaIntroducing the new ReaderWriterLockSlim in OrcasAsynchronous Code BlocksAtomic OperationsBoosting Performance with Atomic Operations in .NET 4">
+
+
+
+
+
+  <meta name="twitter:site" content="@wayneye">
+  <meta name="twitter:title" content="Atomic Operation in C#.Net">
+  <meta name="twitter:description" content="IntroductionAtomic Operation is named academic to Linearizability,&nbsp;Atomicity is a guarantee of isolation from concurrent processes, it can be enfored by hardware level build on Cache&nbsp;Coherence protocol, or software level exclusive lock. In this blog post, I am going to explore a few number of mechanisms to achieve atomic operation in .Net.What are Atomic operations and what are not?In C# Specification, the stamement about atomic operation is:&ldquo;Reads and writes of the following data types shall be atomic: bool, char, byte, sbyte, short, ushort, uint, int, float, and reference types.&rdquo; Also: &ldquo;&hellip;there is no guarantee of atomic read-modify-write, such as in the case of increment or decrement.&rdquo;.Threading In C#&nbsp;by Joseph Albahari described:&quot;Read/write on a field of 32-bit or less is always atomic, operations on 64-bit are guaranteed to be atomic only in 64-bit OS, statements that combine more than one read/write operation are never atomic.&quot;For example, following operations are guaranteed to be atomic operations: int i = 3; // Always atomic long l = Int64.MaxValue; // Atomic in 64-bit enviroment, non-atomic on 32-bit environmentCode like below are never atomic: int i = 0; int j += i;&nbsp; // Non-atomic, read and write operation i++;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Non-atomic, read and write operationAnd I am trying to document atomic operation in a lower level in the section below.EssenceComsidering two threads (or two processes) are running simultaneously: T1 and T2, there is a field stored in memory, T1 reads its value and do some calculation on the value and finally write the new value back to memory, during the period T2 was actually doing exact same task - i.e. read/calculate/write value back, so possibly one operation on this field overrides another - in other word:&nbsp;the later executed thread (T2) might override the earlier executed one (T1) because when it read the field&#39;s value another thread was just manipulating on it, and after T1 finished writing the new value back to memory, T2 writes back.So a simple example is the increament/decrement operation, as I showed above, it is NOT an atomic operation, it requires both read and write, if many thread simultaneously doing increment on one field, it will very possible cause race condition (the more threads, the more increment operation going to do, the more possibility race condition happen).Atomicity exampleI wrote a Winform application, it do simple work:Create 10 threads at runtime and simultaneously operates on a private interger, there is a volatile counter with initial value 0, every thread finishes its work will:Print information on UI.Increment the counterCheck whether the counter reachs 10, if yes, print CalculatingFinished method which will print the final result.And I wish UI won&#39;t block during the calculation, otherwise I can simply join every created thread. My code skeleton is showing below: private const int MaxThraedCount = 10; private Thread[] m_Workers = new Thread[MaxThraedCount]; private volatile int m_Counter = 0; private Int32 x = 0;  protected void btn_DoWork_Click(object sender, EventArgs e) { &nbsp;&nbsp;&nbsp; ShowStatus(&quot;Starting...&quot;);  &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; MaxThraedCount; i++) &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m_Workers[i] = new Thread(IncreaseNumber) { Name = &quot;Thread &quot; + (i + 1) }; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m_Workers[i].Start(); &nbsp;&nbsp;&nbsp; } }  void IncreaseNumber() { &nbsp;&nbsp;&nbsp; try &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 10000; i++) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Different strategy to increment x &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ShowStatus(String.Format(&quot;{0} finished at {1}&quot;, Thread.CurrentThread.Name, m_Watcher.Elapsed.TotalMilliseconds)); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Increases Counter and decides whether or not sets the finish signal &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m_Counter++; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (m_Counter == MaxThraedCount) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Print finish information on UI &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CalculatingFinished(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m_Counter = 0; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp; catch (Exception ex) &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw; &nbsp;&nbsp;&nbsp; } }  public void ShowStatus(string info) { &nbsp;&nbsp;&nbsp; this.InvokeAction(() =&gt; listInfo.Items.Add(info)); }  private void CalculatingFinished() { &nbsp;&nbsp;&nbsp; ShowStatus(&quot;\r\nAll Done at: &quot; + m_Watcher.Elapsed.TotalMilliseconds); &nbsp;&nbsp;&nbsp; ShowStatus(&quot;The result: &quot; + x.ToString()); }I highlighted &quot;// Different strategy to increment x&quot;, and will try a few number of ways to achieve atomicity using FCL libriries.Let&#39;s first see the non-atomic routine - simple do x++ in each thread:&nbsp; for (int i = 0; i &lt; 10000; i++) { &nbsp;&nbsp;&nbsp; x++; }Since x++&nbsp;is NOT atomicity, in additional, I made a large loop - 10 thousand times, in my experience, I NEVER get the correct result, the screenshot is below:Analysis and solutionsTo solve the issue and ensure atomicity, by more than 2 weeks brokenly study&nbsp;I found the following feasible ways (in theory, not considering performance):Interlocked.IncrementApply exclusive lock (or&nbsp;Moniter.Enter) outside the for loop.AutoResetEvent to ensure threads doing task one by one.&nbsp;Create a temp integer in each thread and once finish add temp onto x under an exclusive lock.ReaderWriterLockSlim.Parallel.For coordinate with Interlocked.Increment.&nbsp;All of above can achieve atomic operation on incresing x&#39;s value, and got expected result:In fact I did try other ways such as using MemoryBarrier, Thread.VolatileRead/VolatileWrite - StackOverFlow question link, but failed, if dear readers know there is way to use them to achieve the goal please kindly guide me. &nbsp;Demonstration codeIn this section I will listed key code for implementing the 5 solutions above.Solution #1:&nbsp;Interlocked.Increment for (int i = 0; i &lt; 10000; i++) &nbsp;&nbsp;&nbsp; Interlocked.Increment(ref x);Solution #2:&nbsp;Apply exclusive lock (Moniter) outside the for loop. private readonly string m_Locker = &quot;THREAD_LOCKER&quot;;  Monitor.Enter(m_Locker); for (int i = 0; i &lt; 10000; i++) &nbsp;&nbsp;&nbsp; x++; Monitor.Exit(m_Locker);Solution #3:&nbsp;AutoResetEvent to ensure threads doing task one by one. private static AutoResetEvent m_AutoReset = new AutoResetEvent(false);  protected void btn_DoWork_Click(object sender, EventArgs e) { &nbsp;&nbsp;&nbsp; ShowStatus(&quot;Starting...&quot;);  &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; MaxThraedCount; i++) &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m_Workers[i] = new Thread(IncreaseNumber) { Name = &quot;Thread &quot; + (i + 1) }; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m_Workers[i].Start(); &nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; m_AutoReset.Set(); }  void IncreaseNumber() { &nbsp;&nbsp;&nbsp; m_AutoReset.WaitOne(); &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 10000; i++) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x++; &nbsp;&nbsp;&nbsp; m_AutoReset.Set(); }One notable point is in this case (UI non-blocking) it is not easy to use Monitor.Enter/Monitor.Pulse pair to replace AutoResetEvent and implement &quot;one by one&quot; logic becasue Monitor.Pulse won&#39;t maitain state, below is the description in MSDN:ImportantThe&nbsp;Monitor&nbsp;class does not maintain state indicating that the&nbsp;Pulse&nbsp;method has been called. Thus, if you call&nbsp;Pulse&nbsp;when no threads are waiting, the next thread that calls&nbsp;Wait&nbsp;blocks as if&nbsp;Pulse&nbsp;had never been called. If two threads are using&nbsp;Pulse&nbsp;and&nbsp;Wait&nbsp;to interact, this could result in a deadlock. Contrast this with the behavior of the&nbsp;AutoResetEvent&nbsp;class: If you signal an&nbsp;AutoResetEvent&nbsp;by calling its&nbsp;Set&nbsp;method, and there are no threads waiting, the&nbsp;AutoResetEvent&nbsp;remains in a signaled state until a thread calls&nbsp;WaitOne,&nbsp;WaitAny, or&nbsp;WaitAll. The&nbsp;AutoResetEvent&nbsp;releases that thread and returns to the unsignaled state.In my Winform application, if I call Monitor.Pulse() in button click event, many threads will not receive the signal (whereas AutoResetEvent will remain signaled state)! I wrote a simple routine to demonstrate this: private static readonly string _locker = &quot;THREAD_LOCKER&quot;; public static void Main() { &nbsp;&nbsp;&nbsp; for(int i = 0;i&lt;5;i++) &nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Thread t = new Thread(DoWork); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t.Name = &quot;T&quot; + (i + 1); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t.IsBackground = true; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t.Start(); &nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; //Thread.Sleep(500); &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; Monitor.Enter(_locker); &nbsp;&nbsp;&nbsp; Console.WriteLine(&quot;Main thread&quot;); &nbsp;&nbsp;&nbsp; Monitor.Pulse(_locker); &nbsp;&nbsp;&nbsp; Monitor.Exit(_locker); }  private static void DoWork() { &nbsp;&nbsp;&nbsp; Monitor.Enter(_locker); &nbsp;&nbsp;&nbsp; Monitor.Wait(_locker); &nbsp;&nbsp;&nbsp; Monitor.Pulse(_locker); &nbsp;&nbsp;&nbsp; Monitor.Exit(_locker); &nbsp;&nbsp;&nbsp; Console.WriteLine(Thread.CurrentThread.Name + &quot; finished and exist&quot;); }Removing &quot;Thread.Sleep(500)&quot; will *VERY POSSIBLY* lead less than 5 thread working, because creating 5 threads requires not short time (kenel object, TEB, kenel/user stack), during the period one just created thread (T2) might get the signal or might not (much more possible), because when the previously created thread (T1) calling &quot;Monitor.Pulse(_locker)&quot; T2 had NOT been setup, T2 and the thread created later will have no chance to get signal! They will be waiting... So the 0.5 seconds is used to give time to create 5 thread, otherwise main thread will quit immediately and background thread will be collected.Solution #4:&nbsp;Create a temp integer in each thread and once finish add temp onto x under a exclusive lock. private readonly string m_Locker = &quot;THREAD_LOCKER&quot;;  void IncreaseNumber(object objThreadName) { &nbsp;&nbsp;&nbsp; int tmp = 0; &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 10000; i++) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tmp++;  &nbsp;&nbsp;&nbsp; lock (m_Locker) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x += tmp; }Solution #5:&nbsp;ReaderWriterLockSlim. void IncreaseNumber(object objThreadName) { &nbsp;&nbsp;&nbsp; // Or we can use ReaderWriterLock.AcquireWriterLock(500) but it has more performance overhead and is not recommended &nbsp;&nbsp;&nbsp; m_ReaderWriterLocker.EnterWriteLock();  &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 10000; i++) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x++; &nbsp;&nbsp;&nbsp; m_ReaderWriterLocker.ExitWriteLock();&nbsp; // Or ReaderWriterLock.ReleaseWriterLock(); }Please note that ReaderWriterLock class is not recommended, it &quot;take about five times longer to execute than a call to Monitor&#39;s Enter method.&quot; please refer:&nbsp;Reader/Writer Locks and the ResourceLock Library by Jeffery Richter.Solution #6:&nbsp;Parallel.Forcoordinate with Interlocked.Increment. Parallel.For(0, 100000, (i) =&gt; Interlocked.Increment(ref x));ConclusionIn this post I took a simple &amp; straight-forward example: 10 threads simultaneously operating on on field, to experiment atomicity operation in C#.Net, using synchronization technology including exclusive locking, signaling, non-blocking synchronization, I guess this is a very good example to master basic FCL thread libraries/concepts such as Interlocked, Monitor, MemoryBarrier, volatile, AutoResetEvent, ReaderWriterLockSlim, etc.Multi-threading programming is indeed very complex, during my investigation I happened to saw even Jon Skeet admitted he had &ldquo;his eyes opened to the precise meaning of volatile which isn&#39;t &quot;always read from main memory, always write directly to main memory&quot; (link), so as a&nbsp;rookie in this field I should invest more effort on it:)Further ReadingThreading In C#&nbsp;(Strongly recommended!!!)Linearizability&nbsp;WikipediaIntroducing the new ReaderWriterLockSlim in OrcasAsynchronous Code BlocksAtomic OperationsBoosting Performance with Atomic Operations in .NET 4">
+  <meta name="twitter:url" content="https://wayneye.me/Atomic-Operation-In-Csharp">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2011-10-25T00:00:00-07:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://wayneye.me/Atomic-Operation-In-Csharp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Wayne's Geek Life Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">Wayne's Geek Life</a>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/gallery/">Gallery</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/vlog/">Vlog</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li>
+</ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/me.jpg" alt="Wayne Ye" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Wayne Ye</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        Whatever is worth doing is worth doing well!
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">San Francisco</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:hi@wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/wayneye" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+          
+        
+          
+            <li><a href="https://github.com/WayneYe/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/wayneye" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Atomic Operation in C#.Net">
+    <meta itemprop="description" content="IntroductionAtomic Operation is named academic to Linearizability, Atomicity is a guarantee of isolation from concurrent processes, it can be enfored by hardware level build on Cache Coherence protocol, or software level exclusive lock. In this blog post, I am going to explore a few number of mechanisms to achieve atomic operation in .Net.What are Atomic operations and what are not?In C# Specification, the stamement about atomic operation is:“Reads and writes of the following data types shall be atomic: bool, char, byte, sbyte, short, ushort, uint, int, float, and reference types.” Also: “…there is no guarantee of atomic read-modify-write, such as in the case of increment or decrement.”.Threading In C# by Joseph Albahari described:&quot;Read/write on a field of 32-bit or less is always atomic, operations on 64-bit are guaranteed to be atomic only in 64-bit OS, statements that combine more than one read/write operation are never atomic.&quot;For example, following operations are guaranteed to be atomic operations: int i = 3; // Always atomic long l = Int64.MaxValue; // Atomic in 64-bit enviroment, non-atomic on 32-bit environmentCode like below are never atomic: int i = 0; int j += i;  // Non-atomic, read and write operation i++;         // Non-atomic, read and write operationAnd I am trying to document atomic operation in a lower level in the section below.EssenceComsidering two threads (or two processes) are running simultaneously: T1 and T2, there is a field stored in memory, T1 reads its value and do some calculation on the value and finally write the new value back to memory, during the period T2 was actually doing exact same task - i.e. read/calculate/write value back, so possibly one operation on this field overrides another - in other word: the later executed thread (T2) might override the earlier executed one (T1) because when it read the field's value another thread was just manipulating on it, and after T1 finished writing the new value back to memory, T2 writes back.So a simple example is the increament/decrement operation, as I showed above, it is NOT an atomic operation, it requires both read and write, if many thread simultaneously doing increment on one field, it will very possible cause race condition (the more threads, the more increment operation going to do, the more possibility race condition happen).Atomicity exampleI wrote a Winform application, it do simple work:Create 10 threads at runtime and simultaneously operates on a private interger, there is a volatile counter with initial value 0, every thread finishes its work will:Print information on UI.Increment the counterCheck whether the counter reachs 10, if yes, print CalculatingFinished method which will print the final result.And I wish UI won't block during the calculation, otherwise I can simply join every created thread. My code skeleton is showing below: private const int MaxThraedCount = 10; private Thread[] m_Workers = new Thread[MaxThraedCount]; private volatile int m_Counter = 0; private Int32 x = 0;  protected void btn_DoWork_Click(object sender, EventArgs e) {     ShowStatus(&quot;Starting...&quot;);      for (int i = 0; i &lt; MaxThraedCount; i++)     {         m_Workers[i] = new Thread(IncreaseNumber) { Name = &quot;Thread &quot; + (i + 1) };         m_Workers[i].Start();     } }  void IncreaseNumber() {     try     {         for (int i = 0; i &lt; 10000; i++)         {             // Different strategy to increment x         }          ShowStatus(String.Format(&quot;{0} finished at {1}&quot;, Thread.CurrentThread.Name, m_Watcher.Elapsed.TotalMilliseconds));                  // Increases Counter and decides whether or not sets the finish signal         m_Counter++;         if (m_Counter == MaxThraedCount)         {             // Print finish information on UI             CalculatingFinished();             m_Counter = 0;         }     }     catch (Exception ex)     {         throw;     } }  public void ShowStatus(string info) {     this.InvokeAction(() =&gt; listInfo.Items.Add(info)); }  private void CalculatingFinished() {     ShowStatus(&quot;\r\nAll Done at: &quot; + m_Watcher.Elapsed.TotalMilliseconds);     ShowStatus(&quot;The result: &quot; + x.ToString()); }I highlighted &quot;// Different strategy to increment x&quot;, and will try a few number of ways to achieve atomicity using FCL libriries.Let's first see the non-atomic routine - simple do x++ in each thread:  for (int i = 0; i &lt; 10000; i++) {     x++; }Since x++ is NOT atomicity, in additional, I made a large loop - 10 thousand times, in my experience, I NEVER get the correct result, the screenshot is below:Analysis and solutionsTo solve the issue and ensure atomicity, by more than 2 weeks brokenly study I found the following feasible ways (in theory, not considering performance):Interlocked.IncrementApply exclusive lock (or Moniter.Enter) outside the for loop.AutoResetEvent to ensure threads doing task one by one. Create a temp integer in each thread and once finish add temp onto x under an exclusive lock.ReaderWriterLockSlim.Parallel.For coordinate with Interlocked.Increment. All of above can achieve atomic operation on incresing x's value, and got expected result:In fact I did try other ways such as using MemoryBarrier, Thread.VolatileRead/VolatileWrite - StackOverFlow question link, but failed, if dear readers know there is way to use them to achieve the goal please kindly guide me.  Demonstration codeIn this section I will listed key code for implementing the 5 solutions above.Solution #1: Interlocked.Increment for (int i = 0; i &lt; 10000; i++)     Interlocked.Increment(ref x);Solution #2: Apply exclusive lock (Moniter) outside the for loop. private readonly string m_Locker = &quot;THREAD_LOCKER&quot;;  Monitor.Enter(m_Locker); for (int i = 0; i &lt; 10000; i++)     x++; Monitor.Exit(m_Locker);Solution #3: AutoResetEvent to ensure threads doing task one by one. private static AutoResetEvent m_AutoReset = new AutoResetEvent(false);  protected void btn_DoWork_Click(object sender, EventArgs e) {     ShowStatus(&quot;Starting...&quot;);      for (int i = 0; i &lt; MaxThraedCount; i++)     {         m_Workers[i] = new Thread(IncreaseNumber) { Name = &quot;Thread &quot; + (i + 1) };         m_Workers[i].Start();     }          m_AutoReset.Set(); }  void IncreaseNumber() {     m_AutoReset.WaitOne();     for (int i = 0; i &lt; 10000; i++)         x++;     m_AutoReset.Set(); }One notable point is in this case (UI non-blocking) it is not easy to use Monitor.Enter/Monitor.Pulse pair to replace AutoResetEvent and implement &quot;one by one&quot; logic becasue Monitor.Pulse won't maitain state, below is the description in MSDN:ImportantThe Monitor class does not maintain state indicating that the Pulse method has been called. Thus, if you call Pulse when no threads are waiting, the next thread that calls Wait blocks as if Pulse had never been called. If two threads are using Pulse and Wait to interact, this could result in a deadlock. Contrast this with the behavior of the AutoResetEvent class: If you signal an AutoResetEvent by calling its Set method, and there are no threads waiting, the AutoResetEvent remains in a signaled state until a thread calls WaitOne, WaitAny, or WaitAll. The AutoResetEvent releases that thread and returns to the unsignaled state.In my Winform application, if I call Monitor.Pulse() in button click event, many threads will not receive the signal (whereas AutoResetEvent will remain signaled state)! I wrote a simple routine to demonstrate this: private static readonly string _locker = &quot;THREAD_LOCKER&quot;; public static void Main() {     for(int i = 0;i&lt;5;i++)     {         Thread t = new Thread(DoWork);         t.Name = &quot;T&quot; + (i + 1);         t.IsBackground = true;         t.Start();     }          //Thread.Sleep(500);          Monitor.Enter(_locker);     Console.WriteLine(&quot;Main thread&quot;);     Monitor.Pulse(_locker);     Monitor.Exit(_locker); }  private static void DoWork() {     Monitor.Enter(_locker);     Monitor.Wait(_locker);     Monitor.Pulse(_locker);     Monitor.Exit(_locker);     Console.WriteLine(Thread.CurrentThread.Name + &quot; finished and exist&quot;); }Removing &quot;Thread.Sleep(500)&quot; will *VERY POSSIBLY* lead less than 5 thread working, because creating 5 threads requires not short time (kenel object, TEB, kenel/user stack), during the period one just created thread (T2) might get the signal or might not (much more possible), because when the previously created thread (T1) calling &quot;Monitor.Pulse(_locker)&quot; T2 had NOT been setup, T2 and the thread created later will have no chance to get signal! They will be waiting... So the 0.5 seconds is used to give time to create 5 thread, otherwise main thread will quit immediately and background thread will be collected.Solution #4: Create a temp integer in each thread and once finish add temp onto x under a exclusive lock. private readonly string m_Locker = &quot;THREAD_LOCKER&quot;;  void IncreaseNumber(object objThreadName) {     int tmp = 0;     for (int i = 0; i &lt; 10000; i++)         tmp++;      lock (m_Locker)         x += tmp; }Solution #5: ReaderWriterLockSlim. void IncreaseNumber(object objThreadName) {     // Or we can use ReaderWriterLock.AcquireWriterLock(500) but it has more performance overhead and is not recommended     m_ReaderWriterLocker.EnterWriteLock();      for (int i = 0; i &lt; 10000; i++)         x++;     m_ReaderWriterLocker.ExitWriteLock();  // Or ReaderWriterLock.ReleaseWriterLock(); }Please note that ReaderWriterLock class is not recommended, it &quot;take about five times longer to execute than a call to Monitor's Enter method.&quot; please refer: Reader/Writer Locks and the ResourceLock Library by Jeffery Richter.Solution #6: Parallel.Forcoordinate with Interlocked.Increment. Parallel.For(0, 100000, (i) =&gt; Interlocked.Increment(ref x));ConclusionIn this post I took a simple &amp; straight-forward example: 10 threads simultaneously operating on on field, to experiment atomicity operation in C#.Net, using synchronization technology including exclusive locking, signaling, non-blocking synchronization, I guess this is a very good example to master basic FCL thread libraries/concepts such as Interlocked, Monitor, MemoryBarrier, volatile, AutoResetEvent, ReaderWriterLockSlim, etc.Multi-threading programming is indeed very complex, during my investigation I happened to saw even Jon Skeet admitted he had “his eyes opened to the precise meaning of volatile which isn't &quot;always read from main memory, always write directly to main memory&quot; (link), so as a rookie in this field I should invest more effort on it:)Further ReadingThreading In C# (Strongly recommended!!!)Linearizability WikipediaIntroducing the new ReaderWriterLockSlim in OrcasAsynchronous Code BlocksAtomic OperationsBoosting Performance with Atomic Operations in .NET 4">
+    <meta itemprop="datePublished" content="October 25, 2011">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Atomic Operation in C#.Net
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title">
+<i class="fas fa-cog"></i> On this page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#">Introduction</a></li>
+  <li><a href="#">What are Atomic operations and what are not?</a></li>
+  <li><a href="#">Essence</a></li>
+  <li><a href="#">Atomicity example</a></li>
+  <li><a href="#">Analysis and solutions</a></li>
+  <li>
+<a href="#">Demonstration code</a>
+    <ul>
+      <li><a href="#">Solution #1: Interlocked.Increment</a></li>
+      <li><a href="#">Solution #2: Apply exclusive lock (Moniter) outside the for loop.</a></li>
+      <li><a href="#">Solution #3: AutoResetEvent to ensure threads doing task one by one.</a></li>
+      <li><a href="#">Solution #4: Create a temp integer in each thread and once finish add temp onto x under a exclusive lock.</a></li>
+      <li><a href="#">Solution #5: ReaderWriterLockSlim.</a></li>
+      <li><a href="#">Solution #6: Parallel.Forcoordinate with Interlocked.Increment.</a></li>
+    </ul>
+  </li>
+  <li><a href="#">Conclusion</a></li>
+  <li><a href="#">Further Reading</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <h3>Introduction</h3>
+<p>Atomic Operation is named academic to <a href="http://en.wikipedia.org/wiki/Atomic_operation" target="_blank">Linearizability</a>, Atomicity is a guarantee of isolation from concurrent processes, it can be enfored by hardware level build on <a href="coherence" target="_blank">Cache Coherence</a> protocol, or software level exclusive lock. In this blog post, I am going to explore a few number of mechanisms to achieve atomic operation in .Net.</p>
+<h3>What are Atomic operations and what are not?</h3>
+<p>In <a href="http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf" target="_blank">C# Specification</a>, the stamement about atomic operation is:</p>
+<blockquote>“Reads and writes of the following data types shall be atomic: bool, char, byte, sbyte, short, ushort, uint, int, float, and reference types.” Also: “…there is no guarantee of atomic read-modify-write, such as in the case of increment or decrement.”.</blockquote>
+<p><a href="http://www.albahari.com/threading/" target="_blank">Threading In C#</a> by Joseph Albahari described:</p>
+<blockquote>"Read/write on a field of 32-bit or less is always atomic, operations on 64-bit are guaranteed to be atomic only in 64-bit OS, statements that combine more than one read/write operation are never atomic."</blockquote>
+<p>For example, following operations are guaranteed to be atomic operations:</p>
+<pre class="source" style="font-family: '[object HTMLOptionElement]', Consolas, 'Lucida Console', 'Courier New'; color: #f6f3e8; background-color: #242424;"> <span style="color: #cae682;">int</span> <span style="color: #f6f3e8;">i</span> <span style="color: #f6f3e8;">=</span> <span style="color: #e5786d;">3</span>; <span style="color: #99968b; font-style: italic;">// Always atomic</span><br> <span style="color: #cae682;">long</span> <span style="color: #f6f3e8;">l</span> <span style="color: #f6f3e8;">=</span> <span style="color: #f6f3e8;">Int64</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">MaxValue</span>; <span style="color: #99968b; font-style: italic;">// Atomic in 64-bit enviroment, non-atomic on 32-bit environment</span></pre>
+<p>Code like below are never atomic:</p>
+<pre class="source" style="font-family: '[object HTMLOptionElement]', Consolas, 'Lucida Console', 'Courier New'; color: #f6f3e8; background-color: #242424;"> <span style="color: #cae682;">int</span> <span style="color: #f6f3e8;">i</span> <span style="color: #f6f3e8;">=</span> <span style="color: #e5786d;">0</span>;<br> <span style="color: #cae682;">int</span> <span style="color: #f6f3e8;">j</span> <span style="color: #f6f3e8;">+=</span> <span style="color: #f6f3e8;">i</span>;  <span style="color: #99968b; font-style: italic;">// Non-atomic, read and write operation</span><br> <span style="color: #f6f3e8;">i</span><span style="color: #f6f3e8;">++;</span>         <span style="color: #99968b; font-style: italic;">// Non-atomic, read and write operation</span></pre>
+<p>And I am trying to document atomic operation in a lower level in the section below.</p>
+<h3>Essence</h3>
+<p>Comsidering two threads (or two processes) are running simultaneously: T1 and T2, there is a field stored in memory, T1 reads its value and do some calculation on the value and finally write the new value back to memory, during the period T2 was actually doing exact same task - i.e. read/calculate/write value back, so possibly one operation on this field <strong>overrides another</strong> - in other word: <strong>the later executed thread (T2) might override the earlier executed one (T1) because when it read the field's value another thread was just manipulating on it, and after T1 finished writing the new value back to memory, T2 writes back</strong>.</p>
+<p>So a simple example is the increament/decrement operation, as I showed above, it is NOT an atomic operation, it requires both read and write, if many thread simultaneously doing increment on one field, it will very possible cause race condition (<strong>the more threads, the more increment operation going to do, the more possibility race condition happen</strong>).</p>
+<h3>Atomicity example</h3>
+<p>I wrote a Winform application, it do simple work:</p>
+<p>Create 10 threads at runtime and simultaneously operates on a private interger, there is a volatile counter with initial value 0, every thread finishes its work will:</p>
+<ol>
+<li>Print information on UI.</li>
+<li>Increment the counter</li>
+<li>Check whether the counter reachs 10, if yes, print <code>CalculatingFinished</code> method which will print the final result.</li>
+</ol>
+<p>And I wish UI won't block during the calculation, otherwise I can simply join every created thread. My code skeleton is showing below:</p>
+<pre class="source" style="font-family: '[object HTMLOptionElement]', Consolas, 'Lucida Console', 'Courier New'; color: #f6f3e8; background-color: #242424;"> <span style="color: #8ac6f2;">private</span> <span style="color: #8ac6f2;">const</span> <span style="color: #cae682;">int</span> <span style="color: #f6f3e8;">MaxThraedCount</span> <span style="color: #f6f3e8;">=</span> <span style="color: #e5786d;">10</span>;<br> <span style="color: #8ac6f2;">private</span> <span style="color: #f6f3e8;">Thread</span><span style="color: #f6f3e8;">[]</span> <span style="color: #f6f3e8;">m_Workers</span> <span style="color: #f6f3e8;">=</span> <span style="color: #8ac6f2;">new</span> <span style="color: #f6f3e8;">Thread</span><span style="color: #f6f3e8;">[</span><span style="color: #f6f3e8;">MaxThraedCount</span><span style="color: #f6f3e8;">];</span><br> <span style="color: #8ac6f2;">private</span> <span style="color: #f6f3e8;">volatile</span> <span style="color: #cae682;">int</span> <span style="color: #f6f3e8;">m_Counter</span> <span style="color: #f6f3e8;">=</span> <span style="color: #e5786d;">0</span>;<br> <span style="color: #8ac6f2;">private</span> <span style="color: #f6f3e8;">Int32</span> <span style="color: #f6f3e8;">x</span> <span style="color: #f6f3e8;">=</span> <span style="color: #e5786d;">0</span>;<br> <br> <span style="color: #8ac6f2;">protected</span> <span style="color: #8ac6f2;">void</span> <span style="color: #cae682;">btn_DoWork_Click</span>(<span style="color: #cae682;">object</span> <span style="color: #f6f3e8;">sender</span><span style="color: #f6f3e8;">,</span> <span style="color: #f6f3e8;">EventArgs</span> <span style="color: #f6f3e8;">e</span>)<br> <span style="color: #f6f3e8;">{</span><br>     <span style="color: #f6f3e8;">ShowStatus</span>(<span style="color: #95e454; font-style: italic;">"Starting..."</span>);<br> <br>     <span style="color: #8ac6f2;">for</span> (<span style="color: #cae682;">int</span> <span style="color: #f6f3e8;">i</span> <span style="color: #f6f3e8;">=</span> <span style="color: #e5786d;">0</span>; <span style="color: #f6f3e8;">i</span> <span style="color: #f6f3e8;">&lt;</span> <span style="color: #f6f3e8;">MaxThraedCount</span>; <span style="color: #f6f3e8;">i</span><span style="color: #f6f3e8;">++)</span><br>     <span style="color: #f6f3e8;">{</span><br>         <span style="color: #f6f3e8;">m_Workers</span><span style="color: #f6f3e8;">[</span><span style="color: #f6f3e8;">i</span><span style="color: #f6f3e8;">]</span> <span style="color: #f6f3e8;">=</span> <span style="color: #8ac6f2;">new</span> <span style="color: #f6f3e8;">Thread</span>(<span style="color: #f6f3e8;">IncreaseNumber</span>) <span style="color: #f6f3e8;">{</span> <span style="color: #f6f3e8;">Name</span> <span style="color: #f6f3e8;">=</span> <span style="color: #95e454; font-style: italic;">"Thread "</span> <span style="color: #f6f3e8;">+</span> (<span style="color: #f6f3e8;">i</span> <span style="color: #f6f3e8;">+</span> <span style="color: #e5786d;">1</span>) <span style="color: #f6f3e8;">};</span><br>         <span style="color: #f6f3e8;">m_Workers</span><span style="color: #f6f3e8;">[</span><span style="color: #f6f3e8;">i</span><span style="color: #f6f3e8;">].</span><span style="color: #f6f3e8;">Start</span>();<br>     <span style="color: #f6f3e8;">}</span><br> <span style="color: #f6f3e8;">}</span><br> <br> <span style="color: #8ac6f2;">void</span> <span style="color: #cae682;">IncreaseNumber</span>()<br> <span style="color: #f6f3e8;">{</span><br>     <span style="color: #8ac6f2;">try</span><br>     <span style="color: #f6f3e8;">{</span><br>         <span style="color: #8ac6f2;">for</span> (<span style="color: #cae682;">int</span> <span style="color: #f6f3e8;">i</span> <span style="color: #f6f3e8;">=</span> <span style="color: #e5786d;">0</span>; <span style="color: #f6f3e8;">i</span> <span style="color: #f6f3e8;">&lt;</span> <span style="color: #e5786d;">10000</span>; <span style="color: #f6f3e8;">i</span><span style="color: #f6f3e8;">++)</span><br>         <span style="color: #f6f3e8;">{</span><br>             <span style="font-style: italic; color: #ff0000; background-color: #333333;">// Different strategy to increment x</span><br>         <span style="color: #f6f3e8;">}</span><br> <br>         <span style="color: #f6f3e8;">ShowStatus</span>(<span style="color: #f6f3e8;">String</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">Format</span>(<span style="color: #95e454; font-style: italic;">"{0} finished at {1}"</span><span style="color: #f6f3e8;">,</span> <span style="color: #f6f3e8;">Thread</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">CurrentThread</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">Name</span><span style="color: #f6f3e8;">,</span> <span style="color: #f6f3e8;">m_Watcher</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">Elapsed</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">TotalMilliseconds</span>));<br>         <br>         <span style="color: #99968b; font-style: italic;">// Increases Counter and decides whether or not sets the finish signal</span><br>         <span style="color: #f6f3e8;">m_Counter</span><span style="color: #f6f3e8;">++;</span><br>         <span style="color: #8ac6f2;">if</span> (<span style="color: #f6f3e8;">m_Counter</span> <span style="color: #f6f3e8;">==</span> <span style="color: #f6f3e8;">MaxThraedCount</span>)<br>         <span style="color: #f6f3e8;">{</span><br>             <span style="color: #99968b; font-style: italic;">// Print finish information on UI</span><br>             <span style="color: #f6f3e8;">CalculatingFinished</span>();<br>             <span style="color: #f6f3e8;">m_Counter</span> <span style="color: #f6f3e8;">=</span> <span style="color: #e5786d;">0</span>;<br>         <span style="color: #f6f3e8;">}</span><br>     <span style="color: #f6f3e8;">}</span><br>     <span style="color: #8ac6f2;">catch</span> (<span style="color: #f6f3e8;">Exception</span> <span style="color: #f6f3e8;">ex</span>)<br>     <span style="color: #f6f3e8;">{</span><br>         <span style="color: #8ac6f2;">throw</span>;<br>     <span style="color: #f6f3e8;">}</span><br> <span style="color: #f6f3e8;">}</span><br> <br> <span style="color: #8ac6f2;">public</span> <span style="color: #8ac6f2;">void</span> <span style="color: #cae682;">ShowStatus</span>(<span style="color: #cae682;">string</span> <span style="color: #f6f3e8;">info</span>)<br> <span style="color: #f6f3e8;">{</span><br>     <span style="color: #8ac6f2;">this</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">InvokeAction</span>(() <span style="color: #f6f3e8;">=&gt;</span> <span style="color: #f6f3e8;">listInfo</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">Items</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">Add</span>(<span style="color: #f6f3e8;">info</span>));<br> <span style="color: #f6f3e8;">}</span><br> <br> <span style="color: #8ac6f2;">private</span> <span style="color: #8ac6f2;">void</span> <span style="color: #cae682;">CalculatingFinished</span>()<br> <span style="color: #f6f3e8;">{</span><br>     <span style="color: #f6f3e8;">ShowStatus</span>(<span style="color: #95e454; font-style: italic;">"\r\nAll Done at: "</span> <span style="color: #f6f3e8;">+</span> <span style="color: #f6f3e8;">m_Watcher</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">Elapsed</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">TotalMilliseconds</span>);<br>     <span style="color: #f6f3e8;">ShowStatus</span>(<span style="color: #95e454; font-style: italic;">"The result: "</span> <span style="color: #f6f3e8;">+</span> <span style="color: #f6f3e8;">x</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">ToString</span>());<br> <span style="color: #f6f3e8;">}</span></pre>
+<p>I highlighted "<span style="color: #ff0000;">// Different strategy to increment x</span>", and will try a few number of ways to achieve atomicity using FCL libriries.</p>
+<p>Let's first see the non-atomic routine - simple do <code>x++</code> in each thread: </p>
+<pre class="source" style="font-family: '[object HTMLOptionElement]', Consolas, 'Lucida Console', 'Courier New'; color: #f6f3e8; background-color: #242424;"> <span style="color: #8ac6f2;">for</span> (<span style="color: #cae682;">int</span> <span style="color: #f6f3e8;">i</span> <span style="color: #f6f3e8;">=</span> <span style="color: #e5786d;">0</span>; <span style="color: #f6f3e8;">i</span> <span style="color: #f6f3e8;">&lt;</span> <span style="color: #e5786d;">10000</span>; <span style="color: #f6f3e8;">i</span><span style="color: #f6f3e8;">++)</span><br> <span style="color: #f6f3e8;">{</span><br>     <span style="color: #f6f3e8;">x</span><span style="color: #f6f3e8;">++;</span><br> <span style="color: #f6f3e8;">}</span></pre>
+<p>Since <code>x++</code> is NOT atomicity, in additional, I made a large loop - 10 thousand times, in my experience, <strong>I NEVER get the correct result</strong>, the screenshot is below:</p>
+<p><img title="Non-Atomic Operation" src="https://byfiles.storage.live.com/y1pQi3Nl0yapalU1nSyhn03OdJGdxqMU7fhvSn8pP2sMKSj2oarw3u0XP2Skce4IVx7ZKEp5t-bBpo/Non-Atomic%20Operation.png?psid=1" alt="Non-Atomic Operation" width="312" height="372"></p>
+<h3>Analysis and solutions</h3>
+<p>To solve the issue and ensure atomicity, by more than 2 weeks brokenly study I found the following feasible ways (in theory, not considering performance):</p>
+<ol>
+<li><a href="http://msdn.microsoft.com/en-us/library/dd78zt0c.aspx" target="_blank">Interlocked.Increment</a></li>
+<li>Apply exclusive lock (or Moniter.Enter) outside the for loop.</li>
+<li>AutoResetEvent to ensure threads doing task one by one. </li>
+<li>Create a temp integer in each thread and once finish add temp onto x under an exclusive lock.</li>
+<li>
+<a href="http://msdn.microsoft.com/en-us/library/system.threading.readerwriterlockslim.aspx" target="_blank">ReaderWriterLockSlim</a>.</li>
+<li>Parallel.For coordinate with Interlocked.Increment. </li>
+</ol>
+<p>All of above can achieve atomic operation on incresing x's value, and got expected result:</p>
+<p><img title="Atomic operation" src="https://byfiles.storage.live.com/y1pm5SIiPilGL46hWb1rtQFqFLnk588wS3FXBQhe8uNCPXB5b3rvWkVXQJinei1KFpOh9BBlwJa238/Atomic%20Operation.png?psid=1" alt="Atomic operation" width="312" height="372"></p>
+<p>In fact I did try other ways such as using MemoryBarrier, Thread.VolatileRead/VolatileWrite - <a href="http://stackoverflow.com/questions/7949440/how-to-use-memorybarrier-ways-to-safe-atomicity-operations" target="_blank">StackOverFlow question link</a>, but failed, if dear readers know there is way to use them to achieve the goal please kindly guide me.  </p>
+<h3>Demonstration code</h3>
+<p>In this section I will listed key code for implementing the 5 solutions above.</p>
+<h4>Solution #1: Interlocked.Increment</h4>
+<pre class="source" style="font-family: '[object HTMLOptionElement]', Consolas, 'Lucida Console', 'Courier New'; color: #f6f3e8; background-color: #242424;"> <span style="color: #8ac6f2;">for</span> (<span style="color: #cae682;">int</span> <span style="color: #f6f3e8;">i</span> <span style="color: #f6f3e8;">=</span> <span style="color: #e5786d;">0</span>; <span style="color: #f6f3e8;">i</span> <span style="color: #f6f3e8;">&lt;</span> <span style="color: #e5786d;">10000</span>; <span style="color: #f6f3e8;">i</span><span style="color: #f6f3e8;">++)</span><br>     <span style="color: #f6f3e8;">Interlocked</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">Increment</span>(<span style="color: #8ac6f2;">ref</span> <span style="color: #f6f3e8;">x</span>);</pre>
+<h4>Solution #2: Apply exclusive lock (Moniter) outside the for loop.</h4>
+<pre class="source" style="font-family: '[object HTMLOptionElement]', Consolas, 'Lucida Console', 'Courier New'; color: #f6f3e8; background-color: #242424;"> <span style="color: #8ac6f2;">private</span> <span style="color: #8ac6f2;">readonly</span> <span style="color: #cae682;">string</span> <span style="color: #f6f3e8;">m_Locker</span> <span style="color: #f6f3e8;">=</span> <span style="color: #95e454; font-style: italic;">"THREAD_LOCKER"</span>;<br> <br> <span style="color: #f6f3e8;">Monitor</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">Enter</span>(<span style="color: #f6f3e8;">m_Locker</span>);<br> <span style="color: #8ac6f2;">for</span> (<span style="color: #cae682;">int</span> <span style="color: #f6f3e8;">i</span> <span style="color: #f6f3e8;">=</span> <span style="color: #e5786d;">0</span>; <span style="color: #f6f3e8;">i</span> <span style="color: #f6f3e8;">&lt;</span> <span style="color: #e5786d;">10000</span>; <span style="color: #f6f3e8;">i</span><span style="color: #f6f3e8;">++)</span><br>     <span style="color: #f6f3e8;">x</span><span style="color: #f6f3e8;">++;</span><br> <span style="color: #f6f3e8;">Monitor</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">Exit</span>(<span style="color: #f6f3e8;">m_Locker</span>);</pre>
+<h4>Solution #3: AutoResetEvent to ensure threads doing task one by one.</h4>
+<pre class="source" style="font-family: '[object HTMLOptionElement]', Consolas, 'Lucida Console', 'Courier New'; color: #f6f3e8; background-color: #242424;"> <span style="color: #8ac6f2;">private</span> <span style="color: #8ac6f2;">static</span> <span style="color: #f6f3e8;">AutoResetEvent</span> <span style="color: #f6f3e8;">m_AutoReset</span> <span style="color: #f6f3e8;">=</span> <span style="color: #8ac6f2;">new</span> <span style="color: #f6f3e8;">AutoResetEvent</span>(<span style="color: #8ac6f2;">false</span>);<br> <br> <span style="color: #8ac6f2;">protected</span> <span style="color: #8ac6f2;">void</span> <span style="color: #cae682;">btn_DoWork_Click</span>(<span style="color: #cae682;">object</span> <span style="color: #f6f3e8;">sender</span><span style="color: #f6f3e8;">,</span> <span style="color: #f6f3e8;">EventArgs</span> <span style="color: #f6f3e8;">e</span>)<br> <span style="color: #f6f3e8;">{</span><br>     <span style="color: #f6f3e8;">ShowStatus</span>(<span style="color: #95e454; font-style: italic;">"Starting..."</span>);<br> <br>     <span style="color: #8ac6f2;">for</span> (<span style="color: #cae682;">int</span> <span style="color: #f6f3e8;">i</span> <span style="color: #f6f3e8;">=</span> <span style="color: #e5786d;">0</span>; <span style="color: #f6f3e8;">i</span> <span style="color: #f6f3e8;">&lt;</span> <span style="color: #f6f3e8;">MaxThraedCount</span>; <span style="color: #f6f3e8;">i</span><span style="color: #f6f3e8;">++)</span><br>     <span style="color: #f6f3e8;">{</span><br>         <span style="color: #f6f3e8;">m_Workers</span><span style="color: #f6f3e8;">[</span><span style="color: #f6f3e8;">i</span><span style="color: #f6f3e8;">]</span> <span style="color: #f6f3e8;">=</span> <span style="color: #8ac6f2;">new</span> <span style="color: #f6f3e8;">Thread</span>(<span style="color: #f6f3e8;">IncreaseNumber</span>) <span style="color: #f6f3e8;">{</span> <span style="color: #f6f3e8;">Name</span> <span style="color: #f6f3e8;">=</span> <span style="color: #95e454; font-style: italic;">"Thread "</span> <span style="color: #f6f3e8;">+</span> (<span style="color: #f6f3e8;">i</span> <span style="color: #f6f3e8;">+</span> <span style="color: #e5786d;">1</span>) <span style="color: #f6f3e8;">};</span><br>         <span style="color: #f6f3e8;">m_Workers</span><span style="color: #f6f3e8;">[</span><span style="color: #f6f3e8;">i</span><span style="color: #f6f3e8;">].</span><span style="color: #f6f3e8;">Start</span>();<br>     <span style="color: #f6f3e8;">}</span><br>     <br>     <span style="color: #f6f3e8;">m_AutoReset</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">Set</span>();<br> <span style="color: #f6f3e8;">}</span><br> <br> <span style="color: #8ac6f2;">void</span> <span style="color: #cae682;">IncreaseNumber</span>()<br> <span style="color: #f6f3e8;">{</span><br>     <span style="color: #f6f3e8;">m_AutoReset</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">WaitOne</span>();<br>     <span style="color: #8ac6f2;">for</span> (<span style="color: #cae682;">int</span> <span style="color: #f6f3e8;">i</span> <span style="color: #f6f3e8;">=</span> <span style="color: #e5786d;">0</span>; <span style="color: #f6f3e8;">i</span> <span style="color: #f6f3e8;">&lt;</span> <span style="color: #e5786d;">10000</span>; <span style="color: #f6f3e8;">i</span><span style="color: #f6f3e8;">++)</span><br>         <span style="color: #f6f3e8;">x</span><span style="color: #f6f3e8;">++;</span><br>     <span style="color: #f6f3e8;">m_AutoReset</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">Set</span>();<br> <span style="color: #f6f3e8;">}</span></pre>
+<blockquote>
+<p>One notable point is in this case (UI non-blocking) it is not easy to use Monitor.Enter/Monitor.Pulse pair to replace AutoResetEvent and implement "one by one" logic becasue Monitor.Pulse won't <strong>maitain state</strong>, below is the description in MSDN:</p>
+<div class="alert">
+<table style="width: 540px;" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top">
+<p><strong>Important</strong></p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>The <a href="http://msdn.microsoft.com/en-us/library/system.threading.monitor.aspx">Monitor</a> class does not maintain state indicating that the Pulse method has been called. Thus, if you call Pulse when no threads are waiting, the next thread that calls <a href="http://msdn.microsoft.com/en-us/library/system.threading.monitor.wait.aspx">Wait</a> blocks as if Pulse had never been called. If two threads are using Pulse and <a href="http://msdn.microsoft.com/en-us/library/system.threading.monitor.wait.aspx">Wait</a> to interact, this could result in a deadlock. Contrast this with the behavior of the <a href="http://msdn.microsoft.com/en-us/library/system.threading.autoresetevent.aspx">AutoResetEvent</a> class: If you signal an <a href="http://msdn.microsoft.com/en-us/library/system.threading.autoresetevent.aspx">AutoResetEvent</a> by calling its <a href="http://msdn.microsoft.com/en-us/library/system.threading.eventwaithandle.set.aspx">Set</a> method, and there are no threads waiting, the <a href="http://msdn.microsoft.com/en-us/library/system.threading.autoresetevent.aspx">AutoResetEvent</a> remains in a signaled state until a thread calls <a href="http://msdn.microsoft.com/en-us/library/system.threading.waithandle.waitone.aspx">WaitOne</a>, <a href="http://msdn.microsoft.com/en-us/library/system.threading.waithandle.waitany.aspx">WaitAny</a>, or <a href="http://msdn.microsoft.com/en-us/library/system.threading.waithandle.waitall.aspx">WaitAll</a>. The <a href="http://msdn.microsoft.com/en-us/library/system.threading.autoresetevent.aspx">AutoResetEvent</a> releases that thread and returns to the unsignaled state.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="alert">
+<br>In my Winform application, if I call Monitor.Pulse() in button click event, many threads will not receive the signal (whereas AutoResetEvent will remain signaled state)! I wrote a simple routine to demonstrate this:</div>
+<pre class="source" style="width: 580px; font-family: '[object HTMLOptionElement]', Consolas, 'Lucida Console', 'Courier New'; color: #f6f3e8; background-color: #242424;"> <span style="color: #8ac6f2;">private</span> <span style="color: #8ac6f2;">static</span> <span style="color: #8ac6f2;">readonly</span> <span style="color: #cae682;">string</span> <span style="color: #f6f3e8;">_locker</span> <span style="color: #f6f3e8;">=</span> <span style="color: #95e454; font-style: italic;">"THREAD_LOCKER"</span>;<br> <span style="color: #8ac6f2;">public</span> <span style="color: #8ac6f2;">static</span> <span style="color: #8ac6f2;">void</span> <span style="color: #cae682;">Main</span>()<br> <span style="color: #f6f3e8;">{</span><br>     <span style="color: #8ac6f2;">for</span>(<span style="color: #cae682;">int</span> <span style="color: #f6f3e8;">i</span> <span style="color: #f6f3e8;">=</span> <span style="color: #e5786d;">0</span>;<span style="color: #f6f3e8;">i</span><span style="color: #f6f3e8;">&lt;</span><span style="color: #e5786d;">5</span>;<span style="color: #f6f3e8;">i</span><span style="color: #f6f3e8;">++)</span><br>     <span style="color: #f6f3e8;">{</span><br>         <span style="color: #f6f3e8;">Thread</span> <span style="color: #f6f3e8;">t</span> <span style="color: #f6f3e8;">=</span> <span style="color: #8ac6f2;">new</span> <span style="color: #f6f3e8;">Thread</span>(<span style="color: #f6f3e8;">DoWork</span>);<br>         <span style="color: #f6f3e8;">t</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">Name</span> <span style="color: #f6f3e8;">=</span> <span style="color: #95e454; font-style: italic;">"T"</span> <span style="color: #f6f3e8;">+</span> (<span style="color: #f6f3e8;">i</span> <span style="color: #f6f3e8;">+</span> <span style="color: #e5786d;">1</span>);<br>         <span style="color: #f6f3e8;">t</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">IsBackground</span> <span style="color: #f6f3e8;">=</span> <span style="color: #8ac6f2;">true</span>;<br>         <span style="color: #f6f3e8;">t</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">Start</span>();<br>     <span style="color: #f6f3e8;">}</span><br>     <br>     <span style="color: #99968b; font-style: italic;">//Thread.Sleep(500);</span><br>     <br>     <span style="color: #f6f3e8;">Monitor</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">Enter</span>(<span style="color: #f6f3e8;">_locker</span>);<br>     <span style="color: #f6f3e8;">Console</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">WriteLine</span>(<span style="color: #95e454; font-style: italic;">"Main thread"</span>);<br>     <span style="color: #f6f3e8;">Monitor</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">Pulse</span>(<span style="color: #f6f3e8;">_locker</span>);<br>     <span style="color: #f6f3e8;">Monitor</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">Exit</span>(<span style="color: #f6f3e8;">_locker</span>);<br> <span style="color: #f6f3e8;">}</span><br> <br> <span style="color: #8ac6f2;">private</span> <span style="color: #8ac6f2;">static</span> <span style="color: #8ac6f2;">void</span> <span style="color: #cae682;">DoWork</span>()<br> <span style="color: #f6f3e8;">{</span><br>     <span style="color: #f6f3e8;">Monitor</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">Enter</span>(<span style="color: #f6f3e8;">_locker</span>);<br>     <span style="color: #f6f3e8;">Monitor</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">Wait</span>(<span style="color: #f6f3e8;">_locker</span>);<br>     <span style="color: #f6f3e8;">Monitor</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">Pulse</span>(<span style="color: #f6f3e8;">_locker</span>);<br>     <span style="color: #f6f3e8;">Monitor</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">Exit</span>(<span style="color: #f6f3e8;">_locker</span>);<br>     <span style="color: #f6f3e8;">Console</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">WriteLine</span>(<span style="color: #f6f3e8;">Thread</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">CurrentThread</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">Name</span> <span style="color: #f6f3e8;">+</span> <span style="color: #95e454; font-style: italic;">" finished and exist"</span>);<br> <span style="color: #f6f3e8;">}</span></pre>
+Removing "<code>Thread.Sleep(500)</code>" will *<strong>VERY POSSIBLY</strong>* lead less than 5 thread working, because creating 5 threads requires not short time (kenel object, TEB, kenel/user stack), during the period one just created thread (T2) might get the signal or <strong>might not</strong> (<strong>much more possible</strong>), because when the previously created thread (T1) calling "Monitor.Pulse(_locker)" T2 had NOT been setup, T2 and the thread created later <strong>will have no chance to get signal</strong>! They will be waiting... So the 0.5 seconds is used to give time to create 5 thread, otherwise main thread will quit immediately and background thread will be collected.</blockquote>
+<h4>Solution #4: Create a temp integer in each thread and once finish add temp onto x under a exclusive lock.</h4>
+<pre class="source" style="font-family: '[object HTMLOptionElement]', Consolas, 'Lucida Console', 'Courier New'; color: #f6f3e8; background-color: #242424;"> <span style="color: #8ac6f2;">private</span> <span style="color: #8ac6f2;">readonly</span> <span style="color: #cae682;">string</span> <span style="color: #f6f3e8;">m_Locker</span> <span style="color: #f6f3e8;">=</span> <span style="color: #95e454; font-style: italic;">"THREAD_LOCKER"</span>;<br> <br> <span style="color: #8ac6f2;">void</span> <span style="color: #cae682;">IncreaseNumber</span>(<span style="color: #cae682;">object</span> <span style="color: #f6f3e8;">objThreadName</span>)<br> <span style="color: #f6f3e8;">{</span><br>     <span style="color: #cae682;">int</span> <span style="color: #f6f3e8;">tmp</span> <span style="color: #f6f3e8;">=</span> <span style="color: #e5786d;">0</span>;<br>     <span style="color: #8ac6f2;">for</span> (<span style="color: #cae682;">int</span> <span style="color: #f6f3e8;">i</span> <span style="color: #f6f3e8;">=</span> <span style="color: #e5786d;">0</span>; <span style="color: #f6f3e8;">i</span> <span style="color: #f6f3e8;">&lt;</span> <span style="color: #e5786d;">10000</span>; <span style="color: #f6f3e8;">i</span><span style="color: #f6f3e8;">++)</span><br>         <span style="color: #f6f3e8;">tmp</span><span style="color: #f6f3e8;">++;</span><br> <br>     <span style="color: #8ac6f2;">lock</span> (<span style="color: #f6f3e8;">m_Locker</span>)<br>         <span style="color: #f6f3e8;">x</span> <span style="color: #f6f3e8;">+=</span> <span style="color: #f6f3e8;">tmp</span>;<br> <span style="color: #f6f3e8;">}</span></pre>
+<h4>Solution #5: ReaderWriterLockSlim.</h4>
+<pre class="source" style="font-family: '[object HTMLOptionElement]', Consolas, 'Lucida Console', 'Courier New'; color: #f6f3e8; background-color: #242424;"> <span style="color: #8ac6f2;">void</span> <span style="color: #cae682;">IncreaseNumber</span>(<span style="color: #cae682;">object</span> <span style="color: #f6f3e8;">objThreadName</span>)<br> <span style="color: #f6f3e8;">{</span><br>     <span style="color: #99968b; font-style: italic;">// Or we can use ReaderWriterLock.AcquireWriterLock(500) but it has more performance overhead and is not recommended</span><br>     <span style="color: #f6f3e8;">m_ReaderWriterLocker</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">EnterWriteLock</span>(); <br>     <span style="color: #8ac6f2;">for</span> (<span style="color: #cae682;">int</span> <span style="color: #f6f3e8;">i</span> <span style="color: #f6f3e8;">=</span> <span style="color: #e5786d;">0</span>; <span style="color: #f6f3e8;">i</span> <span style="color: #f6f3e8;">&lt;</span> <span style="color: #e5786d;">10000</span>; <span style="color: #f6f3e8;">i</span><span style="color: #f6f3e8;">++)</span><br>         <span style="color: #f6f3e8;">x</span><span style="color: #f6f3e8;">++;</span><br>     <span style="color: #f6f3e8;">m_ReaderWriterLocker</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">ExitWriteLock</span>();  <span style="color: #99968b; font-style: italic;">// Or ReaderWriterLock.ReleaseWriterLock();</span><br> <span style="color: #f6f3e8;">}</span></pre>
+<blockquote>
+<p>Please note that ReaderWriterLock class is not recommended, it "take about five times longer to execute than a call to Monitor's Enter method." please refer: <a href="http://msdn.microsoft.com/zh-cn/magazine/cc163599(en-us).aspx" target="_blank">Reader/Writer Locks and the ResourceLock Library</a> by Jeffery Richter.</p>
+</blockquote>
+<h4>Solution #6: Parallel.Forcoordinate with Interlocked.Increment.</h4>
+<pre class="source" style="font-family: '[object HTMLOptionElement]', Consolas, 'Lucida Console', 'Courier New'; color: #f6f3e8; background-color: #242424;"> <span style="color: #f6f3e8;">Parallel</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">For</span>(<span style="color: #e5786d;">0</span><span style="color: #f6f3e8;">,</span> <span style="color: #e5786d;">100000</span><span style="color: #f6f3e8;">,</span> (<span style="color: #f6f3e8;">i</span>) <span style="color: #f6f3e8;">=&gt;</span> <span style="color: #f6f3e8;">Interlocked</span><span style="color: #f6f3e8;">.</span><span style="color: #f6f3e8;">Increment</span>(<span style="color: #8ac6f2;">ref</span> <span style="color: #f6f3e8;">x</span>));</pre>
+<h3>Conclusion</h3>
+<p>In this post I took a simple &amp; straight-forward example: 10 threads simultaneously operating on on field, to experiment atomicity operation in C#.Net, using synchronization technology including exclusive locking, signaling, non-blocking synchronization, I guess this is a very good example to master basic FCL thread libraries/concepts such as <strong>Interlocked</strong>, <strong>Monitor</strong>, <strong>MemoryBarrier</strong>, <strong>volatile</strong>, <strong>AutoResetEvent</strong>, <strong>ReaderWriterLockSlim</strong>, etc.</p>
+<p>Multi-threading programming is indeed very complex, during my investigation I happened to saw even Jon Skeet admitted he had “his eyes opened to the precise meaning of volatile which isn't "always read from main memory, always write directly to main memory" (<a href="http://stackoverflow.com/questions/2005211/when-to-use-lock-vs-memorybarrier-in-net#2005237" target="_blank">link</a>), so as a rookie in this field I should invest more effort on it:)</p>
+<h3>Further Reading</h3>
+<p><a href="http://www.albahari.com/threading/" target="_blank">Threading In C#</a> (Strongly recommended!!!)</p>
+<p><a href="http://en.wikipedia.org/wiki/Atomic_operation" target="_blank">Linearizability</a> Wikipedia</p>
+<p><a href="http://www.bluebytesoftware.com/blog/PermaLink,guid,c4ea3d6d-190a-48f8-a677-44a438d8386b.aspx" target="_blank">Introducing the new ReaderWriterLockSlim in Orcas</a></p>
+<p><a href="http://www.codeproject.com/KB/cs/AsynchronousCodeBlocks.aspx" target="_blank">Asynchronous Code Blocks</a></p>
+<p><a href="http://odetocode.com/blogs/scott/archive/2006/05/17/atomic-operations.aspx" target="_blank">Atomic Operations</a></p>
+<p><a href="http://drdobbs.com/visualstudio/226900048" target="_blank">Boosting Performance with Atomic Operations in .NET 4</a></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#hack" class="page__taxonomy-item" rel="tag">Hack</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#hack" class="page__taxonomy-item" rel="tag">Hack</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2011-10-25T00:00:00-07:00">October 25, 2011</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  <!---->
+    <!--<h4 class="page__share-title">Share on</h4>-->
+  <!---->
+
+  <!--<a href="https://twitter.com/intent/tweet?via=wayneye&text=Atomic+Operation+in+C%23.Net%20https%3A%2F%2Fwayneye.me%2FAtomic-Operation-In-Csharp" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>-->
+
+  <!--<a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwayneye.me%2FAtomic-Operation-In-Csharp" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>-->
+
+  <!--<a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwayneye.me%2FAtomic-Operation-In-Csharp" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>-->
+
+  
+  <figure style="margin-top: 10px; width: 380px;">
+      <a href="/assets/images/dashang.jpg"><img src="/assets/images/dashang.jpg" alt="微信打赏"></a>
+  </figure>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/URL-Rewrite-Rules-Used-By-WayneYe-Dot-Com" class="pagination--pager" title="URL Rewrite Rules used by WayneYe.com
+">Previous</a>
+    
+    
+      <a href="/Make-Your-HTML5-Video-Support-ALL-Browsers" class="pagination--pager" title="Make your HTML5 Video support all browsers
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/RIP-Bram-Moolenaar" rel="permalink">RIP Bram Moolenaar - Father of Vim
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">From the most recent MacVim release note:
+
+  As some of you may have read, Bram Moolenaar, the creator and maintainer of Vim, has passed away recently. He has worked tirelessly on Vim for more than 30 years and this release is dedicated to him. If you would like, you could pay your respects at this discussion thread.
+
+
+
+  The Vim project has transitioned to new maintainers, and MacVim will continue to be supported as long as Vim is around.
+
+
+I decided to use Vim as my all time text editor since 12 years ago, it completely changed my mind and my life, there were some times I felt like my typ...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/BMW-Convertible-As-My-Beater-Car" rel="permalink">BMW Convertible As My Beater Car
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">
+  Life is too short to drive boring cars
+
+
+
+
+
+I bought a 2015 BMW X5 Dec last year, it has been half a year so far (with 2 months she stayed inside the garage for most of the time due to the pandemic), I am pretty satisfied with it, her condition is absolutely excellent, everything works, yes you see it correctly, after 5 years of its life, there was nothing broken, as BMW vehicle built in recent years, this is something not VERY easy.  My plan is to keep it as long as possible before it turns into an endless money pit, and keeping her value as high as possible, one of the major reason I b...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/2019-12-07-SkyJump-Las-Vegas" rel="permalink">SkyJump from Stratosphere Tower at Las Vegas - Smile all the way down
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">Instead of spending any cent in the money pit casinos, I’d chose to do something more meaningful and exciting :)
+
+
+    
+    
+    
+    SkyJump Las Vegas
+
+
+
+
+  SkyJump Las Vegas holds the Guinness World Record for highest commercial decelerator descent with an official height of 829 ft (253 m) and is located at Stratosphere Las Vegas. As part of its grand opening event, Las Vegas Mayor Oscar Goodman presented a written proclamation deeming April 20, 2010 as SkyJump Day in Las Vegas.
+  – Wikipedia (https://en.wikipedia.org/wiki/SkyJump_Las_Vegas)
+
+
+
+
+
+  
+
+
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/AWS-reinvent-Las-Vegas" rel="permalink">AWS reinvent 2019 - Las Vegas
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">This is my second time attending AWS re-Invent, last time was year 2017, the purpose of this blog is to summarize what I’ve learned, impressed and entertained <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">
+
+
+    
+    At reinvent logo
+
+
+
+    
+    Crazy crowd at midnight madness party
+
+
+Overall during my week staying my daily schedule was listening to sessions mixed with slack/emails during the daylight, and party/social in the evening time.
+
+All the keynotes/sessions have been uploaded here:  https://reinvent.awsevents.com/learn/keynotes/  and all announcements were summarized at this page, my personal top 5 thrilled announcement...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4ea2897777c94202"></script>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="mailto:hi@wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+        
+      
+        
+          <li><a href="https://wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+        
+      
+        
+          <li><a href="https://twitter.com/wayneye" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+          <li><a href="https://facebook.com/WayneYeDotCom" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-facebook-square" aria-hidden="true"></i> Facebook</a></li>
+        
+      
+        
+          <li><a href="https://github.com/WayneYe/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2024 Wayne Ye. All rights reserved.
+ 
+  <!--Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>-->
+
+      
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://wayneye.me/Atomic-Operation-In-Csharp";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/Atomic-Operation-in-C#.Net"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://wayneye.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+
+  
+
+
+
+
+
+  </footer>
+</div></body>
+</html>

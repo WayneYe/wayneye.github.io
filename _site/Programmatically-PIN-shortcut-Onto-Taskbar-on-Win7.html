@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Wayne's Geek Life">
 <meta property="og:title" content="Programmatically PIN shortcut onto Taskbar on Win7">
-<meta property="og:url" content="https://wayneye.me/Programmatically-PIN-shortcut-Onto-Taskbar-on-Win7">
+<meta property="og:url" content="https://wayneye.site/Programmatically-PIN-shortcut-Onto-Taskbar-on-Win7">
 
 
   <meta property="og:description" content="BackgroundDuring my work I got one requirement of pinning a specific shortcut file (*.lnk) onto the Windows 7 Taskbar, after investigating I found programmtically achive this is “not permitted”, refer MSDN article: http://msdn.microsoft.com/en-us/library/dd378460(VS.85).aspx  A small set of applications are pinned by default for new installations. Other than these, only the user can pin further applications; programmatic pinning by an application is not permitted.However, the exception comes from Windows Script Hosting, a snippet of VBscript can achieve my requirement, I read several articles (refer the end of this post) and wrote two VBS scripts showing below:Pin to TaskbarOption Explicit&#39;Const CSIDL_COMMON_PROGRAMS = &amp;H17Dim ShellApp, FSO, DesktopSet ShellApp = CreateObject(&quot;Shell.Application&quot;)Set FSO = CreateObject(&quot;Scripting.FileSystemObject&quot;)&#39;Set StartMenuFolder = ShellApp.NameSpace(CSIDL_COMMON_PROGRAMS)Set Desktop =  ShellApp.NameSpace(&quot;C:\Users\Wayne\Desktop&quot;)Dim LnkFileLnkFile = Desktop.Self.Path&amp;&quot;\ScheduleNotifier.lnk&quot;If(FSO.FileExists(LnkFile)) Then    Dim tmp, verb    &#39;For Each verb in Desktop.ParseName(&quot;ScheduleNotifier.lnk&quot;).Verbs        &#39;tmp = tmp&amp;verb&amp;chr(13)    &#39;Next    &#39;MsgBox(tmp)    Dim desktopImtes, item    Set desktopImtes = Desktop.Items()    For Each item in desktopImtes        If (item.Name = &quot;ScheduleNotifier&quot;) Then            &#39;MsgBox(item.Name)            For Each verb in item.Verbs                If (verb.Name = &quot;Pin to Tas&amp;kbar&quot;) Then &#39;If (verb.Name = &quot;锁定到任务栏(&amp;K)&quot;)                    verb.DoIt                End If            Next        End If    NextEnd IfSet FSO = NothingSet ShellApp = NothingUnpin from TaskbarOption Explicit&#39;Const CSIDL_COMMON_PROGRAMS = &amp;H17Dim ShellApp, FSO, DesktopSet ShellApp = CreateObject(&quot;Shell.Application&quot;)Set FSO = CreateObject(&quot;Scripting.FileSystemObject&quot;)&#39;Set StartMenuFolder = ShellApp.NameSpace(CSIDL_COMMON_PROGRAMS)Set Desktop =  ShellApp.NameSpace(&quot;C:\Users\Wayne\Desktop&quot;)Dim LnkFileLnkFile = Desktop.Self.Path&amp;&quot;\ScheduleNotifier.lnk&quot;If(FSO.FileExists(LnkFile)) Then    Dim tmp, verb    &#39;For Each verb in Desktop.ParseName(&quot;ScheduleNotifier.lnk&quot;).Verbs        &#39;tmp = tmp&amp;verb&amp;chr(13)    &#39;Next    &#39;MsgBox(tmp)    Dim desktopImtes, item    Set desktopImtes = Desktop.Items()    For Each item in desktopImtes        If (item.Name = &quot;ScheduleNotifier&quot;) Then            &#39;MsgBox(item.Name)            For Each verb in item.Verbs                If (verb.Name = &quot;Unpin from Tas&amp;kbar&quot;) Then &#39;If (verb.Name = &quot;从任务栏脱离(&amp;K)&quot;)                    verb.DoIt                End If            Next        End If    NextEnd IfSet FSO = NothingSet ShellApp = NothingAlthough two snippets of VBS code are simple and stright-forward, they has on serious limitation, it only support one specified language, attention of this line of code:If (verb.Name = &quot;Pin to Tas&amp;kbar&quot;) Then &#39;If (verb.Name = &quot;锁定到任务栏(&amp;K)&quot;)On Chinese locale, I have to replace “Pin to Tas&amp;kbar” with “锁定到任务栏(&amp;K)”, so in order to support more languages I need to know each exact {Pin sentence} to do the pinning, you know, google translation won’t always work in this case:), so I definitely don’t want to do that…You probably ask WHY??? Because FolderItemVerb object only has one property: Name, and Name is definitely “language sensitive“, MSDN does mention there are two more properties “Application” and “Parent” however they are “Not implemented”.Several tipsFor a specific Windows user, all shortcuts pinned onto taskbar store the shortcuts files under   %AppData%\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar OEM manufacturers could “pre-pin” some shortcut onto the Taskbar before shipping the PC/laptops to the consumers, simply run batch command below during the DASH (see Desktop and mobile Architecture for System Hardware) process:   Rem Pining OEM Welcome Center app on task barReg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TBDEn /v SBOEM0 /t REG_EXPAND_SZ /d “SomeFile.lnk” /f   &#160;  References  Pin Items to the Start Menu or Windows 7 Taskbar via Script       http://blogs.technet.com/b/deploymentguys/archive/2009/04/08/pin-items-to-the-start-menu-or-windows-7-taskbar-via-script.aspx  Pin and Un-pin items to/from the Windows 7 taskbar       http://blog.ananthonline.net/?p=37  ">
@@ -30,7 +30,7 @@
   <meta name="twitter:site" content="@wayneye">
   <meta name="twitter:title" content="Programmatically PIN shortcut onto Taskbar on Win7">
   <meta name="twitter:description" content="BackgroundDuring my work I got one requirement of pinning a specific shortcut file (*.lnk) onto the Windows 7 Taskbar, after investigating I found programmtically achive this is “not permitted”, refer MSDN article: http://msdn.microsoft.com/en-us/library/dd378460(VS.85).aspx  A small set of applications are pinned by default for new installations. Other than these, only the user can pin further applications; programmatic pinning by an application is not permitted.However, the exception comes from Windows Script Hosting, a snippet of VBscript can achieve my requirement, I read several articles (refer the end of this post) and wrote two VBS scripts showing below:Pin to TaskbarOption Explicit&#39;Const CSIDL_COMMON_PROGRAMS = &amp;H17Dim ShellApp, FSO, DesktopSet ShellApp = CreateObject(&quot;Shell.Application&quot;)Set FSO = CreateObject(&quot;Scripting.FileSystemObject&quot;)&#39;Set StartMenuFolder = ShellApp.NameSpace(CSIDL_COMMON_PROGRAMS)Set Desktop =  ShellApp.NameSpace(&quot;C:\Users\Wayne\Desktop&quot;)Dim LnkFileLnkFile = Desktop.Self.Path&amp;&quot;\ScheduleNotifier.lnk&quot;If(FSO.FileExists(LnkFile)) Then    Dim tmp, verb    &#39;For Each verb in Desktop.ParseName(&quot;ScheduleNotifier.lnk&quot;).Verbs        &#39;tmp = tmp&amp;verb&amp;chr(13)    &#39;Next    &#39;MsgBox(tmp)    Dim desktopImtes, item    Set desktopImtes = Desktop.Items()    For Each item in desktopImtes        If (item.Name = &quot;ScheduleNotifier&quot;) Then            &#39;MsgBox(item.Name)            For Each verb in item.Verbs                If (verb.Name = &quot;Pin to Tas&amp;kbar&quot;) Then &#39;If (verb.Name = &quot;锁定到任务栏(&amp;K)&quot;)                    verb.DoIt                End If            Next        End If    NextEnd IfSet FSO = NothingSet ShellApp = NothingUnpin from TaskbarOption Explicit&#39;Const CSIDL_COMMON_PROGRAMS = &amp;H17Dim ShellApp, FSO, DesktopSet ShellApp = CreateObject(&quot;Shell.Application&quot;)Set FSO = CreateObject(&quot;Scripting.FileSystemObject&quot;)&#39;Set StartMenuFolder = ShellApp.NameSpace(CSIDL_COMMON_PROGRAMS)Set Desktop =  ShellApp.NameSpace(&quot;C:\Users\Wayne\Desktop&quot;)Dim LnkFileLnkFile = Desktop.Self.Path&amp;&quot;\ScheduleNotifier.lnk&quot;If(FSO.FileExists(LnkFile)) Then    Dim tmp, verb    &#39;For Each verb in Desktop.ParseName(&quot;ScheduleNotifier.lnk&quot;).Verbs        &#39;tmp = tmp&amp;verb&amp;chr(13)    &#39;Next    &#39;MsgBox(tmp)    Dim desktopImtes, item    Set desktopImtes = Desktop.Items()    For Each item in desktopImtes        If (item.Name = &quot;ScheduleNotifier&quot;) Then            &#39;MsgBox(item.Name)            For Each verb in item.Verbs                If (verb.Name = &quot;Unpin from Tas&amp;kbar&quot;) Then &#39;If (verb.Name = &quot;从任务栏脱离(&amp;K)&quot;)                    verb.DoIt                End If            Next        End If    NextEnd IfSet FSO = NothingSet ShellApp = NothingAlthough two snippets of VBS code are simple and stright-forward, they has on serious limitation, it only support one specified language, attention of this line of code:If (verb.Name = &quot;Pin to Tas&amp;kbar&quot;) Then &#39;If (verb.Name = &quot;锁定到任务栏(&amp;K)&quot;)On Chinese locale, I have to replace “Pin to Tas&amp;kbar” with “锁定到任务栏(&amp;K)”, so in order to support more languages I need to know each exact {Pin sentence} to do the pinning, you know, google translation won’t always work in this case:), so I definitely don’t want to do that…You probably ask WHY??? Because FolderItemVerb object only has one property: Name, and Name is definitely “language sensitive“, MSDN does mention there are two more properties “Application” and “Parent” however they are “Not implemented”.Several tipsFor a specific Windows user, all shortcuts pinned onto taskbar store the shortcuts files under   %AppData%\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar OEM manufacturers could “pre-pin” some shortcut onto the Taskbar before shipping the PC/laptops to the consumers, simply run batch command below during the DASH (see Desktop and mobile Architecture for System Hardware) process:   Rem Pining OEM Welcome Center app on task barReg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TBDEn /v SBOEM0 /t REG_EXPAND_SZ /d “SomeFile.lnk” /f   &#160;  References  Pin Items to the Start Menu or Windows 7 Taskbar via Script       http://blogs.technet.com/b/deploymentguys/archive/2009/04/08/pin-items-to-the-start-menu-or-windows-7-taskbar-via-script.aspx  Pin and Un-pin items to/from the Windows 7 taskbar       http://blog.ananthonline.net/?p=37  ">
-  <meta name="twitter:url" content="https://wayneye.me/Programmatically-PIN-shortcut-Onto-Taskbar-on-Win7">
+  <meta name="twitter:url" content="https://wayneye.site/Programmatically-PIN-shortcut-Onto-Taskbar-on-Win7">
 
   
     <meta name="twitter:card" content="summary">
@@ -48,7 +48,7 @@
 
 
 
-<link rel="canonical" href="https://wayneye.me/Programmatically-PIN-shortcut-Onto-Taskbar-on-Win7">
+<link rel="canonical" href="https://wayneye.site/Programmatically-PIN-shortcut-Onto-Taskbar-on-Win7">
 
 
 
@@ -123,26 +123,19 @@
       <nav id="site-nav" class="greedy-nav">
         
         <a class="site-title" href="/">Wayne's Geek Life</a>
-        <ul class="visible-links">
-<li class="masthead__menu-item">
-              <a href="/categories/">Categories</a>
-            </li>
-<li class="masthead__menu-item">
-              <a href="/tags/">Tags</a>
-            </li>
-<li class="masthead__menu-item">
-              <a href="/search/">Search</a>
-            </li>
-<li class="masthead__menu-item">
-              <a href="/gallery/">Gallery</a>
-            </li>
-<li class="masthead__menu-item">
-              <a href="/vlog/">Vlog</a>
-            </li>
-<li class="masthead__menu-item">
-              <a href="/about/">About</a>
-            </li>
-</ul>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/" >Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/" >Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/" >Search</a>
+            </li><li class="masthead__menu-item">
+              <a href="/gallery/" >Gallery</a>
+            </li><li class="masthead__menu-item">
+              <a href="/vlog/" >Vlog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li></ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
           <span class="visually-hidden">Toggle menu</span>
@@ -201,11 +194,11 @@
       
         
           
-            <li><a href="mailto:hi@wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+            <li><a href="mailto:hi@wayneye.site" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
           
         
           
-            <li><a href="https://wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+            <li><a href="https://wayneye.site" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
           
         
           
@@ -287,7 +280,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Programmatically PIN shortcut onto Taskbar on Win7">
-    <meta itemprop="description" content="BackgroundDuring my work I got one requirement of pinning a specific shortcut file (*.lnk) onto the Windows 7 Taskbar, after investigating I found programmtically achive this is “not permitted”, refer MSDN article: http://msdn.microsoft.com/en-us/library/dd378460(VS.85).aspx  A small set of applications are pinned by default for new installations. Other than these, only the user can pin further applications; programmatic pinning by an application is not permitted.However, the exception comes from Windows Script Hosting, a snippet of VBscript can achieve my requirement, I read several articles (refer the end of this post) and wrote two VBS scripts showing below:Pin to TaskbarOption Explicit'Const CSIDL_COMMON_PROGRAMS = &amp;H17Dim ShellApp, FSO, DesktopSet ShellApp = CreateObject(&quot;Shell.Application&quot;)Set FSO = CreateObject(&quot;Scripting.FileSystemObject&quot;)'Set StartMenuFolder = ShellApp.NameSpace(CSIDL_COMMON_PROGRAMS)Set Desktop =  ShellApp.NameSpace(&quot;C:\Users\Wayne\Desktop&quot;)Dim LnkFileLnkFile = Desktop.Self.Path&amp;&quot;\ScheduleNotifier.lnk&quot;If(FSO.FileExists(LnkFile)) Then    Dim tmp, verb    'For Each verb in Desktop.ParseName(&quot;ScheduleNotifier.lnk&quot;).Verbs        'tmp = tmp&amp;verb&amp;chr(13)    'Next    'MsgBox(tmp)    Dim desktopImtes, item    Set desktopImtes = Desktop.Items()    For Each item in desktopImtes        If (item.Name = &quot;ScheduleNotifier&quot;) Then            'MsgBox(item.Name)            For Each verb in item.Verbs                If (verb.Name = &quot;Pin to Tas&amp;kbar&quot;) Then 'If (verb.Name = &quot;锁定到任务栏(&amp;K)&quot;)                    verb.DoIt                End If            Next        End If    NextEnd IfSet FSO = NothingSet ShellApp = NothingUnpin from TaskbarOption Explicit'Const CSIDL_COMMON_PROGRAMS = &amp;H17Dim ShellApp, FSO, DesktopSet ShellApp = CreateObject(&quot;Shell.Application&quot;)Set FSO = CreateObject(&quot;Scripting.FileSystemObject&quot;)'Set StartMenuFolder = ShellApp.NameSpace(CSIDL_COMMON_PROGRAMS)Set Desktop =  ShellApp.NameSpace(&quot;C:\Users\Wayne\Desktop&quot;)Dim LnkFileLnkFile = Desktop.Self.Path&amp;&quot;\ScheduleNotifier.lnk&quot;If(FSO.FileExists(LnkFile)) Then    Dim tmp, verb    'For Each verb in Desktop.ParseName(&quot;ScheduleNotifier.lnk&quot;).Verbs        'tmp = tmp&amp;verb&amp;chr(13)    'Next    'MsgBox(tmp)    Dim desktopImtes, item    Set desktopImtes = Desktop.Items()    For Each item in desktopImtes        If (item.Name = &quot;ScheduleNotifier&quot;) Then            'MsgBox(item.Name)            For Each verb in item.Verbs                If (verb.Name = &quot;Unpin from Tas&amp;kbar&quot;) Then 'If (verb.Name = &quot;从任务栏脱离(&amp;K)&quot;)                    verb.DoIt                End If            Next        End If    NextEnd IfSet FSO = NothingSet ShellApp = NothingAlthough two snippets of VBS code are simple and stright-forward, they has on serious limitation, it only support one specified language, attention of this line of code:If (verb.Name = &quot;Pin to Tas&amp;kbar&quot;) Then 'If (verb.Name = &quot;锁定到任务栏(&amp;K)&quot;)On Chinese locale, I have to replace “Pin to Tas&amp;kbar” with “锁定到任务栏(&amp;K)”, so in order to support more languages I need to know each exact {Pin sentence} to do the pinning, you know, google translation won’t always work in this case:), so I definitely don’t want to do that…You probably ask WHY??? Because FolderItemVerb object only has one property: Name, and Name is definitely “language sensitive“, MSDN does mention there are two more properties “Application” and “Parent” however they are “Not implemented”.Several tipsFor a specific Windows user, all shortcuts pinned onto taskbar store the shortcuts files under   %AppData%\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar OEM manufacturers could “pre-pin” some shortcut onto the Taskbar before shipping the PC/laptops to the consumers, simply run batch command below during the DASH (see Desktop and mobile Architecture for System Hardware) process:   Rem Pining OEM Welcome Center app on task barReg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TBDEn /v SBOEM0 /t REG_EXPAND_SZ /d “SomeFile.lnk” /f      References  Pin Items to the Start Menu or Windows 7 Taskbar via Script       http://blogs.technet.com/b/deploymentguys/archive/2009/04/08/pin-items-to-the-start-menu-or-windows-7-taskbar-via-script.aspx  Pin and Un-pin items to/from the Windows 7 taskbar       http://blog.ananthonline.net/?p=37  ">
+    <meta itemprop="description" content="BackgroundDuring my work I got one requirement of pinning a specific shortcut file (*.lnk) onto the Windows 7 Taskbar, after investigating I found programmtically achive this is “not permitted”, refer MSDN article: http://msdn.microsoft.com/en-us/library/dd378460(VS.85).aspx  A small set of applications are pinned by default for new installations. Other than these, only the user can pin further applications; programmatic pinning by an application is not permitted.However, the exception comes from Windows Script Hosting, a snippet of VBscript can achieve my requirement, I read several articles (refer the end of this post) and wrote two VBS scripts showing below:Pin to TaskbarOption Explicit&#39;Const CSIDL_COMMON_PROGRAMS = &amp;H17Dim ShellApp, FSO, DesktopSet ShellApp = CreateObject(&quot;Shell.Application&quot;)Set FSO = CreateObject(&quot;Scripting.FileSystemObject&quot;)&#39;Set StartMenuFolder = ShellApp.NameSpace(CSIDL_COMMON_PROGRAMS)Set Desktop =  ShellApp.NameSpace(&quot;C:\Users\Wayne\Desktop&quot;)Dim LnkFileLnkFile = Desktop.Self.Path&amp;&quot;\ScheduleNotifier.lnk&quot;If(FSO.FileExists(LnkFile)) Then    Dim tmp, verb    &#39;For Each verb in Desktop.ParseName(&quot;ScheduleNotifier.lnk&quot;).Verbs        &#39;tmp = tmp&amp;verb&amp;chr(13)    &#39;Next    &#39;MsgBox(tmp)    Dim desktopImtes, item    Set desktopImtes = Desktop.Items()    For Each item in desktopImtes        If (item.Name = &quot;ScheduleNotifier&quot;) Then            &#39;MsgBox(item.Name)            For Each verb in item.Verbs                If (verb.Name = &quot;Pin to Tas&amp;kbar&quot;) Then &#39;If (verb.Name = &quot;锁定到任务栏(&amp;K)&quot;)                    verb.DoIt                End If            Next        End If    NextEnd IfSet FSO = NothingSet ShellApp = NothingUnpin from TaskbarOption Explicit&#39;Const CSIDL_COMMON_PROGRAMS = &amp;H17Dim ShellApp, FSO, DesktopSet ShellApp = CreateObject(&quot;Shell.Application&quot;)Set FSO = CreateObject(&quot;Scripting.FileSystemObject&quot;)&#39;Set StartMenuFolder = ShellApp.NameSpace(CSIDL_COMMON_PROGRAMS)Set Desktop =  ShellApp.NameSpace(&quot;C:\Users\Wayne\Desktop&quot;)Dim LnkFileLnkFile = Desktop.Self.Path&amp;&quot;\ScheduleNotifier.lnk&quot;If(FSO.FileExists(LnkFile)) Then    Dim tmp, verb    &#39;For Each verb in Desktop.ParseName(&quot;ScheduleNotifier.lnk&quot;).Verbs        &#39;tmp = tmp&amp;verb&amp;chr(13)    &#39;Next    &#39;MsgBox(tmp)    Dim desktopImtes, item    Set desktopImtes = Desktop.Items()    For Each item in desktopImtes        If (item.Name = &quot;ScheduleNotifier&quot;) Then            &#39;MsgBox(item.Name)            For Each verb in item.Verbs                If (verb.Name = &quot;Unpin from Tas&amp;kbar&quot;) Then &#39;If (verb.Name = &quot;从任务栏脱离(&amp;K)&quot;)                    verb.DoIt                End If            Next        End If    NextEnd IfSet FSO = NothingSet ShellApp = NothingAlthough two snippets of VBS code are simple and stright-forward, they has on serious limitation, it only support one specified language, attention of this line of code:If (verb.Name = &quot;Pin to Tas&amp;kbar&quot;) Then &#39;If (verb.Name = &quot;锁定到任务栏(&amp;K)&quot;)On Chinese locale, I have to replace “Pin to Tas&amp;kbar” with “锁定到任务栏(&amp;K)”, so in order to support more languages I need to know each exact {Pin sentence} to do the pinning, you know, google translation won’t always work in this case:), so I definitely don’t want to do that…You probably ask WHY??? Because FolderItemVerb object only has one property: Name, and Name is definitely “language sensitive“, MSDN does mention there are two more properties “Application” and “Parent” however they are “Not implemented”.Several tipsFor a specific Windows user, all shortcuts pinned onto taskbar store the shortcuts files under   %AppData%\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar OEM manufacturers could “pre-pin” some shortcut onto the Taskbar before shipping the PC/laptops to the consumers, simply run batch command below during the DASH (see Desktop and mobile Architecture for System Hardware) process:   Rem Pining OEM Welcome Center app on task barReg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TBDEn /v SBOEM0 /t REG_EXPAND_SZ /d “SomeFile.lnk” /f   &#160;  References  Pin Items to the Start Menu or Windows 7 Taskbar via Script       http://blogs.technet.com/b/deploymentguys/archive/2009/04/08/pin-items-to-the-start-menu-or-windows-7-taskbar-via-script.aspx  Pin and Un-pin items to/from the Windows 7 taskbar       http://blog.ananthonline.net/?p=37  ">
     <meta itemprop="datePublished" content="July 17, 2010">
     
 
@@ -304,8 +297,7 @@
         
           <aside class="sidebar__right ">
             <nav class="toc">
-              <header><h4 class="nav__title">
-<i class="fas fa-cog"></i> On this page</h4></header>
+              <header><h4 class="nav__title"><i class="fas fa-cog"></i> On this page</h4></header>
               <ul class="toc__menu">
   <li><a href="#">Background</a></li>
   <li><a href="#">Several tips</a></li>
@@ -330,18 +322,18 @@
 
 <span style="color: #595979">'Const CSIDL_COMMON_PROGRAMS = &amp;H17</span>
 <span style="color: #200080; font-weight: bold">Dim</span> ShellApp, FSO, Desktop
-<span style="color: #200080; font-weight: bold">Set</span> ShellApp <span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">CreateObject</span><span style="color: #308080">(</span><span style="color: #308080">"</span>Shell.Application<span style="color: #308080">"</span><span style="color: #308080">)</span>
-<span style="color: #200080; font-weight: bold">Set</span> FSO <span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">CreateObject</span><span style="color: #308080">(</span><span style="color: #308080">"</span>Scripting.FileSystemObject<span style="color: #308080">"</span><span style="color: #308080">)</span>
+<span style="color: #200080; font-weight: bold">Set</span> ShellApp <span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">CreateObject</span><span style="color: #308080">(</span><span style="color: #308080">&quot;</span>Shell.Application<span style="color: #308080">&quot;</span><span style="color: #308080">)</span>
+<span style="color: #200080; font-weight: bold">Set</span> FSO <span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">CreateObject</span><span style="color: #308080">(</span><span style="color: #308080">&quot;</span>Scripting.FileSystemObject<span style="color: #308080">&quot;</span><span style="color: #308080">)</span>
 
 <span style="color: #595979">'Set StartMenuFolder = ShellApp.NameSpace(CSIDL_COMMON_PROGRAMS)</span>
-<span style="color: #200080; font-weight: bold">Set</span> Desktop <span style="color: #308080">=</span>  ShellApp<span style="color: #008c00">.</span>NameSpace<span style="color: #308080">(</span><span style="color: #308080">"</span>C:\Users\Wayne\Desktop<span style="color: #308080">"</span><span style="color: #308080">)</span>
+<span style="color: #200080; font-weight: bold">Set</span> Desktop <span style="color: #308080">=</span>  ShellApp<span style="color: #008c00">.</span>NameSpace<span style="color: #308080">(</span><span style="color: #308080">&quot;</span>C:\Users\Wayne\Desktop<span style="color: #308080">&quot;</span><span style="color: #308080">)</span>
 
 <span style="color: #200080; font-weight: bold">Dim</span> LnkFile
-LnkFile <span style="color: #308080">=</span> Desktop<span style="color: #008c00">.</span>Self<span style="color: #008c00">.</span>Path<span style="color: #308080">&amp;</span><span style="color: #308080">"</span>\ScheduleNotifier.lnk<span style="color: #308080">"</span>
+LnkFile <span style="color: #308080">=</span> Desktop<span style="color: #008c00">.</span>Self<span style="color: #008c00">.</span>Path<span style="color: #308080">&amp;</span><span style="color: #308080">&quot;</span>\ScheduleNotifier.lnk<span style="color: #308080">&quot;</span>
 
 <span style="color: #200080; font-weight: bold">If</span><span style="color: #308080">(</span>FSO<span style="color: #008c00">.</span>FileExists<span style="color: #308080">(</span>LnkFile<span style="color: #308080">)</span><span style="color: #308080">)</span> <span style="color: #200080; font-weight: bold">Then</span>
     <span style="color: #200080; font-weight: bold">Dim</span> tmp, verb
-    <span style="color: #595979">'For Each verb in Desktop.ParseName("ScheduleNotifier.lnk").Verbs</span>
+    <span style="color: #595979">'For Each verb in Desktop.ParseName(&quot;ScheduleNotifier.lnk&quot;).Verbs</span>
         <span style="color: #595979">'tmp = tmp&amp;verb&amp;chr(13)</span>
     <span style="color: #595979">'Next</span>
     <span style="color: #595979">'MsgBox(tmp)</span>
@@ -350,10 +342,10 @@ LnkFile <span style="color: #308080">=</span> Desktop<span style="color: #008c00
     <span style="color: #200080; font-weight: bold">Set</span> desktopImtes <span style="color: #308080">=</span> Desktop<span style="color: #008c00">.</span>Items<span style="color: #308080">(</span><span style="color: #308080">)</span>
 
     <span style="color: #200080; font-weight: bold">For Each</span> item <span style="color: #200080; font-weight: bold">in</span> desktopImtes
-        <span style="color: #200080; font-weight: bold">If</span> <span style="color: #308080">(</span>item<span style="color: #008c00">.</span>Name <span style="color: #308080">=</span> <span style="color: #308080">"</span>ScheduleNotifier<span style="color: #308080">"</span><span style="color: #308080">)</span> <span style="color: #200080; font-weight: bold">Then</span>
+        <span style="color: #200080; font-weight: bold">If</span> <span style="color: #308080">(</span>item<span style="color: #008c00">.</span>Name <span style="color: #308080">=</span> <span style="color: #308080">&quot;</span>ScheduleNotifier<span style="color: #308080">&quot;</span><span style="color: #308080">)</span> <span style="color: #200080; font-weight: bold">Then</span>
             <span style="color: #595979">'MsgBox(item.Name)</span>
             <span style="color: #200080; font-weight: bold">For Each</span> verb <span style="color: #200080; font-weight: bold">in</span> item<span style="color: #008c00">.</span>Verbs
-                <span style="color: #200080; font-weight: bold">If</span> <span style="color: #308080">(</span>verb<span style="color: #008c00">.</span>Name <span style="color: #308080">=</span> <span style="color: #308080">"</span>Pin to Tas&amp;kbar<span style="color: #308080">"</span><span style="color: #308080">)</span> <span style="color: #200080; font-weight: bold">Then</span> <span style="color: #595979">'If (verb.Name = "锁定到任务栏(&amp;K)")</span>
+                <span style="color: #200080; font-weight: bold">If</span> <span style="color: #308080">(</span>verb<span style="color: #008c00">.</span>Name <span style="color: #308080">=</span> <span style="color: #308080">&quot;</span>Pin to Tas&amp;kbar<span style="color: #308080">&quot;</span><span style="color: #308080">)</span> <span style="color: #200080; font-weight: bold">Then</span> <span style="color: #595979">'If (verb.Name = &quot;锁定到任务栏(&amp;K)&quot;)</span>
                     verb<span style="color: #008c00">.</span>DoIt
                 <span style="color: #200080; font-weight: bold">End If</span>
             <span style="color: #200080; font-weight: bold">Next</span>
@@ -370,18 +362,18 @@ LnkFile <span style="color: #308080">=</span> Desktop<span style="color: #008c00
 <pre style="background: #f6f8ff; color: #000020">Option Explicit
 <span style="color: #595979">'Const CSIDL_COMMON_PROGRAMS = &amp;H17</span>
 <span style="color: #200080; font-weight: bold">Dim</span> ShellApp, FSO, Desktop
-<span style="color: #200080; font-weight: bold">Set</span> ShellApp <span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">CreateObject</span><span style="color: #308080">(</span><span style="color: #308080">"</span>Shell.Application<span style="color: #308080">"</span><span style="color: #308080">)</span>
-<span style="color: #200080; font-weight: bold">Set</span> FSO <span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">CreateObject</span><span style="color: #308080">(</span><span style="color: #308080">"</span>Scripting.FileSystemObject<span style="color: #308080">"</span><span style="color: #308080">)</span>
+<span style="color: #200080; font-weight: bold">Set</span> ShellApp <span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">CreateObject</span><span style="color: #308080">(</span><span style="color: #308080">&quot;</span>Shell.Application<span style="color: #308080">&quot;</span><span style="color: #308080">)</span>
+<span style="color: #200080; font-weight: bold">Set</span> FSO <span style="color: #308080">=</span> <span style="color: #200080; font-weight: bold">CreateObject</span><span style="color: #308080">(</span><span style="color: #308080">&quot;</span>Scripting.FileSystemObject<span style="color: #308080">&quot;</span><span style="color: #308080">)</span>
 
 <span style="color: #595979">'Set StartMenuFolder = ShellApp.NameSpace(CSIDL_COMMON_PROGRAMS)</span>
-<span style="color: #200080; font-weight: bold">Set</span> Desktop <span style="color: #308080">=</span>  ShellApp<span style="color: #008c00">.</span>NameSpace<span style="color: #308080">(</span><span style="color: #308080">"</span>C:\Users\Wayne\Desktop<span style="color: #308080">"</span><span style="color: #308080">)</span>
+<span style="color: #200080; font-weight: bold">Set</span> Desktop <span style="color: #308080">=</span>  ShellApp<span style="color: #008c00">.</span>NameSpace<span style="color: #308080">(</span><span style="color: #308080">&quot;</span>C:\Users\Wayne\Desktop<span style="color: #308080">&quot;</span><span style="color: #308080">)</span>
 
 <span style="color: #200080; font-weight: bold">Dim</span> LnkFile
-LnkFile <span style="color: #308080">=</span> Desktop<span style="color: #008c00">.</span>Self<span style="color: #008c00">.</span>Path<span style="color: #308080">&amp;</span><span style="color: #308080">"</span>\ScheduleNotifier.lnk<span style="color: #308080">"</span>
+LnkFile <span style="color: #308080">=</span> Desktop<span style="color: #008c00">.</span>Self<span style="color: #008c00">.</span>Path<span style="color: #308080">&amp;</span><span style="color: #308080">&quot;</span>\ScheduleNotifier.lnk<span style="color: #308080">&quot;</span>
 
 <span style="color: #200080; font-weight: bold">If</span><span style="color: #308080">(</span>FSO<span style="color: #008c00">.</span>FileExists<span style="color: #308080">(</span>LnkFile<span style="color: #308080">)</span><span style="color: #308080">)</span> <span style="color: #200080; font-weight: bold">Then</span>
     <span style="color: #200080; font-weight: bold">Dim</span> tmp, verb
-    <span style="color: #595979">'For Each verb in Desktop.ParseName("ScheduleNotifier.lnk").Verbs</span>
+    <span style="color: #595979">'For Each verb in Desktop.ParseName(&quot;ScheduleNotifier.lnk&quot;).Verbs</span>
         <span style="color: #595979">'tmp = tmp&amp;verb&amp;chr(13)</span>
     <span style="color: #595979">'Next</span>
     <span style="color: #595979">'MsgBox(tmp)</span>
@@ -390,10 +382,10 @@ LnkFile <span style="color: #308080">=</span> Desktop<span style="color: #008c00
     <span style="color: #200080; font-weight: bold">Set</span> desktopImtes <span style="color: #308080">=</span> Desktop<span style="color: #008c00">.</span>Items<span style="color: #308080">(</span><span style="color: #308080">)</span>
 
     <span style="color: #200080; font-weight: bold">For Each</span> item <span style="color: #200080; font-weight: bold">in</span> desktopImtes
-        <span style="color: #200080; font-weight: bold">If</span> <span style="color: #308080">(</span>item<span style="color: #008c00">.</span>Name <span style="color: #308080">=</span> <span style="color: #308080">"</span>ScheduleNotifier<span style="color: #308080">"</span><span style="color: #308080">)</span> <span style="color: #200080; font-weight: bold">Then</span>
+        <span style="color: #200080; font-weight: bold">If</span> <span style="color: #308080">(</span>item<span style="color: #008c00">.</span>Name <span style="color: #308080">=</span> <span style="color: #308080">&quot;</span>ScheduleNotifier<span style="color: #308080">&quot;</span><span style="color: #308080">)</span> <span style="color: #200080; font-weight: bold">Then</span>
             <span style="color: #595979">'MsgBox(item.Name)</span>
             <span style="color: #200080; font-weight: bold">For Each</span> verb <span style="color: #200080; font-weight: bold">in</span> item<span style="color: #008c00">.</span>Verbs
-                <span style="color: #200080; font-weight: bold">If</span> <span style="color: #308080">(</span>verb<span style="color: #008c00">.</span>Name <span style="color: #308080">=</span> <span style="color: #308080">"</span>Unpin from Tas&amp;kbar<span style="color: #308080">"</span><span style="color: #308080">)</span> <span style="color: #200080; font-weight: bold">Then</span> <span style="color: #595979">'If (verb.Name = "从任务栏脱离(&amp;K)")</span>
+                <span style="color: #200080; font-weight: bold">If</span> <span style="color: #308080">(</span>verb<span style="color: #008c00">.</span>Name <span style="color: #308080">=</span> <span style="color: #308080">&quot;</span>Unpin from Tas&amp;kbar<span style="color: #308080">&quot;</span><span style="color: #308080">)</span> <span style="color: #200080; font-weight: bold">Then</span> <span style="color: #595979">'If (verb.Name = &quot;从任务栏脱离(&amp;K)&quot;)</span>
                     verb<span style="color: #008c00">.</span>DoIt
                 <span style="color: #200080; font-weight: bold">End If</span>
             <span style="color: #200080; font-weight: bold">Next</span>
@@ -407,7 +399,7 @@ LnkFile <span style="color: #308080">=</span> Desktop<span style="color: #008c00
 
 <p>Although two snippets of VBS code are simple and stright-forward, they has on serious limitation, it only support one specified language, attention of this line of code:</p>
 
-<p><code>If</code> <code>(verb.Name = </code><code>"Pin to Tas&amp;kbar"</code><code>) </code><code>Then</code> <code>'If (verb.Name = "锁定到任务栏(&amp;K)")</code></p>
+<p><code>If</code> <code>(verb.Name = </code><code>&quot;Pin to Tas&amp;kbar&quot;</code><code>) </code><code>Then</code> <code>'If (verb.Name = &quot;锁定到任务栏(&amp;K)&quot;)</code></p>
 
 <p>On Chinese locale, I have to replace “Pin to Tas&amp;kbar” with “锁定到任务栏(&amp;K)”, so in order to support more languages I need to know each exact {Pin sentence} to do the pinning, you know, google translation won’t always work in this case:), so I definitely don’t want to do that…</p>
 
@@ -416,21 +408,21 @@ LnkFile <span style="color: #308080">=</span> Desktop<span style="color: #008c00
 <h3>Several tips</h3>
 
 <li>For a specific Windows user, all shortcuts pinned onto taskbar store the shortcuts files under 
-  <br><em>%AppData%\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar</em> </li>
+  <br /><em>%AppData%\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar</em> </li>
 
 <li>OEM manufacturers could “pre-pin” some shortcut onto the Taskbar before shipping the PC/laptops to the consumers, simply run batch command below during the DASH (see <strong><a href="http://en.wikipedia.org/wiki/Desktop_and_mobile_Architecture_for_System_Hardware">Desktop and mobile Architecture for System Hardware</a></strong>) process: 
 
-  <br><em>Rem Pining OEM Welcome Center app on task barReg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TBDEn /v SBOEM0 /t REG_EXPAND_SZ /d “SomeFile.lnk” /f</em> 
+  <br /><em>Rem Pining OEM Welcome Center app on task barReg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TBDEn /v SBOEM0 /t REG_EXPAND_SZ /d “SomeFile.lnk” /f</em> 
 
-  <p> </p>
+  <p>&#160;</p>
 
   <h3>References</h3>
 
   <p><strong>Pin Items to the Start Menu or Windows 7 Taskbar via Script 
-      <br></strong><a href="http://blogs.technet.com/b/deploymentguys/archive/2009/04/08/pin-items-to-the-start-menu-or-windows-7-taskbar-via-script.aspx">http://blogs.technet.com/b/deploymentguys/archive/2009/04/08/pin-items-to-the-start-menu-or-windows-7-taskbar-via-script.aspx</a></p>
+      <br /></strong><a href="http://blogs.technet.com/b/deploymentguys/archive/2009/04/08/pin-items-to-the-start-menu-or-windows-7-taskbar-via-script.aspx">http://blogs.technet.com/b/deploymentguys/archive/2009/04/08/pin-items-to-the-start-menu-or-windows-7-taskbar-via-script.aspx</a></p>
 
   <p><strong>Pin and Un-pin items to/from the Windows 7 taskbar 
-      <br></strong><a href="http://blog.ananthonline.net/?p=37">http://blog.ananthonline.net/?p=37</a></p>
+      <br /></strong><a href="http://blog.ananthonline.net/?p=37">http://blog.ananthonline.net/?p=37</a></p>
 
   
 </li>
@@ -491,11 +483,11 @@ LnkFile <span style="color: #308080">=</span> Desktop<span style="color: #008c00
     <!--<h4 class="page__share-title">Share on</h4>-->
   <!---->
 
-  <!--<a href="https://twitter.com/intent/tweet?via=wayneye&text=Programmatically+PIN+shortcut+onto+Taskbar+on+Win7%20https%3A%2F%2Fwayneye.me%2FProgrammatically-PIN-shortcut-Onto-Taskbar-on-Win7" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>-->
+  <!--<a href="https://twitter.com/intent/tweet?via=wayneye&text=Programmatically+PIN+shortcut+onto+Taskbar+on+Win7%20https%3A%2F%2Fwayneye.site%2FProgrammatically-PIN-shortcut-Onto-Taskbar-on-Win7" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>-->
 
-  <!--<a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwayneye.me%2FProgrammatically-PIN-shortcut-Onto-Taskbar-on-Win7" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>-->
+  <!--<a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwayneye.site%2FProgrammatically-PIN-shortcut-Onto-Taskbar-on-Win7" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>-->
 
-  <!--<a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwayneye.me%2FProgrammatically-PIN-shortcut-Onto-Taskbar-on-Win7" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>-->
+  <!--<a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwayneye.site%2FProgrammatically-PIN-shortcut-Onto-Taskbar-on-Win7" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>-->
 
   
   <figure style="margin-top: 10px; width: 380px;">
@@ -535,6 +527,34 @@ LnkFile <span style="color: #308080">=</span> Desktop<span style="color: #008c00
     <div class="page__related">
       <h4 class="page__related-title">You may also enjoy</h4>
       <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/RIP-Bram-Moolenaar" rel="permalink">RIP Bram Moolenaar - Father of Vim
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">From the most recent MacVim release note:
+
+  As some of you may have read, Bram Moolenaar, the creator and maintainer of Vim, has passed away recently. He has worked tirelessly on Vim for more than 30 years and this release is dedicated to him. If you would like, you could pay your respects at this discussion thread.
+
+
+
+  The Vim project has transitioned to new maintainers, and MacVim will continue to be supported as long as Vim is around.
+
+
+I decided to use Vim as my all time text editor since 12 years ago, it completely changed my mind and my life, there were some times I felt like my typ...</p>
+  </article>
+</div>
+
         
           
 
@@ -631,39 +651,6 @@ I bought a 2015 BMW X5 Dec last year, it has been half a year so far (with 2 mon
 </div>
 
         
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/AWS-reinvent-Las-Vegas" rel="permalink">AWS reinvent 2019 - Las Vegas
-</a>
-      
-    </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">This is my second time attending AWS re-Invent, last time was year 2017, the purpose of this blog is to summarize what I’ve learned, impressed and entertained <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">
-
-
-    
-    At reinvent logo
-
-
-
-    
-    Crazy crowd at midnight madness party
-
-
-Overall during my week staying my daily schedule was listening to sessions mixed with slack/emails during the daylight, and party/social in the evening time.
-
-All the keynotes/sessions have been uploaded here:  https://reinvent.awsevents.com/learn/keynotes/  and all announcements were summarized at this page, my personal top 5 thrilled announcement...</p>
-  </article>
-</div>
-
-        
       </div>
     </div>
   
@@ -689,11 +676,11 @@ All the keynotes/sessions have been uploaded here:  https://reinvent.awsevents.c
     
       
         
-          <li><a href="mailto:hi@wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          <li><a href="mailto:hi@wayneye.site" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
         
       
         
-          <li><a href="https://wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+          <li><a href="https://wayneye.site" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
         
       
         
@@ -714,11 +701,11 @@ All the keynotes/sessions have been uploaded here:  https://reinvent.awsevents.c
   </ul>
 </div>
 
-<div class="page__footer-copyright">© 2024 Wayne Ye. All rights reserved.
+<div class="page__footer-copyright">&copy; 2024 Wayne Ye. All rights reserved.
  
   <!--Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>-->
 
-      
+      </footer>
     </div>
 
     
@@ -734,7 +721,7 @@ All the keynotes/sessions have been uploaded here:  https://reinvent.awsevents.c
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://wayneye.me/Programmatically-PIN-shortcut-Onto-Taskbar-on-Win7";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.url = "https://wayneye.site/Programmatically-PIN-shortcut-Onto-Taskbar-on-Win7";  // Replace PAGE_URL with your page's canonical URL variable
       this.page.identifier = "/Programmatically-PIN-shortcut-onto-Taskbar-on-Win7"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     (function() { // DON'T EDIT BELOW THIS LINE
@@ -744,8 +731,7 @@ All the keynotes/sessions have been uploaded here:  https://reinvent.awsevents.c
       (d.head || d.body).appendChild(s);
     })();
   </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-</noscript>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 
   
@@ -754,6 +740,5 @@ All the keynotes/sessions have been uploaded here:  https://reinvent.awsevents.c
 
 
 
-  </footer>
-</div></body>
+  </body>
 </html>

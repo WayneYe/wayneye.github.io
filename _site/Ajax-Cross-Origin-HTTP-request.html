@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Wayne's Geek Life">
 <meta property="og:title" content="AJAX Cross-Origin HTTP request">
-<meta property="og:url" content="https://wayneye.me/Ajax-Cross-Origin-HTTP-request">
+<meta property="og:url" content="https://wayneye.site/Ajax-Cross-Origin-HTTP-request">
 
 
   <meta property="og:description" content="BackgroundCross-Origin Request Sharing - CORS (A.K.A. Cross-Domain AJAX request) is an issue that most web developers might encounter,&nbsp;according to Same-Origin-Policy, browsers restrict client JavaScript in a security sandbox, usually JS cannot directly communicate with a remote server from a different domain. In the past developers created many tricky ways to achieve Cross-Domain resource request, most commonly using ways are:Use Flash/Silverlight or server side as a &quot;proxy&quot; to communicate with remote.JSON With Padding (JSONP).Embeds remote server in an iframe and communicate through fragment or window.name, refer here.And so on..Those tricky ways have more or less some issues, for example JSONP might result in security hole if developers simply &quot;eval&quot; it, and #3 above, although it works, both domains should build strict contract between each other, it neither flexible nor elegant IMHO:)W3C had introduced&nbsp;Cross-Origin Resource Sharing (CORS)&nbsp;as a standard solution to provide a safe, flexible and a recommended standard way to solve this issue.&nbsp;MechanismFrom a high level we can simply deem CORS is a contract between client AJAX call from domain A and a page hosted on domain B, a tipical Cross-Origin request/response would be:DomainA&nbsp;AJAX request headersHost DomainB.comUser-Agent Mozilla/5.0 (Windows NT 6.1; WOW64; rv:2.0) Gecko/20100101 Firefox/4.0Accept text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8,application/jsonAccept-Language en-us;Accept-Encoding gzip, deflateKeep-Alive 115Origin http://DomainA.com&nbsp;DomainB response headersCache-Control privateContent-Type application/json; charset=utf-8Access-Control-Allow-Origin DomainA.comContent-Length 87Proxy-Connection Keep-AliveConnection Keep-AliveThe blue parts I marked above were the kernal facts, &quot;Origin&quot; request header &quot;indicates where the cross-origin request or preflight request originates from&quot;, the &quot;Access-Control-Allow-Origin&quot; response header indicates this page allows remote request from DomainA (if the value is * indicate allows remote requests from any domain).">
@@ -30,7 +30,7 @@
   <meta name="twitter:site" content="@wayneye">
   <meta name="twitter:title" content="AJAX Cross-Origin HTTP request">
   <meta name="twitter:description" content="BackgroundCross-Origin Request Sharing - CORS (A.K.A. Cross-Domain AJAX request) is an issue that most web developers might encounter,&nbsp;according to Same-Origin-Policy, browsers restrict client JavaScript in a security sandbox, usually JS cannot directly communicate with a remote server from a different domain. In the past developers created many tricky ways to achieve Cross-Domain resource request, most commonly using ways are:Use Flash/Silverlight or server side as a &quot;proxy&quot; to communicate with remote.JSON With Padding (JSONP).Embeds remote server in an iframe and communicate through fragment or window.name, refer here.And so on..Those tricky ways have more or less some issues, for example JSONP might result in security hole if developers simply &quot;eval&quot; it, and #3 above, although it works, both domains should build strict contract between each other, it neither flexible nor elegant IMHO:)W3C had introduced&nbsp;Cross-Origin Resource Sharing (CORS)&nbsp;as a standard solution to provide a safe, flexible and a recommended standard way to solve this issue.&nbsp;MechanismFrom a high level we can simply deem CORS is a contract between client AJAX call from domain A and a page hosted on domain B, a tipical Cross-Origin request/response would be:DomainA&nbsp;AJAX request headersHost DomainB.comUser-Agent Mozilla/5.0 (Windows NT 6.1; WOW64; rv:2.0) Gecko/20100101 Firefox/4.0Accept text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8,application/jsonAccept-Language en-us;Accept-Encoding gzip, deflateKeep-Alive 115Origin http://DomainA.com&nbsp;DomainB response headersCache-Control privateContent-Type application/json; charset=utf-8Access-Control-Allow-Origin DomainA.comContent-Length 87Proxy-Connection Keep-AliveConnection Keep-AliveThe blue parts I marked above were the kernal facts, &quot;Origin&quot; request header &quot;indicates where the cross-origin request or preflight request originates from&quot;, the &quot;Access-Control-Allow-Origin&quot; response header indicates this page allows remote request from DomainA (if the value is * indicate allows remote requests from any domain).">
-  <meta name="twitter:url" content="https://wayneye.me/Ajax-Cross-Origin-HTTP-request">
+  <meta name="twitter:url" content="https://wayneye.site/Ajax-Cross-Origin-HTTP-request">
 
   
     <meta name="twitter:card" content="summary">
@@ -48,7 +48,7 @@
 
 
 
-<link rel="canonical" href="https://wayneye.me/Ajax-Cross-Origin-HTTP-request">
+<link rel="canonical" href="https://wayneye.site/Ajax-Cross-Origin-HTTP-request">
 
 
 
@@ -123,26 +123,19 @@
       <nav id="site-nav" class="greedy-nav">
         
         <a class="site-title" href="/">Wayne's Geek Life</a>
-        <ul class="visible-links">
-<li class="masthead__menu-item">
-              <a href="/categories/">Categories</a>
-            </li>
-<li class="masthead__menu-item">
-              <a href="/tags/">Tags</a>
-            </li>
-<li class="masthead__menu-item">
-              <a href="/search/">Search</a>
-            </li>
-<li class="masthead__menu-item">
-              <a href="/gallery/">Gallery</a>
-            </li>
-<li class="masthead__menu-item">
-              <a href="/vlog/">Vlog</a>
-            </li>
-<li class="masthead__menu-item">
-              <a href="/about/">About</a>
-            </li>
-</ul>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/" >Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/" >Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/" >Search</a>
+            </li><li class="masthead__menu-item">
+              <a href="/gallery/" >Gallery</a>
+            </li><li class="masthead__menu-item">
+              <a href="/vlog/" >Vlog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li></ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
           <span class="visually-hidden">Toggle menu</span>
@@ -201,11 +194,11 @@
       
         
           
-            <li><a href="mailto:hi@wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+            <li><a href="mailto:hi@wayneye.site" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
           
         
           
-            <li><a href="https://wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+            <li><a href="https://wayneye.site" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
           
         
           
@@ -287,7 +280,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="AJAX Cross-Origin HTTP request">
-    <meta itemprop="description" content='BackgroundCross-Origin Request Sharing - CORS (A.K.A. Cross-Domain AJAX request) is an issue that most web developers might encounter, according to Same-Origin-Policy, browsers restrict client JavaScript in a security sandbox, usually JS cannot directly communicate with a remote server from a different domain. In the past developers created many tricky ways to achieve Cross-Domain resource request, most commonly using ways are:Use Flash/Silverlight or server side as a "proxy" to communicate with remote.JSON With Padding (JSONP).Embeds remote server in an iframe and communicate through fragment or window.name, refer here.And so on..Those tricky ways have more or less some issues, for example JSONP might result in security hole if developers simply "eval" it, and #3 above, although it works, both domains should build strict contract between each other, it neither flexible nor elegant IMHO:)W3C had introduced Cross-Origin Resource Sharing (CORS) as a standard solution to provide a safe, flexible and a recommended standard way to solve this issue. MechanismFrom a high level we can simply deem CORS is a contract between client AJAX call from domain A and a page hosted on domain B, a tipical Cross-Origin request/response would be:DomainA AJAX request headersHost DomainB.comUser-Agent Mozilla/5.0 (Windows NT 6.1; WOW64; rv:2.0) Gecko/20100101 Firefox/4.0Accept text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8,application/jsonAccept-Language en-us;Accept-Encoding gzip, deflateKeep-Alive 115Origin http://DomainA.com DomainB response headersCache-Control privateContent-Type application/json; charset=utf-8Access-Control-Allow-Origin DomainA.comContent-Length 87Proxy-Connection Keep-AliveConnection Keep-AliveThe blue parts I marked above were the kernal facts, "Origin" request header "indicates where the cross-origin request or preflight request originates from", the "Access-Control-Allow-Origin" response header indicates this page allows remote request from DomainA (if the value is * indicate allows remote requests from any domain).'>
+    <meta itemprop="description" content="BackgroundCross-Origin Request Sharing - CORS (A.K.A. Cross-Domain AJAX request) is an issue that most web developers might encounter,&nbsp;according to Same-Origin-Policy, browsers restrict client JavaScript in a security sandbox, usually JS cannot directly communicate with a remote server from a different domain. In the past developers created many tricky ways to achieve Cross-Domain resource request, most commonly using ways are:Use Flash/Silverlight or server side as a &quot;proxy&quot; to communicate with remote.JSON With Padding (JSONP).Embeds remote server in an iframe and communicate through fragment or window.name, refer here.And so on..Those tricky ways have more or less some issues, for example JSONP might result in security hole if developers simply &quot;eval&quot; it, and #3 above, although it works, both domains should build strict contract between each other, it neither flexible nor elegant IMHO:)W3C had introduced&nbsp;Cross-Origin Resource Sharing (CORS)&nbsp;as a standard solution to provide a safe, flexible and a recommended standard way to solve this issue.&nbsp;MechanismFrom a high level we can simply deem CORS is a contract between client AJAX call from domain A and a page hosted on domain B, a tipical Cross-Origin request/response would be:DomainA&nbsp;AJAX request headersHost DomainB.comUser-Agent Mozilla/5.0 (Windows NT 6.1; WOW64; rv:2.0) Gecko/20100101 Firefox/4.0Accept text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8,application/jsonAccept-Language en-us;Accept-Encoding gzip, deflateKeep-Alive 115Origin http://DomainA.com&nbsp;DomainB response headersCache-Control privateContent-Type application/json; charset=utf-8Access-Control-Allow-Origin DomainA.comContent-Length 87Proxy-Connection Keep-AliveConnection Keep-AliveThe blue parts I marked above were the kernal facts, &quot;Origin&quot; request header &quot;indicates where the cross-origin request or preflight request originates from&quot;, the &quot;Access-Control-Allow-Origin&quot; response header indicates this page allows remote request from DomainA (if the value is * indicate allows remote requests from any domain).">
     <meta itemprop="datePublished" content="April 01, 2011">
     
 
@@ -304,8 +297,7 @@
         
           <aside class="sidebar__right ">
             <nav class="toc">
-              <header><h4 class="nav__title">
-<i class="fas fa-cog"></i> On this page</h4></header>
+              <header><h4 class="nav__title"><i class="fas fa-cog"></i> On this page</h4></header>
               <ul class="toc__menu">
   <li><a href="#">Background</a></li>
   <li><a href="#">Mechanism</a></li>
@@ -318,23 +310,21 @@
         
         <div>
 <h3>Background</h3>
-<p><strong>Cross-Origin Request Sharing - CORS</strong> (A.K.A.<strong> Cross-Domain AJAX request</strong>) is an issue that most web developers might encounter, according to <a href="http://en.wikipedia.org/wiki/Same_origin_policy" target="_blank">Same-Origin-Policy</a>, browsers restrict client JavaScript in a security sandbox, usually JS cannot directly communicate with a remote server from a different domain. In the past developers created many tricky ways to achieve Cross-Domain resource request, most commonly using ways are:</p>
+<p><strong>Cross-Origin Request Sharing - CORS</strong> (A.K.A.<strong> Cross-Domain AJAX request</strong>) is an issue that most web developers might encounter,&nbsp;according to <a href="http://en.wikipedia.org/wiki/Same_origin_policy" target="_blank">Same-Origin-Policy</a>, browsers restrict client JavaScript in a security sandbox, usually JS cannot directly communicate with a remote server from a different domain. In the past developers created many tricky ways to achieve Cross-Domain resource request, most commonly using ways are:</p>
 <ol>
 <li>Use Flash/Silverlight or server side as a "proxy" to communicate with remote.</li>
-<li>
-<a href="http://en.wikipedia.org/wiki/JSON#JSONP" target="_blank">JSON With Padding (JSONP)</a>.</li>
+<li><a href="http://en.wikipedia.org/wiki/JSON#JSONP" target="_blank">JSON With Padding (JSONP)</a>.</li>
 <li>Embeds remote server in an iframe and communicate through fragment or window.name, refer <a href="http://jectbd.com/?p=611" target="_blank">here</a>.</li>
 </ol>
 <p>And so on..</p>
 <p>Those tricky ways have more or less some issues, for example JSONP might result in security hole if developers simply "eval" it, and #3 above, although it works, both domains should build strict contract between each other, it neither flexible nor elegant IMHO:)</p>
-<p>W3C had introduced <a href="http://www.w3.org/TR/cors/" target="_blank">Cross-Origin Resource Sharing (CORS)</a> as a standard solution to provide a safe, flexible and a recommended standard way to solve this issue. </p>
+<p>W3C had introduced&nbsp;<a href="http://www.w3.org/TR/cors/" target="_blank">Cross-Origin Resource Sharing (CORS)</a>&nbsp;as a standard solution to provide a safe, flexible and a recommended standard way to solve this issue.&nbsp;</p>
 <h3>Mechanism</h3>
 <p>From a high level we can simply deem CORS is a contract between client AJAX call from domain A and a page hosted on domain B, a tipical Cross-Origin request/response would be:</p>
-<p><strong>DomainA AJAX request headers</strong></p>
-<blockquote>Host DomainB.com<br>User-Agent Mozilla/5.0 (Windows NT 6.1; WOW64; rv:2.0) Gecko/20100101 Firefox/4.0<br>Accept text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8,application/json<br>Accept-Language en-us;<br>Accept-Encoding gzip, deflate<br>Keep-Alive 115<br><strong><span style="color: #3366ff;">Origin http://DomainA.com </span></strong>
-</blockquote>
+<p><strong>DomainA&nbsp;AJAX request headers</strong></p>
+<blockquote>Host DomainB.com<br />User-Agent Mozilla/5.0 (Windows NT 6.1; WOW64; rv:2.0) Gecko/20100101 Firefox/4.0<br />Accept text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8,application/json<br />Accept-Language en-us;<br />Accept-Encoding gzip, deflate<br />Keep-Alive 115<br /><strong><span style="color: #3366ff;">Origin http://DomainA.com&nbsp;</span></strong></blockquote>
 <p><strong>DomainB response headers</strong></p>
-<blockquote>Cache-Control private<br>Content-Type application/json; charset=utf-8<br><strong><span style="color: #3366ff;">Access-Control-Allow-Origin DomainA.com</span></strong><br>Content-Length 87<br>Proxy-Connection Keep-Alive<br>Connection Keep-Alive</blockquote>
+<blockquote>Cache-Control private<br />Content-Type application/json; charset=utf-8<br /><strong><span style="color: #3366ff;">Access-Control-Allow-Origin DomainA.com</span></strong><br />Content-Length 87<br />Proxy-Connection Keep-Alive<br />Connection Keep-Alive</blockquote>
 <p>The<span style="color: #3366ff;"> blue parts</span> I marked above were the kernal facts, "<span style="color: #3366ff;">Origin</span>" request header "indicates where the <a href="http://www.w3.org/TR/cors/#cross-origin-request" target="_blank">cross-origin request</a> or <a href="http://www.w3.org/TR/cors/#preflight-request" target="_blank">preflight request</a> originates from", the "<span style="color: #3366ff;">Access-Control-Allow-Origin</span>" response header indicates this page allows remote request from DomainA (if the value is * indicate allows remote requests from any domain).</p>
 <!--more-->
 <p>As I mentioned above, W3 recommended browser to implement a "<strong><span style="color: #3366ff;"><a href="http://www.w3.org/TR/cors/#preflight-request" target="_blank">preflight request</a></span></strong>" before submiting the actually Cross-Origin HTTP request, in a nutshell it is an HTTP "<strong>OPTIONS</strong>" request:</p>
@@ -342,7 +332,7 @@
 <p>OPTIONS DomainB.com/foo.aspx HTTP/1.1</p>
 </blockquote>
 <p>If foo.aspx supports OPTIONS HTTP verb, it might return response like below:</p>
-<blockquote>HTTP/1.1 200 OK<br>Date: Wed, 01 Mar 2011 15:38:19 GMT<br>Access-Control-Allow-Origin: http://DomainB.com<br>Access-Control-Allow-Methods: POST, GET, OPTIONS, HEAD<br>Access-Control-Allow-Headers: X-Requested-With<br>Access-Control-Max-Age: 1728000<br>Connection: Keep-Alive<br>Content-Type: application/json</blockquote>
+<blockquote>HTTP/1.1 200 OK<br />Date: Wed, 01 Mar 2011 15:38:19 GMT<br />Access-Control-Allow-Origin: http://DomainB.com<br />Access-Control-Allow-Methods: POST, GET, OPTIONS, HEAD<br />Access-Control-Allow-Headers: X-Requested-With<br />Access-Control-Max-Age: 1728000<br />Connection: Keep-Alive<br />Content-Type: application/json</blockquote>
 <p>Only if the response contains "<span>Access-Control-Allow-Origin</span>" AND its value is "*" or contain the domain who submitted the CORS request, by satisfying this mandtory condition browser will submit the actual Cross-Domain request, and cache the result in "<a href="http://www.w3.org/TR/cors/#preflight-result-cache" target="_blank">Preflight-Result-Cache</a>".</p>
 <h3>Implementation</h3>
 <p>Let's take a look at server side code samples below (ASP.NET and PHP):</p>
@@ -467,17 +457,13 @@ cor<span style="color: #308080;">.</span>onreadystatechange <span style="color: 
     cor<span style="color: #308080;">.</span>send<span style="color: #308080;">(</span><span style="color: #0f4d75;">null</span><span style="color: #308080;">)</span><span style="color: #406080;">;</span>
 <span style="color: #406080;">}</span>
 </pre>
-<p> The JS code works for all mainstream browsers (IE8+, FF 3.6+, Chrome 8+), I didn’t use <a href="http://msdn.microsoft.com/en-us/library/cc288060%28v=vs.85%29.aspx" target="_blank"><strong>XDomainObject</strong></a> which introduced in IE8 because XMLHttpRequest is already supported by IE8+, FF and Chrome, Safari, in additional XDR seems have a lot of restrictions (refer: <a href="http://blogs.msdn.com/b/ieinternals/archive/2010/05/13/xdomainrequest-restrictions-limitations-and-workarounds.aspx" target="_blank">http://blogs.msdn.com/b/ieinternals/archive/2010/05/13/xdomainrequest-restrictions-limitations-and-workarounds.aspx</a>).</p>
+<p>&nbsp;The JS code works for all mainstream browsers (IE8+, FF 3.6+, Chrome 8+), I didn&rsquo;t use <a href="http://msdn.microsoft.com/en-us/library/cc288060%28v=vs.85%29.aspx" target="_blank"><strong>XDomainObject</strong></a>&nbsp;which introduced in IE8 because XMLHttpRequest is already supported by IE8+, FF and Chrome, Safari, in additional XDR seems have a lot of restrictions (refer: <a href="http://blogs.msdn.com/b/ieinternals/archive/2010/05/13/xdomainrequest-restrictions-limitations-and-workarounds.aspx" target="_blank">http://blogs.msdn.com/b/ieinternals/archive/2010/05/13/xdomainrequest-restrictions-limitations-and-workarounds.aspx</a>).</p>
 <h3>Conclusion</h3>
-<p>Cross-Origin Resource Sharing provides a safe, flexible and a standard way for web developers to achieve Cross-Origin communication, maybe it is time to forget those tricky or inelegant ways like JSONP, Flash/Silverlight/server bridge or even window.name and so on:)</p>
+<p>Cross-Origin Resource Sharing provides a safe, flexible and a standard way for web developers to achieve Cross-Origin communication, maybe it is time to forget those tricky or inelegant ways like&nbsp;JSONP, Flash/Silverlight/server bridge or even window.name and so on:)</p>
 <h3>References</h3>
 </div>
-<div>
-<strong>Cross-Origin Resource Sharing</strong> <br><a title="http://www.w3.org/TR/cors/" href="http://www.w3.org/TR/cors/">http://www.w3.org/TR/cors/</a> <br><a title="http://dev.w3.org/2006/waf/access-control/" href="http://dev.w3.org/2006/waf/access-control/">http://dev.w3.org/2006/waf/access-control/</a><strong> <br></strong> <br> <strong>HTTP access control </strong><br><a href="https://developer.mozilla.org/En/HTTP_access_control">https://developer.mozilla.org/En/HTTP_access_control</a>
-</div>
-<div>
-<br> <strong>IIS Verbs configuration</strong><br><a href="http://www.iis.net/ConfigReference/system.webServer/security/requestFiltering/verbs">http://www.iis.net/ConfigReference/system.webServer/security/requestFiltering/verbs</a>
-</div>
+<div><strong>Cross-Origin Resource Sharing</strong> <br /><a title="http://www.w3.org/TR/cors/" href="http://www.w3.org/TR/cors/">http://www.w3.org/TR/cors/</a> <br /><a title="http://dev.w3.org/2006/waf/access-control/" href="http://dev.w3.org/2006/waf/access-control/">http://dev.w3.org/2006/waf/access-control/</a><strong> <br /></strong> <br /> <strong>HTTP access control </strong><br /><a href="https://developer.mozilla.org/En/HTTP_access_control">https://developer.mozilla.org/En/HTTP_access_control</a></div>
+<div><br /> <strong>IIS Verbs configuration</strong><br /><a href="http://www.iis.net/ConfigReference/system.webServer/security/requestFiltering/verbs">http://www.iis.net/ConfigReference/system.webServer/security/requestFiltering/verbs</a></div>
 
         
       </section>
@@ -535,11 +521,11 @@ cor<span style="color: #308080;">.</span>onreadystatechange <span style="color: 
     <!--<h4 class="page__share-title">Share on</h4>-->
   <!---->
 
-  <!--<a href="https://twitter.com/intent/tweet?via=wayneye&text=AJAX+Cross-Origin+HTTP+request%20https%3A%2F%2Fwayneye.me%2FAjax-Cross-Origin-HTTP-request" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>-->
+  <!--<a href="https://twitter.com/intent/tweet?via=wayneye&text=AJAX+Cross-Origin+HTTP+request%20https%3A%2F%2Fwayneye.site%2FAjax-Cross-Origin-HTTP-request" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>-->
 
-  <!--<a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwayneye.me%2FAjax-Cross-Origin-HTTP-request" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>-->
+  <!--<a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwayneye.site%2FAjax-Cross-Origin-HTTP-request" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>-->
 
-  <!--<a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwayneye.me%2FAjax-Cross-Origin-HTTP-request" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>-->
+  <!--<a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwayneye.site%2FAjax-Cross-Origin-HTTP-request" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>-->
 
   
   <figure style="margin-top: 10px; width: 380px;">
@@ -579,6 +565,34 @@ cor<span style="color: #308080;">.</span>onreadystatechange <span style="color: 
     <div class="page__related">
       <h4 class="page__related-title">You may also enjoy</h4>
       <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/RIP-Bram-Moolenaar" rel="permalink">RIP Bram Moolenaar - Father of Vim
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">From the most recent MacVim release note:
+
+  As some of you may have read, Bram Moolenaar, the creator and maintainer of Vim, has passed away recently. He has worked tirelessly on Vim for more than 30 years and this release is dedicated to him. If you would like, you could pay your respects at this discussion thread.
+
+
+
+  The Vim project has transitioned to new maintainers, and MacVim will continue to be supported as long as Vim is around.
+
+
+I decided to use Vim as my all time text editor since 12 years ago, it completely changed my mind and my life, there were some times I felt like my typ...</p>
+  </article>
+</div>
+
         
           
 
@@ -675,39 +689,6 @@ I bought a 2015 BMW X5 Dec last year, it has been half a year so far (with 2 mon
 </div>
 
         
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/AWS-reinvent-Las-Vegas" rel="permalink">AWS reinvent 2019 - Las Vegas
-</a>
-      
-    </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">This is my second time attending AWS re-Invent, last time was year 2017, the purpose of this blog is to summarize what I’ve learned, impressed and entertained <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">
-
-
-    
-    At reinvent logo
-
-
-
-    
-    Crazy crowd at midnight madness party
-
-
-Overall during my week staying my daily schedule was listening to sessions mixed with slack/emails during the daylight, and party/social in the evening time.
-
-All the keynotes/sessions have been uploaded here:  https://reinvent.awsevents.com/learn/keynotes/  and all announcements were summarized at this page, my personal top 5 thrilled announcement...</p>
-  </article>
-</div>
-
-        
       </div>
     </div>
   
@@ -733,11 +714,11 @@ All the keynotes/sessions have been uploaded here:  https://reinvent.awsevents.c
     
       
         
-          <li><a href="mailto:hi@wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          <li><a href="mailto:hi@wayneye.site" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
         
       
         
-          <li><a href="https://wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+          <li><a href="https://wayneye.site" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
         
       
         
@@ -758,11 +739,11 @@ All the keynotes/sessions have been uploaded here:  https://reinvent.awsevents.c
   </ul>
 </div>
 
-<div class="page__footer-copyright">© 2024 Wayne Ye. All rights reserved.
+<div class="page__footer-copyright">&copy; 2024 Wayne Ye. All rights reserved.
  
   <!--Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>-->
 
-      
+      </footer>
     </div>
 
     
@@ -778,7 +759,7 @@ All the keynotes/sessions have been uploaded here:  https://reinvent.awsevents.c
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://wayneye.me/Ajax-Cross-Origin-HTTP-request";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.url = "https://wayneye.site/Ajax-Cross-Origin-HTTP-request";  // Replace PAGE_URL with your page's canonical URL variable
       this.page.identifier = "/AJAX-Cross-Origin-HTTP-request"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     (function() { // DON'T EDIT BELOW THIS LINE
@@ -788,8 +769,7 @@ All the keynotes/sessions have been uploaded here:  https://reinvent.awsevents.c
       (d.head || d.body).appendChild(s);
     })();
   </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-</noscript>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 
   
@@ -798,6 +778,5 @@ All the keynotes/sessions have been uploaded here:  https://reinvent.awsevents.c
 
 
 
-  </footer>
-</div></body>
+  </body>
 </html>

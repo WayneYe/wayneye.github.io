@@ -17,7 +17,7 @@ layout: raw-page
 <body>
   <pre>
 "****************************
-"Wayne's vimrc: http://wayneye.me/vimrc
+"Wayne's vimrc: http://wayneye.site/vimrc
 "****************************
 
 
@@ -857,7 +857,7 @@ au BufWrite /private/etc/pw.* set nowritebackup
 " Enter wy+Space
 iab wy Wayne Ye
 iab wyc http://WayneYe.com
-iab wm http://WayneYe.me
+iab wm http://wayneye.site
 iab mwy me@wayneye.com
 iab wym wei.ye@me.com
 iab xtg xiaotianpop@gmail.com

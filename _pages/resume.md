@@ -11,7 +11,7 @@ layout: raw-page
 <head>
   <title>Wayne Ye - Resume</title>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <meta name="keywords" content="Wayne Ye, Geek, CV, Resume, wayneye.me" />
+  <meta name="keywords" content="Wayne Ye, Geek, CV, Resume, wayneye.site" />
   <meta name="description" content="Wayne's resume." />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <link rel="stylesheet" type="text/css" href="/assets/css/resume/yui-reset.css" media="all" />
@@ -38,7 +38,7 @@ layout: raw-page
               <h2>Full Stack/Staff Software Engineer</h2>
               <!--Contact info -->
               <div class="contact-info">
-                <h3>Website: <a href="https://wayneye.me" target="_blank">https://wayneye.me</a></h3>
+                <h3>Website: <a href="https://wayneye.site" target="_blank">https://wayneye.site</a></h3>
                 <h3>Email: <a href="mailto:wei.ye@me.com">wei.ye@me.com</a></h3>
                 <h3>Mobile: +(1)415-494-1873</h3>
                 <h3>Constellation: Libra</h3>

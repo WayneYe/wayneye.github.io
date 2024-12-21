@@ -1,1 +1,1 @@
-Sitemap: https://wayneye.me/sitemap.xml
+Sitemap: https://wayneye.site/sitemap.xml

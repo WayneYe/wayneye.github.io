@@ -35,4 +35,4 @@ I speak fluent English (working proffessional) and Chinese (native speaker).
 #### Advanced Techniques for Ski Enthusiasts
 <iframe width="560" height="315" src="https://www.youtube.com/embed/[Video_ID_2]" title="Advanced Ski Techniques" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Feel free to reach out if you'd like to connect or join me on the slopes!
+<a href="https://heavenlysrs.com/private-lesson-request-form/" target="_blank">Book a private lesson with me</a>

@@ -45,7 +45,7 @@ twitter:
 
 #theme: jekyll-theme-hacker
 #theme: minimal-mistakes-jekyll
-remote_theme: "mmistakes/minimal-mistakes@4.24.0"
+remote_theme: "mmistakes/minimal-mistakes@4.26.2"
 minimal_mistakes_skin: "air" # "default" "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum" "sunrise"
 
 
@@ -193,7 +193,7 @@ footer:
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: mailto:hi@wayneye.site
+      url: mailto:wei.ye AT me.com
     - label: "Website"
       icon: "fas fa-fw fa-link"
       url: "https://wayneye.site"

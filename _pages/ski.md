@@ -32,7 +32,7 @@ I speak fluent English (working proffessional) and Chinese (native speaker).
 #### Carving
 <iframe width="560" height="315" src="https://www.youtube.com/embed/jwbCHYmXixk?si=CdV9GltWchEPT985" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-#### Advanced Techniques for Ski Enthusiasts
-<iframe width="560" height="315" src="https://www.youtube.com/embed/[Video_ID_2]" title="Advanced Ski Techniques" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+#### Single leg skiing & skiing backwords
+<iframe width="560" height="315" src="https://youtu.be/g9UhgjeaZ20" title="Advanced Ski Techniques" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <a href="https://heavenlysrs.com/private-lesson-request-form/" target="_blank">Book a private lesson with me</a>

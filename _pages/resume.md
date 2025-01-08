@@ -40,7 +40,7 @@ layout: raw-page
               <div class="contact-info">
                 <h3>Website: <a href="https://wayneye.site" target="_blank">https://wayneye.site</a></h3>
                 <h3>Email: <a href="mailto:wei.ye@me.com">wei.ye@me.com</a></h3>
-                <h3>Mobile: +(1)415-494-1873</h3>
+                <!-- <h3>Mobile: +(1)415-494-1873</h3> -->
                 <h3>Constellation: Libra</h3>
               </div>
             </div>
@@ -61,8 +61,8 @@ layout: raw-page
               </div>
               <div class="yui-u">
                 <p>
-                  Veteran full stack engineer/technical lead, certified AWS Solutions Architect, CodeProject MVP, over
-                  <script>document.write((new Date()).getFullYear() - 2005)</script> years' solid experience in a wide range of programming languages/platforms including in C# (ASP.NET), Python (Django/Flask), JavaScript/TypeScript, Ruby (RoR), team player and problem solver, with strong expertise and passion in delivering highly available, scalable web/cloud services.
+                  Seasonal full stack engineer/technical lead, certified AWS Solutions Architect, CodeProject MVP, over
+                  <script>document.write((new Date()).getFullYear() - 2005)</script> years' solid experience in a wide range of programming languages/platforms including in Python, JavaScript/TypeScript, Golang, Rust, C#, Ruby, team player and problem solver, with strong expertise and passion in delivering highly available, scalable web/cloud services.  I believe there are always more solutions than problems!
                 </p>
               </div>
             </div>

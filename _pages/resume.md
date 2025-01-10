@@ -61,8 +61,7 @@ layout: raw-page
               </div>
               <div class="yui-u">
                 <p>
-                  Seasonal full stack engineer/technical lead, certified AWS Solutions Architect, CodeProject MVP, over
-                  <script>document.write((new Date()).getFullYear() - 2005)</script> years' solid experience in a wide range of programming languages/platforms including in Python, JavaScript/TypeScript, Golang, Rust, C#, Ruby, team player and problem solver, with strong expertise and passion in delivering highly available, scalable web/cloud services.  I believe there are always more solutions than problems!
+                  Seasoned Staff Software Engineer and Full Stack Developer with over <script>document.write((new Date()).getFullYear() - 2005)</script> years of experience across diverse programming languages and platforms. Certified AWS Solutions Architect and CodeProject MVP, proficient in Python, JavaScript/TypeScript, Golang, Rust, C#, and Ruby. Passionate team player and innovative problem solver, specializing in delivering highly available, scalable web and cloud services. Driven by the belief that solutions always outnumber challenges, I bring a positive and resourceful approach to every project.
                 </p>
               </div>
             </div>

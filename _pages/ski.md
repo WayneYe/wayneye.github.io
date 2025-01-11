@@ -22,10 +22,10 @@ I speak fluent English (working proffessional) and Chinese (native speaker).
 
 
 ### About Me
-- **Certification**: PSIA Level 2 Ski Instructor
-- **Experience**: [Add number of years skiing/teaching]
-- **Favorite Ski Spot**: [Add your favorite location]
-- **Fun Fact**: [Share something unique about yourself]
+- **Certification**: PSIA Certified Level 2 Ski Instructor
+- **Experience**: 5 years working at Heavenly Mountain Resort, coached 400+ kids and 300+ adults to learn/improve their Ski
+- **Favorite Ski Spot**: Stagecoach/Olympic @ Heavenly
+- **Fun Fact**: What am I doing while not Skinng?  I am snowboarding!
 
 
 ### Videos
@@ -33,6 +33,7 @@ I speak fluent English (working proffessional) and Chinese (native speaker).
 <iframe width="560" height="315" src="https://www.youtube.com/embed/jwbCHYmXixk?si=CdV9GltWchEPT985" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 #### Single leg skiing & skiing backwords
-<iframe width="560" height="315" src="https://youtu.be/g9UhgjeaZ20" title="Advanced Ski Techniques" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/g9UhgjeaZ20?si=BKq0FLyeAIZAWLib" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+### Private Lesson
 <a href="https://heavenlysrs.com/private-lesson-request-form/" target="_blank">Book a private lesson with me</a>

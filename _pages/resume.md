@@ -21,9 +21,6 @@ layout: raw-page
   <div id="printBtn" class="func-btn">
     <a class="btn" href="javascript:window.print();">Print</a>
   </div>
-  <!-- <div id="downloadWord" class="func-btn"> -->
-  <!--   <a class="btn" href="https://github.com/WayneYe/wayneye.github.io/raw/main/resume/Wayne_Ye_Resume.docx">Download Word</a> -->
-  <!-- </div> -->
   <div id="downloadPdf" class="func-btn">
     <a class="btn" href="https://github.com/WayneYe/wayneye.github.io/raw/main/resume/Wayne_Ye_Resume.pdf">Download PDF</a>
   </div>
@@ -280,15 +277,9 @@ layout: raw-page
       right: 10px;
     }
 
-    #downloadWord {
-      position: absolute;
-      top: 40px;
-      right: 10px;
-    }
-
     #downloadPdf {
       position: absolute;
-      top: 70px;
+      top: 40px;
       right: 10px;
     }
 
@@ -515,7 +506,6 @@ layout: raw-page
 
     @media print {
       #printBtn,
-      #downloadWord,
       #downloadPdf,
       #downloadBtnBottom {
         display: none;

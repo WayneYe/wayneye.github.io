@@ -1,10 +1,10 @@
 name: "Wayne Ye"
 title: Wayne's Geek Life
 title_separator: "-"
-email: hi@wayneye.site
-keyword: "Wayne Ye,wayneye.site,Geek,Programming,C#,ASP.NET,GO,Python,Ruby,Rails,Cucumber,JavaScript,nodejs,HTML5,SOLID,AWS,Microservices"
+email: hi@wayneye.me
+keyword: "Wayne Ye,wayneye.me,Geek,Programming,C#,ASP.NET,GO,Python,Ruby,Rails,Cucumber,JavaScript,nodejs,HTML5,SOLID,AWS,Microservices"
 description: "I am a software engineer, technical lead and also a geek, I've immersed in software/web development for 14 years, I hack using these languages: Python, Golang, JavaScript/nodejs, Ruby/RoR, C#. I am an AWS Certified Solutions Architect (2017-2019), PMP and CodeProject MVP."
-url: "https://wayneye.site"
+url: "https://wayneye.me"
 SEOTitle: Wayne's Geek Life
 locale: "en-US"
 header-img: assets/images/Banner.jpg
@@ -26,10 +26,10 @@ author:
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: mailto:hi@wayneye.site
+      url: mailto:hi@wayneye.me
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      url: "https://wayneye.site"
+      url: "https://wayneye.me"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/wayneye"
@@ -196,7 +196,7 @@ footer:
       url: mailto:wei.ye AT me.com
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      url: "https://wayneye.site"
+      url: "https://wayneye.me"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       url: "https://twitter.com/wayneye"

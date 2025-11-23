@@ -13,4 +13,4 @@ From the most recent [MacVim release note](https://github.com/macvim-dev/macvim/
 
 > The Vim project has transitioned to new maintainers, and MacVim will continue to be supported as long as Vim is around.
 
-I decided to use Vim as my all time text editor [since 12 years ago](https://wayneye.site/My-Love-on-Vim), it completely changed my mind and my life, there were some times I felt like my typing faster then my thinking.  Mr Bram has all my respect, he will be badly missed!  RIP
+I decided to use Vim as my all time text editor [since 12 years ago](https://wayneye.me/My-Love-on-Vim), it completely changed my mind and my life, there were some times I felt like my typing faster then my thinking.  Mr Bram has all my respect, he will be badly missed!  RIP

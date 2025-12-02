@@ -1,0 +1,717 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.27.3 by Michael Rose
+  Copyright 2013-2025 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Make your HTML5 Video support all browsers - Wayne’s Geek Life</title>
+<meta name="description" content="Introduction HTML5 video tag gave us the following advantages:  No plugin required, directly play. Visible &amp; controllable for Browser and search engine, not a &quot;black box&quot; such as Flash or SilverLight. Cross-platform, in theory all PC/mobile browsers as well as Ipad/Windows 8/Android tablet PC.&nbsp; Downward compatibility. Which is very important, but W3C had made it simple and works, we can smoothly fall back to flash if the user agent does not recognize &quot;&lt;video&gt;&quot; tag.  So it is simple and pretty cool! However, there is still issues within a not short period: the browser support - each concrete browser and the company (ies) behind it supports different formant of videos, to be more specific, refer the table below stole from about.com:   &nbsp;AndroidChromeFirefoxInternet ExploreriOSOperaSafari Codec&nbsp;WinMacWinMacWin&nbsp;WinMacWinMac MP4 or H.264 3.0 9 7 X X 9 3 X X 5 5  ogg/Theora 2.3 9 7 3.6 3.6 X X 10.63 10.63 X X  WebM 2.3 9 7 3.6 3.6 9 (withcomponents) X 10.63 10.63 X X    So to support all browsers: IE 6.0+, Firefox, Chrome, Safari, Opera, etc, what should we do? Cross All Browser Implementation By searching on the google and half a day investigation, I found the solution, sample code pasted below:  &lt;video controls=&quot;controls&quot; preload=&quot;auto&quot; poster=&quot;napshot.png&quot;&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.mp4&quot; type=&quot;video/mp4&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.webm&quot; type=&quot;video/webm&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.ogv&quot; type=&quot;video/ogg&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;!--  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Flash &nbsp;&nbsp;&nbsp; --&gt; &lt;/video&gt; The code above results in IE 9.0+/Safari will load mp4, Chrome/Firefox&nbsp;and Opera&nbsp;will load webm, and IE 6.0 ~ 8.0 will load flash.  Note: as browsers may change its attitude on the video format support, so my code &amp; comments might not right in the future. &nbsp;  Few tips">
+
+
+  <meta name="author" content="Wayne Ye">
+  
+  <meta property="article:author" content="Wayne Ye">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Wayne&#39;s Geek Life">
+<meta property="og:title" content="Make your HTML5 Video support all browsers">
+<meta property="og:url" content="http://localhost:4000/Make-Your-HTML5-Video-Support-ALL-Browsers">
+
+
+  <meta property="og:description" content="Introduction HTML5 video tag gave us the following advantages:  No plugin required, directly play. Visible &amp; controllable for Browser and search engine, not a &quot;black box&quot; such as Flash or SilverLight. Cross-platform, in theory all PC/mobile browsers as well as Ipad/Windows 8/Android tablet PC.&nbsp; Downward compatibility. Which is very important, but W3C had made it simple and works, we can smoothly fall back to flash if the user agent does not recognize &quot;&lt;video&gt;&quot; tag.  So it is simple and pretty cool! However, there is still issues within a not short period: the browser support - each concrete browser and the company (ies) behind it supports different formant of videos, to be more specific, refer the table below stole from about.com:   &nbsp;AndroidChromeFirefoxInternet ExploreriOSOperaSafari Codec&nbsp;WinMacWinMacWin&nbsp;WinMacWinMac MP4 or H.264 3.0 9 7 X X 9 3 X X 5 5  ogg/Theora 2.3 9 7 3.6 3.6 X X 10.63 10.63 X X  WebM 2.3 9 7 3.6 3.6 9 (withcomponents) X 10.63 10.63 X X    So to support all browsers: IE 6.0+, Firefox, Chrome, Safari, Opera, etc, what should we do? Cross All Browser Implementation By searching on the google and half a day investigation, I found the solution, sample code pasted below:  &lt;video controls=&quot;controls&quot; preload=&quot;auto&quot; poster=&quot;napshot.png&quot;&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.mp4&quot; type=&quot;video/mp4&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.webm&quot; type=&quot;video/webm&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.ogv&quot; type=&quot;video/ogg&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;!--  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Flash &nbsp;&nbsp;&nbsp; --&gt; &lt;/video&gt; The code above results in IE 9.0+/Safari will load mp4, Chrome/Firefox&nbsp;and Opera&nbsp;will load webm, and IE 6.0 ~ 8.0 will load flash.  Note: as browsers may change its attitude on the video format support, so my code &amp; comments might not right in the future. &nbsp;  Few tips">
+
+
+
+
+
+  <meta name="twitter:site" content="@wayneye">
+  <meta name="twitter:title" content="Make your HTML5 Video support all browsers">
+  <meta name="twitter:description" content="Introduction HTML5 video tag gave us the following advantages:  No plugin required, directly play. Visible &amp; controllable for Browser and search engine, not a &quot;black box&quot; such as Flash or SilverLight. Cross-platform, in theory all PC/mobile browsers as well as Ipad/Windows 8/Android tablet PC.&nbsp; Downward compatibility. Which is very important, but W3C had made it simple and works, we can smoothly fall back to flash if the user agent does not recognize &quot;&lt;video&gt;&quot; tag.  So it is simple and pretty cool! However, there is still issues within a not short period: the browser support - each concrete browser and the company (ies) behind it supports different formant of videos, to be more specific, refer the table below stole from about.com:   &nbsp;AndroidChromeFirefoxInternet ExploreriOSOperaSafari Codec&nbsp;WinMacWinMacWin&nbsp;WinMacWinMac MP4 or H.264 3.0 9 7 X X 9 3 X X 5 5  ogg/Theora 2.3 9 7 3.6 3.6 X X 10.63 10.63 X X  WebM 2.3 9 7 3.6 3.6 9 (withcomponents) X 10.63 10.63 X X    So to support all browsers: IE 6.0+, Firefox, Chrome, Safari, Opera, etc, what should we do? Cross All Browser Implementation By searching on the google and half a day investigation, I found the solution, sample code pasted below:  &lt;video controls=&quot;controls&quot; preload=&quot;auto&quot; poster=&quot;napshot.png&quot;&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.mp4&quot; type=&quot;video/mp4&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.webm&quot; type=&quot;video/webm&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.ogv&quot; type=&quot;video/ogg&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;!--  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Flash &nbsp;&nbsp;&nbsp; --&gt; &lt;/video&gt; The code above results in IE 9.0+/Safari will load mp4, Chrome/Firefox&nbsp;and Opera&nbsp;will load webm, and IE 6.0 ~ 8.0 will load flash.  Note: as browsers may change its attitude on the video format support, so my code &amp; comments might not right in the future. &nbsp;  Few tips">
+  <meta name="twitter:url" content="http://localhost:4000/Make-Your-HTML5-Video-Support-ALL-Browsers">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2011-11-07T00:00:00-08:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/Make-Your-HTML5-Video-Support-ALL-Browsers">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Wayne's Geek Life Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Wayne&#39;s Geek Life
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/categories/"
+                
+                
+              >Categories</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tags/"
+                
+                
+              >Tags</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/search/"
+                
+                
+              >Search</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/gallery/"
+                
+                
+              >Gallery</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/vlog/"
+                
+                
+              >Vlog</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/about/"
+                
+                
+              >About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="http://localhost:4000/">
+        <img src="/assets/images/me.jpg" alt="Wayne Ye" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Wayne Ye</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Whatever is worth doing is worth doing well!</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">San Francisco</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:hi@wayneye.me" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://wayneye.me" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/wayneye" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/WayneYe/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/wayneye" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Make your HTML5 Video support all browsers">
+    <meta itemprop="description" content="IntroductionHTML5 video tag gave us the following advantages:No plugin required, directly play.Visible &amp; controllable for Browser and search engine, not a &quot;black box&quot; such as Flash or SilverLight.Cross-platform, in theory all PC/mobile browsers as well as Ipad/Windows 8/Android tablet PC.&nbsp;Downward compatibility. Which is very important, but W3C had made it simple and works, we can smoothly fall back to flash if the user agent does not recognize &quot;&lt;video&gt;&quot; tag.So it is simple and pretty cool! However, there is still issues within a not short period: the browser support - each concrete browser and the company (ies) behind it supports different formant of videos, to be more specific, refer the table below stole from about.com:&nbsp;AndroidChromeFirefoxInternet ExploreriOSOperaSafariCodec&nbsp;WinMacWinMacWin&nbsp;WinMacWinMacMP4 or H.2643.097XX93XX55ogg/Theora2.3973.63.6XX10.6310.63XXWebM2.3973.63.69 (withcomponents)X10.6310.63XXSo to support all browsers: IE 6.0+, Firefox, Chrome, Safari, Opera, etc, what should we do?Cross All Browser ImplementationBy searching on the google and half a day investigation, I found the solution, sample code pasted below: &lt;video controls=&quot;controls&quot; preload=&quot;auto&quot; poster=&quot;napshot.png&quot;&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.mp4&quot; type=&quot;video/mp4&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.webm&quot; type=&quot;video/webm&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;source src=&quot;My Video.ogv&quot; type=&quot;video/ogg&quot; /&gt; &nbsp;&nbsp;&nbsp; &lt;!--  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Flash &nbsp;&nbsp;&nbsp; --&gt; &lt;/video&gt;The code above results in IE 9.0+/Safari will load mp4, Chrome/Firefox&nbsp;and Opera&nbsp;will load webm, and IE 6.0 ~ 8.0 will load flash.Note: as browsers may change its attitude on the video format support, so my code &amp; comments might not right in the future. &nbsp;Few tips">
+    <meta itemprop="datePublished" content="2011-11-07T00:00:00-08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="http://localhost:4000/Make-Your-HTML5-Video-Support-ALL-Browsers" itemprop="url">Make your HTML5 Video support all browsers
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-cog"></i> On this page</h4></header>
+              
+            </nav>
+          </aside>
+        
+        <h3>Introduction</h3>
+<p>HTML5 video tag gave us the following advantages:</p>
+<ol>
+<li>No plugin required, directly play.</li>
+<li>Visible &amp; controllable for Browser and search engine, not a "black box" such as Flash or SilverLight.</li>
+<li>Cross-platform, in theory all PC/mobile browsers as well as Ipad/Windows 8/Android tablet PC.&nbsp;</li>
+<li>Downward compatibility. Which is very important, but W3C had made it simple and works, we can smoothly fall back to flash if the user agent does not recognize "<code>&lt;video&gt;</code>" tag.</li>
+</ol>
+<p>So it is simple and pretty cool! However, there is still issues within a not short period: the <strong>browser support</strong> - each concrete browser and the company (ies) behind it supports different formant of videos, to be more specific, refer the table below stole from <a href="http://webdesign.about.com/od/video/a/html5-video-formats.htm" target="_blank">about.com</a>:</p>
+<table style="width: 100%; border-width: 1px;" border="1" cellspacing="1" cellpadding="2">
+<tbody>
+<tr><th>&nbsp;</th><th>Android</th><th colspan="2">Chrome</th><th colspan="2">Firefox</th><th>Internet Explorer</th><th>iOS</th><th colspan="2">Opera</th><th colspan="2">Safari</th></tr>
+<tr><th>Codec</th><th>&nbsp;</th><th>Win</th><th>Mac</th><th>Win</th><th>Mac</th><th>Win</th><th>&nbsp;</th><th>Win</th><th>Mac</th><th>Win</th><th>Mac</th></tr>
+<tr><th>MP4 or H.264</th>
+<td>3.0</td>
+<td>9</td>
+<td>7</td>
+<td>X</td>
+<td>X</td>
+<td>9</td>
+<td>3</td>
+<td>X</td>
+<td>X</td>
+<td>5</td>
+<td>5</td>
+</tr>
+<tr><th>ogg/Theora</th>
+<td>2.3</td>
+<td>9</td>
+<td>7</td>
+<td>3.6</td>
+<td>3.6</td>
+<td>X</td>
+<td>X</td>
+<td>10.63</td>
+<td>10.63</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr><th>WebM</th>
+<td>2.3</td>
+<td>9</td>
+<td>7</td>
+<td>3.6</td>
+<td>3.6</td>
+<td>9 (with<a href="http://tools.google.com/dlpage/webmmf" target="_blank">components</a>)</td>
+<td>X</td>
+<td>10.63</td>
+<td>10.63</td>
+<td>X</td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+<p>So to support all browsers: IE 6.0+, Firefox, Chrome, Safari, Opera, etc, what should we do?</p>
+<h3>Cross All Browser Implementation</h3>
+<p>By searching on the google and half a day investigation, I found the solution, sample code pasted below:</p>
+<pre class="source" style="font-family: '[object HTMLOptionElement]', Consolas, 'Lucida Console', 'Courier New'; color: #f6f3e8; background-color: #242424;"> <span style="color: #8ac6f2;">&lt;video</span> <span style="color: #cae682;">controls=</span><span style="color: #95e454; font-style: italic;">"controls"</span> <span style="color: #cae682;">preload=</span><span style="color: #95e454; font-style: italic;">"auto"</span> <span style="color: #cae682;">poster=</span><span style="color: #95e454; font-style: italic;">"napshot.png"</span><span style="color: #8ac6f2;">&gt;</span><br /> &nbsp;&nbsp;&nbsp; <span style="color: #8ac6f2;">&lt;source</span> <span style="color: #cae682;">src=</span><span style="color: #95e454; font-style: italic;">"My Video.mp4"</span> <span style="color: #cae682;">type=</span><span style="color: #95e454; font-style: italic;">"video/mp4"</span> <span style="color: #8ac6f2;">/&gt;</span><br /> &nbsp;&nbsp;&nbsp; <span style="color: #8ac6f2;">&lt;source</span> <span style="color: #cae682;">src=</span><span style="color: #95e454; font-style: italic;">"My Video.webm"</span> <span style="color: #cae682;">type=</span><span style="color: #95e454; font-style: italic;">"video/webm"</span> <span style="color: #8ac6f2;">/&gt;</span><br /> &nbsp;&nbsp;&nbsp; <span style="color: #8ac6f2;">&lt;source</span> <span style="color: #cae682;">src=</span><span style="color: #95e454; font-style: italic;">"My Video.ogv"</span> <span style="color: #cae682;">type=</span><span style="color: #95e454; font-style: italic;">"video/ogg"</span> <span style="color: #8ac6f2;">/&gt;</span><br /> &nbsp;&nbsp;&nbsp; <span style="color: #99968b; font-style: italic;">&lt;!-- </span><br /> <span style="color: #99968b; font-style: italic;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Flash</span><br /> <span style="color: #99968b; font-style: italic;">&nbsp;&nbsp;&nbsp; --&gt;</span><br /> <span style="color: #8ac6f2;">&lt;/video&gt;</span></pre>
+<p>The code above results in IE 9.0+/Safari will load mp4, Chrome/Firefox&nbsp;and Opera&nbsp;will load webm, and IE 6.0 ~ 8.0 will load flash.</p>
+<blockquote>
+<p>Note: as browsers may change its attitude on the video format support, so my code &amp; comments might not right in the future. &nbsp;</p>
+</blockquote>
+<h3>Few tips</h3>
+<!--more-->
+<p>One important thing is make sure your web server supports those video MIME types, taking IIS as an example, we need to config it to support this by doing following:</p>
+<ol>
+<li>Open IIS Server Manager (Win+R -&gt; <strong>inetmgr</strong>).</li>
+<li>Go to your website, double clicks "<strong>MIME Type</strong>s".</li>
+<li>Add MIME types: video/mp4, video/webm and video/ogg.<br /><img title="IIS MIME TYpe" src="https://byfiles.storage.live.com/y1puPi36EpVAycD0sRZmOt-dv53vj-nzC7PZqBpn3xykgCAei5yh03c8y_LbpjZKvqaCRZ1RrCYo-4/IIS%20Video%20MIME.png?psid=1" alt="IIS MIME TYpe" width="356" height="201" />&nbsp;</li>
+</ol>
+<p>An equivalent way to define those MIME types within your ASP.NET web.config:</p>
+<pre class="source" style="font-family: '[object HTMLOptionElement]', Consolas, 'Lucida Console', 'Courier New'; color: #f6f3e8; background-color: #242424;"> <span style="color: #8ac6f2;">&lt;staticContent&gt;</span><br /> &nbsp;&nbsp;&nbsp; <span style="color: #8ac6f2;">&lt;mimeMap</span> <span style="color: #cae682;">fileExtension=</span><span style="color: #95e454; font-style: italic;">".webm"</span> <span style="color: #cae682;">mimeType=</span><span style="color: #95e454; font-style: italic;">"video/webm"</span> <span style="color: #8ac6f2;">/&gt;</span><br /> &nbsp;&nbsp;&nbsp; <span style="color: #8ac6f2;">&lt;mimeMap</span> <span style="color: #cae682;">fileExtension=</span><span style="color: #95e454; font-style: italic;">".ogv"</span> <span style="color: #cae682;">mimeType=</span><span style="color: #95e454; font-style: italic;">"video/ogg"</span> <span style="color: #8ac6f2;">/&gt;</span><br /> &nbsp;&nbsp;&nbsp; <span style="color: #8ac6f2;">&lt;mimeMap</span> <span style="color: #cae682;">fileExtension=</span><span style="color: #95e454; font-style: italic;">".mp4"</span> <span style="color: #cae682;">mimeType=</span><span style="color: #95e454; font-style: italic;">"video/mp4"</span> <span style="color: #8ac6f2;">/&gt;</span><br /> &nbsp;&nbsp;&nbsp; <span style="color: #8ac6f2;">&lt;clientCache</span> <span style="color: #cae682;">cacheControlMode=</span><span style="color: #95e454; font-style: italic;">"UseMaxAge"</span> <span style="color: #cae682;">cacheControlMaxAge=</span><span style="color: #95e454; font-style: italic;">"30.00:00:00"</span> <span style="color: #8ac6f2;">/&gt;</span><br /> <span style="color: #8ac6f2;">&lt;/staticContent&gt;</span></pre>
+<p>Another important thing is video converting, I would recommended combinations and steps according to my experience on this:</p>
+<ol>
+<li>Using <a href="http://www.any-video-converter.com" target="_blank">Any Video Converter</a> to compress/convert original video file to a flv.</li>
+<li>Using&nbsp;<a href="http://www.getmiro.com" target="_blank">Miro</a> conver the compressed flv to ogv, webm and mp4.<br /><img title="Miro" src="https://byfiles.storage.live.com/y1pQN1-nOOraXtuGrDV5M1txu9yeFeeDGAEuh_ZNzUeAwhBk8qgEP3Gn6Rapv31vtv_u1KgvN_8mXI/Miro.png?psid=1" alt="Miro" width="371" height="432" />&nbsp;</li>
+</ol>
+<p>They both are free to use, Miro is actually based on the famous open source <a href="ffmpeg.org" target="_blank">ffmpeg</a> library which I like very much, Miro is also open source.</p>
+<p><a href="http://en.wikipedia.org/wiki/Stevenote" target="_blank">One more thing</a>:), we can customize video UI by CSS, and there are already a few good open source library to help you:&nbsp;<a href="http://mediaelementjs.com/" rel="external">MediaElement.js</a>&nbsp;and&nbsp;<a href="http://videojs.com/" rel="external">VideoJS</a>.&nbsp;</p>
+<h3>Live Demo</h3>
+<p>My lovely son<img style="background-image: url('http://wayneye.com/Images/winLiveEmotions.gif'); background-position: -0px -0px; width: 19px; height: 19px;" src="http://wayneye.com/Images/invis.gif" alt="Smile" /></p>
+<p><video id="VideoJS" width="640" height="480" controls="controls" class="video-js vjs-paused" preload="preload" poster="http://wayneye.com/Video/Little-Tiger-Play-Potato/Snapshot.jpg"><source src="http://wayneye.com/Video/Little-Tiger-Play-Potato/Little-Tiger-Play-Potato.mp4" type="video/mp4; codecs=mp4a.40.2" /><source src="http://wayneye.com/Video/Little-Tiger-Play-Potato/Little-Tiger-Play-Potato.webm" type="video/webm" /><source src="http://wayneye.com/Video/Little-Tiger-Play-Potato/Little-Tiger-Play-Potato.ogv" type="video/ogg" /><object id="VideoJS" width="640" height="480" data="tinymce/jscripts/tiny_mce/plugins/media/moxieplayer.swf" type="application/x-shockwave-flash"><param name="src" value="tinymce/jscripts/tiny_mce/plugins/media/moxieplayer.swf" /><param name="flashvars" value="url=http%3A//wayneye.com/Video/Little-Tiger-Play-Potato/Little-Tiger-Play-Potato.mp4&amp;poster=http%3A//wayneye.com/Video/Little-Tiger-Play-Potato/Snapshot.jpg" /><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="true" /></object><script src="http://wayneye.com/Video/flowplayer/flowplayer-3.2.6.min.js"></script><a href="http://wayneye.com/Video/Little-Tiger-Play-Potato/Little-Tiger-Play-Potato.flv" style="display: block; width: 640px; height: 480px" id="modern"> <img class="Snapshot" src="http://wayneye.com/Video/Little-Tiger-Play-Potato/Snapshot.jpg" alt="Snapshot" /> </a><script>
+        flowplayer("modern", "http://wayneye.com/Video/flowplayer/flowplayer-3.2.7.swf", {
+            // change the default controlbar to modern
+            plugins: {
+                controls: {
+                    url: 'http://wayneye.com/Video/flowplayer/flowplayer.controls-3.2.5.swf'
+                }
+            },
+            clip: {
+                autoPlay: true
+            }
+        });
+    </script></video></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#hack" class="page__taxonomy-item p-category" rel="tag">Hack</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#hack" class="page__taxonomy-item p-category" rel="tag">Hack</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2011-11-07T00:00:00-08:00">November 7, 2011</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  <h4 class="page__share-title">Share on</h4>
+
+  <a href="https://x.com/intent/tweet?via=wayneye&text=Make+your+HTML5+Video+support+all+browsers%20http%3A%2F%2Flocalhost%3A4000%2FMake-Your-HTML5-Video-Support-ALL-Browsers" class="btn btn--x" aria-label="Share on X" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on X">
+    <i class="fab fa-fw fa-x-twitter" aria-hidden="true"></i><span> X</span>
+  </a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2FMake-Your-HTML5-Video-Support-ALL-Browsers" class="btn btn--facebook" aria-label="Share on Facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook">
+    <i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span>
+  </a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/Make-Your-HTML5-Video-Support-ALL-Browsers" class="btn btn--linkedin" aria-label="Share on LinkedIn" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn">
+    <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span>
+  </a>
+
+  <a href="https://bsky.app/intent/compose?text=Make+your+HTML5+Video+support+all+browsers%20http%3A%2F%2Flocalhost%3A4000%2FMake-Your-HTML5-Video-Support-ALL-Browsers" class="btn btn--bluesky" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Bluesky">
+    <i class="fab fa-fw fa-bluesky" aria-hidden="true"></i><span> Bluesky</span>
+  </a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/Atomic-Operation-In-Csharp" class="pagination--pager" title="Atomic Operation in C#.Net">Previous</a>
+    
+    
+      <a href="/Rooted-My-HTC-Sensation" class="pagination--pager" title="Rooted my HTC Sensation (G14)">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+      
+        <p>
+          Comments are configured with provider: <strong>disqus</strong>,
+          but are disabled in non-production environments.
+        </p>
+      
+    
+  </article>
+
+  
+  
+    
+<div class="page__related">
+  
+  <h2 class="page__related-title">You may also enjoy</h2>
+  <div class="grid__wrapper">
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/RIP-Bram-Moolenaar" rel="permalink">RIP Bram Moolenaar - Father of Vim
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">From the most recent MacVim release note:
+
+  As some of you may have read, Bram Moolenaar, the creator and maintainer of Vim, has passed away recently. He ha...</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/BMW-Convertible-As-My-Beater-Car" rel="permalink">BMW Convertible As My Beater Car
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+  Life is too short to drive boring cars
+
+
+
+
+
+I bought a 2015 BMW X5 Dec last year, it has been half a year so far (with 2 months she stayed inside the gara...</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2019-12-07-SkyJump-Las-Vegas" rel="permalink">SkyJump from Stratosphere Tower at Las Vegas - Smile all the way down
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Instead of spending any cent in the money pit casinos, I’d chose to do something more meaningful and exciting :)
+
+
+    
+    
+    
+    SkyJump Las Vegas
+
+
+
+
+ ...</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/AWS-reinvent-Las-Vegas" rel="permalink">AWS reinvent 2019 - Las Vegas
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">This is my second time attending AWS re-Invent, last time was year 2017, the purpose of this blog is to summarize what I’ve learned, impressed and entertaine...</p>
+  </article>
+</div>
+
+    
+  </div>
+</div>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="mailto:wei.ye AT me.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+        
+      
+        
+          <li><a href="https://wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+        
+      
+        
+          <li><a href="https://twitter.com/wayneye" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+          <li><a href="https://facebook.com/WayneYeDotCom" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-facebook-square" aria-hidden="true"></i> Facebook</a></li>
+        
+      
+        
+          <li><a href="https://github.com/WayneYe/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">Wayne&#39;s Geek Life</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/Make-Your-HTML5-Video-Support-ALL-Browsers";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/Make-your-HTML5-Video-support-all-browsers"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://wayneye.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>

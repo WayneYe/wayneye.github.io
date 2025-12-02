@@ -1,11 +1,12 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.16.3 by Michael Rose
-  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Minimal Mistakes Jekyll Theme 4.27.3 by Michael Rose
+  Copyright 2013-2025 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
 -->
-<html lang="en" class="no-js">
+
+<html lang="en-US" class="no-js">
   <head>
     <meta charset="utf-8">
 
@@ -13,13 +14,18 @@
 <meta name="description" content="I am a software engineer, technical lead and also a geek, I’ve immersed in software/web development for 14 years, I hack using these languages: Python, Golang, JavaScript/nodejs, Ruby/RoR, C#. I am an AWS Certified Solutions Architect (2017-2019), PMP and CodeProject MVP.">
 
 
+  <meta name="author" content="Wayne Ye">
+  
+
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
-<meta property="og:site_name" content="Wayne's Geek Life">
+<meta property="og:site_name" content="Wayne&#39;s Geek Life">
 <meta property="og:title" content="AUTODESK WORLD CUP 2019 - Dublin">
 <meta property="og:url" content="http://localhost:4000/gallery/adsk-worldcup-2019">
 
+
+  <meta property="og:description" content="I am a software engineer, technical lead and also a geek, I’ve immersed in software/web development for 14 years, I hack using these languages: Python, Golang, JavaScript/nodejs, Ruby/RoR, C#. I am an AWS Certified Solutions Architect (2017-2019), PMP and CodeProject MVP.">
 
 
 
@@ -57,59 +63,41 @@
 
 
 
-
 <!-- end _includes/seo.html -->
 
 
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Wayne's Geek Life Feed">
 
-<!-- https://t.co/dKP3o1e -->
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Wayne's Geek Life Feed">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <script>
   document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
 </script>
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
-
-<!--[if IE ]>
-  <style>
-    /* old IE unsupported flexbox fixes */
-    .greedy-nav .site-title {
-      padding-right: 3em;
-    }
-    .greedy-nav button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-    }
-  </style>
-<![endif]-->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
 
 
 
     <!-- start custom head snippets -->
 
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
-<link rel="manifest" href="/assets/images/favicon/site.webmanifest">
-<link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
-<meta name="msapplication-TileColor" content="#da532c">
-<meta name="theme-color" content="#ffffff">
 
 <!-- end custom head snippets -->
 
   </head>
 
-  <body class="layout--single">
-
-    <!--[if lt IE 9]>
-<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
-<![endif]-->
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
 
     
 
@@ -118,19 +106,46 @@
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
         
-        <a class="site-title" href="/">Wayne's Geek Life</a>
+        <a class="site-title" href="/">
+          Wayne&#39;s Geek Life
+          
+        </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/categories/" >Categories</a>
+              <a
+                href="/categories/"
+                
+                
+              >Categories</a>
             </li><li class="masthead__menu-item">
-              <a href="/tags/" >Tags</a>
+              <a
+                href="/tags/"
+                
+                
+              >Tags</a>
             </li><li class="masthead__menu-item">
-              <a href="/search/" >Search</a>
+              <a
+                href="/search/"
+                
+                
+              >Search</a>
             </li><li class="masthead__menu-item">
-              <a href="/gallery/" >Gallery</a>
+              <a
+                href="/gallery/"
+                
+                
+              >Gallery</a>
             </li><li class="masthead__menu-item">
-              <a href="/vlog/" >Vlog</a>
+              <a
+                href="/vlog/"
+                
+                
+              >Vlog</a>
             </li><li class="masthead__menu-item">
-              <a href="/about/" >About</a>
+              <a
+                href="/about/"
+                
+                
+              >About</a>
             </li></ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
@@ -149,32 +164,33 @@
 
 
 
+
+
 <div id="main" role="main">
   
   <div class="sidebar sticky">
   
 
 
-<div itemscope itemtype="https://schema.org/Person">
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
 
   
     <div class="author__avatar">
-      
-
-      
-        <img src="/assets/images/me.jpg" alt="Wayne Ye" itemprop="image">
-      
+      <a href="http://localhost:4000/">
+        <img src="/assets/images/me.jpg" alt="Wayne Ye" itemprop="image" class="u-photo">
+      </a>
     </div>
   
 
   <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Wayne Ye</a>
+    </h3>
     
-      <h3 class="author__name" itemprop="name">Wayne Ye</h3>
-    
-    
-      <p class="author__bio" itemprop="description">
-        Whatever is worth doing is worth doing well!
-      </p>
+      <div class="author__bio p-note" itemprop="description">
+        <p>Whatever is worth doing is worth doing well!</p>
+
+      </div>
     
   </div>
 
@@ -183,30 +199,30 @@
     <ul class="author__urls social-icons">
       
         <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
-          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">San Francisco</span>
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">San Francisco</span>
         </li>
       
 
       
         
           
-            <li><a href="mailto:hi@wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+            <li><a href="mailto:hi@wayneye.me" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
           
         
           
-            <li><a href="https://wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+            <li><a href="https://wayneye.me" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
           
         
           
-            <li><a href="https://www.linkedin.com/in/wayneye" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+            <li><a href="https://www.linkedin.com/in/wayneye" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
           
         
           
-            <li><a href="https://github.com/WayneYe/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+            <li><a href="https://github.com/WayneYe/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
           
         
           
-            <li><a href="https://twitter.com/wayneye" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+            <li><a href="https://twitter.com/wayneye" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
           
         
       
@@ -261,7 +277,7 @@
 
       <!--
   <li>
-    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
       <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
     </a>
   </li>
@@ -274,6 +290,7 @@
   </div>
 
 
+
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="AUTODESK WORLD CUP 2019 - Dublin">
     
@@ -283,9 +300,13 @@
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">AUTODESK WORLD CUP 2019 - Dublin
-</h1>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="http://localhost:4000/gallery/adsk-worldcup-2019" itemprop="url">AUTODESK WORLD CUP 2019 - Dublin
+</a>
+          </h1>
           
+
+
         </header>
       
 
@@ -296,84 +317,85 @@
   
     
       <a href="/assets/images/gallery/2019-adsk-football/AUTODESK-WORLD-CUP-Tymon-Park.jpg" title="Tymon">
-        <img src="/assets/images/gallery/2019-adsk-football/AUTODESK-WORLD-CUP-Tymon-Park.jpg" alt="" />
+          <img src="/assets/images/gallery/2019-adsk-football/AUTODESK-WORLD-CUP-Tymon-Park.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/gallery/2019-adsk-football/AUTODESK-WORLD-CUP-Fullview.jpg" title="Fullview">
-        <img src="/assets/images/gallery/2019-adsk-football/AUTODESK-WORLD-CUP-Fullview.jpg" alt="" />
+          <img src="/assets/images/gallery/2019-adsk-football/AUTODESK-WORLD-CUP-Fullview.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/gallery/2019-adsk-football/AUTODESK-World-Cup-2019-Team-France.jpg" title="Team-France">
-        <img src="/assets/images/gallery/2019-adsk-football/AUTODESK-World-Cup-2019-Team-France.jpg" alt="" />
+          <img src="/assets/images/gallery/2019-adsk-football/AUTODESK-World-Cup-2019-Team-France.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/gallery/2019-adsk-football/AUTODESK-World-Cup-2019-Team-France-2.jpg" title="Team-France-2">
-        <img src="/assets/images/gallery/2019-adsk-football/AUTODESK-World-Cup-2019-Team-France-2.jpg" alt="" />
+          <img src="/assets/images/gallery/2019-adsk-football/AUTODESK-World-Cup-2019-Team-France-2.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/gallery/2019-adsk-football/AUTODESK-World-Cup-2019-French-3-Players.jpg" title="French-3-Players">
-        <img src="/assets/images/gallery/2019-adsk-football/AUTODESK-World-Cup-2019-French-3-Players.jpg" alt="" />
+          <img src="/assets/images/gallery/2019-adsk-football/AUTODESK-World-Cup-2019-French-3-Players.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/gallery/2019-adsk-football/AUTODESK-World-Cup-2019-Wayne-1.jpg" title="Wayne-1">
-        <img src="/assets/images/gallery/2019-adsk-football/AUTODESK-World-Cup-2019-Wayne-1.jpg" alt="" />
+          <img src="/assets/images/gallery/2019-adsk-football/AUTODESK-World-Cup-2019-Wayne-1.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/gallery/2019-adsk-football/AUTODESK-World-Cup-Wayne-2.jpg" title="Wayne-2">
-        <img src="/assets/images/gallery/2019-adsk-football/AUTODESK-World-Cup-Wayne-2.jpg" alt="" />
+          <img src="/assets/images/gallery/2019-adsk-football/AUTODESK-World-Cup-Wayne-2.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/gallery/2019-adsk-football/AUTODESK-World-Cup-2019-Wayne-3.jpg" title="Wayne-3">
-        <img src="/assets/images/gallery/2019-adsk-football/AUTODESK-World-Cup-2019-Wayne-3.jpg" alt="" />
+          <img src="/assets/images/gallery/2019-adsk-football/AUTODESK-World-Cup-2019-Wayne-3.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/gallery/2019-adsk-football/AUTODESK-WORLD-CUP-Women-Final.jpg" title="Women Final">
-        <img src="/assets/images/gallery/2019-adsk-football/AUTODESK-WORLD-CUP-Women-Final.jpg" alt="" />
+          <img src="/assets/images/gallery/2019-adsk-football/AUTODESK-WORLD-CUP-Women-Final.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/gallery/2019-adsk-football/AUTODESK-World-Cup-2019-Champions.jpg" title="Champions">
-        <img src="/assets/images/gallery/2019-adsk-football/AUTODESK-World-Cup-2019-Champions.jpg" alt="" />
+          <img src="/assets/images/gallery/2019-adsk-football/AUTODESK-World-Cup-2019-Champions.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/gallery/2019-adsk-football/AUTODESK-WORLD-CUP-Logo.jpg" title="Logo">
-        <img src="/assets/images/gallery/2019-adsk-football/AUTODESK-WORLD-CUP-Logo.jpg" alt="" />
+          <img src="/assets/images/gallery/2019-adsk-football/AUTODESK-WORLD-CUP-Logo.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/gallery/2019-adsk-football/AUTODESK-World-Cup-2019-Celebration.jpg" title="Celebration">
-        <img src="/assets/images/gallery/2019-adsk-football/AUTODESK-World-Cup-2019-Celebration.jpg" alt="" />
+          <img src="/assets/images/gallery/2019-adsk-football/AUTODESK-World-Cup-2019-Celebration.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/gallery/2019-adsk-football/AUTODESK-World-Cup-2019-Celebration-2.jpg" title="Celebration-1">
-        <img src="/assets/images/gallery/2019-adsk-football/AUTODESK-World-Cup-2019-Celebration-2.jpg" alt="" />
+          <img src="/assets/images/gallery/2019-adsk-football/AUTODESK-World-Cup-2019-Celebration-2.jpg" alt="" />
       </a>
     
   
   
 </figure>
+
 
         
       </section>
@@ -384,47 +406,61 @@
 
 
         
+
       </footer>
 
       <section class="page__share">
-  <!---->
-    <!--<h4 class="page__share-title">Share on</h4>-->
-  <!---->
+  <h4 class="page__share-title">Share on</h4>
 
-  <!--<a href="https://twitter.com/intent/tweet?via=wayneye&text=AUTODESK+WORLD+CUP+2019+-+Dublin%20http%3A%2F%2Flocalhost%3A4000%2Fgallery%2Fadsk-worldcup-2019" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>-->
+  <a href="https://x.com/intent/tweet?via=wayneye&text=AUTODESK+WORLD+CUP+2019+-+Dublin%20http%3A%2F%2Flocalhost%3A4000%2Fgallery%2Fadsk-worldcup-2019" class="btn btn--x" aria-label="Share on X" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on X">
+    <i class="fab fa-fw fa-x-twitter" aria-hidden="true"></i><span> X</span>
+  </a>
 
-  <!--<a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fgallery%2Fadsk-worldcup-2019" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>-->
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fgallery%2Fadsk-worldcup-2019" class="btn btn--facebook" aria-label="Share on Facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook">
+    <i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span>
+  </a>
 
-  <!--<a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fgallery%2Fadsk-worldcup-2019" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>-->
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/gallery/adsk-worldcup-2019" class="btn btn--linkedin" aria-label="Share on LinkedIn" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn">
+    <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span>
+  </a>
 
-  
-  <figure style="margin-top: 10px; width: 380px;">
-      <a href="/assets/images/dashang.jpg"><img src="/assets/images/dashang.jpg" alt="微信打赏"></a>
-  </figure>
+  <a href="https://bsky.app/intent/compose?text=AUTODESK+WORLD+CUP+2019+-+Dublin%20http%3A%2F%2Flocalhost%3A4000%2Fgallery%2Fadsk-worldcup-2019" class="btn btn--bluesky" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Bluesky">
+    <i class="fab fa-fw fa-bluesky" aria-hidden="true"></i><span> Bluesky</span>
+  </a>
 </section>
 
 
       
+
     </div>
 
+    
+      
+        <p>
+          Comments are configured with provider: <strong>disqus</strong>,
+          but are disabled in non-production environments.
+        </p>
+      
     
   </article>
 
   
   
 </div>
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4ea2897777c94202"></script>
 
+      
     </div>
 
     
 
-    <div class="page__footer">
+    <div id="footer" class="page__footer">
       <footer>
         <!-- start custom footer snippets -->
 
 <!-- end custom footer snippets -->
-        <div class="page__footer-follow">
+        
+
+<div class="page__footer-follow">
   <ul class="social-icons">
     
       <li><strong>Follow:</strong></li>
@@ -454,20 +490,20 @@
       
     
 
-    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2025 Wayne Ye. All rights reserved.
- 
-  <!--Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>-->
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">Wayne&#39;s Geek Life</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>
 
     
   <script src="/assets/js/main.min.js"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
 
 
 
@@ -478,10 +514,10 @@
     
   <script>
     var disqus_config = function () {
-      this.page.url = "http://localhost:4000/gallery/adsk-worldcup-2019";  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = ""; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = "http://localhost:4000/gallery/adsk-worldcup-2019";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = ""; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
-    (function() { // DON'T EDIT BELOW THIS LINE
+    (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');
       s.src = 'https://wayneye.disqus.com/embed.js';
       s.setAttribute('data-timestamp', +new Date());
@@ -492,7 +528,6 @@
 
 
   
-
 
 
 

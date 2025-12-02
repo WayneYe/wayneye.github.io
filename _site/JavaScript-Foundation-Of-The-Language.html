@@ -1,0 +1,898 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.27.3 by Michael Rose
+  Copyright 2013-2025 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>JavaScript - Foundation of the Language - Wayne’s Geek Life</title>
+<meta name="description" content="Introduction JavaScript&nbsp;&quot;was born under the shadow of Java&quot; - Brenden Eich, it&nbsp;is &quot;the most misunderstood programming language in the world&quot; - Douglas Crockford. JavaScript&nbsp;was used so widely nowadays, nearly everywhere&nbsp;as long as you are using a web browser and surfing the internet, most of the websites have JS inside, and even server side -&nbsp;nodejs, according to&nbsp;http://langpop.com/, JavaScript is the fourth popular programming language in the world.&nbsp; In this post I am trying to use refined language to cover some foundation of JavaScript (many of which confused quite a number of developers) including&nbsp;basic data types, comparison mechanism, functions, Execution context, Variable Scope Chain, essence of Closure and anounymous function (lambda). Hope it can more or less help people have more fun and less&nbsp;frustration&nbsp;in the future JS coding.&nbsp; Basic data types/object types&nbsp; In JavaScript, there are 5 basic types: Undefined, Null, Boolean, Number and String,&nbsp;integers&nbsp;&nbsp;Boolean&nbsp;values and strings are accessed by value, that&#39;s different with many&nbsp;modern&nbsp;languages like C# (System.String) or Python (PyStringObject), string are object and passed by reference, JS code snipppet below proves that string is stored in the stack and passed by value.&nbsp; var str = &quot;a&quot;;                  function strValTest(s) {     s = &quot;b&quot;;  // &quot;s&quot; is a String value: &quot;a&quot;.     alert(s); // Will alert &quot;b&quot;. } strValTest(str); alert(str); // Will alert &quot;a&quot;, because when called strValTest, String variable&#39;s value is passed as argument.  String is JavaScript is also immutable just like many other languages, i.e. any change applied on an existing string will create a new string in memory and destroy the old one (there is still different with C# in which there is a String Intern Pool to store all String values in managed heap). Code snippet below shows the difference between string and String:&nbsp; var str1 = &quot;A new String&quot;; console.log(&quot;str1&quot;); console.log(str1 instanceof String); // false console.log(str1 instanceof Object); // false console.log(typeof (str1)); // string  var str2 = new String(&quot;A new String&quot;);  // Create a new Object stored on the heap with value &quot;A new String&quot; console.log(&quot;str2&quot;); console.log(str2 instanceof String); // true console.log(str2 instanceof Object); // true console.log(typeof (str2)); // object  Then you might have question of: how come string instance has methods now that string is value type? The&nbsp;answer&nbsp;is that In JavaScript there are corresponding Object wrapper for the basic types: Number, Boolean and String, they inherit from Object and have their own properties and methods such as Number.toFixed() and String.indexOf(), simple code snippet below: string str = &quot;I am a JSer&quot;; // Create a new string variable on the stack with value &quot;I am a JSer&quot;. alert(str.indexOf(&quot;JSer&quot;));  Essentially at the back end, JS interpreter will temporarily creates a new String object and invokes its instance method &quot;indexOf&quot;, after the method call finished, the temporary String object will be claimed, the process can be demonstrated as below: string str = &quot;I am a JSer&quot;; var tmp = new String(str); alert(tmp.indexOf(&quot;JSer&quot;)); tmp = null;  &nbsp; Comparison Comparison might be a very confused part in JavaScript, why? See code below: console.log(null == undefined); // true Per ECMA-262, null and undefined are superficially equal, essentially &quot;the value undefined is a derivative of null&quot;&lt;professional&gt;. console.log(null === undefined); // false console.log(NaN == NaN);  // false. A specific NaN is not considered equal to another NaN because they may be different values. Also refer: http://en.wikipedia.org/wiki/NaN console.log(&#39;5&#39; == 5);   // true.  console.log(&#39;5&#39; === 5);   // false. typeof(&#39;5&#39;) is string and typeof(5) is number console.log(false == 0);  // true console.log(true == 1);  // true console.log(null == 0);  // false  console.log(typeof (null)); // object console.log(typeof (undefined)); // undefined  Foo.prototype = { 	constructor: Foo, 	valueOf: function () { 		return &quot;Object Foo&quot;; 	}, 	toString: function () { 		return &quot;Foo&quot;; 	} };  var foo1 = new Foo(); console.log(&quot;foo1 == foo2: &quot; + (foo1 == &quot;Object Foo&quot;)); // true will call foo1.valueOf()   var foo2 = new Foo(); console.log(&quot;foo1 == foo2: &quot; + (foo1 == foo2)); // false foo1, foo2 point to diffrent instance of Foo  foo2 = foo1; console.log(&quot;foo1 == foo2: &quot; + (foo1 == foo2)); // true no doudt &lt;/professional&gt; Are you sweating?&nbsp;I did... So I read book and copied Paragraph below&nbsp;from&nbsp;&lt;Professional JavaScript for Web Developers&gt;.&nbsp; &nbsp;   If an operand is a Boolean value, convert it into a numeric value before checking for equality.&nbsp; A value of false converts to 0, whereas a value of true converts to 1.&nbsp; If one operand is a string and the other is a number, attempt to convert the string into a number&nbsp;before checking for equality.&nbsp; If either operand is an object, the valueOf() method is called to retrieve a primitive value to&nbsp;compare according to the previous rules. If valueOf() is not available, then toString() is&nbsp;called.&nbsp; The operators also follow these rules when making comparisons: Values of null and undefined are equal.&nbsp; Values of null and undefined cannot be converted into any other values for equality checking.&nbsp; If either operand is NaN, the equal operator returns false and the not - equal operator returns&nbsp;true. Important note: Even if both operands are NaN , the equal operator returns false because,&nbsp;by rule, NaN is not equal to NaN.&nbsp; If both operands are objects, then they are compared to see if they are the same object. If both&nbsp;operands point to the same object, then the equal operator returns true . Otherwise, the two are&nbsp;not equal. &nbsp;   Function In JavaScript, function is not only traditional function but also an object, define a function is actually define a pointer to that function, and function is not only traditional function but also an &nbsp;Object. I wrote code snippet below for better understanding:&nbsp; function dummyFunc() { // Define a function and a pointer to it, the pointer&#39;s name is &quot;dummyFunc&quot; 	this.DummyProperty = &quot;Dummy Property&quot;; 	console.log(&quot;Dummy func&quot;); }  var tempFunc = dummyFunc; // Define a variable tempFunc, let it equal to dummyFunc which is a function pointer pointing to function defined above dummyFunc = null; // null the dummyFunc tempFunc(); // tempFunc still points to the function defined above so still can be executed.  var dummy = new tempFunc(); // Will invoke tempFunc&#39;s constructor to form a new Object console.log(dummy.DummyProperty);  Another very important point of functions is the parameters, in JavaScript, function&#39;s arguments are ALL passed by value, NOT reference even if the argument is an Object, to prove this please see code snippet below: var person = new Object(); function setName(obj) { 	obj.Name = &quot;Wayne&quot;; // obj is actually newly created and given the pointer&#39;s value, so obj and the reference type outside this function will both point to the Object on the heap, thus operation on obj will affect the Object passed in the function. 	 	obj = new Object(); // By executing this line, temporary variable obj will point to a new Object, has no relationship with the passed-in Object any more. 	obj.Name = &quot;Wendy&quot;; }  setName(person); // Executing this line will pass person&#39;s pointer stored in stack to the function setName,  alert(person.Name); // Will alert &quot;Wayne&quot;  Execution Context and Variable Scope Chain&nbsp;">
+
+
+  <meta name="author" content="Wayne Ye">
+  
+  <meta property="article:author" content="Wayne Ye">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Wayne&#39;s Geek Life">
+<meta property="og:title" content="JavaScript - Foundation of the Language">
+<meta property="og:url" content="http://localhost:4000/JavaScript-Foundation-Of-The-Language">
+
+
+  <meta property="og:description" content="Introduction JavaScript&nbsp;&quot;was born under the shadow of Java&quot; - Brenden Eich, it&nbsp;is &quot;the most misunderstood programming language in the world&quot; - Douglas Crockford. JavaScript&nbsp;was used so widely nowadays, nearly everywhere&nbsp;as long as you are using a web browser and surfing the internet, most of the websites have JS inside, and even server side -&nbsp;nodejs, according to&nbsp;http://langpop.com/, JavaScript is the fourth popular programming language in the world.&nbsp; In this post I am trying to use refined language to cover some foundation of JavaScript (many of which confused quite a number of developers) including&nbsp;basic data types, comparison mechanism, functions, Execution context, Variable Scope Chain, essence of Closure and anounymous function (lambda). Hope it can more or less help people have more fun and less&nbsp;frustration&nbsp;in the future JS coding.&nbsp; Basic data types/object types&nbsp; In JavaScript, there are 5 basic types: Undefined, Null, Boolean, Number and String,&nbsp;integers&nbsp;&nbsp;Boolean&nbsp;values and strings are accessed by value, that&#39;s different with many&nbsp;modern&nbsp;languages like C# (System.String) or Python (PyStringObject), string are object and passed by reference, JS code snipppet below proves that string is stored in the stack and passed by value.&nbsp; var str = &quot;a&quot;;                  function strValTest(s) {     s = &quot;b&quot;;  // &quot;s&quot; is a String value: &quot;a&quot;.     alert(s); // Will alert &quot;b&quot;. } strValTest(str); alert(str); // Will alert &quot;a&quot;, because when called strValTest, String variable&#39;s value is passed as argument.  String is JavaScript is also immutable just like many other languages, i.e. any change applied on an existing string will create a new string in memory and destroy the old one (there is still different with C# in which there is a String Intern Pool to store all String values in managed heap). Code snippet below shows the difference between string and String:&nbsp; var str1 = &quot;A new String&quot;; console.log(&quot;str1&quot;); console.log(str1 instanceof String); // false console.log(str1 instanceof Object); // false console.log(typeof (str1)); // string  var str2 = new String(&quot;A new String&quot;);  // Create a new Object stored on the heap with value &quot;A new String&quot; console.log(&quot;str2&quot;); console.log(str2 instanceof String); // true console.log(str2 instanceof Object); // true console.log(typeof (str2)); // object  Then you might have question of: how come string instance has methods now that string is value type? The&nbsp;answer&nbsp;is that In JavaScript there are corresponding Object wrapper for the basic types: Number, Boolean and String, they inherit from Object and have their own properties and methods such as Number.toFixed() and String.indexOf(), simple code snippet below: string str = &quot;I am a JSer&quot;; // Create a new string variable on the stack with value &quot;I am a JSer&quot;. alert(str.indexOf(&quot;JSer&quot;));  Essentially at the back end, JS interpreter will temporarily creates a new String object and invokes its instance method &quot;indexOf&quot;, after the method call finished, the temporary String object will be claimed, the process can be demonstrated as below: string str = &quot;I am a JSer&quot;; var tmp = new String(str); alert(tmp.indexOf(&quot;JSer&quot;)); tmp = null;  &nbsp; Comparison Comparison might be a very confused part in JavaScript, why? See code below: console.log(null == undefined); // true Per ECMA-262, null and undefined are superficially equal, essentially &quot;the value undefined is a derivative of null&quot;&lt;professional&gt;. console.log(null === undefined); // false console.log(NaN == NaN);  // false. A specific NaN is not considered equal to another NaN because they may be different values. Also refer: http://en.wikipedia.org/wiki/NaN console.log(&#39;5&#39; == 5);   // true.  console.log(&#39;5&#39; === 5);   // false. typeof(&#39;5&#39;) is string and typeof(5) is number console.log(false == 0);  // true console.log(true == 1);  // true console.log(null == 0);  // false  console.log(typeof (null)); // object console.log(typeof (undefined)); // undefined  Foo.prototype = { 	constructor: Foo, 	valueOf: function () { 		return &quot;Object Foo&quot;; 	}, 	toString: function () { 		return &quot;Foo&quot;; 	} };  var foo1 = new Foo(); console.log(&quot;foo1 == foo2: &quot; + (foo1 == &quot;Object Foo&quot;)); // true will call foo1.valueOf()   var foo2 = new Foo(); console.log(&quot;foo1 == foo2: &quot; + (foo1 == foo2)); // false foo1, foo2 point to diffrent instance of Foo  foo2 = foo1; console.log(&quot;foo1 == foo2: &quot; + (foo1 == foo2)); // true no doudt &lt;/professional&gt; Are you sweating?&nbsp;I did... So I read book and copied Paragraph below&nbsp;from&nbsp;&lt;Professional JavaScript for Web Developers&gt;.&nbsp; &nbsp;   If an operand is a Boolean value, convert it into a numeric value before checking for equality.&nbsp; A value of false converts to 0, whereas a value of true converts to 1.&nbsp; If one operand is a string and the other is a number, attempt to convert the string into a number&nbsp;before checking for equality.&nbsp; If either operand is an object, the valueOf() method is called to retrieve a primitive value to&nbsp;compare according to the previous rules. If valueOf() is not available, then toString() is&nbsp;called.&nbsp; The operators also follow these rules when making comparisons: Values of null and undefined are equal.&nbsp; Values of null and undefined cannot be converted into any other values for equality checking.&nbsp; If either operand is NaN, the equal operator returns false and the not - equal operator returns&nbsp;true. Important note: Even if both operands are NaN , the equal operator returns false because,&nbsp;by rule, NaN is not equal to NaN.&nbsp; If both operands are objects, then they are compared to see if they are the same object. If both&nbsp;operands point to the same object, then the equal operator returns true . Otherwise, the two are&nbsp;not equal. &nbsp;   Function In JavaScript, function is not only traditional function but also an object, define a function is actually define a pointer to that function, and function is not only traditional function but also an &nbsp;Object. I wrote code snippet below for better understanding:&nbsp; function dummyFunc() { // Define a function and a pointer to it, the pointer&#39;s name is &quot;dummyFunc&quot; 	this.DummyProperty = &quot;Dummy Property&quot;; 	console.log(&quot;Dummy func&quot;); }  var tempFunc = dummyFunc; // Define a variable tempFunc, let it equal to dummyFunc which is a function pointer pointing to function defined above dummyFunc = null; // null the dummyFunc tempFunc(); // tempFunc still points to the function defined above so still can be executed.  var dummy = new tempFunc(); // Will invoke tempFunc&#39;s constructor to form a new Object console.log(dummy.DummyProperty);  Another very important point of functions is the parameters, in JavaScript, function&#39;s arguments are ALL passed by value, NOT reference even if the argument is an Object, to prove this please see code snippet below: var person = new Object(); function setName(obj) { 	obj.Name = &quot;Wayne&quot;; // obj is actually newly created and given the pointer&#39;s value, so obj and the reference type outside this function will both point to the Object on the heap, thus operation on obj will affect the Object passed in the function. 	 	obj = new Object(); // By executing this line, temporary variable obj will point to a new Object, has no relationship with the passed-in Object any more. 	obj.Name = &quot;Wendy&quot;; }  setName(person); // Executing this line will pass person&#39;s pointer stored in stack to the function setName,  alert(person.Name); // Will alert &quot;Wayne&quot;  Execution Context and Variable Scope Chain&nbsp;">
+
+
+
+
+
+  <meta name="twitter:site" content="@wayneye">
+  <meta name="twitter:title" content="JavaScript - Foundation of the Language">
+  <meta name="twitter:description" content="Introduction JavaScript&nbsp;&quot;was born under the shadow of Java&quot; - Brenden Eich, it&nbsp;is &quot;the most misunderstood programming language in the world&quot; - Douglas Crockford. JavaScript&nbsp;was used so widely nowadays, nearly everywhere&nbsp;as long as you are using a web browser and surfing the internet, most of the websites have JS inside, and even server side -&nbsp;nodejs, according to&nbsp;http://langpop.com/, JavaScript is the fourth popular programming language in the world.&nbsp; In this post I am trying to use refined language to cover some foundation of JavaScript (many of which confused quite a number of developers) including&nbsp;basic data types, comparison mechanism, functions, Execution context, Variable Scope Chain, essence of Closure and anounymous function (lambda). Hope it can more or less help people have more fun and less&nbsp;frustration&nbsp;in the future JS coding.&nbsp; Basic data types/object types&nbsp; In JavaScript, there are 5 basic types: Undefined, Null, Boolean, Number and String,&nbsp;integers&nbsp;&nbsp;Boolean&nbsp;values and strings are accessed by value, that&#39;s different with many&nbsp;modern&nbsp;languages like C# (System.String) or Python (PyStringObject), string are object and passed by reference, JS code snipppet below proves that string is stored in the stack and passed by value.&nbsp; var str = &quot;a&quot;;                  function strValTest(s) {     s = &quot;b&quot;;  // &quot;s&quot; is a String value: &quot;a&quot;.     alert(s); // Will alert &quot;b&quot;. } strValTest(str); alert(str); // Will alert &quot;a&quot;, because when called strValTest, String variable&#39;s value is passed as argument.  String is JavaScript is also immutable just like many other languages, i.e. any change applied on an existing string will create a new string in memory and destroy the old one (there is still different with C# in which there is a String Intern Pool to store all String values in managed heap). Code snippet below shows the difference between string and String:&nbsp; var str1 = &quot;A new String&quot;; console.log(&quot;str1&quot;); console.log(str1 instanceof String); // false console.log(str1 instanceof Object); // false console.log(typeof (str1)); // string  var str2 = new String(&quot;A new String&quot;);  // Create a new Object stored on the heap with value &quot;A new String&quot; console.log(&quot;str2&quot;); console.log(str2 instanceof String); // true console.log(str2 instanceof Object); // true console.log(typeof (str2)); // object  Then you might have question of: how come string instance has methods now that string is value type? The&nbsp;answer&nbsp;is that In JavaScript there are corresponding Object wrapper for the basic types: Number, Boolean and String, they inherit from Object and have their own properties and methods such as Number.toFixed() and String.indexOf(), simple code snippet below: string str = &quot;I am a JSer&quot;; // Create a new string variable on the stack with value &quot;I am a JSer&quot;. alert(str.indexOf(&quot;JSer&quot;));  Essentially at the back end, JS interpreter will temporarily creates a new String object and invokes its instance method &quot;indexOf&quot;, after the method call finished, the temporary String object will be claimed, the process can be demonstrated as below: string str = &quot;I am a JSer&quot;; var tmp = new String(str); alert(tmp.indexOf(&quot;JSer&quot;)); tmp = null;  &nbsp; Comparison Comparison might be a very confused part in JavaScript, why? See code below: console.log(null == undefined); // true Per ECMA-262, null and undefined are superficially equal, essentially &quot;the value undefined is a derivative of null&quot;&lt;professional&gt;. console.log(null === undefined); // false console.log(NaN == NaN);  // false. A specific NaN is not considered equal to another NaN because they may be different values. Also refer: http://en.wikipedia.org/wiki/NaN console.log(&#39;5&#39; == 5);   // true.  console.log(&#39;5&#39; === 5);   // false. typeof(&#39;5&#39;) is string and typeof(5) is number console.log(false == 0);  // true console.log(true == 1);  // true console.log(null == 0);  // false  console.log(typeof (null)); // object console.log(typeof (undefined)); // undefined  Foo.prototype = { 	constructor: Foo, 	valueOf: function () { 		return &quot;Object Foo&quot;; 	}, 	toString: function () { 		return &quot;Foo&quot;; 	} };  var foo1 = new Foo(); console.log(&quot;foo1 == foo2: &quot; + (foo1 == &quot;Object Foo&quot;)); // true will call foo1.valueOf()   var foo2 = new Foo(); console.log(&quot;foo1 == foo2: &quot; + (foo1 == foo2)); // false foo1, foo2 point to diffrent instance of Foo  foo2 = foo1; console.log(&quot;foo1 == foo2: &quot; + (foo1 == foo2)); // true no doudt &lt;/professional&gt; Are you sweating?&nbsp;I did... So I read book and copied Paragraph below&nbsp;from&nbsp;&lt;Professional JavaScript for Web Developers&gt;.&nbsp; &nbsp;   If an operand is a Boolean value, convert it into a numeric value before checking for equality.&nbsp; A value of false converts to 0, whereas a value of true converts to 1.&nbsp; If one operand is a string and the other is a number, attempt to convert the string into a number&nbsp;before checking for equality.&nbsp; If either operand is an object, the valueOf() method is called to retrieve a primitive value to&nbsp;compare according to the previous rules. If valueOf() is not available, then toString() is&nbsp;called.&nbsp; The operators also follow these rules when making comparisons: Values of null and undefined are equal.&nbsp; Values of null and undefined cannot be converted into any other values for equality checking.&nbsp; If either operand is NaN, the equal operator returns false and the not - equal operator returns&nbsp;true. Important note: Even if both operands are NaN , the equal operator returns false because,&nbsp;by rule, NaN is not equal to NaN.&nbsp; If both operands are objects, then they are compared to see if they are the same object. If both&nbsp;operands point to the same object, then the equal operator returns true . Otherwise, the two are&nbsp;not equal. &nbsp;   Function In JavaScript, function is not only traditional function but also an object, define a function is actually define a pointer to that function, and function is not only traditional function but also an &nbsp;Object. I wrote code snippet below for better understanding:&nbsp; function dummyFunc() { // Define a function and a pointer to it, the pointer&#39;s name is &quot;dummyFunc&quot; 	this.DummyProperty = &quot;Dummy Property&quot;; 	console.log(&quot;Dummy func&quot;); }  var tempFunc = dummyFunc; // Define a variable tempFunc, let it equal to dummyFunc which is a function pointer pointing to function defined above dummyFunc = null; // null the dummyFunc tempFunc(); // tempFunc still points to the function defined above so still can be executed.  var dummy = new tempFunc(); // Will invoke tempFunc&#39;s constructor to form a new Object console.log(dummy.DummyProperty);  Another very important point of functions is the parameters, in JavaScript, function&#39;s arguments are ALL passed by value, NOT reference even if the argument is an Object, to prove this please see code snippet below: var person = new Object(); function setName(obj) { 	obj.Name = &quot;Wayne&quot;; // obj is actually newly created and given the pointer&#39;s value, so obj and the reference type outside this function will both point to the Object on the heap, thus operation on obj will affect the Object passed in the function. 	 	obj = new Object(); // By executing this line, temporary variable obj will point to a new Object, has no relationship with the passed-in Object any more. 	obj.Name = &quot;Wendy&quot;; }  setName(person); // Executing this line will pass person&#39;s pointer stored in stack to the function setName,  alert(person.Name); // Will alert &quot;Wayne&quot;  Execution Context and Variable Scope Chain&nbsp;">
+  <meta name="twitter:url" content="http://localhost:4000/JavaScript-Foundation-Of-The-Language">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2011-07-24T00:00:00-07:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/JavaScript-Foundation-Of-The-Language">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Wayne's Geek Life Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Wayne&#39;s Geek Life
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/categories/"
+                
+                
+              >Categories</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tags/"
+                
+                
+              >Tags</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/search/"
+                
+                
+              >Search</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/gallery/"
+                
+                
+              >Gallery</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/vlog/"
+                
+                
+              >Vlog</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/about/"
+                
+                
+              >About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="http://localhost:4000/">
+        <img src="/assets/images/me.jpg" alt="Wayne Ye" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Wayne Ye</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Whatever is worth doing is worth doing well!</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">San Francisco</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:hi@wayneye.me" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://wayneye.me" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/wayneye" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/WayneYe/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/wayneye" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="JavaScript - Foundation of the Language">
+    <meta itemprop="description" content="IntroductionJavaScript&nbsp;&quot;was born under the shadow of Java&quot; - Brenden Eich, it&nbsp;is &quot;the most misunderstood programming language in the world&quot; - Douglas Crockford. JavaScript&nbsp;was used so widely nowadays, nearly everywhere&nbsp;as long as you are using a web browser and surfing the internet, most of the websites have JS inside, and even server side -&nbsp;nodejs, according to&nbsp;http://langpop.com/, JavaScript is the fourth popular programming language in the world.&nbsp;In this post I am trying to use refined language to cover some foundation of JavaScript (many of which confused quite a number of developers) including&nbsp;basic data types, comparison mechanism, functions, Execution context, Variable Scope Chain, essence of Closure and anounymous function (lambda). Hope it can more or less help people have more fun and less&nbsp;frustration&nbsp;in the future JS coding.&nbsp;Basic data types/object types&nbsp;In JavaScript, there are 5 basic types: Undefined, Null, Boolean, Number and String,&nbsp;integers&nbsp;&nbsp;Boolean&nbsp;values and strings are accessed by value, that&#39;s different with many&nbsp;modern&nbsp;languages like C# (System.String) or Python (PyStringObject), string are object and passed by reference, JS code snipppet below proves that string is stored in the stack and passed by value.&nbsp;var str = &quot;a&quot;;                function strValTest(s) {    s = &quot;b&quot;;  // &quot;s&quot; is a String value: &quot;a&quot;.    alert(s); // Will alert &quot;b&quot;.}strValTest(str);alert(str); // Will alert &quot;a&quot;, because when called strValTest, String variable&#39;s value is passed as argument.String is JavaScript is also immutable just like many other languages, i.e. any change applied on an existing string will create a new string in memory and destroy the old one (there is still different with C# in which there is a String Intern Pool to store all String values in managed heap). Code snippet below shows the difference between string and String:&nbsp;var str1 = &quot;A new String&quot;;console.log(&quot;str1&quot;);console.log(str1 instanceof String); // falseconsole.log(str1 instanceof Object); // falseconsole.log(typeof (str1)); // stringvar str2 = new String(&quot;A new String&quot;);  // Create a new Object stored on the heap with value &quot;A new String&quot;console.log(&quot;str2&quot;);console.log(str2 instanceof String); // trueconsole.log(str2 instanceof Object); // trueconsole.log(typeof (str2)); // objectThen you might have question of: how come string instance has methods now that string is value type? The&nbsp;answer&nbsp;is that In JavaScript there are corresponding Object wrapper for the basic types: Number, Boolean and String, they inherit from Object and have their own properties and methods such as Number.toFixed() and String.indexOf(), simple code snippet below:string str = &quot;I am a JSer&quot;; // Create a new string variable on the stack with value &quot;I am a JSer&quot;.alert(str.indexOf(&quot;JSer&quot;));Essentially at the back end, JS interpreter will temporarily creates a new String object and invokes its instance method &quot;indexOf&quot;, after the method call finished, the temporary String object will be claimed, the process can be demonstrated as below:string str = &quot;I am a JSer&quot;;var tmp = new String(str);alert(tmp.indexOf(&quot;JSer&quot;));tmp = null;&nbsp;ComparisonComparison might be a very confused part in JavaScript, why? See code below:console.log(null == undefined); // true Per ECMA-262, null and undefined are superficially equal, essentially &quot;the value undefined is a derivative of null&quot;&lt;professional&gt;.console.log(null === undefined); // falseconsole.log(NaN == NaN);  // false. A specific NaN is not considered equal to another NaN because they may be different values. Also refer: http://en.wikipedia.org/wiki/NaNconsole.log(&#39;5&#39; == 5);   // true. console.log(&#39;5&#39; === 5);   // false. typeof(&#39;5&#39;) is string and typeof(5) is numberconsole.log(false == 0);  // trueconsole.log(true == 1);  // trueconsole.log(null == 0);  // falseconsole.log(typeof (null)); // objectconsole.log(typeof (undefined)); // undefinedFoo.prototype = {	constructor: Foo,	valueOf: function () {		return &quot;Object Foo&quot;;	},	toString: function () {		return &quot;Foo&quot;;	}};var foo1 = new Foo();console.log(&quot;foo1 == foo2: &quot; + (foo1 == &quot;Object Foo&quot;)); // true will call foo1.valueOf() var foo2 = new Foo();console.log(&quot;foo1 == foo2: &quot; + (foo1 == foo2)); // false foo1, foo2 point to diffrent instance of Foofoo2 = foo1;console.log(&quot;foo1 == foo2: &quot; + (foo1 == foo2)); // true no doudt&lt;/professional&gt;Are you sweating?&nbsp;I did... So I read book and copied Paragraph below&nbsp;from&nbsp;&lt;Professional JavaScript for Web Developers&gt;.&nbsp;&nbsp;If an operand is a Boolean value, convert it into a numeric value before checking for equality.&nbsp;A value of false converts to 0, whereas a value of true converts to 1.&nbsp;If one operand is a string and the other is a number, attempt to convert the string into a number&nbsp;before checking for equality.&nbsp;If either operand is an object, the valueOf() method is called to retrieve a primitive value to&nbsp;compare according to the previous rules. If valueOf() is not available, then toString() is&nbsp;called.&nbsp;The operators also follow these rules when making comparisons:Values of null and undefined are equal.&nbsp;Values of null and undefined cannot be converted into any other values for equality checking.&nbsp;If either operand is NaN, the equal operator returns false and the not - equal operator returns&nbsp;true. Important note: Even if both operands are NaN , the equal operator returns false because,&nbsp;by rule, NaN is not equal to NaN.&nbsp;If both operands are objects, then they are compared to see if they are the same object. If both&nbsp;operands point to the same object, then the equal operator returns true . Otherwise, the two are&nbsp;not equal. &nbsp;FunctionIn JavaScript, function is not only traditional function but also an object, define a function is actually define a pointer to that function, and function is not only traditional function but also an &nbsp;Object. I wrote code snippet below for better understanding:&nbsp;function dummyFunc() { // Define a function and a pointer to it, the pointer&#39;s name is &quot;dummyFunc&quot;	this.DummyProperty = &quot;Dummy Property&quot;;	console.log(&quot;Dummy func&quot;);}var tempFunc = dummyFunc; // Define a variable tempFunc, let it equal to dummyFunc which is a function pointer pointing to function defined abovedummyFunc = null; // null the dummyFunctempFunc(); // tempFunc still points to the function defined above so still can be executed.var dummy = new tempFunc(); // Will invoke tempFunc&#39;s constructor to form a new Objectconsole.log(dummy.DummyProperty);Another very important point of functions is the parameters, in JavaScript, function&#39;s arguments are ALL passed by value, NOT reference even if the argument is an Object, to prove this please see code snippet below:var person = new Object();function setName(obj) {	obj.Name = &quot;Wayne&quot;; // obj is actually newly created and given the pointer&#39;s value, so obj and the reference type outside this function will both point to the Object on the heap, thus operation on obj will affect the Object passed in the function.		obj = new Object(); // By executing this line, temporary variable obj will point to a new Object, has no relationship with the passed-in Object any more.	obj.Name = &quot;Wendy&quot;;}setName(person); // Executing this line will pass person&#39;s pointer stored in stack to the function setName, alert(person.Name); // Will alert &quot;Wayne&quot;Execution Context and Variable Scope Chain&nbsp;">
+    <meta itemprop="datePublished" content="2011-07-24T00:00:00-07:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="http://localhost:4000/JavaScript-Foundation-Of-The-Language" itemprop="url">JavaScript - Foundation of the Language
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-cog"></i> On this page</h4></header>
+              
+            </nav>
+          </aside>
+        
+        <h2>Introduction</h2>
+<p>JavaScript&nbsp;"<a href="http://brendaneich.com/" target="_blank">was born under the shadow of Java</a>" - Brenden Eich, it&nbsp;is "<a href="http://www.crockford.com/javascript/javascript.html" target="_blank">the most misunderstood programming language in the world</a>" - Douglas Crockford. JavaScript&nbsp;was used so widely nowadays, nearly everywhere&nbsp;as long as you are using a web browser and surfing the internet, most of the websites have JS inside, and even server side -&nbsp;<a href="nodejs.org" target="_blank">nodejs</a>, according to&nbsp;<a href="http://langpop.com/">http://langpop.com/</a>, JavaScript is <strong>the fourth popular programming language in the world</strong>.&nbsp;</p>
+<p>In this post I am trying to use <strong>refined language</strong> to cover some foundation of JavaScript (many of which confused quite a number of developers) including&nbsp;<strong>basic data types, comparison mechanism, functions, Execution context, Variable Scope Chain, essence of Closure and anounymous function (lambda)</strong>. Hope it can more or less help people have more fun and less&nbsp;frustration&nbsp;in the future JS coding.&nbsp;</p>
+<h2>Basic data types/object types&nbsp;</h2>
+<p>In JavaScript, there are 5 basic types: <code>Undefined</code>, <code>Null</code>, <code>Boolean</code>, <code>Number </code>and <code>String</code>,&nbsp;integers&nbsp;&nbsp;Boolean&nbsp;values and <strong>strings </strong>are <strong>accessed by value</strong>, that's different with many&nbsp;modern&nbsp;languages like C# (System.String) or Python (PyStringObject), string are object and passed by reference, JS code snipppet below proves that string is stored in the stack and passed by value.&nbsp;</p>
+<pre>var str = "a";
+                
+function strValTest(s) {
+    s = "b";  // "s" is a String value: "a".
+    alert(s); // Will alert "b".
+}
+strValTest(str);
+alert(str); // Will alert "a", because when called strValTest, String variable's <strong>value</strong> is passed as argument.
+</pre>
+<p>String is JavaScript is also <strong>immutable </strong>just like many other languages, i.e. any change applied on an existing string will create a new string in memory and destroy the old one (there is still different with C# in which there is a <a href="http://msdn.microsoft.com/en-us/library/system.string.intern.aspx" target="_blank">String Intern Pool</a> to store all String values in managed heap). Code snippet below shows the difference between string and String:&nbsp;</p>
+<pre>var str1 = "A new String";
+console.log("str1");
+console.log(str1 instanceof String); // false
+console.log(str1 instanceof Object); // false
+console.log(typeof (str1)); // string
+
+var str2 = new String("A new String");  // Create a new Object stored on the heap with value "A new String"
+console.log("str2");
+console.log(str2 instanceof String); // true
+console.log(str2 instanceof Object); // true
+console.log(typeof (str2)); // object
+</pre>
+<p>Then you might have question of: how come string instance has methods now that string is value type? The&nbsp;answer&nbsp;is that In JavaScript there are corresponding Object wrapper for the basic types: <code>Number</code>, <code>Boolean</code> and <code>String</code>, they inherit from Object and have their own properties and methods such as <code>Number.toFixed()</code> and <code>String.indexOf()</code>, simple code snippet below:</p>
+<pre>string str = "I am a JSer"; // Create a new string variable on the stack with value "I am a JSer".
+alert(str.indexOf("JSer"));
+</pre>
+<p>Essentially at the back end, JS interpreter will temporarily creates a new String object and invokes its instance method "indexOf", after the method call finished, the temporary String object will be claimed, the process can be demonstrated as below:</p>
+<pre>string str = "I am a JSer";
+var tmp = new String(str);
+alert(tmp.indexOf("JSer"));
+tmp = null;
+</pre>
+<p>&nbsp;</p>
+<h3>Comparison</h3>
+<p>Comparison might be a very confused part in JavaScript, why? See code below:</p>
+<pre>console.log(null == undefined); // true Per ECMA-262, null and undefined are superficially equal, essentially "the value undefined is a derivative of null"&lt;professional&gt;.
+console.log(null === undefined); // false
+console.log(NaN == NaN);  // false. A specific NaN is not considered equal to another NaN because they may be different values. Also refer: http://en.wikipedia.org/wiki/NaN
+console.log('5' == 5);   // true. 
+console.log('5' === 5);   // false. typeof('5') is string and typeof(5) is number
+console.log(false == 0);  // true
+console.log(true == 1);  // true
+console.log(null == 0);  // false
+
+console.log(typeof (null)); // object
+console.log(typeof (undefined)); // undefined
+
+Foo.prototype = {
+	constructor: Foo,
+	valueOf: function () {
+		return "Object Foo";
+	},
+	toString: function () {
+		return "Foo";
+	}
+};
+
+var foo1 = new Foo();
+console.log("foo1 == foo2: " + (foo1 == "Object Foo")); // true will call foo1.valueOf() 
+
+var foo2 = new Foo();
+console.log("foo1 == foo2: " + (foo1 == foo2)); // false foo1, foo2 point to diffrent instance of Foo
+
+foo2 = foo1;
+console.log("foo1 == foo2: " + (foo1 == foo2)); // true no doudt
+&lt;/professional&gt;</pre>
+<p>Are you sweating?&nbsp;I did... So I read book and copied Paragraph below&nbsp;from&nbsp;&lt;<a href="http://www.wrox.com/WileyCDA/WroxTitle/productCd-0764579088.html" target="_blank">Professional JavaScript for Web Developers</a>&gt;.&nbsp;</p>
+<p>&nbsp;</p>
+<blockquote style="color: #666666; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: #f6f8ff; border-top-left-radius: 3px 3px; border-top-right-radius: 3px 3px; border-bottom-right-radius: 3px 3px; border-bottom-left-radius: 3px 3px; width: 80%; border-width: 1px; border-color: #9999ff; border-style: solid;">
+<ul>
+<li>If an operand is a Boolean value, convert it into a numeric value before checking for equality.&nbsp;</li>
+<li>A value of false converts to 0, whereas a value of true converts to 1.&nbsp;</li>
+<li>If one operand is a string and the other is a number, attempt to convert the string into a number&nbsp;before checking for equality.&nbsp;</li>
+<li>If either operand is an object, the valueOf() method is called to retrieve a primitive value to&nbsp;compare according to the previous rules. If valueOf() is not available, then toString() is&nbsp;called.&nbsp;</li>
+<li>The operators also follow these rules when making comparisons:</li>
+<li>Values of null and undefined are equal.&nbsp;</li>
+<li>Values of null and undefined cannot be converted into any other values for equality checking.&nbsp;</li>
+<li>If either operand is NaN, the equal operator returns false and the not - equal operator returns&nbsp;true. Important note: Even if both operands are NaN , the equal operator returns false because,&nbsp;by rule, NaN is not equal to NaN.&nbsp;</li>
+<li>If both operands are objects, then they are compared to see if they are the same object. If both&nbsp;operands point to the same object, then the equal operator returns true . Otherwise, the two are&nbsp;not equal. &nbsp;</li>
+</ul>
+</blockquote>
+<h3>Function</h3>
+<p>In JavaScript, function is not only traditional function but also an object, define a function is actually define a pointer to that function, and function is not only traditional function but also an &nbsp;Object. I wrote code snippet below for better understanding:&nbsp;</p>
+<pre>function dummyFunc() { // Define a function and a pointer to it, the pointer's name is "dummyFunc"
+	this.DummyProperty = "Dummy Property";
+	console.log("Dummy func");
+}
+
+var tempFunc = dummyFunc; // Define a variable tempFunc, let it equal to dummyFunc which is a function pointer pointing to function defined above
+dummyFunc = null; // null the dummyFunc
+tempFunc(); // tempFunc still points to the function defined above so still can be executed.
+
+var dummy = new tempFunc(); // Will invoke tempFunc's constructor to form a new Object
+console.log(dummy.DummyProperty);
+</pre>
+<p>Another very important point of functions is the parameters, in JavaScript, function's arguments are ALL passed by <strong>value</strong>, <strong>NOT reference</strong> even if the argument is an Object, to prove this please see code snippet below:</p>
+<pre>var person = new Object();
+function setName(obj) {
+	obj.Name = "Wayne"; // obj is actually newly created and given the pointer's value, so obj and the reference type outside this function will both point to the Object on the heap, thus operation on obj will affect the Object passed in the function.
+	
+	obj = new Object(); // By executing this line, temporary variable obj will point to a new Object, has no relationship with the passed-in Object any more.
+	obj.Name = "Wendy";
+}
+
+setName(person); // Executing this line will pass person's pointer stored in stack to the function setName, 
+alert(person.Name); // Will alert "Wayne"
+</pre>
+<h3>Execution Context and Variable Scope Chain&nbsp;</h3>
+<!--more-->
+<p>Execution Context is a environment in which all JavaScript runs, if not specified, the context is usually global (window), or can be specified by invoking call/apply. In a lower level,&nbsp;when JavaScript interpreter starts executing a function, this function's&nbsp;execution context will be pushed into stack, then the function itself will be pushed into stack. &nbsp;&nbsp;</p>
+<p>Code snippet picked from: <a href="http://www.nczonline.net/blog/2010/02/16/my-javascript-quiz/" target="_blank">http://www.nczonline.net/blog/2010/02/16/my-javascript-quiz/</a>&nbsp;</p>
+<pre>var x = 5,
+o = {
+	x: 10,
+	doIt: function doIt() {
+		var x = 20;
+		setTimeout(function () {
+			alert(this.x);
+		}, 10);
+	}
+};
+o.doIt(); // Will alert 5 because the execution context is window, window.x = 5;
+
+o.doIt = function () {
+	var x = 20;
+	// Change the function's execution context by call()/apply 
+	setTimeout((function () { alert(this.x); }).apply(o), 20);
+}
+o.doIt(); // Will alert 10 because execution context is object o, o.x = 10;
+</pre>
+<p>A scope chain is a list of objects that are searched for identifiers appear in the code of the context.&nbsp;When a snippet of code is executing under its execution context, within the context <strong>a Scope Chain is formed with local variables at beginning and global variables at ending</strong>, JavaScript resolves identifiers within a particular context by climbing up the scope chain, moving locally to globally, if a variable cannot be find after traversing the whole Scope Chains, an error will occur.&nbsp;Inside a function, the very first variable in its Scope Chain is <code>arguments</code>.&nbsp;</p>
+<p><img src="http://www.codeproject.com/KB/scripting/JavaScript-Foundation/execution-context.png" alt="execution-context.png" width="340" height="249" />&nbsp;</p>
+<pre>var name = "solarSystem"; // Assuming the global execution context is The Universe here:)
+        
+function earth() {
+	var name = 'earth';
+	(function () {
+		var name = 'country'; // name belongs to local Scope Chain now
+		alert(name); // country
+	})();
+	alert(name); // earth
+}
+earth(); // In the earth execution context, "The Universe"'s Scope Chain contains solarSystem can be accessed.
+
+alert(name); // solarSystem
+alert(blah); // Throw error, because cannot find variable definition for "blah" after traversing the entire Scope Chain.
+</pre>
+<h3>Closure</h3>
+<p>Douglas Crockford: "JavaScript has closures. What this means is that an inner function always has access to the vars and parameters of its outer function, even after the outer function has returned. This is an extremely powerful property of the language."</p>
+<p>In JavaScript a closure is formed when you nest functions, inner functions can refer to the variables present in their outer enclosing functions even after their parent functions have already executed.&nbsp;</p>
+<p>Let's first take a look at a basic Closure:&nbsp;</p>
+<pre>function foo(x) {
+	var y = 2;
+
+	return function (z) {
+		console.log("x + y + z: " + (x + y + z)); // Result will be 1 + 2 + 3 = 6 
+	}
+}
+var bar = foo(1); // Bar is now a closure
+bar(3);
+</pre>
+<p>To deeply understand closure, we must first understand function, Execution Context and Scope Chain I described above, so describe the code snippet above could be: foo is defined as a function pointer, the function takes one parameter, so this parameter belongs to its Scope Chain when it is called in future, inside foo, a local variable y is defined with integer value 2, so it is also in the Scope Chain,&nbsp;and finally it returns an anonymous function which takes one parameter z, once foo is called, it returns a pointer which points to this anonymous function, the entire process can be described in details below.&nbsp;</p>
+<p>&nbsp;</p>
+<ol>
+<li>Prepare Execution Context for foo.&nbsp;</li>
+<li>Scope Chain for foo will be formed, members on the chain: <code>arguments</code>, y, anonymous function.&nbsp;</li>
+<li>Anonymous function is defined but not executed, when it is executed in the future its own Scope Chain will also be formed at the lower level of foo's Scope Chain, members on the Chain:&nbsp;<code>arguments</code>, z, and the most important, foo's Scope Chain will be retained for this anonymous function.&nbsp;</li>
+<li>foo returns the anonymous function, a closure will be created, <strong>Scope Chains in the Closure will be retained</strong> unless program explicitly null it. Please note when foo returns, the anonymous function inside it is not executed!&nbsp;</li>
+<li>When executing bar passing parameter 3, JavaScript interpreter will firstly search&nbsp;bar's Scope Chain and&nbsp;try to find x, y, z in , z is 3 but cannot find x and y, then it&nbsp;<strong>clime&nbsp;up one level</strong>, and found retained Scope, x's value is 1, and y's value is 2 (if not found it will clime up again, in this case, it will be global),&nbsp;ah-ha, we found all of them, result is 6.&nbsp;&nbsp;</li>
+</ol>
+<p>&nbsp;</p>
+<p>Clear? No confuse? I hope you are:) &nbsp;Simply saying, <strong>a Closure is a function can access parent Scope Chain AND the Scope Chain is retained</strong>!&nbsp;</p>
+<p>Now modify the case above a little bit to make sure we understand "<strong>retained Scope Chain</strong>":&nbsp;&nbsp;</p>
+<pre>function foo(x) {
+	var y = 2;
+
+	var func = function (z) {
+		console.log(x + y + z);
+	}
+
+	x++;
+	y++;
+
+	return func;
+}
+var bar1 = foo(1);
+bar1(3); // Result will be 2 + 3 + 3 = 8
+
+var bar2 = foo(1); // Create a new closure, local variables are not copied when a new closure is created.
+bar2(3); // Result will still be 8
+bar2(3); // Result will still be 8
+</pre>
+<p>&nbsp;</p>
+<p>No matter we create a new Closure or we executes the "Closure instance" bar2 many times, the Scope retained for bar are independent, result will always be 8.&nbsp;&nbsp;</p>
+<p>Delve deeper, essentially in ECMAScript, functions have an "<strong>Internal Property</strong>" - <strong>[[Scope]]</strong>, ECMA-262&nbsp;defines it as:<em> A lexical environment that defines the environment in which a Function object is executed</em>.&nbsp;As an instance, in the example above, when foo was executed and return value to bar, <strong>foo's Scope Chain was save into bar's [[Scope]] property</strong>.</p>
+<p>If there is more then one inner functions inside one function body, then the retained Scope Chain will <strong>be shared between each other</strong>, please refer example below:&nbsp;</p>
+<pre>function shareScope() {
+	var n = 0;
+
+	return {
+		"innerFuncA": function () { console.log(++n); },
+		"innerFuncB": function () { console.log(++n); }
+	};
+}
+
+var shareScopeInstance = shareScope();
+shareScopeInstance.innerFuncA(); // 1
+shareScopeInstance.innerFuncB(); // 2
+</pre>
+<p>Let's finally take a look at one example which might confused a lot people, and then finish Closure part.&nbsp;</p>
+<pre>function buildList(list) {
+	var result = [];
+	for (var i = 0; i &lt; list.length; i++) {
+		result.push(function () {
+			console.log(++i);
+		});
+	}
+	return result;
+}
+
+var fnlist = buildList([1, 2, 3]);
+for (var idx in fnlist)
+	fnlist[idx]();
+
+</pre>
+<p>In the example above, the answer is NOT "1,2,3", after <code>buildList</code> is executed, <code>result </code>is an array contains n (n = 3) closures, all of them share the same Scope Chain created by <code>buildList</code>, when each of them is executed, JS interpreter fetches the Scope Chain and looking for i, what is i'value in the Scope Chain? After the for loop i became <strong>3</strong> since JS has no blocked scope i still exists outside of for loop, and in the console you will see "4, 5, 6" printed out.&nbsp;</p>
+<h3>Anonymous Function (Lambda)</h3>
+<p>As long as we understand Scope Chain and Closure&nbsp;completely, there will be no confusion about anonymous function, it is essentially <strong>a declared function without a function pointer points to it</strong>,&nbsp;it is always used to setup a "blocked-scope", for example, many JavaScript library was executed inside a big anonymous function:</p>
+<pre>(function (window, undefined) {
+	var VirtualCompany = function () {
+		
+	};
+})(window);
+</pre>
+<p>The anonymous function is executed as soon as it is downloaded completely, passing in the window object and only expose one global object: <code>VirtualCompany</code>,&nbsp;so that the library encapsulates its internal&nbsp;implementation and won't be conflict with other JS Libs.</p>
+<p>By employing anonymous function, we can modify the Closure example I demonstrated above, to let it achieve our&nbsp;original&nbsp;goal:&nbsp;</p>
+<pre>function buildList(list) {
+	var result = [];
+	for (var i = 0; i &lt; list.length; i++) {
+		result.push((function (i) {
+			return function () { console.log(++i); };
+		})(i));
+	}
+	return result;
+}
+
+var fnlist = buildList([1, 2, 3]);
+for (var idx in fnlist)
+	fnlist[idx]();
+</pre>
+<p>This time the result will be "1,2,3", because every time's invocation on "result.push", what was pushed into the array? The answer is: <strong>A closure&nbsp;with the anonymous function's&nbsp;Scope Chain stored</strong>, what's inside the anonymous function's Scope Chain? i in the for loop. During each iteration inside the for&nbsp;loop, an anonymous function is executed by passing i into it, so i existing in its Scope Chain, and since the&nbsp;anonymous function&nbsp;return another&nbsp;anonymous function, a Closure was formed and the Scope was retained.</p>
+<h3>Summary</h3>
+<p>JavaScript is a great language and it has a <strong>very bright future</strong> in my humbly opinion, considering its important role in the coming Web Standard - HTML5, event I/O based, high performance web server - nodejs, and JavaScript will also play an important role in the coming Cloud time, it is time for the developers who didn't seriously learnt it before to re-learn it.&nbsp;In fact I have brokenly wrote JavaScript code for 6 years, however, to be honest, I am ashamed that I never seriously learnt it in the past,&nbsp;some of its basic theory, useful skills as well as best practices&nbsp;I never knew, so I wrote this post to summarize things I re-learnt, hope it will help&nbsp;programmers like me. &nbsp;</p>
+<p>&nbsp;</p>
+<p><strong> Happy JavaScript coding! Be a happy JSer:)&nbsp;</strong></p>
+<p>&nbsp;</p>
+<h3>Further Reading (Strongly recommended)&nbsp;</h3>
+<p><a href="http://www.amazon.com/gp/product/047022780X?ie=UTF8&amp;tag=nczonline-20&amp;linkCode=as2&amp;camp=1789&amp;creative=390957&amp;creativeASIN=047022780X" target="_blank">Professional JavaScript for Web Developers (Wrox Programmer to Programmer)</a>&nbsp;</p>
+<p><a href="http://dmitrysoshnikov.com/ecmascript/javascript-the-core/" target="_blank">JavaScript. The core</a>&nbsp;</p>
+<p><a href="http://tore.darell.no/pages/scope_in_javascript" target="_blank">Scope In JavaScript</a>&nbsp;</p>
+<p><a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm" target="_blank">ECMA-262</a>&nbsp;</p>
+<p><a href="http://brendaneich.com/" target="_blank">New JavaScript Engine Module Owner</a>&nbsp;</p>
+<p><a href="http://www.crockford.com/">Douglas Crockford's Wrrrld Wide Web</a><a href="http://www.crockford.com/">&nbsp;</a></p>
+<p><span class="Apple-style-span" style="font-family: monospace; line-height: normal; white-space: pre-wrap; font-size: medium;"><a href="http://ejohn.org">John Resig - JavaScript Programmer</a></span>&nbsp;</p>
+
+<p>&nbsp;</p>
+<p>
+Also posted on CodeProject:<br />
+<a href="http://www.codeproject.com/KB/scripting/JavaScript-Foundation.aspx" target="_blank">http://www.codeproject.com/KB/scripting/JavaScript-Foundation.aspx</a>
+</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#hack" class="page__taxonomy-item p-category" rel="tag">Hack</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#hack" class="page__taxonomy-item p-category" rel="tag">Hack</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2011-07-24T00:00:00-07:00">July 24, 2011</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  <h4 class="page__share-title">Share on</h4>
+
+  <a href="https://x.com/intent/tweet?via=wayneye&text=JavaScript+-+Foundation+of+the+Language%20http%3A%2F%2Flocalhost%3A4000%2FJavaScript-Foundation-Of-The-Language" class="btn btn--x" aria-label="Share on X" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on X">
+    <i class="fab fa-fw fa-x-twitter" aria-hidden="true"></i><span> X</span>
+  </a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2FJavaScript-Foundation-Of-The-Language" class="btn btn--facebook" aria-label="Share on Facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook">
+    <i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span>
+  </a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/JavaScript-Foundation-Of-The-Language" class="btn btn--linkedin" aria-label="Share on LinkedIn" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn">
+    <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span>
+  </a>
+
+  <a href="https://bsky.app/intent/compose?text=JavaScript+-+Foundation+of+the+Language%20http%3A%2F%2Flocalhost%3A4000%2FJavaScript-Foundation-Of-The-Language" class="btn btn--bluesky" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Bluesky">
+    <i class="fab fa-fw fa-bluesky" aria-hidden="true"></i><span> Bluesky</span>
+  </a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/Exception-Handling-Particulars-In-Csharp" class="pagination--pager" title="Exception handling particulars in C#">Previous</a>
+    
+    
+      <a href="/HTML5-WebSocket-In-Essence-Public-Speak" class="pagination--pager" title="HTML5 WebSocket in Essence技术分享">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+      
+        <p>
+          Comments are configured with provider: <strong>disqus</strong>,
+          but are disabled in non-production environments.
+        </p>
+      
+    
+  </article>
+
+  
+  
+    
+<div class="page__related">
+  
+  <h2 class="page__related-title">You may also enjoy</h2>
+  <div class="grid__wrapper">
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/RIP-Bram-Moolenaar" rel="permalink">RIP Bram Moolenaar - Father of Vim
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">From the most recent MacVim release note:
+
+  As some of you may have read, Bram Moolenaar, the creator and maintainer of Vim, has passed away recently. He ha...</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/BMW-Convertible-As-My-Beater-Car" rel="permalink">BMW Convertible As My Beater Car
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+  Life is too short to drive boring cars
+
+
+
+
+
+I bought a 2015 BMW X5 Dec last year, it has been half a year so far (with 2 months she stayed inside the gara...</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2019-12-07-SkyJump-Las-Vegas" rel="permalink">SkyJump from Stratosphere Tower at Las Vegas - Smile all the way down
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Instead of spending any cent in the money pit casinos, I’d chose to do something more meaningful and exciting :)
+
+
+    
+    
+    
+    SkyJump Las Vegas
+
+
+
+
+ ...</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/AWS-reinvent-Las-Vegas" rel="permalink">AWS reinvent 2019 - Las Vegas
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">This is my second time attending AWS re-Invent, last time was year 2017, the purpose of this blog is to summarize what I’ve learned, impressed and entertaine...</p>
+  </article>
+</div>
+
+    
+  </div>
+</div>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="mailto:wei.ye AT me.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+        
+      
+        
+          <li><a href="https://wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+        
+      
+        
+          <li><a href="https://twitter.com/wayneye" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+          <li><a href="https://facebook.com/WayneYeDotCom" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-facebook-square" aria-hidden="true"></i> Facebook</a></li>
+        
+      
+        
+          <li><a href="https://github.com/WayneYe/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">Wayne&#39;s Geek Life</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/JavaScript-Foundation-Of-The-Language";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/JavaScript---Foundation-of-the-Language"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://wayneye.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,644 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.27.3 by Michael Rose
+  Copyright 2013-2025 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Storage+Media home server for less than $300 - Wayne’s Geek Life</title>
+<meta name="description" content="Background  I have been researched and watched many NAS options to setup a home storage+media server during the past year, and so far there was no perfect answer, either lacking features/performance, or way too expensive… An Intel Celeron CPU + 1GB mem with a customized Linux (in other words: closed source )running Plex or something else, and the cost is like $400 (terrible hardware performance), or $800+/$1000+, way too expensive, examples:     Synology DS216J NAS DiskStation (DS216j)   WD My Cloud EX4100 Diskless Expert Series 4-Bay NAS   NETGEAR ReadyNAS 524X High Performance 10GbE 4-bay Network Attached Storage Diskless   I didn’t miss awesome Free NAS, but the hardware to run it costs $999, OMG…  The $2XX solution  I bought this just right Dell Poweredge T20 for $267, it has an Intel Pentium G3220 3.0GHz CPU, 4GB memory and 1TB hard drive, much more powerful than 90% NAS machines, and with 1TB drive built-in, which saves approximate another $50, i installed Ubuntu 14.04 LTS on it, so that it has tons of customizing ways and I can do all sorts of crazy things on it :) By installing the awesome Emby Media Server, my home thearter finished with last piece, all my movies/videos/photos got stored inside it, I configured it to be auto wake/sleep by adding the following line into crontab:  0 22 * * * rtcwake -m disk -s 39600">
+
+
+  <meta name="author" content="Wayne Ye">
+  
+  <meta property="article:author" content="Wayne Ye">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Wayne&#39;s Geek Life">
+<meta property="og:title" content="Storage+Media home server for less than $300">
+<meta property="og:url" content="http://localhost:4000/geek/Storage-Media-Home-Server-Less-Than-300/">
+
+
+  <meta property="og:description" content="Background  I have been researched and watched many NAS options to setup a home storage+media server during the past year, and so far there was no perfect answer, either lacking features/performance, or way too expensive… An Intel Celeron CPU + 1GB mem with a customized Linux (in other words: closed source )running Plex or something else, and the cost is like $400 (terrible hardware performance), or $800+/$1000+, way too expensive, examples:     Synology DS216J NAS DiskStation (DS216j)   WD My Cloud EX4100 Diskless Expert Series 4-Bay NAS   NETGEAR ReadyNAS 524X High Performance 10GbE 4-bay Network Attached Storage Diskless   I didn’t miss awesome Free NAS, but the hardware to run it costs $999, OMG…  The $2XX solution  I bought this just right Dell Poweredge T20 for $267, it has an Intel Pentium G3220 3.0GHz CPU, 4GB memory and 1TB hard drive, much more powerful than 90% NAS machines, and with 1TB drive built-in, which saves approximate another $50, i installed Ubuntu 14.04 LTS on it, so that it has tons of customizing ways and I can do all sorts of crazy things on it :) By installing the awesome Emby Media Server, my home thearter finished with last piece, all my movies/videos/photos got stored inside it, I configured it to be auto wake/sleep by adding the following line into crontab:  0 22 * * * rtcwake -m disk -s 39600">
+
+
+
+
+
+  <meta name="twitter:site" content="@wayneye">
+  <meta name="twitter:title" content="Storage+Media home server for less than $300">
+  <meta name="twitter:description" content="Background  I have been researched and watched many NAS options to setup a home storage+media server during the past year, and so far there was no perfect answer, either lacking features/performance, or way too expensive… An Intel Celeron CPU + 1GB mem with a customized Linux (in other words: closed source )running Plex or something else, and the cost is like $400 (terrible hardware performance), or $800+/$1000+, way too expensive, examples:     Synology DS216J NAS DiskStation (DS216j)   WD My Cloud EX4100 Diskless Expert Series 4-Bay NAS   NETGEAR ReadyNAS 524X High Performance 10GbE 4-bay Network Attached Storage Diskless   I didn’t miss awesome Free NAS, but the hardware to run it costs $999, OMG…  The $2XX solution  I bought this just right Dell Poweredge T20 for $267, it has an Intel Pentium G3220 3.0GHz CPU, 4GB memory and 1TB hard drive, much more powerful than 90% NAS machines, and with 1TB drive built-in, which saves approximate another $50, i installed Ubuntu 14.04 LTS on it, so that it has tons of customizing ways and I can do all sorts of crazy things on it :) By installing the awesome Emby Media Server, my home thearter finished with last piece, all my movies/videos/photos got stored inside it, I configured it to be auto wake/sleep by adding the following line into crontab:  0 22 * * * rtcwake -m disk -s 39600">
+  <meta name="twitter:url" content="http://localhost:4000/geek/Storage-Media-Home-Server-Less-Than-300/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2017-03-27T00:00:00-07:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/geek/Storage-Media-Home-Server-Less-Than-300/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Wayne's Geek Life Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Wayne&#39;s Geek Life
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/categories/"
+                
+                
+              >Categories</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tags/"
+                
+                
+              >Tags</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/search/"
+                
+                
+              >Search</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/gallery/"
+                
+                
+              >Gallery</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/vlog/"
+                
+                
+              >Vlog</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/about/"
+                
+                
+              >About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="http://localhost:4000/">
+        <img src="/assets/images/me.jpg" alt="Wayne Ye" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Wayne Ye</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Whatever is worth doing is worth doing well!</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">San Francisco</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:hi@wayneye.me" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://wayneye.me" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/wayneye" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/WayneYe/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/wayneye" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Storage+Media home server for less than $300">
+    <meta itemprop="description" content="BackgroundI have been researched and watched many NAS options to setup a home storage+media server during the past year, and so far there was no perfect answer, either lacking features/performance, or way too expensive… An Intel Celeron CPU + 1GB mem with a customized Linux (in other words: closed source )running Plex or something else, and the cost is like $400 (terrible hardware performance), or $800+/$1000+, way too expensive, examples:  Synology DS216J NAS DiskStation (DS216j)  WD My Cloud EX4100 Diskless Expert Series 4-Bay NAS  NETGEAR ReadyNAS 524X High Performance 10GbE 4-bay Network Attached Storage DisklessI didn’t miss awesome Free NAS, but the hardware to run it costs $999, OMG…The $2XX solutionI bought this just right Dell Poweredge T20 for $267, it has an Intel Pentium G3220 3.0GHz CPU, 4GB memory and 1TB hard drive, much more powerful than 90% NAS machines, and with 1TB drive built-in, which saves approximate another $50, i installed Ubuntu 14.04 LTS on it, so that it has tons of customizing ways and I can do all sorts of crazy things on it :) By installing the awesome Emby Media Server, my home thearter finished with last piece, all my movies/videos/photos got stored inside it, I configured it to be auto wake/sleep by adding the following line into crontab:0 22 * * * rtcwake -m disk -s 39600">
+    <meta itemprop="datePublished" content="2017-03-27T00:00:00-07:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="http://localhost:4000/geek/Storage-Media-Home-Server-Less-Than-300/" itemprop="url">Storage+Media home server for less than $300
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-cog"></i> Table of Contents</h4></header>
+              <ul class="toc__menu"><li><a href="#background">Background</a></li><li><a href="#the-2xx-solution">The $2XX solution</a></li></ul>
+            </nav>
+          </aside>
+        
+        <h3 id="background">Background</h3>
+
+<p>I have been researched and watched many NAS options to setup a home storage+media server during the past year, and so far there was no perfect answer, either lacking features/performance, or way too expensive… An Intel Celeron CPU + 1GB mem with a customized Linux (in other words: closed source )running Plex or something else, and the cost is like $400 (terrible hardware performance), or $800+/$1000+, way too expensive, examples:</p>
+
+<ul>
+  <li><a href="https://www.amazon.com/Synology-DS216J-NAS-DiskStation-DS216j/dp/B01BNPT1EG/ref=sr_1_4?ie=UTF8&amp;qid=1490657211&amp;sr=8-4&amp;keywords=network+attached+storage">Synology DS216J NAS DiskStation (DS216j)</a></li>
+  <li><a href="https://www.amazon.com/EX4100-Diskless-Network-Attached-Storage/dp/B00TB8XMR0/ref=sr_1_13?ie=UTF8&amp;qid=1490657211&amp;sr=8-13&amp;keywords=network+attached+storage">WD My Cloud EX4100 Diskless Expert Series 4-Bay NAS</a></li>
+  <li><a href="https://www.amazon.com/NETGEAR-ReadyNAS-Performance-Attached-RN524X00-100NES/dp/B01M7X2FP2/ref=sr_1_2?s=electronics&amp;ie=UTF8&amp;qid=1490657698&amp;sr=1-2&amp;keywords=network+attached+storage+DS916">NETGEAR ReadyNAS 524X High Performance 10GbE 4-bay Network Attached Storage Diskless</a></li>
+</ul>
+
+<p>I didn’t miss awesome <a href="http://www.freenas.org/">Free NAS</a>, but the <a href="https://www.amazon.com/FreeNAS-Mini-Network-Attached-Diskless/dp/B00EQJ1BTU/ref=sr_1_2?ie=UTF8&amp;qid=1490657211&amp;sr=8-2-spons&amp;keywords=network+attached+storage&amp;psc=1">hardware</a> to run it costs $999, OMG…</p>
+
+<h3 id="the-2xx-solution">The $2XX solution</h3>
+
+<p>I bought this just right Dell Poweredge T20 for $267, it has an Intel Pentium G3220 3.0GHz CPU, 4GB memory and 1TB hard drive, much more powerful than 90% NAS machines, and with 1TB drive built-in, which saves approximate another $50, i installed Ubuntu 14.04 LTS on it, so that it has tons of customizing ways and I can do all sorts of crazy things on it :) By installing the awesome <a href="https://emby.media/">Emby Media Server</a>, my home thearter finished with last piece, all my movies/videos/photos got stored inside it, I configured it to be auto wake/sleep by adding the following line into crontab:</p>
+
+<p><code class="language-plaintext highlighter-rouge">0 22 * * * rtcwake -m disk -s 39600</code></p>
+
+<p><img src="https://images10.newegg.com/productimage/59-155-115-04.jpg" alt="Dell Poweredge T20" /></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#geek" class="page__taxonomy-item p-category" rel="tag">Geek</a><span class="sep">, </span>
+    
+      <a href="/tags/#hack" class="page__taxonomy-item p-category" rel="tag">Hack</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#geek" class="page__taxonomy-item p-category" rel="tag">Geek</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2017-03-27T00:00:00-07:00">March 27, 2017</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  <h4 class="page__share-title">Share on</h4>
+
+  <a href="https://x.com/intent/tweet?via=wayneye&text=Storage%2BMedia+home+server+for+less+than+%24300%20http%3A%2F%2Flocalhost%3A4000%2Fgeek%2FStorage-Media-Home-Server-Less-Than-300%2F" class="btn btn--x" aria-label="Share on X" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on X">
+    <i class="fab fa-fw fa-x-twitter" aria-hidden="true"></i><span> X</span>
+  </a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fgeek%2FStorage-Media-Home-Server-Less-Than-300%2F" class="btn btn--facebook" aria-label="Share on Facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook">
+    <i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span>
+  </a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/geek/Storage-Media-Home-Server-Less-Than-300/" class="btn btn--linkedin" aria-label="Share on LinkedIn" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn">
+    <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span>
+  </a>
+
+  <a href="https://bsky.app/intent/compose?text=Storage%2BMedia+home+server+for+less+than+%24300%20http%3A%2F%2Flocalhost%3A4000%2Fgeek%2FStorage-Media-Home-Server-Less-Than-300%2F" class="btn btn--bluesky" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Bluesky">
+    <i class="fab fa-fw fa-bluesky" aria-hidden="true"></i><span> Bluesky</span>
+  </a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/FC-Barcelona-Miracle-Comeback" class="pagination--pager" title="FC Barcelona Miracle Comeback!">Previous</a>
+    
+    
+      <a href="/self-improvement/passing-aws-certified-solutions-architect/" class="pagination--pager" title="Passing AWS Certified Solutions Architect">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+      
+        <p>
+          Comments are configured with provider: <strong>disqus</strong>,
+          but are disabled in non-production environments.
+        </p>
+      
+    
+  </article>
+
+  
+  
+    
+<div class="page__related">
+  
+  <h2 class="page__related-title">You may also enjoy</h2>
+  <div class="grid__wrapper">
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/RIP-Bram-Moolenaar" rel="permalink">RIP Bram Moolenaar - Father of Vim
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">From the most recent MacVim release note:
+
+  As some of you may have read, Bram Moolenaar, the creator and maintainer of Vim, has passed away recently. He ha...</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/BMW-Convertible-As-My-Beater-Car" rel="permalink">BMW Convertible As My Beater Car
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+  Life is too short to drive boring cars
+
+
+
+
+
+I bought a 2015 BMW X5 Dec last year, it has been half a year so far (with 2 months she stayed inside the gara...</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2019-12-07-SkyJump-Las-Vegas" rel="permalink">SkyJump from Stratosphere Tower at Las Vegas - Smile all the way down
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Instead of spending any cent in the money pit casinos, I’d chose to do something more meaningful and exciting :)
+
+
+    
+    
+    
+    SkyJump Las Vegas
+
+
+
+
+ ...</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/AWS-reinvent-Las-Vegas" rel="permalink">AWS reinvent 2019 - Las Vegas
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">This is my second time attending AWS re-Invent, last time was year 2017, the purpose of this blog is to summarize what I’ve learned, impressed and entertaine...</p>
+  </article>
+</div>
+
+    
+  </div>
+</div>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="mailto:wei.ye AT me.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+        
+      
+        
+          <li><a href="https://wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+        
+      
+        
+          <li><a href="https://twitter.com/wayneye" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+          <li><a href="https://facebook.com/WayneYeDotCom" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-facebook-square" aria-hidden="true"></i> Facebook</a></li>
+        
+      
+        
+          <li><a href="https://github.com/WayneYe/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">Wayne&#39;s Geek Life</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/geek/Storage-Media-Home-Server-Less-Than-300/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/geek/Storage-Media-Home-Server-Less-Than-300"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://wayneye.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,624 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.27.3 by Michael Rose
+  Copyright 2013-2025 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>IP Address to Geolocation - Wayne’s Geek Life</title>
+<meta name="description" content="Background Few months ago I found an interesting website: http://ipinfodb.com/, it provided API which could “translate” any IP Address into a geography location including City/Region/Country as well as latitude/longitude and time zone information, to invoke its API, a registered API key is required (which is free).  Since beforehand I stored visitor’s IP Addresses into my own database, I decided to utilize InfoDB API to store visitor’s GEO locations. Just few days ago, I casually emitted an idea: summarize those GEO location records and display them on Google Map, hum, it is feasible:) So, the process is: Track visitor’s IP addresses -&gt; “Translate” them to Geography location -&gt; Show them on Google Map! (PS, I’ve been used Google Analytics for my Geek Place - http://WayneYe.com for more than two years, it is no double extremely powerful, and it already contains a feature “Map Overlay”, however, due to privacy policy, Google Analytics does NOT display visitor’s IP address, see http://www.google.com/support/analytics/bin/answer.py?hl=en&amp;answer=86214).&lt;h2&gt;Implementation&lt;/h2&gt;The first task I need to do is track visitor’s IP Address, most of the time, user visits a website in browser submits an HTTP GET request (an HTTP data package) based on Transmission Control Protocol (most of the time) , browser passed the ball to DNS server and DNS server delivered the request to the designation - the web host server, during the process, the original Http request was possibly transferred through a number of routers/proxies and many other stuff, the request’s header information might have been updated: Via (Standard HTTP request header) or X-Forwarded-For (non-standard header but widely used), could be the original ISP’s information/IP Address OR possibly one of the proxy’s IP Address. So, usually the server received the request and saw Via/X-Forwarded-For header information, it got to know visitor’s IP address (NOT all the time, some times ISP’s IP address), in ASP.NET, it is simply to call Request.UserHostAddress, however, we can never simply trust this because of two major reasons:&lt;ol&gt;            &lt;li&gt;Malicious application can forge HTTP request with modified X-Forwareded-To header (for example: X-Forwarded-To: dangerous code), if you are unlucky to trust it and have it inserted into Database, then SQL Injection hole will be utilized by Malicious application.&lt;/li&gt;            &lt;li&gt;Not all the visitors are human-been, part of them could be search engine spiders, I must distinguish human visitors and spiders, otherwise for example, I will be happy to see a lot of “visitors” came from “Mountain View, CA” ^_^.&lt;/li&gt;&lt;/ol&gt;For #1: I use regular expression to validate the string I got from Request.UserHostAddress:&lt;pre style=&quot;color: #000020; background: #f6f8ff;&quot;&gt;public static Boolean IsValidIP(string ip){    if (System.Text.RegularExpressions.Regex.IsMatch(ip, ”[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}”))    {        string[] ips = ip.Split(’.’);        if (ips.Length == 4 || ips.Length == 6)        {            if (System.Int32.Parse(ips[0]) &lt; 256 &amp;&amp; System.Int32.Parse(ips[1]) &lt; 256                &amp; System.Int32.Parse(ips[2]) &lt; 256 &amp; System.Int32.Parse(ips[3]) &lt; 256)                return true;            else                return false;        }        else            return false;    }    else        return false;}&lt;/pre&gt;If the result is “0.0.0.0”, I will">
+
+
+  <meta name="author" content="Wayne Ye">
+  
+  <meta property="article:author" content="Wayne Ye">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Wayne&#39;s Geek Life">
+<meta property="og:title" content="IP Address to Geolocation">
+<meta property="og:url" content="http://localhost:4000/IPAddress-To-Geolocation">
+
+
+  <meta property="og:description" content="Background Few months ago I found an interesting website: http://ipinfodb.com/, it provided API which could “translate” any IP Address into a geography location including City/Region/Country as well as latitude/longitude and time zone information, to invoke its API, a registered API key is required (which is free).  Since beforehand I stored visitor’s IP Addresses into my own database, I decided to utilize InfoDB API to store visitor’s GEO locations. Just few days ago, I casually emitted an idea: summarize those GEO location records and display them on Google Map, hum, it is feasible:) So, the process is: Track visitor’s IP addresses -&gt; “Translate” them to Geography location -&gt; Show them on Google Map! (PS, I’ve been used Google Analytics for my Geek Place - http://WayneYe.com for more than two years, it is no double extremely powerful, and it already contains a feature “Map Overlay”, however, due to privacy policy, Google Analytics does NOT display visitor’s IP address, see http://www.google.com/support/analytics/bin/answer.py?hl=en&amp;answer=86214).&lt;h2&gt;Implementation&lt;/h2&gt;The first task I need to do is track visitor’s IP Address, most of the time, user visits a website in browser submits an HTTP GET request (an HTTP data package) based on Transmission Control Protocol (most of the time) , browser passed the ball to DNS server and DNS server delivered the request to the designation - the web host server, during the process, the original Http request was possibly transferred through a number of routers/proxies and many other stuff, the request’s header information might have been updated: Via (Standard HTTP request header) or X-Forwarded-For (non-standard header but widely used), could be the original ISP’s information/IP Address OR possibly one of the proxy’s IP Address. So, usually the server received the request and saw Via/X-Forwarded-For header information, it got to know visitor’s IP address (NOT all the time, some times ISP’s IP address), in ASP.NET, it is simply to call Request.UserHostAddress, however, we can never simply trust this because of two major reasons:&lt;ol&gt;            &lt;li&gt;Malicious application can forge HTTP request with modified X-Forwareded-To header (for example: X-Forwarded-To: dangerous code), if you are unlucky to trust it and have it inserted into Database, then SQL Injection hole will be utilized by Malicious application.&lt;/li&gt;            &lt;li&gt;Not all the visitors are human-been, part of them could be search engine spiders, I must distinguish human visitors and spiders, otherwise for example, I will be happy to see a lot of “visitors” came from “Mountain View, CA” ^_^.&lt;/li&gt;&lt;/ol&gt;For #1: I use regular expression to validate the string I got from Request.UserHostAddress:&lt;pre style=&quot;color: #000020; background: #f6f8ff;&quot;&gt;public static Boolean IsValidIP(string ip){    if (System.Text.RegularExpressions.Regex.IsMatch(ip, ”[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}”))    {        string[] ips = ip.Split(’.’);        if (ips.Length == 4 || ips.Length == 6)        {            if (System.Int32.Parse(ips[0]) &lt; 256 &amp;&amp; System.Int32.Parse(ips[1]) &lt; 256                &amp; System.Int32.Parse(ips[2]) &lt; 256 &amp; System.Int32.Parse(ips[3]) &lt; 256)                return true;            else                return false;        }        else            return false;    }    else        return false;}&lt;/pre&gt;If the result is “0.0.0.0”, I will">
+
+
+
+
+
+  <meta name="twitter:site" content="@wayneye">
+  <meta name="twitter:title" content="IP Address to Geolocation">
+  <meta name="twitter:description" content="Background Few months ago I found an interesting website: http://ipinfodb.com/, it provided API which could “translate” any IP Address into a geography location including City/Region/Country as well as latitude/longitude and time zone information, to invoke its API, a registered API key is required (which is free).  Since beforehand I stored visitor’s IP Addresses into my own database, I decided to utilize InfoDB API to store visitor’s GEO locations. Just few days ago, I casually emitted an idea: summarize those GEO location records and display them on Google Map, hum, it is feasible:) So, the process is: Track visitor’s IP addresses -&gt; “Translate” them to Geography location -&gt; Show them on Google Map! (PS, I’ve been used Google Analytics for my Geek Place - http://WayneYe.com for more than two years, it is no double extremely powerful, and it already contains a feature “Map Overlay”, however, due to privacy policy, Google Analytics does NOT display visitor’s IP address, see http://www.google.com/support/analytics/bin/answer.py?hl=en&amp;answer=86214).&lt;h2&gt;Implementation&lt;/h2&gt;The first task I need to do is track visitor’s IP Address, most of the time, user visits a website in browser submits an HTTP GET request (an HTTP data package) based on Transmission Control Protocol (most of the time) , browser passed the ball to DNS server and DNS server delivered the request to the designation - the web host server, during the process, the original Http request was possibly transferred through a number of routers/proxies and many other stuff, the request’s header information might have been updated: Via (Standard HTTP request header) or X-Forwarded-For (non-standard header but widely used), could be the original ISP’s information/IP Address OR possibly one of the proxy’s IP Address. So, usually the server received the request and saw Via/X-Forwarded-For header information, it got to know visitor’s IP address (NOT all the time, some times ISP’s IP address), in ASP.NET, it is simply to call Request.UserHostAddress, however, we can never simply trust this because of two major reasons:&lt;ol&gt;            &lt;li&gt;Malicious application can forge HTTP request with modified X-Forwareded-To header (for example: X-Forwarded-To: dangerous code), if you are unlucky to trust it and have it inserted into Database, then SQL Injection hole will be utilized by Malicious application.&lt;/li&gt;            &lt;li&gt;Not all the visitors are human-been, part of them could be search engine spiders, I must distinguish human visitors and spiders, otherwise for example, I will be happy to see a lot of “visitors” came from “Mountain View, CA” ^_^.&lt;/li&gt;&lt;/ol&gt;For #1: I use regular expression to validate the string I got from Request.UserHostAddress:&lt;pre style=&quot;color: #000020; background: #f6f8ff;&quot;&gt;public static Boolean IsValidIP(string ip){    if (System.Text.RegularExpressions.Regex.IsMatch(ip, ”[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}”))    {        string[] ips = ip.Split(’.’);        if (ips.Length == 4 || ips.Length == 6)        {            if (System.Int32.Parse(ips[0]) &lt; 256 &amp;&amp; System.Int32.Parse(ips[1]) &lt; 256                &amp; System.Int32.Parse(ips[2]) &lt; 256 &amp; System.Int32.Parse(ips[3]) &lt; 256)                return true;            else                return false;        }        else            return false;    }    else        return false;}&lt;/pre&gt;If the result is “0.0.0.0”, I will">
+  <meta name="twitter:url" content="http://localhost:4000/IPAddress-To-Geolocation">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2010-12-30T00:00:00-08:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/IPAddress-To-Geolocation">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Wayne's Geek Life Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Wayne&#39;s Geek Life
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/categories/"
+                
+                
+              >Categories</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tags/"
+                
+                
+              >Tags</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/search/"
+                
+                
+              >Search</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/gallery/"
+                
+                
+              >Gallery</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/vlog/"
+                
+                
+              >Vlog</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/about/"
+                
+                
+              >About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="http://localhost:4000/">
+        <img src="/assets/images/me.jpg" alt="Wayne Ye" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Wayne Ye</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Whatever is worth doing is worth doing well!</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">San Francisco</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:hi@wayneye.me" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://wayneye.me" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/wayneye" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/WayneYe/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/wayneye" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="IP Address to Geolocation">
+    <meta itemprop="description" content="BackgroundFew months ago I found an interesting website: http://ipinfodb.com/, it provided API which could “translate” any IP Address into a geography location including City/Region/Country as well as latitude/longitude and time zone information, to invoke its API, a registered API key is required (which is free).  Since beforehand I stored visitor’s IP Addresses into my own database, I decided to utilize InfoDB API to store visitor’s GEO locations. Just few days ago, I casually emitted an idea: summarize those GEO location records and display them on Google Map, hum, it is feasible:) So, the process is: Track visitor’s IP addresses -&gt; “Translate” them to Geography location -&gt; Show them on Google Map! (PS, I’ve been used Google Analytics for my Geek Place - http://WayneYe.com for more than two years, it is no double extremely powerful, and it already contains a feature “Map Overlay”, however, due to privacy policy, Google Analytics does NOT display visitor’s IP address, see http://www.google.com/support/analytics/bin/answer.py?hl=en&amp;answer=86214).&lt;h2&gt;Implementation&lt;/h2&gt;The first task I need to do is track visitor’s IP Address, most of the time, user visits a website in browser submits an HTTP GET request (an HTTP data package) based on Transmission Control Protocol (most of the time) , browser passed the ball to DNS server and DNS server delivered the request to the designation - the web host server, during the process, the original Http request was possibly transferred through a number of routers/proxies and many other stuff, the request’s header information might have been updated: Via (Standard HTTP request header) or X-Forwarded-For (non-standard header but widely used), could be the original ISP’s information/IP Address OR possibly one of the proxy’s IP Address. So, usually the server received the request and saw Via/X-Forwarded-For header information, it got to know visitor’s IP address (NOT all the time, some times ISP’s IP address), in ASP.NET, it is simply to call Request.UserHostAddress, however, we can never simply trust this because of two major reasons:&lt;ol&gt;            &lt;li&gt;Malicious application can forge HTTP request with modified X-Forwareded-To header (for example: X-Forwarded-To: dangerous code), if you are unlucky to trust it and have it inserted into Database, then SQL Injection hole will be utilized by Malicious application.&lt;/li&gt;            &lt;li&gt;Not all the visitors are human-been, part of them could be search engine spiders, I must distinguish human visitors and spiders, otherwise for example, I will be happy to see a lot of “visitors” came from “Mountain View, CA” ^_^.&lt;/li&gt;&lt;/ol&gt;For #1: I use regular expression to validate the string I got from Request.UserHostAddress:&lt;pre style=&quot;color: #000020; background: #f6f8ff;&quot;&gt;public static Boolean IsValidIP(string ip){    if (System.Text.RegularExpressions.Regex.IsMatch(ip, ”[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}”))    {        string[] ips = ip.Split(’.’);        if (ips.Length == 4 || ips.Length == 6)        {            if (System.Int32.Parse(ips[0]) &lt; 256 &amp;&amp; System.Int32.Parse(ips[1]) &lt; 256                &amp; System.Int32.Parse(ips[2]) &lt; 256 &amp; System.Int32.Parse(ips[3]) &lt; 256)                return true;            else                return false;        }        else            return false;    }    else        return false;}&lt;/pre&gt;If the result is “0.0.0.0”, I will">
+    <meta itemprop="datePublished" content="2010-12-30T00:00:00-08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="http://localhost:4000/IPAddress-To-Geolocation" itemprop="url">IP Address to Geolocation
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-cog"></i> On this page</h4></header>
+              
+            </nav>
+          </aside>
+        
+        <h2>Background</h2><br />Few months ago I found an interesting website: <a href="http://ipinfodb.com/" target="_blank">http://ipinfodb.com/</a>, it provided <a title="InfoDB API" href="http://api.ipinfodb.com/" target="_blank">API</a> which could "translate" any <strong>IP Address</strong> into a <strong>geography location </strong>including City/Region/Country as well as latitude/longitude and time zone information, to invoke its API, a registered API key is required (which is free).  Since beforehand I stored visitor's IP Addresses into my own database, I decided to utilize InfoDB API to store visitor's GEO locations.<br /> <br />Just few days ago, I casually emitted an idea: <strong>summarize those GEO location records and display them on Google Map</strong>, hum, it is feasible:)<br /> <br />So, the process is: <strong>Track visitor's IP addresses -&gt; "Translate" them to Geography location -&gt; Show them on Google Map</strong>!<br /> <br />(PS, I've been used <a title="Google Analytics" href="https://www.google.com/analytics" target="_blank">Google Analytics</a> for my Geek Place - <a title="Wayne's Geek Place" href="http://WayneYe.com" target="_blank">http://WayneYe.com</a> for more than two years, it is no double extremely powerful, and it already contains a feature "Map Overlay", however, due to privacy policy, Google Analytics does NOT display visitor's IP address, see <a href="http://www.google.com/support/analytics/bin/answer.py?hl=en&amp;answer=86214">http://www.google.com/support/analytics/bin/answer.py?hl=en&amp;answer=86214</a>).<br /><h2>Implementation</h2><br />The first task I need to do is track visitor's IP Address, most of the time, user visits a website in browser submits an HTTP GET request (an HTTP data package) based on <strong><a title="Transmission Control Protocol" href="http://en.wikipedia.org/wiki/Transmission_Control_Protocol" target="_blank">Transmission Control Protocol</a></strong> (most of the time) , browser passed the ball to DNS server and DNS server delivered the request to the designation - the web host server, during the process, the original Http request was possibly transferred through a number of routers/proxies and many other stuff, the request's header information might have been updated: <strong>Via </strong>(Standard HTTP request header) or <strong>X-Forwarded-For</strong> (non-standard header but widely used), could be the original ISP's information/IP Address OR possibly one of the proxy's IP Address.<br /> <br />So, usually the server received the request and saw Via/X-Forwarded-For header information, it got to know visitor's IP address (NOT all the time, some times ISP's IP address), in ASP.NET, it is simply to call <strong><code>Request.UserHostAddress</code></strong>, however, we can never simply trust this because of two major reasons:<br /><ol><br />            <li>Malicious application can forge HTTP request with modified X-Forwareded-To header (for example: X-Forwarded-To: <code>dangerous code</code>), if you are unlucky to trust it and have it inserted into Database, then SQL Injection hole will be utilized by Malicious application.</li><br />            <li>Not all the visitors are human-been, part of them could be search engine spiders, I must distinguish human visitors and spiders, otherwise for example, I will be happy to see a lot of "visitors" came from "Mountain View, CA" ^_^.</li><br /></ol><br />For #1: I use regular expression to validate the string I got from <strong><code>Request.UserHostAddress</code></strong>:<br /><pre style="color: #000020; background: #f6f8ff;"><span style="color: #200080; font-weight: bold;">public</span> <span style="color: #200080; font-weight: bold;">static</span> Boolean IsValidIP<span style="color: #308080;">(</span><span style="color: #200080; font-weight: bold;">string</span> ip<span style="color: #308080;">)</span><br /><span style="color: #406080;">{</span><br />    <span style="color: #200080; font-weight: bold;">if</span> <span style="color: #308080;">(</span>System<span style="color: #308080;">.</span>Text<span style="color: #308080;">.</span>RegularExpressions<span style="color: #308080;">.</span>Regex<span style="color: #308080;">.</span>IsMatch<span style="color: #308080;">(</span>ip<span style="color: #308080;">,</span> <span style="color: #800000;">"</span><span style="color: #1060b6;">[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}</span><span style="color: #800000;">"</span><span style="color: #308080;">)</span><span style="color: #308080;">)</span><br />    <span style="color: #406080;">{</span><br />        <span style="color: #200080; font-weight: bold;">string</span><span style="color: #308080;">[</span><span style="color: #308080;">]</span> ips <span style="color: #308080;">=</span> ip<span style="color: #308080;">.</span>Split<span style="color: #308080;">(</span><span style="color: #1060b6;">'.'</span><span style="color: #308080;">)</span><span style="color: #406080;">;</span><br />        <span style="color: #200080; font-weight: bold;">if</span> <span style="color: #308080;">(</span>ips<span style="color: #308080;">.</span>Length <span style="color: #308080;">=</span><span style="color: #308080;">=</span> <span style="color: #008c00;">4</span> || ips<span style="color: #308080;">.</span>Length <span style="color: #308080;">=</span><span style="color: #308080;">=</span> <span style="color: #008c00;">6</span><span style="color: #308080;">)</span><br />        <span style="color: #406080;">{</span><br />            <span style="color: #200080; font-weight: bold;">if</span> <span style="color: #308080;">(</span>System<span style="color: #308080;">.</span>Int32<span style="color: #308080;">.</span>Parse<span style="color: #308080;">(</span>ips<span style="color: #308080;">[</span><span style="color: #008c00;">0</span><span style="color: #308080;">]</span><span style="color: #308080;">)</span> <span style="color: #308080;">&lt;</span> <span style="color: #008c00;">256</span> &amp;&amp; System<span style="color: #308080;">.</span>Int32<span style="color: #308080;">.</span>Parse<span style="color: #308080;">(</span>ips<span style="color: #308080;">[</span><span style="color: #008c00;">1</span><span style="color: #308080;">]</span><span style="color: #308080;">)</span> <span style="color: #308080;">&lt;</span> <span style="color: #008c00;">256</span><br />                &amp; System<span style="color: #308080;">.</span>Int32<span style="color: #308080;">.</span>Parse<span style="color: #308080;">(</span>ips<span style="color: #308080;">[</span><span style="color: #008c00;">2</span><span style="color: #308080;">]</span><span style="color: #308080;">)</span> <span style="color: #308080;">&lt;</span> <span style="color: #008c00;">256</span> &amp; System<span style="color: #308080;">.</span>Int32<span style="color: #308080;">.</span>Parse<span style="color: #308080;">(</span>ips<span style="color: #308080;">[</span><span style="color: #008c00;">3</span><span style="color: #308080;">]</span><span style="color: #308080;">)</span> <span style="color: #308080;">&lt;</span> <span style="color: #008c00;">256</span><span style="color: #308080;">)</span><br />                <span style="color: #200080; font-weight: bold;">return</span> <span style="color: #200080; font-weight: bold;">true</span><span style="color: #406080;">;</span><br />            <span style="color: #200080; font-weight: bold;">else</span><br />                <span style="color: #200080; font-weight: bold;">return</span> <span style="color: #200080; font-weight: bold;">false</span><span style="color: #406080;">;</span><br />        <span style="color: #406080;">}</span><br />        <span style="color: #200080; font-weight: bold;">else</span><br />            <span style="color: #200080; font-weight: bold;">return</span> <span style="color: #200080; font-weight: bold;">false</span><span style="color: #406080;">;</span><br />    <span style="color: #406080;">}</span><br />    <span style="color: #200080; font-weight: bold;">else</span><br />        <span style="color: #200080; font-weight: bold;">return</span> <span style="color: #200080; font-weight: bold;">false</span><span style="color: #406080;">;</span><br /><span style="color: #406080;">}</span></pre><br />If the result is "0.0.0.0", I will<!--more--> ignore it.<br /><strong>For #2, </strong>so far I haven't found a "<strong>perfect way</strong>" to solve this issue (and I guess there might be no perfect solution to identify all the search engines in the world, please correct me if I am wrong); However, I've defined two rules to try my best to identify them for general and normal situations:<br /><h3>Rule #1:</h3><br />Request which contains "<strong>Cookie</strong>" Header with "<strong><a href="http://support.microsoft.com/kb/899918" target="_blank">ASP.NET_SessionId</a></strong>" <strong>AND</strong> its value is equal with server side, then it should be a normal user who has just visited my website within the one session.<br /> <br /><strong>Notes: there might be two exceptions for rule #1</strong>,<br /><ol><br />            <li>If user's browser has <strong>disabled Cookie </strong>then this rule <strong>will NOT be effective </strong>since the client request will <strong>never contain a Cookie header</strong> since the browser disabled it:).</li><br />            <li>Assume there is a crawler who crawls my website and accept storing cookie, then #1 will not be effective. However, I don't think a crawler will firstly request a SessionID and then request again with the SessionID)<strong>.</strong></li><br /></ol><br /><h3>Rule #2:</h3><br /><strong>Define a crawler list and analyses whether "User-Agent" header contains one of them, this should be configurable</strong>. Refer more Crawler example at: <a href="http://en.wikipedia.org/wiki/Web_crawler#Examples_of_Web_crawlers" target="_blank">http://en.wikipedia.org/wiki/Web_crawler#Examples_of_Web_crawlers</a><br /> <br /><a href="http://en.wikipedia.org/wiki/Wikiquote:Linus_Torvalds" target="_blank">Talk is cheap, show me the code</a>, I wrote a method to identify crawlers by applying two rules above.<br /><pre style="color: #000020; background: #f6f8ff;"><span style="color: #200080; font-weight: bold;">public</span> <span style="color: #200080; font-weight: bold;">static</span> Boolean IsCrawlerRequest<span style="color: #308080;">(</span><span style="color: #308080;">)</span><br /><span style="color: #406080;">{</span><br />    <span style="color: #595979;">// Rule 1: Request which contains "Cookie" Header with "ASP.NET_SessionId" and its value is equal with server side, </span><br />    <span style="color: #595979;">// then it should be a normal user (except maliciously forging, I don't think a crawler will firstly request a sessionID and then request again with the SessionID).</span><br />    <span style="color: #595979;">//if (HttpContext.Current.Request.Cookies["ASP.NET_SessionId"] != null</span><br />    <span style="color: #595979;">//    &amp;&amp; HttpContext.Current.Request.Cookies["ASP.NET_SessionId"].Value == HttpContext.Current.Session.SessionID)</span><br />    <span style="color: #200080; font-weight: bold;">if</span> <span style="color: #308080;">(</span>HttpContext<span style="color: #308080;">.</span>Current<span style="color: #308080;">.</span>Request<span style="color: #308080;">.</span>Headers<span style="color: #308080;">[</span><span style="color: #800000;">"</span><span style="color: #1060b6;">Cookie</span><span style="color: #800000;">"</span><span style="color: #308080;">]</span> <span style="color: #308080;">!</span><span style="color: #308080;">=</span> <span style="color: #200080; font-weight: bold;">null</span><br />        &amp;&amp; HttpContext<span style="color: #308080;">.</span>Current<span style="color: #308080;">.</span>Request<span style="color: #308080;">.</span>Headers<span style="color: #308080;">[</span><span style="color: #800000;">"</span><span style="color: #1060b6;">Cookie</span><span style="color: #800000;">"</span><span style="color: #308080;">]</span><span style="color: #308080;">.</span>Contains<span style="color: #308080;">(</span><span style="color: #800000;">"</span><span style="color: #1060b6;">ASP.NET_SessionId</span><span style="color: #800000;">"</span><span style="color: #308080;">)</span><span style="color: #308080;">)</span><br />        <span style="color: #200080; font-weight: bold;">return</span> <span style="color: #200080; font-weight: bold;">false</span><span style="color: #406080;">;</span>  <span style="color: #595979;">// Should be a normal user browsing my website using a browser.</span><br /> <br />    <span style="color: #595979;">// Rule 2: define a crawler list and analyses whether "User-Agent" header contains one of them, this should be configurable</span><br />    <span style="color: #595979;">// Refer more Crawler example at: http://en.wikipedia.org/wiki/Web_crawler#Examples_of_Web_crawlers</span><br />    var crawlerList <span style="color: #308080;">=</span> <span style="color: #200080; font-weight: bold;">new</span> String<span style="color: #308080;">[</span><span style="color: #308080;">]</span> <span style="color: #406080;">{</span> <span style="color: #800000;">"</span><span style="color: #1060b6;">google</span><span style="color: #800000;">"</span><span style="color: #308080;">,</span> <span style="color: #800000;">"</span><span style="color: #1060b6;">bing</span><span style="color: #800000;">"</span><span style="color: #308080;">,</span> <span style="color: #800000;">"</span><span style="color: #1060b6;">msn</span><span style="color: #800000;">"</span><span style="color: #308080;">,</span> <span style="color: #800000;">"</span><span style="color: #1060b6;">yahoo</span><span style="color: #800000;">"</span><span style="color: #308080;">,</span> <span style="color: #800000;">"</span><span style="color: #1060b6;">baidu</span><span style="color: #800000;">"</span><span style="color: #308080;">,</span> <span style="color: #800000;">"</span><span style="color: #1060b6;">sosospider</span><span style="color: #800000;">"</span><span style="color: #308080;">,</span> <span style="color: #800000;">"</span><span style="color: #1060b6;">sogou</span><span style="color: #800000;">"</span><span style="color: #308080;">,</span> <span style="color: #800000;">"</span><span style="color: #1060b6;">youdao</span><span style="color: #800000;">"</span> <span style="color: #406080;">}</span><span style="color: #406080;">;</span><br /> <br />    <span style="color: #200080; font-weight: bold;">if</span> <span style="color: #308080;">(</span><span style="color: #308080;">!</span>String<span style="color: #308080;">.</span>IsNullOrEmpty<span style="color: #308080;">(</span>HttpContext<span style="color: #308080;">.</span>Current<span style="color: #308080;">.</span>Request<span style="color: #308080;">.</span>UserAgent<span style="color: #308080;">)</span><span style="color: #308080;">)</span><br />        <span style="color: #200080; font-weight: bold;">foreach</span> <span style="color: #308080;">(</span>String bot <span style="color: #200080; font-weight: bold;">in</span> crawlerList<span style="color: #308080;">)</span><br />            <span style="color: #200080; font-weight: bold;">if</span> <span style="color: #308080;">(</span>HttpContext<span style="color: #308080;">.</span>Current<span style="color: #308080;">.</span>Request<span style="color: #308080;">.</span>UserAgent<span style="color: #308080;">.</span>ToLower<span style="color: #308080;">(</span>CultureInfo<span style="color: #308080;">.</span>InvariantCulture<span style="color: #308080;">)</span><span style="color: #308080;">.</span>Contains<span style="color: #308080;">(</span>bot<span style="color: #308080;">)</span><span style="color: #308080;">)</span><br />                <span style="color: #200080; font-weight: bold;">return</span> <span style="color: #200080; font-weight: bold;">true</span><span style="color: #406080;">;</span> <span style="color: #595979;">// It is a crawler</span><br /> <br />    <span style="color: #200080; font-weight: bold;">return</span> <span style="color: #200080; font-weight: bold;">false</span><span style="color: #406080;">;</span><br /><span style="color: #406080;">}</span></pre><br />Please be aware that I commented out <code>HttpContext.Current.Request.Cookies["ASP.NET_SessionId"] != null</code>, since I found that Request.Cookie will <span clsss="HighlightWords"><strong>ALWAYS contain "ASP.NET_SessionId" EVENT IF the browser disabled Cookie storing</strong></span>, I will do further investigation and double check later!<br /> <br />Ok, now we get normal users' IP Addresses and filtered search engine crawlers, the next step is invoking InfoDB API to "translate" IP Address to Geolocation, you need register an API KEY <a href="http://ipinfodb.com/register.php" target="_blank">here</a>, and then submit an HTTP GET request to:<br /><blockquote>http://api.ipinfodb.com/v2/ip_query.php?key=[<strong>API KEY</strong>]&amp;ip=[<strong>IP Address</strong>]&amp;timezone=false</blockquote><br />It returns XML below, I take IP="117.136.8.14" for example:<br /><pre style="color: #000020; background: #f6f8ff;"><span style="color: #004a43;">&lt;?</span><span style="color: #004a43;">xml</span> <span style="color: #004a43;">version</span><span style="color: #308080;">=</span><span style="color: #008c00;">"1.0"</span> <span style="color: #004a43;">encoding</span><span style="color: #308080;">=</span><span style="color: #1060b6;">"UTF-8"</span><span style="color: #004a43;">?&gt;</span><br /><span style="color: #0057a6;">&lt;</span><span style="color: #333385;">Response</span><span style="color: #0057a6;">&gt;</span><br />  <span style="color: #0057a6;">&lt;</span><span style="color: #333385;">Status</span><span style="color: #0057a6;">&gt;</span>OK<span style="color: #0057a6;">&lt;/</span><span style="color: #333385;">Status</span><span style="color: #0057a6;">&gt;</span><br />  <span style="color: #0057a6;">&lt;</span><span style="color: #333385;">CountryCode</span><span style="color: #0057a6;">&gt;</span>CN<span style="color: #0057a6;">&lt;/</span><span style="color: #333385;">CountryCode</span><span style="color: #0057a6;">&gt;</span><br />  <span style="color: #0057a6;">&lt;</span><span style="color: #333385;">CountryName</span><span style="color: #0057a6;">&gt;</span>China<span style="color: #0057a6;">&lt;/</span><span style="color: #333385;">CountryName</span><span style="color: #0057a6;">&gt;</span><br />  <span style="color: #0057a6;">&lt;</span><span style="color: #333385;">RegionCode</span><span style="color: #0057a6;">&gt;</span>23<span style="color: #0057a6;">&lt;/</span><span style="color: #333385;">RegionCode</span><span style="color: #0057a6;">&gt;</span><br />  <span style="color: #0057a6;">&lt;</span><span style="color: #333385;">RegionName</span><span style="color: #0057a6;">&gt;</span>Shanghai<span style="color: #0057a6;">&lt;/</span><span style="color: #333385;">RegionName</span><span style="color: #0057a6;">&gt;</span><br />  <span style="color: #0057a6;">&lt;</span><span style="color: #333385;">City</span><span style="color: #0057a6;">&gt;</span>Shanghai<span style="color: #0057a6;">&lt;/</span><span style="color: #333385;">City</span><span style="color: #0057a6;">&gt;</span><br />  <span style="color: #0057a6;">&lt;</span><span style="color: #333385;">ZipPostalCode</span><span style="color: #0057a6;">&gt;</span><span style="color: #0057a6;">&lt;/</span><span style="color: #333385;">ZipPostalCode</span><span style="color: #0057a6;">&gt;</span><br />  <span style="color: #0057a6;">&lt;</span><span style="color: #333385;">Latitude</span><span style="color: #0057a6;">&gt;</span>31.005<span style="color: #0057a6;">&lt;/</span><span style="color: #333385;">Latitude</span><span style="color: #0057a6;">&gt;</span><br />  <span style="color: #0057a6;">&lt;</span><span style="color: #333385;">Longitude</span><span style="color: #0057a6;">&gt;</span>121.409<span style="color: #0057a6;">&lt;/</span><span style="color: #333385;">Longitude</span><span style="color: #0057a6;">&gt;</span><br /> <span style="color: #0057a6;">&lt;</span><span style="color: #333385;">Timezone</span><span style="color: #0057a6;">&gt;</span>0<span style="color: #0057a6;">&lt;/</span><span style="color: #333385;">Timezone</span><span style="color: #0057a6;">&gt;</span><br />  <span style="color: #0057a6;">&lt;</span><span style="color: #333385;">Gmtoffset</span><span style="color: #0057a6;">&gt;</span>0<span style="color: #0057a6;">&lt;/</span><span style="color: #333385;">Gmtoffset</span><span style="color: #0057a6;">&gt;</span><br />  <span style="color: #0057a6;">&lt;</span><span style="color: #333385;">Dstoffset</span><span style="color: #0057a6;">&gt;</span>0<span style="color: #0057a6;">&lt;/</span><span style="color: #333385;">Dstoffset</span><span style="color: #0057a6;">&gt;</span><br />  <span style="color: #0057a6;">&lt;</span><span style="color: #333385;">TimezoneName</span><span style="color: #0057a6;">&gt;</span><span style="color: #0057a6;">&lt;/</span><span style="color: #333385;">TimezoneName</span><span style="color: #0057a6;">&gt;</span><br />  <span style="color: #0057a6;">&lt;</span><span style="color: #333385;">Isdst</span><span style="color: #0057a6;">&gt;</span><span style="color: #0057a6;">&lt;/</span><span style="color: #333385;">Isdst</span><span style="color: #0057a6;">&gt;</span><br />  <span style="color: #0057a6;">&lt;</span><span style="color: #333385;">Ip</span><span style="color: #0057a6;">&gt;</span>117.136.8.14<span style="color: #0057a6;">&lt;/</span><span style="color: #333385;">Ip</span><span style="color: #0057a6;">&gt;</span><br /><span style="color: #0057a6;">&lt;/</span><span style="color: #333385;">Response</span><span style="color: #0057a6;">&gt;</span></pre><br />Wow, looks precise:), I am going to show visitor's geolocation on Google Map (I know this compromises visitor's privacy but my personal blog <a title="Wayne's Geek Place" href="http://WayneYe.com" target="_blank">http://WayneYe.com</a> is not a company and I will NEVER earn a cent by doing this:)).<br /> <br />Anyway, I use the latest <a href="http://code.google.com/apis/maps/documentation/javascript/" target="_blank">Google Map JavaScript API V3</a>, and there are two major functionalities:<br /><br />1. Display visitor's Geolocation as long as user's browser support "<strong><a title="navigator.geolocation" href="http://dev.w3.org/geo/api/spec-source.html" target="_blank">navigator.geolocation</a></strong>" property (Google Chrome, Mozilla Filefox support it, IE not support and I will set default location to New York City), a sample below:<br /> <br /><img title="Visitor Info" src="http://ns5gpg.bay.livefilestore.com/y1plJ9KsiXnqp2mD0KngwYS-YeElOl-mbIBO29TiLWhI72MdlDOSJAzwDi2ADRfj94vJlSNsiVQ44Ang14vW6X6Nl98tRZ68_LY/VisitorInfo%20-%20Shanghai.png?psid=1" alt="VisitorInfo" width="726" height="467" /><br /><br />2. Display a specified blog's visitors' geolocations on Google Map, screenshot below shows the visitors' geolocations who visited my blog: <strong><a title="My new Dev box - HP Z800 Workstation" href="http://wayneye.com/ViewBlog.aspx?BlogID=91" target="_blank">My new Dev box - HP Z800 Workstation</a>, </strong>by clicking each geolocation, it will show on Google Map.<br /><br /><img title="Visitors of &lt;My new Dev box - HP Z800 Workstation&gt;" src="http://ns5gpg.bay.livefilestore.com/y1pCBJMdMTpY-u1Q0S7zqtVu4drJCDOt4vu9fXI01NWpuNsxyAcTZ496S_D-sE4wJfm7E_8MNfOtb_BDsd4A2GjE611hJjqRLED/Z800Visitors.png?psid=1" alt="Visitors of &lt;My new Dev box - HP Z800 Workstation&gt;" width="731" height="533" /><br /><br />The JavaScript code showing below:<br /><pre style="color: #000020; background: #f6f8ff;"><span style="color: #308080;">&lt;</span>script type<span style="color: #308080;">=</span><span style="color: #1060b6;">"text/javascript"</span><span style="color: #308080;">&gt;</span><br />    <span style="color: #200080; font-weight: bold;">var</span> initialLocation<span style="color: #406080;">;</span><br />    <span style="color: #200080; font-weight: bold;">var</span> newyork <span style="color: #308080;">=</span> <span style="color: #200080; font-weight: bold;">new</span> google<span style="color: #308080;">.</span>maps<span style="color: #308080;">.</span>LatLng<span style="color: #308080;">(</span><span style="color: #008000;">40.69847032728747</span><span style="color: #308080;">,</span> <span style="color: #308080;">-</span><span style="color: #008000;">73.9514422416687</span><span style="color: #308080;">)</span><span style="color: #406080;">;</span><br />    <span style="color: #200080; font-weight: bold;">var</span> browserSupportFlag <span style="color: #308080;">=</span> <span style="color: #200080; font-weight: bold;">new</span> Boolean<span style="color: #308080;">(</span><span style="color: #308080;">)</span><span style="color: #406080;">;</span><br />    <span style="color: #200080; font-weight: bold;">var</span> map<span style="color: #406080;">;</span><br />    <span style="color: #200080; font-weight: bold;">var</span> myOptions<br />    <span style="color: #200080; font-weight: bold;">var</span> infowindow <span style="color: #308080;">=</span> <span style="color: #200080; font-weight: bold;">new</span> google<span style="color: #308080;">.</span>maps<span style="color: #308080;">.</span>InfoWindow<span style="color: #308080;">(</span><span style="color: #308080;">)</span><span style="color: #406080;">;</span><br /> <br />    <span style="color: #200080; font-weight: bold;">function</span> initialize<span style="color: #308080;">(</span><span style="color: #308080;">)</span> <span style="color: #406080;">{</span><br />        myOptions <span style="color: #308080;">=</span> <span style="color: #406080;">{</span><br />            zoom<span style="color: #406080;">:</span> <span style="color: #008c00;">6</span><span style="color: #308080;">,</span><br />            mapTypeId<span style="color: #406080;">:</span> google<span style="color: #308080;">.</span>maps<span style="color: #308080;">.</span>MapTypeId<span style="color: #308080;">.</span>ROADMAP<br />        <span style="color: #406080;">}</span><span style="color: #406080;">;</span><br />        map <span style="color: #308080;">=</span> <span style="color: #200080; font-weight: bold;">new</span> google<span style="color: #308080;">.</span>maps<span style="color: #308080;">.</span>Map<span style="color: #308080;">(</span>document<span style="color: #308080;">.</span>getElementById<span style="color: #308080;">(</span><span style="color: #1060b6;">"googleMapContainer"</span><span style="color: #308080;">)</span><span style="color: #308080;">,</span> myOptions<span style="color: #308080;">)</span><span style="color: #406080;">;</span><br /> <br />        <span style="color: #595979;">// Try W3C Geolocation (Preferred)</span><br />        <span style="color: #200080; font-weight: bold;">if</span> <span style="color: #308080;">(</span>navigator<span style="color: #308080;">.</span>geolocation<span style="color: #308080;">)</span> <span style="color: #406080;">{</span><br />            browserSupportFlag <span style="color: #308080;">=</span> <span style="color: #0f4d75;">true</span><span style="color: #406080;">;</span><br />            navigator<span style="color: #308080;">.</span>geolocation<span style="color: #308080;">.</span>getCurrentPosition<span style="color: #308080;">(</span><span style="color: #200080; font-weight: bold;">function</span> <span style="color: #308080;">(</span>position<span style="color: #308080;">)</span> <span style="color: #406080;">{</span><br />                map<span style="color: #308080;">.</span>setCenter<span style="color: #308080;">(</span><span style="color: #200080; font-weight: bold;">new</span> google<span style="color: #308080;">.</span>maps<span style="color: #308080;">.</span>LatLng<span style="color: #308080;">(</span>position<span style="color: #308080;">.</span>coords<span style="color: #308080;">.</span>latitude<span style="color: #308080;">,</span> position<span style="color: #308080;">.</span>coords<span style="color: #308080;">.</span>longitude<span style="color: #308080;">)</span><span style="color: #308080;">)</span><span style="color: #406080;">;</span><br />                infowindow<span style="color: #308080;">.</span>setContent<span style="color: #308080;">(</span><span style="color: #1060b6;">'Hi, dear WayneYe.com visitor! You are here:)'</span><span style="color: #308080;">)</span><span style="color: #406080;">;</span><br />                infowindow<span style="color: #308080;">.</span>setPosition<span style="color: #308080;">(</span><span style="color: #200080; font-weight: bold;">new</span> google<span style="color: #308080;">.</span>maps<span style="color: #308080;">.</span>LatLng<span style="color: #308080;">(</span>position<span style="color: #308080;">.</span>coords<span style="color: #308080;">.</span>latitude<span style="color: #308080;">,</span> position<span style="color: #308080;">.</span>coords<span style="color: #308080;">.</span>longitude<span style="color: #308080;">)</span><span style="color: #308080;">)</span><span style="color: #406080;">;</span><br />                infowindow<span style="color: #308080;">.</span>open<span style="color: #308080;">(</span>map<span style="color: #308080;">)</span><span style="color: #406080;">;</span><br />            <span style="color: #406080;">}</span><span style="color: #308080;">,</span> <span style="color: #200080; font-weight: bold;">function</span> <span style="color: #308080;">(</span><span style="color: #308080;">)</span> <span style="color: #406080;">{</span><br />                handleNoGeolocation<span style="color: #308080;">(</span>browserSupportFlag<span style="color: #308080;">)</span><span style="color: #406080;">;</span><br />            <span style="color: #406080;">}</span><span style="color: #308080;">)</span><span style="color: #406080;">;</span><br />        <span style="color: #406080;">}</span> <span style="color: #200080; font-weight: bold;">else</span> <span style="color: #406080;">{</span><br />            browserSupportFlag <span style="color: #308080;">=</span> <span style="color: #0f4d75;">false</span><span style="color: #406080;">;</span><br />            handleNoGeolocation<span style="color: #308080;">(</span>browserSupportFlag<span style="color: #308080;">)</span><span style="color: #406080;">;</span><br />        <span style="color: #406080;">}</span><br /> <br />        <span style="color: #200080; font-weight: bold;">function</span> handleNoGeolocation<span style="color: #308080;">(</span>errorFlag<span style="color: #308080;">)</span> <span style="color: #406080;">{</span><br />            <span style="color: #595979;">//contentString = 'Cannot track your location, default to New York City.';</span><br /> <br />            map<span style="color: #308080;">.</span>setCenter<span style="color: #308080;">(</span>newyork<span style="color: #308080;">)</span><span style="color: #406080;">;</span><br />            <span style="color: #595979;">//infowindow.setContent(contentString);</span><br />            <span style="color: #595979;">//infowindow.setPosition(newyork);</span><br />            infowindow<span style="color: #308080;">.</span>open<span style="color: #308080;">(</span>map<span style="color: #308080;">)</span><span style="color: #406080;">;</span><br />        <span style="color: #406080;">}</span><br />    <span style="color: #406080;">}</span><br /> <br />    <span style="color: #200080; font-weight: bold;">function</span> setGoogleMapLocation<span style="color: #308080;">(</span>geoLocation<span style="color: #308080;">,</span> latitude<span style="color: #308080;">,</span> longitude<span style="color: #308080;">)</span> <span style="color: #406080;">{</span><br />        contentString <span style="color: #308080;">=</span> geoLocation<span style="color: #406080;">;</span><br /> <br />        <span style="color: #200080; font-weight: bold;">var</span> visitorLocation <span style="color: #308080;">=</span> <span style="color: #200080; font-weight: bold;">new</span> google<span style="color: #308080;">.</span>maps<span style="color: #308080;">.</span>LatLng<span style="color: #308080;">(</span>latitude<span style="color: #308080;">,</span> longitude<span style="color: #308080;">)</span><span style="color: #406080;">;</span><br /> <br />        map<span style="color: #308080;">.</span>setCenter<span style="color: #308080;">(</span>visitorLocation<span style="color: #308080;">)</span><span style="color: #406080;">;</span><br />        infowindow<span style="color: #308080;">.</span>setContent<span style="color: #308080;">(</span>contentString<span style="color: #308080;">)</span><span style="color: #406080;">;</span><br />        infowindow<span style="color: #308080;">.</span>setPosition<span style="color: #308080;">(</span>visitorLocation<span style="color: #308080;">)</span><span style="color: #406080;">;</span><br />        infowindow<span style="color: #308080;">.</span>open<span style="color: #308080;">(</span>map<span style="color: #308080;">)</span><span style="color: #406080;">;</span><br />    <span style="color: #406080;">}</span><br /><span style="color: #308080;">&lt;</span><span style="color: #308080;">/</span>script<span style="color: #308080;">&gt;</span></pre><br />Ok, all done, eventually I built a visit record page which shows every's blog's visitors' Geolocations, the location is: <a title="http://wayneye.com/VisitRecord" href="http://wayneye.com/VisitRecord" target="_blank">http://wayneye.com/VisitRecord</a>.
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#hack" class="page__taxonomy-item p-category" rel="tag">Hack</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#hack" class="page__taxonomy-item p-category" rel="tag">Hack</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2010-12-30T00:00:00-08:00">December 30, 2010</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  <h4 class="page__share-title">Share on</h4>
+
+  <a href="https://x.com/intent/tweet?via=wayneye&text=IP+Address+to+Geolocation%20http%3A%2F%2Flocalhost%3A4000%2FIPAddress-To-Geolocation" class="btn btn--x" aria-label="Share on X" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on X">
+    <i class="fab fa-fw fa-x-twitter" aria-hidden="true"></i><span> X</span>
+  </a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2FIPAddress-To-Geolocation" class="btn btn--facebook" aria-label="Share on Facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook">
+    <i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span>
+  </a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/IPAddress-To-Geolocation" class="btn btn--linkedin" aria-label="Share on LinkedIn" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn">
+    <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span>
+  </a>
+
+  <a href="https://bsky.app/intent/compose?text=IP+Address+to+Geolocation%20http%3A%2F%2Flocalhost%3A4000%2FIPAddress-To-Geolocation" class="btn btn--bluesky" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Bluesky">
+    <i class="fab fa-fw fa-bluesky" aria-hidden="true"></i><span> Bluesky</span>
+  </a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/IIS-Gzip-Compression" class="pagination--pager" title="Utilize gzip compression in IIS">Previous</a>
+    
+    
+      <a href="/PMP-Exam-Passed" class="pagination--pager" title="PMP exam passed:)">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+      
+        <p>
+          Comments are configured with provider: <strong>disqus</strong>,
+          but are disabled in non-production environments.
+        </p>
+      
+    
+  </article>
+
+  
+  
+    
+<div class="page__related">
+  
+  <h2 class="page__related-title">You may also enjoy</h2>
+  <div class="grid__wrapper">
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/RIP-Bram-Moolenaar" rel="permalink">RIP Bram Moolenaar - Father of Vim
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">From the most recent MacVim release note:
+
+  As some of you may have read, Bram Moolenaar, the creator and maintainer of Vim, has passed away recently. He ha...</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/BMW-Convertible-As-My-Beater-Car" rel="permalink">BMW Convertible As My Beater Car
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+  Life is too short to drive boring cars
+
+
+
+
+
+I bought a 2015 BMW X5 Dec last year, it has been half a year so far (with 2 months she stayed inside the gara...</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2019-12-07-SkyJump-Las-Vegas" rel="permalink">SkyJump from Stratosphere Tower at Las Vegas - Smile all the way down
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Instead of spending any cent in the money pit casinos, I’d chose to do something more meaningful and exciting :)
+
+
+    
+    
+    
+    SkyJump Las Vegas
+
+
+
+
+ ...</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/AWS-reinvent-Las-Vegas" rel="permalink">AWS reinvent 2019 - Las Vegas
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">This is my second time attending AWS re-Invent, last time was year 2017, the purpose of this blog is to summarize what I’ve learned, impressed and entertaine...</p>
+  </article>
+</div>
+
+    
+  </div>
+</div>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="mailto:wei.ye AT me.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+        
+      
+        
+          <li><a href="https://wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+        
+      
+        
+          <li><a href="https://twitter.com/wayneye" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+          <li><a href="https://facebook.com/WayneYeDotCom" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-facebook-square" aria-hidden="true"></i> Facebook</a></li>
+        
+      
+        
+          <li><a href="https://github.com/WayneYe/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">Wayne&#39;s Geek Life</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/IPAddress-To-Geolocation";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/IP-Address-to-Geolocation"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://wayneye.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>

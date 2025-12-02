@@ -1,11 +1,12 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.16.3 by Michael Rose
-  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Minimal Mistakes Jekyll Theme 4.27.3 by Michael Rose
+  Copyright 2013-2025 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
 -->
-<html lang="en" class="no-js">
+
+<html lang="en-US" class="no-js">
   <head>
     <meta charset="utf-8">
 
@@ -13,13 +14,18 @@
 <meta name="description" content="I am a software engineer, technical lead and also a geek, I’ve immersed in software/web development for 14 years, I hack using these languages: Python, Golang, JavaScript/nodejs, Ruby/RoR, C#. I am an AWS Certified Solutions Architect (2017-2019), PMP and CodeProject MVP.">
 
 
+  <meta name="author" content="Wayne Ye">
+  
+
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
-<meta property="og:site_name" content="Wayne's Geek Life">
+<meta property="og:site_name" content="Wayne&#39;s Geek Life">
 <meta property="og:title" content="Ireland Trip - June 2019">
 <meta property="og:url" content="http://localhost:4000/gallery/ireland-trip-Jun-2019">
 
+
+  <meta property="og:description" content="I am a software engineer, technical lead and also a geek, I’ve immersed in software/web development for 14 years, I hack using these languages: Python, Golang, JavaScript/nodejs, Ruby/RoR, C#. I am an AWS Certified Solutions Architect (2017-2019), PMP and CodeProject MVP.">
 
 
 
@@ -57,59 +63,41 @@
 
 
 
-
 <!-- end _includes/seo.html -->
 
 
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Wayne's Geek Life Feed">
 
-<!-- https://t.co/dKP3o1e -->
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Wayne's Geek Life Feed">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <script>
   document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
 </script>
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
-
-<!--[if IE ]>
-  <style>
-    /* old IE unsupported flexbox fixes */
-    .greedy-nav .site-title {
-      padding-right: 3em;
-    }
-    .greedy-nav button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-    }
-  </style>
-<![endif]-->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
 
 
 
     <!-- start custom head snippets -->
 
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
-<link rel="manifest" href="/assets/images/favicon/site.webmanifest">
-<link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
-<meta name="msapplication-TileColor" content="#da532c">
-<meta name="theme-color" content="#ffffff">
 
 <!-- end custom head snippets -->
 
   </head>
 
-  <body class="layout--single">
-
-    <!--[if lt IE 9]>
-<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
-<![endif]-->
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
 
     
 
@@ -118,19 +106,46 @@
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
         
-        <a class="site-title" href="/">Wayne's Geek Life</a>
+        <a class="site-title" href="/">
+          Wayne&#39;s Geek Life
+          
+        </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/categories/" >Categories</a>
+              <a
+                href="/categories/"
+                
+                
+              >Categories</a>
             </li><li class="masthead__menu-item">
-              <a href="/tags/" >Tags</a>
+              <a
+                href="/tags/"
+                
+                
+              >Tags</a>
             </li><li class="masthead__menu-item">
-              <a href="/search/" >Search</a>
+              <a
+                href="/search/"
+                
+                
+              >Search</a>
             </li><li class="masthead__menu-item">
-              <a href="/gallery/" >Gallery</a>
+              <a
+                href="/gallery/"
+                
+                
+              >Gallery</a>
             </li><li class="masthead__menu-item">
-              <a href="/vlog/" >Vlog</a>
+              <a
+                href="/vlog/"
+                
+                
+              >Vlog</a>
             </li><li class="masthead__menu-item">
-              <a href="/about/" >About</a>
+              <a
+                href="/about/"
+                
+                
+              >About</a>
             </li></ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
@@ -149,32 +164,33 @@
 
 
 
+
+
 <div id="main" role="main">
   
   <div class="sidebar sticky">
   
 
 
-<div itemscope itemtype="https://schema.org/Person">
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
 
   
     <div class="author__avatar">
-      
-
-      
-        <img src="/assets/images/me.jpg" alt="Wayne Ye" itemprop="image">
-      
+      <a href="http://localhost:4000/">
+        <img src="/assets/images/me.jpg" alt="Wayne Ye" itemprop="image" class="u-photo">
+      </a>
     </div>
   
 
   <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Wayne Ye</a>
+    </h3>
     
-      <h3 class="author__name" itemprop="name">Wayne Ye</h3>
-    
-    
-      <p class="author__bio" itemprop="description">
-        Whatever is worth doing is worth doing well!
-      </p>
+      <div class="author__bio p-note" itemprop="description">
+        <p>Whatever is worth doing is worth doing well!</p>
+
+      </div>
     
   </div>
 
@@ -183,30 +199,30 @@
     <ul class="author__urls social-icons">
       
         <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
-          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">San Francisco</span>
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">San Francisco</span>
         </li>
       
 
       
         
           
-            <li><a href="mailto:hi@wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+            <li><a href="mailto:hi@wayneye.me" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
           
         
           
-            <li><a href="https://wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+            <li><a href="https://wayneye.me" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
           
         
           
-            <li><a href="https://www.linkedin.com/in/wayneye" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+            <li><a href="https://www.linkedin.com/in/wayneye" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
           
         
           
-            <li><a href="https://github.com/WayneYe/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+            <li><a href="https://github.com/WayneYe/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
           
         
           
-            <li><a href="https://twitter.com/wayneye" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+            <li><a href="https://twitter.com/wayneye" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
           
         
       
@@ -261,7 +277,7 @@
 
       <!--
   <li>
-    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
       <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
     </a>
   </li>
@@ -274,6 +290,7 @@
   </div>
 
 
+
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Ireland Trip - June 2019">
     
@@ -283,9 +300,13 @@
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Ireland Trip - June 2019
-</h1>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="http://localhost:4000/gallery/ireland-trip-Jun-2019" itemprop="url">Ireland Trip - June 2019
+</a>
+          </h1>
           
+
+
         </header>
       
 
@@ -296,276 +317,277 @@
   
     
       <a href="/assets/images/gallery/2019-adsk-football/AUTODESK-WORLD-CUP-Tymon-Park.jpg" title="Tymon">
-        <img src="/assets/images/gallery/2019-adsk-football/AUTODESK-WORLD-CUP-Tymon-Park.jpg" alt="" />
+          <img src="/assets/images/gallery/2019-adsk-football/AUTODESK-WORLD-CUP-Tymon-Park.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/Avis-Car-rental.png" title="Avis-Car-rental">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Avis-Car-rental.png" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Avis-Car-rental.png" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/Avis-Nissan-Qashqai.jpg" title="Avis-Nissan-Qashqai.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Avis-Nissan-Qashqai.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Avis-Nissan-Qashqai.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/CoF-3.jpg" title="CoF-3">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/CoF-3.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/CoF-3.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/CoF-4.jpg" title="CoF-4.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/CoF-4.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/CoF-4.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/CoF-5.jpg" title="CoF-5.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/CoF-5.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/CoF-5.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/CoM-2.jpg" title="CoM-2.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/CoM-2.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/CoM-2.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-0.jpg" title="CoM-Danger-0.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-0.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-0.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-1.jpg" title="CoM-Danger-1.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-1.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-1.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-2.jpg" title="CoM-Danger-2.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-2.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-2.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-3.jpg" title="CoM-Danger-3.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-3.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-3.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-4.jpg" title="CoM-Danger-4.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-4.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-4.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-5.jpg" title="CoM-Danger-5.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-5.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/CoM-Danger-5.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/CoM-landscape-2.jpg" title="CoM-landscape-2.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/CoM-landscape-2.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/CoM-landscape-2.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/CoM-landscape.jpg" title="CoM-landscape.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/CoM-landscape.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/CoM-landscape.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/Cork-McDonald.jpg" title="Cork-McDonald.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Cork-McDonald.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Cork-McDonald.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/Cork-Part.jpg" title="Cork-Part.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Cork-Part.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Cork-Part.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/Countryside-view-2.jpg" title="Countryside-view-2.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Countryside-view-2.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Countryside-view-2.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/Countryside-view.jpg" title="Countryside-view.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Countryside-view.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Countryside-view.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/Countryside.jpg" title="Countryside.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Countryside.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Countryside.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/English-Market.jpg" title="English-Market.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/English-Market.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/English-Market.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/Memorial.jpg" title="Memorial.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Memorial.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Memorial.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/Nissan-Qashqai-Interior.jpg" title="Nissan-Qashqai-Interior.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Nissan-Qashqai-Interior.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Nissan-Qashqai-Interior.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/Ring-Of-Kerry.jpg" title="Ring-Of-Kerry.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Ring-Of-Kerry.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Ring-Of-Kerry.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-Campsite.jpg" title="RoK-Campsite.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-Campsite.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-Campsite.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-Creek.jpg" title="RoK-Creek.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-Creek.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-Creek.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-Farms.jpg" title="RoK-Farms.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-Farms.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-Farms.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-Gorgeous-View.jpg" title="RoK-Gorgeous-View.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-Gorgeous-View.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-Gorgeous-View.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-Houses.jpg" title="RoK-Houses.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-Houses.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-Houses.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-Me-At-Beach.jpg" title="RoK-Me-At-Beach.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-Me-At-Beach.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-Me-At-Beach.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-Mountain.jpg" title="RoK-Mountain.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-Mountain.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-Mountain.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-QC.jpg" title="RoK-QC.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-QC.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-QC.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-Sea-View.jpg" title="RoK-Sea-View.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-Sea-View.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-Sea-View.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-house-external.jpg" title="RoK-house-external.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-house-external.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-house-external.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-house.jpg" title="RoK-house.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-house.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/RoK-house.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/Safety-advice.jpg" title="Safety-advice.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Safety-advice.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Safety-advice.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/Sunday-Breakfast.jpg" title="Sunday-Breakfast.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Sunday-Breakfast.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Sunday-Breakfast.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/Super-Danger.jpg" title="Super-Danger.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Super-Danger.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Super-Danger.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/The-Woollen-Market.jpg" title="The-Woollen-Market.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/The-Woollen-Market.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/The-Woollen-Market.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/Tralee-Blennerville-Windmill-Flags.jpg" title="Tralee-Blennerville-Windmill-Flags.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Tralee-Blennerville-Windmill-Flags.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Tralee-Blennerville-Windmill-Flags.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/Tralee-Blennerville-Windmill.jpg" title="Tralee-Blennerville-Windmill.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Tralee-Blennerville-Windmill.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Tralee-Blennerville-Windmill.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/Wild-Atlantic-Way.jpg" title="Wild-Atlantic-Way.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Wild-Atlantic-Way.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/Wild-Atlantic-Way.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/ireland-wet-floor.jpg" title="ireland-wet-floor.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/ireland-wet-floor.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/ireland-wet-floor.jpg" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/map-of-kerry.png" title="map-of-kerry.png">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/map-of-kerry.png" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/map-of-kerry.png" alt="" />
       </a>
     
   
     
       <a href="/assets/images/posts/2019-06-20-Ireland-Trip/three-main-currencies.jpg" title="three-main-currencies.jpg">
-        <img src="/assets/images/posts/2019-06-20-Ireland-Trip/three-main-currencies.jpg" alt="" />
+          <img src="/assets/images/posts/2019-06-20-Ireland-Trip/three-main-currencies.jpg" alt="" />
       </a>
     
   
   
 </figure>
+
 
         
       </section>
@@ -576,47 +598,61 @@
 
 
         
+
       </footer>
 
       <section class="page__share">
-  <!---->
-    <!--<h4 class="page__share-title">Share on</h4>-->
-  <!---->
+  <h4 class="page__share-title">Share on</h4>
 
-  <!--<a href="https://twitter.com/intent/tweet?via=wayneye&text=Ireland+Trip+-+June+2019%20http%3A%2F%2Flocalhost%3A4000%2Fgallery%2Fireland-trip-Jun-2019" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>-->
+  <a href="https://x.com/intent/tweet?via=wayneye&text=Ireland+Trip+-+June+2019%20http%3A%2F%2Flocalhost%3A4000%2Fgallery%2Fireland-trip-Jun-2019" class="btn btn--x" aria-label="Share on X" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on X">
+    <i class="fab fa-fw fa-x-twitter" aria-hidden="true"></i><span> X</span>
+  </a>
 
-  <!--<a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fgallery%2Fireland-trip-Jun-2019" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>-->
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fgallery%2Fireland-trip-Jun-2019" class="btn btn--facebook" aria-label="Share on Facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook">
+    <i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span>
+  </a>
 
-  <!--<a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fgallery%2Fireland-trip-Jun-2019" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>-->
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/gallery/ireland-trip-Jun-2019" class="btn btn--linkedin" aria-label="Share on LinkedIn" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn">
+    <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span>
+  </a>
 
-  
-  <figure style="margin-top: 10px; width: 380px;">
-      <a href="/assets/images/dashang.jpg"><img src="/assets/images/dashang.jpg" alt="微信打赏"></a>
-  </figure>
+  <a href="https://bsky.app/intent/compose?text=Ireland+Trip+-+June+2019%20http%3A%2F%2Flocalhost%3A4000%2Fgallery%2Fireland-trip-Jun-2019" class="btn btn--bluesky" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Bluesky">
+    <i class="fab fa-fw fa-bluesky" aria-hidden="true"></i><span> Bluesky</span>
+  </a>
 </section>
 
 
       
+
     </div>
 
+    
+      
+        <p>
+          Comments are configured with provider: <strong>disqus</strong>,
+          but are disabled in non-production environments.
+        </p>
+      
     
   </article>
 
   
   
 </div>
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4ea2897777c94202"></script>
 
+      
     </div>
 
     
 
-    <div class="page__footer">
+    <div id="footer" class="page__footer">
       <footer>
         <!-- start custom footer snippets -->
 
 <!-- end custom footer snippets -->
-        <div class="page__footer-follow">
+        
+
+<div class="page__footer-follow">
   <ul class="social-icons">
     
       <li><strong>Follow:</strong></li>
@@ -646,20 +682,20 @@
       
     
 
-    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2025 Wayne Ye. All rights reserved.
- 
-  <!--Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>-->
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">Wayne&#39;s Geek Life</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>
 
     
   <script src="/assets/js/main.min.js"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
 
 
 
@@ -670,10 +706,10 @@
     
   <script>
     var disqus_config = function () {
-      this.page.url = "http://localhost:4000/gallery/ireland-trip-Jun-2019";  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = ""; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = "http://localhost:4000/gallery/ireland-trip-Jun-2019";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = ""; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
-    (function() { // DON'T EDIT BELOW THIS LINE
+    (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');
       s.src = 'https://wayneye.disqus.com/embed.js';
       s.setAttribute('data-timestamp', +new Date());
@@ -684,7 +720,6 @@
 
 
   
-
 
 
 

@@ -45,7 +45,14 @@ twitter:
 
 #theme: jekyll-theme-hacker
 #theme: minimal-mistakes-jekyll
-remote_theme: "mmistakes/minimal-mistakes@4.26.2"
+remote_theme: "mmistakes/minimal-mistakes@4.27.3"
+
+# Uncomment lines below to use a local copy of the Minimal Mistakes theme
+# git clone https://github.com/mmistakes/minimal-mistakes.git _theme                                                                                                  ✔ 
+# includes_dir: _theme/_includes
+# layouts_dir: _theme/_layouts
+# sass:
+#   sass_dir: _theme/_sass
 minimal_mistakes_skin: "air" # "default" "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum" "sunrise"
 
 
@@ -188,6 +195,8 @@ permalink: /:categories/:title/
 paginate: 10 # amount of posts to show
 paginate_path: /page:num/
 timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+
+show_snow: true
 
 footer:
   links:

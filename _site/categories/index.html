@@ -1,11 +1,12 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.16.3 by Michael Rose
-  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Minimal Mistakes Jekyll Theme 4.27.3 by Michael Rose
+  Copyright 2013-2025 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
 -->
-<html lang="en" class="no-js">
+
+<html lang="en-US" class="no-js">
   <head>
     <meta charset="utf-8">
 
@@ -13,13 +14,18 @@
 <meta name="description" content="I am a software engineer, technical lead and also a geek, I’ve immersed in software/web development for 14 years, I hack using these languages: Python, Golang, JavaScript/nodejs, Ruby/RoR, C#. I am an AWS Certified Solutions Architect (2017-2019), PMP and CodeProject MVP.">
 
 
+  <meta name="author" content="Wayne Ye">
+  
+
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
-<meta property="og:site_name" content="Wayne's Geek Life">
+<meta property="og:site_name" content="Wayne&#39;s Geek Life">
 <meta property="og:title" content="Posts by Category">
 <meta property="og:url" content="http://localhost:4000/categories/">
 
+
+  <meta property="og:description" content="I am a software engineer, technical lead and also a geek, I’ve immersed in software/web development for 14 years, I hack using these languages: Python, Golang, JavaScript/nodejs, Ruby/RoR, C#. I am an AWS Certified Solutions Architect (2017-2019), PMP and CodeProject MVP.">
 
 
 
@@ -57,59 +63,41 @@
 
 
 
-
 <!-- end _includes/seo.html -->
 
 
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Wayne's Geek Life Feed">
 
-<!-- https://t.co/dKP3o1e -->
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Wayne's Geek Life Feed">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <script>
   document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
 </script>
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
-
-<!--[if IE ]>
-  <style>
-    /* old IE unsupported flexbox fixes */
-    .greedy-nav .site-title {
-      padding-right: 3em;
-    }
-    .greedy-nav button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-    }
-  </style>
-<![endif]-->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
 
 
 
     <!-- start custom head snippets -->
 
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
-<link rel="manifest" href="/assets/images/favicon/site.webmanifest">
-<link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
-<meta name="msapplication-TileColor" content="#da532c">
-<meta name="theme-color" content="#ffffff">
 
 <!-- end custom head snippets -->
 
   </head>
 
-  <body class="layout--categories">
-
-    <!--[if lt IE 9]>
-<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
-<![endif]-->
+  <body class="layout--categories" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
 
     
 
@@ -118,27 +106,47 @@
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
         
-        <a class="site-title" href="/">Wayne's Geek Life</a>
-        <ul class="visible-links">
-<li class="masthead__menu-item">
-              <a href="/categories/">Categories</a>
-            </li>
-<li class="masthead__menu-item">
-              <a href="/tags/">Tags</a>
-            </li>
-<li class="masthead__menu-item">
-              <a href="/search/">Search</a>
-            </li>
-<li class="masthead__menu-item">
-              <a href="/gallery/">Gallery</a>
-            </li>
-<li class="masthead__menu-item">
-              <a href="/vlog/">Vlog</a>
-            </li>
-<li class="masthead__menu-item">
-              <a href="/about/">About</a>
-            </li>
-</ul>
+        <a class="site-title" href="/">
+          Wayne&#39;s Geek Life
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/categories/"
+                
+                
+              >Categories</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tags/"
+                
+                
+              >Tags</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/search/"
+                
+                
+              >Search</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/gallery/"
+                
+                
+              >Gallery</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/vlog/"
+                
+                
+              >Vlog</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/about/"
+                
+                
+              >About</a>
+            </li></ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
           <span class="visually-hidden">Toggle menu</span>
@@ -162,26 +170,25 @@
   
 
 
-<div itemscope itemtype="https://schema.org/Person">
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
 
   
     <div class="author__avatar">
-      
-
-      
-        <img src="/assets/images/me.jpg" alt="Wayne Ye" itemprop="image">
-      
+      <a href="http://localhost:4000/">
+        <img src="/assets/images/me.jpg" alt="Wayne Ye" itemprop="image" class="u-photo">
+      </a>
     </div>
   
 
   <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Wayne Ye</a>
+    </h3>
     
-      <h3 class="author__name" itemprop="name">Wayne Ye</h3>
-    
-    
-      <p class="author__bio" itemprop="description">
-        Whatever is worth doing is worth doing well!
-      </p>
+      <div class="author__bio p-note" itemprop="description">
+        <p>Whatever is worth doing is worth doing well!</p>
+
+      </div>
     
   </div>
 
@@ -190,30 +197,30 @@
     <ul class="author__urls social-icons">
       
         <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
-          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">San Francisco</span>
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">San Francisco</span>
         </li>
       
 
       
         
           
-            <li><a href="mailto:hi@wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+            <li><a href="mailto:hi@wayneye.me" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
           
         
           
-            <li><a href="https://wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+            <li><a href="https://wayneye.me" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
           
         
           
-            <li><a href="https://www.linkedin.com/in/wayneye" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+            <li><a href="https://www.linkedin.com/in/wayneye" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
           
         
           
-            <li><a href="https://github.com/WayneYe/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+            <li><a href="https://github.com/WayneYe/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
           
         
           
-            <li><a href="https://twitter.com/wayneye" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+            <li><a href="https://twitter.com/wayneye" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
           
         
       
@@ -268,7 +275,7 @@
 
       <!--
   <li>
-    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
       <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
     </a>
   </li>
@@ -279,6 +286,7 @@
 
   
   </div>
+
 
 
   <div class="archive">
@@ -296,21 +304,269 @@
     
       
         <li>
-          <a href="#life">
-            <strong>Life</strong> <span class="taxonomy__count">4</span>
+          <a href="#hack">
+            <strong>Hack</strong> <span class="taxonomy__count">41</span>
           </a>
         </li>
       
     
       
     
-  
+      
+    
+      
     
       
     
       
     
   
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     
@@ -322,20 +578,347 @@
     
       
         <li>
-          <a href="#it-industry">
-            <strong>IT-Industry</strong> <span class="taxonomy__count">1</span>
+          <a href="#life">
+            <strong>Life</strong> <span class="taxonomy__count">22</span>
           </a>
         </li>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+        <li>
+          <a href="#it-industry">
+            <strong>IT-Industry</strong> <span class="taxonomy__count">3</span>
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a href="#project-mgmt">
+            <strong>Project-Mgmt</strong> <span class="taxonomy__count">3</span>
+          </a>
+        </li>
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <li>
+          <a href="#self-improvement">
+            <strong>Self-Improvement</strong> <span class="taxonomy__count">2</span>
+          </a>
+        </li>
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <li>
+          <a href="#geek">
+            <strong>Geek</strong> <span class="taxonomy__count">1</span>
+          </a>
+        </li>
+      
+    
       
     
   
 </ul>
 
 
+
   
     
-      <section id="life" class="taxonomy__section">
-        <h2 class="archive__subtitle">Life</h2>
+      <section id="hack" class="taxonomy__section">
+        <h2 class="archive__subtitle">Hack</h2>
         <div class="entries-list">
           
             
@@ -345,23 +928,18 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/RIP-Bram-Moolenaar" rel="permalink">RIP Bram Moolenaar - Father of Vim
+        <a href="/Packy-10-Years-Celebration" rel="permalink">PacktPub 10 years celebration
 </a>
       
     </h2>
     
-    <p class="archive__item-excerpt" itemprop="description">From the most recent MacVim release note:
-
-  As some of you may have read, Bram Moolenaar, the creator and maintainer of Vim, has passed away recently. He has worked tirelessly on Vim for more than 30 years and this release is dedicated to him. If you would like, you could pay your respects at this discussion thread.
 
 
+    <p class="archive__item-excerpt" itemprop="description">PacktPub 10 years celebration
 
-  The Vim project has transitioned to new maintainers, and MacVim will continue to be supported as long as Vim is around.
-
-
-I decided to use Vim as my all time text editor since 12 years ago, it completely changed my mind and my life, there were some times I felt like my typ...</p>
+  PacktPub 10 years celebration! All eBooks and Videos at just $10 each until July 5th, my book &lt;Instant Cucumber BDD How-T...</p>
   </article>
 </div>
 
@@ -373,21 +951,18 @@ I decided to use Vim as my all time text editor since 12 years ago, it completel
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/BMW-Convertible-As-My-Beater-Car" rel="permalink">BMW Convertible As My Beater Car
+        <a href="/My-Love-on-Vim" rel="permalink">My Love on Vim
 </a>
       
     </h2>
     
-    <p class="archive__item-excerpt" itemprop="description">
-  Life is too short to drive boring cars
 
 
+    <p class="archive__item-excerpt" itemprop="description">My life with Vim
 
-
-
-I bought a 2015 BMW X5 Dec last year, it has been half a year so far (with 2 months she stayed inside the garage for most of the time due to the pandemic), I am pretty satisfied with it, her condition is absolutely excellent, everything works, yes you see it correctly, after 5 years of its life, there was nothing broken, as BMW vehicle built in recent years, this is something not VERY easy.  My plan is to keep it as long as possible before it turns into an endless money pit, and keeping her value as high as possible, one of the major reason I b...</p>
+  I started learning Vim during Aug, 2011, the original motivation was trying to "get rid of my mouse while I am coding", I had no teacher ...</p>
   </article>
 </div>
 
@@ -399,34 +974,173 @@ I bought a 2015 BMW X5 Dec last year, it has been half a year so far (with 2 mon
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/2019-12-07-SkyJump-Las-Vegas" rel="permalink">SkyJump from Stratosphere Tower at Las Vegas - Smile all the way down
+        <a href="/Setup_MongoDB_With_Sharding_Infrastructure" rel="permalink">Setup MongoDB with sharding infrastructure
 </a>
       
     </h2>
     
-    <p class="archive__item-excerpt" itemprop="description">Instead of spending any cent in the money pit casinos, I’d chose to do something more meaningful and exciting :)
 
 
+    <p class="archive__item-excerpt" itemprop="description">The landscape&nbsp;
+Sharding is the strategy that MongoDB uses to horizentally scale the entire data store infrustructure and meet the demands of data,growth...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/MongoDB_Schema_Design_And_Common_Practices" rel="permalink">MongoDB Schema Design and Common Practices
+</a>
+      
+    </h2>
     
+
+
+    <p class="archive__item-excerpt" itemprop="description">Installation
+Exhaustive documentation:&nbsp;http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/
+Mongo executables will be installed into&nbsp;...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    SkyJump Las Vegas
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/WTF-IBM-Lotus-and-Domino-Server" rel="permalink">WTF?IBM Lotus and Domino Server?
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Technical tags: IBM, Domino, AIX, LotusScript, ODBC/JDBC, ADO, OLE DB,
+Assume we are now in Jurassic period, the technologies above are in Cambrian period, d...</p>
+  </article>
+</div>
+
+          
+            
 
 
 
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Cache-Reverse-Proxy-Varnish" rel="permalink">Cache Reverse Proxy - Varnish
+</a>
+      
+    </h2>
+    
 
-  SkyJump Las Vegas holds the Guinness World Record for highest commercial decelerator descent with an official height of 829 ft (253 m) and is located at Stratosphere Las Vegas. As part of its grand opening event, Las Vegas Mayor Oscar Goodman presented a written proclamation deeming April 20, 2010 as SkyJump Day in Las Vegas.
-  – Wikipedia (https://en.wikipedia.org/wiki/SkyJump_Las_Vegas)
+
+    <p class="archive__item-excerpt" itemprop="description">Introduction
+Varnish is an HTTP accelerator, the official page is: https://www.varnish-cache.org/.
+Varnish stands in front of the web application server to b...</p>
+  </article>
+</div>
+
+          
+            
 
 
 
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Cache-Reverse-Proxy-nginx" rel="permalink">Cache Reverse Proxy - nginx
+</a>
+      
+    </h2>
+    
 
 
-  
+    <p class="archive__item-excerpt" itemprop="description">Introduction
+On the homepage of nxing wiki, there used to be one sentence which really impressed my very much when I first time to take a look at it and lear...</p>
+  </article>
+</div>
+
+          
+            
 
 
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/12-Tips-To-Boost-RSpec-And-Cucumber" rel="permalink">12 tips to boost RSpect and Cucumber
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">In our daily TDD/BDD work, we spent most of our time in test cases, we analyze requirements, write test case, run it and watch it fail, implement code to mak...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Observation-On-CDN" rel="permalink">Observation on CDN
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Motivation
+
+    Leveraging CDN (Content Delivery Network) to speed up static files loading time is one of the most important fact which affects a website's l...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Geek-Life-In-ThoughtWorks" rel="permalink">Geek life in ThoughtWorks
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description"> ThoughtWorks card on my MacBook Pro (Click to enlarge)
+One month milestone
 
 </p>
   </article>
@@ -440,13 +1154,1068 @@ I bought a 2015 BMW X5 Dec last year, it has been half a year so far (with 2 mon
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Honored-To-Be-CodeProject-MVP-2012" rel="permalink">Honored to be CodeProject MVP 2012
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+It is a huge honor for me, I appreciate the recognition from the CodeProject team, and I believe this is not only a recognition but also a kind of&nbsp;enco...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Resolving-mouseover-mouseout-Multi-Trigger-Problem" rel="permalink">Resolving mouseover/mouseout multi-trigger problem
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Background
+While I was developing my blog's comments function, I hope reader can write down their Gravatar&nbsp;email address, and my preferable UI was an "h...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Modify-Proxy-Settings-Using-Powershell" rel="permalink">Modify proxy settings using Powershell
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">To use Live Messenger in the office, I always need to firstly disable my proxy settings, after Live Messenger launched, I need turn it back. Thus everytime I...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Windows-8-Far-From-Perfect" rel="permalink">Windows 8 - Far from perfect
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Recently I spent a few days in investigating Metro App (AKA immersive UI) development, I downloaded &amp; installed VS 2011 Ultimate, watched couple of video...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Honored-To-Win-CodeProject-HTML5-Competition" rel="permalink">Honored to Win CodeProject HTML5 competition
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Three months ago, my article &lt;HTML5 WebSocket In Essence&gt; was honored to be named first prize in CodeProject HTML5 &amp; CSS3 competion, the award was ...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Make-Your-HTML5-Video-Support-ALL-Browsers" rel="permalink">Make your HTML5 Video support all browsers
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Introduction
+HTML5 video tag gave us the following advantages:
+
+No plugin required, directly play.
+Visible &amp; controllable for Browser and search engine, ...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Atomic-Operation-In-Csharp" rel="permalink">Atomic Operation in C#.Net
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Introduction
+Atomic Operation is named academic to Linearizability,&nbsp;Atomicity is a guarantee of isolation from concurrent processes, it can be enfored b...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/URL-Rewrite-Rules-Used-By-WayneYe-Dot-Com" rel="permalink">URL Rewrite Rules used by WayneYe.com
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">I've successfully transferred my website to winhost, now the architecture is IIS 7.5 + ASP.NET 4.0 + SQL Server 2008 R2 + HTML5, this blog post is a summary ...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Print-Partial-Web-Content" rel="permalink">Print partial web content
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Per project needs we need print part of a web page, which I have no idea when I saw this requirement,&nbsp;I googled and I read this post:&nbsp;http://www.hu...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/HTML5-WebMessaging-In-Essence" rel="permalink">HTML5 WebMessaging In Essence
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Download HTML5_Cross-Domain_WebMessaging_Demo.zip - 2.97 KB
+As a web developer, sometimes we are easy to encounter one problem: Cross-Domain communication, c...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/nodejs-express-jade-socketio-On-Ubuntu" rel="permalink">nodejs+express+jade+socket.io on Ubuntu 11.04
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Introduction
+socket.io&nbsp;is a brilliant project which perfectly supports HTML5 WebSocket, in additional, it can fall back to flash or long polling when th...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/HTML5-WebSocket-In-Essence-Public-Speak" rel="permalink">HTML5 WebSocket in Essence技术分享
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">今天下午，我非常荣幸受邀参加HTML5兴趣小组每月一次的沙龙活动，我给大家分享了HTML5 WebSocket的特性，协议本质，以及我的Team Poker demo。
+第一次做技术分享，表面&ldquo;淡定&ldquo;，内心紧张，因语速较快原本打算持续1个小时左右的分享，大约40分钟就结束了，囧
+现场照片
+...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/JavaScript-Foundation-Of-The-Language" rel="permalink">JavaScript - Foundation of the Language
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Introduction
+JavaScript&nbsp;"was born under the shadow of Java" - Brenden Eich, it&nbsp;is "the most misunderstood programming language in the world" - Doug...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Exception-Handling-Particulars-In-Csharp" rel="permalink">Exception handling particulars in C#
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Background
+Exception handling appears in most .NET applications, this post is trying to describe some &nbsp;Exception handling particulars in C# which might ...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/HTML5-Web-Socket-In-Essence" rel="permalink">HTML5 Web Socket in Essence
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+HTML5 WebSocket defines a bi-directional, full-duplex communication channel operates through a single TCP connection, this article discusses its fantastic p...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Ajax-Cross-Origin-HTTP-request" rel="permalink">AJAX Cross-Origin HTTP request
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+Background
+Cross-Origin Request Sharing - CORS (A.K.A. Cross-Domain AJAX request) is an issue that most web developers might encounter,&nbsp;according to Sa...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/HTML5-Web-Storage-In-Essence" rel="permalink">HTML5 Web Storage in Essence
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Background 
+
+Web Storage (also named Dom storage) is a brand new mechanism of storing temporary/permanent data introduced in HTML5 to replace cookie, it cont...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Significant-Enhancement-In-InternetExplorer9" rel="permalink">Significant Enhancement in Internet Explorer 9
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Background
+
+Microsoft announced Internet Explorer 9 Release Candidate on&#160; Feb 10th, 2011, RC indicates except bug fixing, there would not have big chang...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/HTML-is-the-new-HTML5" rel="permalink">HTML is the new HTML5
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Few days ago Ian Hickson wrote a blog: HTML is the new HTML5, he referred "we moved to a new development model", and comes with two major changes:
+
+	The HTML...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Unique-URL-Pattern-In-Ajax" rel="permalink">Unique URL Pattern in Ajax Web Application
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Testing: Can I really edit this?
+Background
+Few days ago one of my friend asked me how does Gmail change its URL while user operates inside it without page r...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/IPAddress-To-Geolocation" rel="permalink">IP Address to Geolocation
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Background
+Few months ago I found an interesting website: http://ipinfodb.com/, it provided API which could “translate” any IP Address into a geography locat...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/IIS-Gzip-Compression" rel="permalink">Utilize gzip compression in IIS
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">GZIP format is developed by GNU Project and standardized&nbsp;by IETF in RFC 1952, which MUST be considered by web developers to improve their websites' perf...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Microsoft-Desktop-Player" rel="permalink">Microsoft Desktop Player
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">MSDN TechNet Flash has announced Microsoft Desktop Player, now it is in Beta, it can be accessed through the official website which is Silverlight based:
+htt...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/DotNet-Impersonation-Demo" rel="permalink">A complete Impersonation Demo in C#.NET
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Under some scenarios we need impersonate another Windows account and do some work under that user’s session, for example:
+
+
+An enterprise ASP.NET web applica...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Programmatically-PIN-shortcut-Onto-Taskbar-on-Win7" rel="permalink">Programmatically PIN shortcut onto Taskbar on Win7
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Background
+
+During my work I got one requirement of pinning a specific shortcut file (*.lnk) onto the Windows 7 Taskbar, after investigating I found programm...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Encrypt-DotNet-Configuration-File" rel="permalink">Encrypt .Net Configuration file
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Under some scenarios the developers want to encrypt some sections inside app.config or web.config file, this article How To: Encrypt Configuration Sections i...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Personal-Schedule-Management-Tool" rel="permalink">Personal Schedule Management Tool
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Time is always ticking no matter you care it or you don’t care it, everyone knows it including myself, to remind myself don’t waste too much time on gaming, ...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/A-Good-Lesson-On-DateTime-Localization" rel="permalink">A good lesson and experience
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">I was extremely busy during the last two weeks, since our project was at bug fixing phase, my team and I worked really hard on dealing with the bugs; We fixe...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Personal-Schedule-Windows-Service" rel="permalink">作息时间自动提醒Windows Service
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">经济危机真真切切的影响到了几乎每一个人，09年过去三分之一多一点了，生活不太规律，确实太忙的说，工作换了，房子也换了，又做回了张江男，觉得自己再不好好努力会Out的。。。都奔三儿而去了。。。于是乎，为了勉励自己，做了这么个东东。
+
+一个Windows Service，里面跑一个Timer，每隔10秒check一下...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%E6%8A%8ABlog%E9%87%8C%E7%9A%84%E7%85%A7%E7%89%87%E5%85%A8%E9%83%A8%E5%8A%A0%E4%B8%8A%E5%9C%86%E8%A7%92%E6%95%88%E6%9E%9C%E5%90%A7%EF%BC%9A%EF%BC%89" rel="permalink">把Blog里的照片全部加上圆角效果吧：）
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">前几天在网上找到这么个酷酷的玩意，用JS给图片加上各种各样的圆角效果，官方主页：
+
+http://www.netzgesta.de/corner/
+
+看后顿时觉得很酷，今天周末，有时间来搞搞这个：）
+
+读了官网的说明后发现很简单，下载corner.js（本地下载
+
+），然后页面include后直接使用class=...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%E8%BF%99%E5%87%A0%E5%A4%A9%E7%A0%94%E7%A9%B6Url-Rewrite%EF%BC%9A%EF%BC%89" rel="permalink">这几天研究Url Rewrite：）
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">在开发这个自己用的Blog时，决定认真研究一下以前接触过的URL Rewrite，我见过类似这样的域名： xxx.com/Archive/2008/03/21/，一直不知道怎么实现的，正好借这次机会研究一下。
+从前天开始就一直在努力，基本上是第一天差了大半天资料，这篇文章写得非常详细，向作者致敬！第二天终于上手做...</p>
+  </article>
+</div>
+
+          
+        </div>
+        <a href="#page-title" class="back-to-top">Back to top &uarr;</a>
+      </section>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+      <section id="life" class="taxonomy__section">
+        <h2 class="archive__subtitle">Life</h2>
+        <div class="entries-list">
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/RIP-Bram-Moolenaar" rel="permalink">RIP Bram Moolenaar - Father of Vim
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">From the most recent MacVim release note:
+
+  As some of you may have read, Bram Moolenaar, the creator and maintainer of Vim, has passed away recently. He ha...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/BMW-Convertible-As-My-Beater-Car" rel="permalink">BMW Convertible As My Beater Car
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+  Life is too short to drive boring cars
+
+
+
+
+
+I bought a 2015 BMW X5 Dec last year, it has been half a year so far (with 2 months she stayed inside the gara...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2019-12-07-SkyJump-Las-Vegas" rel="permalink">SkyJump from Stratosphere Tower at Las Vegas - Smile all the way down
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Instead of spending any cent in the money pit casinos, I’d chose to do something more meaningful and exciting :)
+
+
+    
+    
+    
+    SkyJump Las Vegas
+
+
+
+
+ ...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/Ireland-Trip-2019" rel="permalink">Ireland Trip 2019
 </a>
       
     </h2>
     
+
+
     <p class="archive__item-excerpt" itemprop="description">
   WHEN YOU ARE OLD
 
@@ -454,46 +2223,713 @@ I bought a 2015 BMW X5 Dec last year, it has been half a year so far (with 2 mon
 
   When you are old and grey and full of sleep, 
 And nodding by the fire, take down this book, 
-And slowly read, and dream of the soft look 
-Your eyes had once, and of their shadows deep; 
-How many loved your moments of glad grace, 
-And loved your beauty with love false or true, 
-But one man loved the pilgrim soul in you, 
-And loved the sorrows of your changing face; 
-And bending down beside the glowing bars, 
-Murmur, a little sadly, how Love fled 
-And paced upon the mountains overhead 
-And hid his face amid a crowd of stars. 
-– By William Butler Yeats
+And slowly read, and dream of the soft ...</p>
+  </article>
+</div>
+
+          
+            
 
 
 
-  当你年老时 
-　　 　...</p>
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Apply-UK-Visit-VISA" rel="permalink">Apply UK Visit VISA
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Background
+
+I was planning to attend #adskfootball2019 in Dublin, Ireland from Jun 14th to Jun 16th, 2019:
+
+    
+    Autodesk Football Tournament 2019
+
+
+In o...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/FC-Barcelona-Miracle-Comeback" rel="permalink">FC Barcelona Miracle Comeback!
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">0:4到6:1 - 史诗般的逆转
+
+From 0:4 to 6:1 - Epic comeback
+
+2017年3月8日，巴塞罗那诺坎普球场，加泰罗尼亚足球巨人巴塞罗那队坐镇主场迎战巴黎圣日耳曼队，带着首回合0:4的比分，开始了几乎所有人都认为的荣誉之战，绝大多数人（包括我在内），都认为巴萨可能会赢，但绝不可能翻...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/New-Life-Begins-In-BayArea" rel="permalink">New Life Begins In BayArea
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+    多年的梦想实现，展望崭新的人生目标!始终自勉，热诚而稳重，谦逊但专注；不卑不亢，以德服人；严于律己，宽以待人；永远斗志高昂，笑对挫折；不断修善自身，追求一颗强大的内心，永不言败！
+  
+
+    Long time's dream comes true, looking forward to brand...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/My-Book-Instant-Cucumber-BDD-How-to" rel="permalink">My Book &lt;Instant Cucumber BDD How-to&gt;
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">The background
+I received an email during November 2012 from Packt, in the email they asked me whether or not consider writing a book for them related with B...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/My-New-iMac" rel="permalink">My New iMac
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Hooray! My new development &amp; gaming machine - the later 2013 iMac!
+I wrote this blog post to record my thoughts and feelings before and after I purchased...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Rooted-My-HTC-Sensation" rel="permalink">Rooted my HTC Sensation (G14)
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Where there is an Android phone, there are reasons to root it.
+Here I took a note how I rootedmy HTC Sensation (A.K.A G14):
+
+Find the S/N on battery, and fin...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Bought-Nikon-D7000" rel="permalink">败了Nikon D7000
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">周六去星光入手了心仪已久的Nike D7000，配了个35mm/1.8 G，特别鸣谢Sean童鞋，不仅全程陪同，帮忙砍价，验机，最后还帮我全额付款，感动得我那个内牛满面啊^_^
+
+玩了两天，出了点片，this is just a start, 出片才是硬道理！！我会努力证明这款强大的机器在我这只菜鸟手上会发挥很大...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/My-New-Devbox-HP-Z800" rel="permalink">My new Dev box - HP Z800 Workstation
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">两个星期以前我实在无法忍受Visual Studio 2010的缓慢，即使Disable了IntelliTrace以及别的一些的优化也没有显著改善，而我很清楚这台HP XW9400虽然也很强大很CPU主频很低：2.2G，CPU Rank 300名外。。
+我向Manager申请一台新的开发机，老大欣然同意了，于是我...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/WordPress-Blocked-By-GFW" rel="permalink">这个其实真不算什么噩耗
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+
+
+
+  
+    
+      对于已经石化的我，你们这点小小的努力对我来说算不得什么，反正，anyway，你们爱怎么搞怎么搞
+      ^
+    
+  
+
+
+我已经十分清楚自己想要什么。
+
+I insert a flag here today, and I know some day I will pu...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Inter-Milan-Nerazzurri-Festival" rel="permalink">2010年5月23日 - 属于Nerazzurri的一天
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">意大利当地时间5月22日晚，国际米兰2:0击败拜仁慕尼黑获得09-10年度欧洲冠军杯，同时一举获得“三冠王”，成为意大利历史上第一支获取三冠王的球队！
+
+这一夜，对于全世界所有的Nerazzurri而言，是无比骄傲与幸福的！国际米兰经历一个漫长而艰难赛季，最终没有留下任何遗憾！电话门之后最困难的赛季，意大利杯战胜...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/29-Pounds-Lovely-Cat" rel="permalink">史上最胖的猫 - 32斤！笑死俺了，粉可爱！
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+&lt;/embed&gt;
+&nbsp;
+跟这厮比起来，我们家多多简直就是小不点。。。
+&nbsp;
+
+  
+  
+  &lt;/embed&gt;
+
+</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%E6%9C%89%E9%A5%AE%E6%96%99%E7%9A%84%E5%A4%8F%E6%97%A5%E6%98%AF%E5%B9%B8%E7%A6%8F%E7%9A%84:)" rel="permalink">有饮料的夏日是幸福的:)
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/My-Powerful-PC-From-Newegg" rel="permalink">My Powerful PC!!!So Excited!!!
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">几经周折，我的超强DIY机器终于到了，这几乎就是我的梦想了，尽管连熬两夜赶项目（2天加起来睡了10个小时），周五下午已经是走路都走不稳了：），但当我抱着那个从NewEgg来的大箱子时我所有的疲劳和烦恼全都没了，6年了，我没换过台式机，实在厌烦了本本苗条的身材，平平的性能，我要Power！就像老美对70年代的肌肉车...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%E6%9D%A5%E7%BE%8E%E5%9B%BD%E4%B8%80%E4%B8%AA%E6%9C%88%E7%9A%84%E7%94%9F%E6%B4%BB%E5%B0%8F%E7%BB%93-%EF%BC%88%E4%B8%AD%EF%BC%89" rel="permalink">来美国一个月的生活小结 （中）
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">住处附近有些中餐馆，比如这个：
+</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%E6%9D%A5%E7%BE%8E%E5%9B%BD%E4%B8%80%E4%B8%AA%E6%9C%88%E7%9A%84%E7%94%9F%E6%B4%BB%E5%B0%8F%E7%BB%93-%EF%BC%88%E4%B8%8B%EF%BC%89" rel="permalink">来美国一个月的生活小结 （下）
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">鄙人的桌子： &lt;/p&gt;
+</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%E6%9D%A5%E7%BE%8E%E5%9B%BD%E4%B8%80%E4%B8%AA%E6%9C%88%E7%9A%84%E7%94%9F%E6%B4%BB%E5%B0%8F%E7%BB%93-%EF%BC%88%E4%B8%8A%EF%BC%89" rel="permalink">来美国一个月的生活小结 （上）
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">一个月了，基本上都习惯了，衣食住行，文化，交流，觉得适应得还行吧，零零散散的想记录一下平时的所思所感。 
+食：首先当然是吃饭问题，民以食为天，饭吃不好那问题可是大大的！吃的最多附近的当属汉堡了，大口大口的，呵呵。想起第一次吃汉堡是90年在北京，我们一堆小屁孩一人发一个麦当劳的牛肉汉堡，我们都实在无法忍受两块“面包...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%E4%BA%BA%E7%94%9F%E4%B8%AD%E9%82%A3%E4%BA%9B%E9%87%8D%E8%A6%81%E7%9A%84%E7%AC%AC%E4%B8%80%E6%AC%A1---%E5%A1%94%E7%A7%91%E7%8E%9B%E6%9C%BA%E5%9C%BA%E8%A7%81%E9%97%BB" rel="permalink">人生中那些重要的第一次 - 塔科玛机场见闻
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">这个时候我已经坚持了十几个小时，人昏昏沉沉的，但是。。。要面对边境检查，还是得打起精神，这是第一次，所以没有任何经验，我心想：“别搞得折腾了半天挂在检察官手里让我回家，机票他报销。。”，呵呵。
+在等待过边检的时候看到一张宣传图，上书：“Keep our doors open and nation secure.”...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%E4%BA%BA%E7%94%9F%E4%B8%AD%E9%82%A3%E4%BA%9B%E9%87%8D%E8%A6%81%E7%9A%84%E7%AC%AC%E4%B8%80%E6%AC%A1---%E4%BB%81%E5%B7%9D%E5%88%B0%E8%A5%BF%E9%9B%85%E5%9B%BE%E5%A1%94%E7%A7%91%E7%8E%9B" rel="permalink">人生中那些重要的第一次 - 仁川到西雅图塔科玛
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">到这边以后忙着倒时差熟悉工作和联系家人了，没空写部落格里，今天稍微闲了点，爬上来继续记录人生中最重要的第一次：）
+&lt;P&gt;——————正文——————-&lt;/P&gt;&lt;P&gt;这趟9跟小时的旅途着实辛苦，虽然无论是航空公司还是我自己都做好了各种消遣的，不可谓不完善的准备。&lt;/P&gt...</p>
   </article>
 </div>
 
           
         </div>
-        <a href="#page-title" class="back-to-top">Back to top ↑</a>
+        <a href="#page-title" class="back-to-top">Back to top &uarr;</a>
       </section>
     
   
     
   
-
-  
     
-  
-    
-  
-
   
     
   
     
   
 
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
   
     
   
@@ -509,52 +2945,283 @@ And hid his face amid a crowd of stars.
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/AWS-reinvent-Las-Vegas" rel="permalink">AWS reinvent 2019 - Las Vegas
 </a>
       
     </h2>
     
-    <p class="archive__item-excerpt" itemprop="description">This is my second time attending AWS re-Invent, last time was year 2017, the purpose of this blog is to summarize what I’ve learned, impressed and entertained <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">
 
 
+    <p class="archive__item-excerpt" itemprop="description">This is my second time attending AWS re-Invent, last time was year 2017, the purpose of this blog is to summarize what I’ve learned, impressed and entertaine...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    At reinvent logo
-
-
-
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Experiencing-Windows-8-Tablet" rel="permalink">Experiencing Windows 8 Tablet
+</a>
+      
+    </h2>
     
-    Crazy crowd at midnight madness party
 
 
-Overall during my week staying my daily schedule was listening to sessions mixed with slack/emails during the daylight, and party/social in the evening time.
+    <p class="archive__item-excerpt" itemprop="description">This week is a Tablet week for me, Shilpa told me the Ipad2 I won in the Codeproject HTML5 &amp; CSS3 competition had just arrived at Cupertino office, and m...</p>
+  </article>
+</div>
 
-All the keynotes/sessions have been uploaded here:  https://reinvent.awsevents.com/learn/keynotes/  and all announcements were summarized at this page, my personal top 5 thrilled announcement...</p>
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/North-Korea-RedStar-OS" rel="permalink">[转]揭秘朝鲜自主操作系统：红星Red Star
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">据国外资讯网站RT报道，朝鲜（North Korea）不仅拥有自主的、与基于美国的万维网相互独立的区域网络，而且还拥有自行研发的红星Red Star操作系统。据悉，红星OS是去年由朝鲜IT技术人员在Linux操作系统的基础上改进而来的。俄罗斯学者Mikhail利用他在金日成大学交流之际获得了这款红星OS。他花费了...</p>
   </article>
 </div>
 
           
         </div>
-        <a href="#page-title" class="back-to-top">Back to top ↑</a>
+        <a href="#page-title" class="back-to-top">Back to top &uarr;</a>
       </section>
     
   
+    
+      <section id="project-mgmt" class="taxonomy__section">
+        <h2 class="archive__subtitle">Project-Mgmt</h2>
+        <div class="entries-list">
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/PMP-Exam-Passed" rel="permalink">PMP exam passed:)
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+ Yesterday I received an Email from PMI, which confirmed I've passed the PMP exam and now became a certificated PMP, hum, I didn't expect the result came ou...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Study-EVM-Part-2" rel="permalink">Study EVM (Earned Value Management) - Part 2
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Once the CPI/SPI were calculated at some time-stamp, project manager should be deeper analyses, he need to predict the future cost:
+
+ETC (Estimate To Complet...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Study-EVM-Part-1" rel="permalink">Study EVM (Earned Value Management) – Part 1
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">During the past few days I was studying Project Time Management in PMBOK, for preparing the upcoming PMP exam on 4th December 2010, while I spent a few hours...</p>
+  </article>
+</div>
+
+          
+        </div>
+        <a href="#page-title" class="back-to-top">Back to top &uarr;</a>
+      </section>
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <section id="self-improvement" class="taxonomy__section">
+        <h2 class="archive__subtitle">Self-Improvement</h2>
+        <div class="entries-list">
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Master-AWS-Development-Video-Published" rel="permalink">Master AWS Development Video Published
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Course overview video
+
+
+
+Publishing information
+
+After 8 months of continuously hard working, this &lt;Master AWS Development&gt; video course is now live at...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/self-improvement/passing-aws-certified-solutions-architect/" rel="permalink">Passing AWS Certified Solutions Architect
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+
+3 years of AWS hands on experience, two months of preparation, 30 hours of course learning, 300+ exam practices, this was the work I’ve done to pass the AW...</p>
+  </article>
+</div>
+
+          
+        </div>
+        <a href="#page-title" class="back-to-top">Back to top &uarr;</a>
+      </section>
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <section id="geek" class="taxonomy__section">
+        <h2 class="archive__subtitle">Geek</h2>
+        <div class="entries-list">
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/geek/Storage-Media-Home-Server-Less-Than-300/" rel="permalink">Storage+Media home server for less than $300
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">Background
+
+I have been researched and watched many NAS options to setup a home storage+media server during the past year, and so far there was no perfect an...</p>
+  </article>
+</div>
+
+          
+        </div>
+        <a href="#page-title" class="back-to-top">Back to top &uarr;</a>
+      </section>
+    
+  
+    
+  
+
 
 
   </div>
 </div>
 
+      
     </div>
 
     
 
-    <div class="page__footer">
+    <div id="footer" class="page__footer">
       <footer>
         <!-- start custom footer snippets -->
 
 <!-- end custom footer snippets -->
-        <div class="page__footer-follow">
+        
+
+<div class="page__footer-follow">
   <ul class="social-icons">
     
       <li><strong>Follow:</strong></li>
@@ -563,7 +3230,7 @@ All the keynotes/sessions have been uploaded here:  https://reinvent.awsevents.c
     
       
         
-          <li><a href="mailto:wei.ye%20AT%20me.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          <li><a href="mailto:wei.ye AT me.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
         
       
         
@@ -584,20 +3251,20 @@ All the keynotes/sessions have been uploaded here:  https://reinvent.awsevents.c
       
     
 
-    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
   </ul>
 </div>
 
-<div class="page__footer-copyright">© 2025 Wayne Ye. All rights reserved.
- 
-  <!--Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>-->
 
-      
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">Wayne&#39;s Geek Life</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
     </div>
 
     
   <script src="/assets/js/main.min.js"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
 
 
 
@@ -607,7 +3274,5 @@ All the keynotes/sessions have been uploaded here:  https://reinvent.awsevents.c
 
 
 
-
-  </footer>
-</div></body>
+  </body>
 </html>

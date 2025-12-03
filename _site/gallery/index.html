@@ -481,13 +481,18 @@
     /* #santa-ski { */
     html,
     body {
-        background-image: url("/assets/images/christmas-santa-jumps-from-springboard-on-ski.jpg");
+        background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("/assets/images/christmas-santa-jumps-from-springboard-on-ski.jpg");
         background-size: 100% auto;
         background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
         color: #000;
         cursor:
             url("assets/images/santa.cur") 32 32,
             auto;
+    }
+    .greedy-nav {
+      background: transparent;
     }
     a,
     a:visited {

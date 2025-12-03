@@ -44,8 +44,8 @@ author:
 twitter:
   username: "wayneye"
 
-# remote_theme: "mmistakes/minimal-mistakes@4.27.3"
-theme: minimal-mistakes-jekyll
+remote_theme: "mmistakes/minimal-mistakes@4.27.3"
+# theme: minimal-mistakes-jekyll
 
 # Uncomment lines below to use a local copy of the Minimal Mistakes theme
 # git clone https://github.com/mmistakes/minimal-mistakes.git _theme                                                                                                  ✔ 

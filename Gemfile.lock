@@ -289,7 +289,12 @@ DEPENDENCIES
   faraday-retry
   github-pages
   jekyll-archives
+  jekyll-feed
   jekyll-include-cache
+  jekyll-paginate
+  jekyll-remote-theme
+  jekyll-seo-tag
+  jekyll-sitemap
   minimal-mistakes-jekyll
   webrick
 

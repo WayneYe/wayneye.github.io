@@ -1,31 +1,25 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.27.3 by Michael Rose
-  Copyright 2013-2025 Michael Rose - mademistakes.com | @mmistakes
+  Minimal Mistakes Jekyll Theme 4.16.3 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
 -->
-
-<html lang="en-US" class="no-js">
+<html lang="en" class="no-js">
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Wayne’s Geek Life</title>
+<!-- begin _includes/seo.html --><title>Wayne's Geek Life</title>
 <meta name="description" content="I am a software engineer, technical lead and also a geek, I’ve immersed in software/web development for 14 years, I hack using these languages: Python, Golang, JavaScript/nodejs, Ruby/RoR, C#. I am an AWS Certified Solutions Architect (2017-2019), PMP and CodeProject MVP.">
 
-
-  <meta name="author" content="Wayne Ye">
-  
 
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
-<meta property="og:site_name" content="Wayne&#39;s Geek Life">
+<meta property="og:site_name" content="Wayne's Geek Life">
 <meta property="og:title" content="Wayne’s Geek Life">
 <meta property="og:url" content="http://localhost:4000/404/">
 
-
-  <meta property="og:description" content="I am a software engineer, technical lead and also a geek, I’ve immersed in software/web development for 14 years, I hack using these languages: Python, Golang, JavaScript/nodejs, Ruby/RoR, C#. I am an AWS Certified Solutions Architect (2017-2019), PMP and CodeProject MVP.">
 
 
 
@@ -63,41 +57,59 @@
 
 
 
+
 <!-- end _includes/seo.html -->
 
 
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Wayne's Geek Life Feed">
 
-  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Wayne's Geek Life Feed">
+<!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <script>
   document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
-  
 </script>
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
-<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
 
 
 
     <!-- start custom head snippets -->
 
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
 
 <!-- end custom head snippets -->
 
   </head>
 
-  <body class="layout--single" dir="ltr">
-    <nav class="skip-links">
-  <ul>
-    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
-    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
-    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
-  </ul>
-</nav>
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
 
     
 
@@ -106,46 +118,19 @@
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
         
-        <a class="site-title" href="/">
-          Wayne&#39;s Geek Life
-          
-        </a>
+        <a class="site-title" href="/">Wayne's Geek Life</a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a
-                href="/categories/"
-                
-                
-              >Categories</a>
+              <a href="/categories/" >Categories</a>
             </li><li class="masthead__menu-item">
-              <a
-                href="/tags/"
-                
-                
-              >Tags</a>
+              <a href="/tags/" >Tags</a>
             </li><li class="masthead__menu-item">
-              <a
-                href="/search/"
-                
-                
-              >Search</a>
+              <a href="/search/" >Search</a>
             </li><li class="masthead__menu-item">
-              <a
-                href="/gallery/"
-                
-                
-              >Gallery</a>
+              <a href="/gallery/" >Gallery</a>
             </li><li class="masthead__menu-item">
-              <a
-                href="/vlog/"
-                
-                
-              >Vlog</a>
+              <a href="/vlog/" >Vlog</a>
             </li><li class="masthead__menu-item">
-              <a
-                href="/about/"
-                
-                
-              >About</a>
+              <a href="/about/" >About</a>
             </li></ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
@@ -164,33 +149,32 @@
 
 
 
-
-
 <div id="main" role="main">
   
   <div class="sidebar sticky">
   
 
 
-<div itemscope itemtype="https://schema.org/Person" class="h-card">
+<div itemscope itemtype="https://schema.org/Person">
 
   
     <div class="author__avatar">
-      <a href="http://localhost:4000/">
-        <img src="/assets/images/me.jpg" alt="Wayne Ye" itemprop="image" class="u-photo">
-      </a>
+      
+
+      
+        <img src="/assets/images/me.jpg" alt="Wayne Ye" itemprop="image">
+      
     </div>
   
 
   <div class="author__content">
-    <h3 class="author__name p-name" itemprop="name">
-      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Wayne Ye</a>
-    </h3>
     
-      <div class="author__bio p-note" itemprop="description">
-        <p>Whatever is worth doing is worth doing well!</p>
-
-      </div>
+      <h3 class="author__name" itemprop="name">Wayne Ye</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        Whatever is worth doing is worth doing well!
+      </p>
     
   </div>
 
@@ -199,30 +183,30 @@
     <ul class="author__urls social-icons">
       
         <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
-          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">San Francisco</span>
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">San Francisco</span>
         </li>
       
 
       
         
           
-            <li><a href="mailto:hi@wayneye.me" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+            <li><a href="mailto:hi@wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
           
         
           
-            <li><a href="https://wayneye.me" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+            <li><a href="https://wayneye.me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
           
         
           
-            <li><a href="https://www.linkedin.com/in/wayneye" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+            <li><a href="https://www.linkedin.com/in/wayneye" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
           
         
           
-            <li><a href="https://github.com/WayneYe/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+            <li><a href="https://github.com/WayneYe/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
           
         
           
-            <li><a href="https://twitter.com/wayneye" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+            <li><a href="https://twitter.com/wayneye" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
           
         
       
@@ -277,7 +261,7 @@
 
       <!--
   <li>
-    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
       <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
     </a>
   </li>
@@ -288,7 +272,6 @@
 
   
   </div>
-
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
@@ -302,8 +285,6 @@
         <header>
           
           
-
-
         </header>
       
 
@@ -322,13 +303,11 @@
 
 
         
-
       </footer>
 
       
 
       
-
     </div>
 
     
@@ -338,19 +317,214 @@
   
 </div>
 
-      
+
+  <style>
+    .intro,
+    .intro a {
+        color: #fff;
+    }
+    /* customizable snowflake styling */
+    .snowflake {
+        color: #fff;
+        font-size: 1em;
+        font-family: Arial;
+        text-shadow: 0 0 1px #000;
+    }
+
+    @-webkit-keyframes snowflakes-fall {
+        0% {
+            top: -10%;
+        }
+        100% {
+            top: 100%;
+        }
+    }
+    @-webkit-keyframes snowflakes-shake {
+        0% {
+            -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+        }
+        50% {
+            -webkit-transform: translateX(80px);
+            transform: translateX(80px);
+        }
+        100% {
+            -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+        }
+    }
+    @keyframes snowflakes-fall {
+        0% {
+            top: -10%;
+        }
+        100% {
+            top: 100%;
+        }
+    }
+    @keyframes snowflakes-shake {
+        0% {
+            transform: translateX(0px);
+        }
+        50% {
+            transform: translateX(80px);
+        }
+        100% {
+            transform: translateX(0px);
+        }
+    }
+    .snowflake {
+        position: fixed;
+        top: -10%;
+        z-index: 9999;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        cursor: default;
+        -webkit-animation-name: snowflakes-fall, snowflakes-shake;
+        -webkit-animation-duration: 10s, 3s;
+        -webkit-animation-timing-function: linear, ease-in-out;
+        -webkit-animation-iteration-count: infinite, infinite;
+        -webkit-animation-play-state: running, running;
+        animation-name: snowflakes-fall, snowflakes-shake;
+        animation-duration: 10s, 3s;
+        animation-timing-function: linear, ease-in-out;
+        animation-iteration-count: infinite, infinite;
+        animation-play-state: running, running;
+    }
+    .snowflake:nth-of-type(0) {
+        left: 1%;
+        -webkit-animation-delay: 0s, 0s;
+        animation-delay: 0s, 0s;
+    }
+    .snowflake:nth-of-type(1) {
+        left: 10%;
+        -webkit-animation-delay: 1s, 1s;
+        animation-delay: 1s, 1s;
+    }
+    .snowflake:nth-of-type(2) {
+        left: 20%;
+        -webkit-animation-delay: 6s, 0.5s;
+        animation-delay: 6s, 0.5s;
+    }
+    .snowflake:nth-of-type(3) {
+        left: 30%;
+        -webkit-animation-delay: 4s, 2s;
+        animation-delay: 4s, 2s;
+    }
+    .snowflake:nth-of-type(4) {
+        left: 40%;
+        -webkit-animation-delay: 2s, 2s;
+        animation-delay: 2s, 2s;
+    }
+    .snowflake:nth-of-type(5) {
+        left: 50%;
+        -webkit-animation-delay: 8s, 3s;
+        animation-delay: 8s, 3s;
+    }
+    .snowflake:nth-of-type(6) {
+        left: 60%;
+        -webkit-animation-delay: 6s, 2s;
+        animation-delay: 6s, 2s;
+    }
+    .snowflake:nth-of-type(7) {
+        left: 70%;
+        -webkit-animation-delay: 2.5s, 1s;
+        animation-delay: 2.5s, 1s;
+    }
+    .snowflake:nth-of-type(8) {
+        left: 80%;
+        -webkit-animation-delay: 1s, 0s;
+        animation-delay: 1s, 0s;
+    }
+    .snowflake:nth-of-type(9) {
+        left: 90%;
+        -webkit-animation-delay: 7s, 5.5s;
+        animation-delay: 7s, 5.5s;
+    }
+    .snowflake:nth-of-type(10) {
+        left: 95%;
+        -webkit-animation-delay: 3s, 1.5s;
+        animation-delay: 3s, 1.5s;
+    }
+    .snowflake:nth-of-type(11) {
+        left: 75%;
+        -webkit-animation-delay: 0.5s, 1.5s;
+        animation-delay: 0.5s, 1.5s;
+    }
+    /* #santa-ski { */
+    html,
+    body {
+        background-image: url("/assets/images/christmas-santa-jumps-from-springboard-on-ski.jpg");
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+        color: #000;
+        cursor:
+            url("assets/images/santa.cur") 32 32,
+            auto;
+    }
+    a,
+    a:visited {
+        color: #000;
+    }
+    @media (pointer: fine) {
+        /* apply to anchors, buttons and other interactive elements */
+        a,
+        button,
+        .btn,
+        .nav-item,
+        .link {
+            cursor: url("/assets/images/santa.cur"), pointer;
+        }
+        a:hover,
+        a:focus,
+        a:active,
+        button:hover,
+        button:focus,
+        button:active,
+        .btn:hover,
+        .btn:focus,
+        .btn:active {
+            cursor: url("/assets/images/santa.cur"), pointer;
+        }
+
+        /* keep default text caret on form fields for accessibility/usability */
+        input,
+        textarea,
+        [contenteditable="true"] {
+            cursor: text;
+        }
+    }
+</style>
+<!--<div id="santa-ski"></div>-->
+<div class="snowflakes" aria-hidden="true">
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❅</div>
+</div>
+
+
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4ea2897777c94202"></script>
+
     </div>
 
     
 
-    <div id="footer" class="page__footer">
+    <div class="page__footer">
       <footer>
         <!-- start custom footer snippets -->
 
 <!-- end custom footer snippets -->
-        
-
-<div class="page__footer-follow">
+        <div class="page__footer-follow">
   <ul class="social-icons">
     
       <li><strong>Follow:</strong></li>
@@ -380,20 +554,21 @@
       
     
 
-    
-      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
-    
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
   </ul>
 </div>
 
-
-<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">Wayne&#39;s Geek Life</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2025 Wayne Ye. All rights reserved.
+ 
+  <!--Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>-->
 
       </footer>
     </div>
 
     
   <script src="/assets/js/main.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
+
 
 
 

@@ -24,3 +24,7 @@ layout: default
     {{ content }}
   </div>
 </div>
+
+{% if site.show_snow %}
+  {% include snow.html %}
+{% endif %}

@@ -1,9 +1,4 @@
 var store = [{
-        "title": "Ireland Trip 2019",
-        "excerpt":"WHEN YOU ARE OLD When you are old and grey and full of sleep, And nodding by the fire, take down this book, And slowly read, and dream of the soft look Your eyes had once, and of their shadows deep; How many loved your moments of glad grace, And...","categories": ["Life"],
-        "tags": ["Life","Travel"],
-        "url": "http://localhost:4000/Ireland-Trip-2019",
-        "teaser":null},{
         "title": "AWS reinvent 2019 - Las Vegas",
         "excerpt":"This is my second time attending AWS re-Invent, last time was year 2017, the purpose of this blog is to summarize what I’ve learned, impressed and entertained :smile: At reinvent logo Crazy crowd at midnight madness party Overall during my week staying my daily schedule was listening to sessions mixed...","categories": ["IT-Industry"],
         "tags": ["IT-Industry","AWS"],
@@ -23,4 +18,9 @@ var store = [{
         "excerpt":"From the most recent MacVim release note: As some of you may have read, Bram Moolenaar, the creator and maintainer of Vim, has passed away recently. He has worked tirelessly on Vim for more than 30 years and this release is dedicated to him. If you would like, you could...","categories": ["Life"],
         "tags": ["Tech","Vim"],
         "url": "http://localhost:4000/RIP-Bram-Moolenaar",
+        "teaser":null},{
+        "title": "How AI Shapes Me — My Evolving Attitude Toward Artificial Intelligence",
+        "excerpt":"# We are living in an explosive AI era. Without a doubt, AI is reshaping everything around us — how we learn, work, communicate, and build. It is impossible to ignore: AI now answers our questions, helps us make decisions, assists us in coding, organizes our lives, and guides us...","categories": ["Life"],
+        "tags": ["Tech","AI"],
+        "url": "http://localhost:4000/How-AI-Shapes-ME-My-Attitude-to-AI",
         "teaser":null}]

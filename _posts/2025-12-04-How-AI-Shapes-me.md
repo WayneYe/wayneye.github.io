@@ -8,14 +8,14 @@ tags:
 permalink: How-AI-Shapes-ME-My-Attitude-to-AI
 ---
 
-# 
+# My Life Inside the AI Era
 We are living in an explosive AI era. Without a doubt, AI is reshaping everything around us — how we learn, work, communicate, and build. It is impossible to ignore: AI now answers our questions, helps us make decisions, assists us in coding, organizes our lives, and guides us through complex topics that used to require years of experience to crack.
 
 Over the past two years, I have used AI every single hour — yes, literally every hour — whether on my computer or my phone. It has become both a companion and an accelerator in my life. But more importantly, it has reshaped how I think and how I learn.
 
 This is my personal reflection on how AI has shaped me, and how I believe we should approach this new force that is transforming the world.
 
-# How AI Changed My daily life
+# How AI Shapes My daily life
 I used every hour, yes, you read it right, every single hour, regardless I am in front of my computer or using my phone, during the past 2+ years.  I personally asked AI for the following scenarios:
 
 * **Coding**: As a software engineer, no doubt coding is my top 1 usage scenario: from auto-completing as I type, generating code snippet as I prompted, to understand a large size codebase, refactoring/improving existing code, etc.

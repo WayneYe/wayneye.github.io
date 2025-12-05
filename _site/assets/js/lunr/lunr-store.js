@@ -20,7 +20,7 @@ var store = [{
         "url": "http://localhost:4000/RIP-Bram-Moolenaar",
         "teaser":null},{
         "title": "How AI Shapes Me — My Evolving Attitude Toward Artificial Intelligence",
-        "excerpt":"# We are living in an explosive AI era. Without a doubt, AI is reshaping everything around us — how we learn, work, communicate, and build. It is impossible to ignore: AI now answers our questions, helps us make decisions, assists us in coding, organizes our lives, and guides us...","categories": ["Life"],
+        "excerpt":"My Life Inside the AI Era We are living in an explosive AI era. Without a doubt, AI is reshaping everything around us — how we learn, work, communicate, and build. It is impossible to ignore: AI now answers our questions, helps us make decisions, assists us in coding, organizes...","categories": ["Life"],
         "tags": ["Tech","AI"],
         "url": "http://localhost:4000/How-AI-Shapes-ME-My-Attitude-to-AI",
         "teaser":null}]

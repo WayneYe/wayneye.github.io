@@ -93,14 +93,14 @@ layout: raw-page
               </div>
               <div class="yui-u">
                 <div class="job">
-                  <h2 id="sisu">Hewlett-Packard Enterprise</h2>
+                  <h2 id="hpe">Hewlett-Packard Enterprise</h2>
                   <h3>Senior Cloud Engineer</h3>
                   <h4>Nov 2023 - Present</h4>
                   <p>
                     <ul>
-                        <li>Developed authentication/authorization platform (Golang/Python) for <a href="https://www.hpe.com/us/en/greenlake.html" target="_blank">HPE GreenLake</a>, enabling performant, scalable and highly available distributed services.</li>
-                        <li>Lead the monitoring/observability enhancement initiatives for AWS EKS, Aurora RDS and OpenSearch.</li>
-                        <li>Reduced Mean Time to Resolve (MTTR) by 40% through cutting-edge DevOps practices (fully automated CI/CD pipelines, cross-cloud IaC), achieving 99.95% SLA compliance.</li>
+                        <li>Design, develop, and operate the authentication/authorization platform for <a href="https://www.hpe.com/us/en/aruba-central.html" target="_blank">HPE Aruba Central</a>, an industrial leading WIFI network management platform.</li>
+                        <li>Lead monitoring and observability initiatives, driving a 40% reduction in Mean Time to Resolve (MTTR) and achieving 99.95% SLA compliance. </li>
+                        <li>Collaborate cross-functionally to improve platform reliability, scalability, and operational excellence in a large-scale cloud environment. </li>
                     </ul>
                   </p>
                   <p>

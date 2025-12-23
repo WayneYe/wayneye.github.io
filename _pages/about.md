@@ -3,9 +3,9 @@ title:  About Me
 permalink: /about/
 ---
 
-Fullstack Software Engineer, AWS Certified Solutions Architect, PSIA Certified Ski instructor and Car enthusiast.
+Fullstack Software Engineer, AWS Certified Solutions Architect, PSIA Certified <a href="/ski">Ski instructor</a> and Car enthusiast.
 
-Please check [my resume](https://wayneye.me/resume/).
+[My Resume](https://wayneye.me/resume/)
 
 {% if site.show_snow %}
   {% include snow.html %}

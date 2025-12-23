@@ -33,5 +33,8 @@ I speak fluent English (working proffessional) and Chinese (native speaker).
 #### Single leg skiing & skiing backwords
 <iframe width="560" height="315" src="https://www.youtube.com/embed/g9UhgjeaZ20?si=BKq0FLyeAIZAWLib" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+#### Heavenly Employee Appreciation Day - 2025
+<iframe width="560" height="315" src="https://www.youtube.com/embed/434XiY2Bjmk?si=D8e4bq35qXlZOF6R" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ### Private Lesson
 <a href="https://heavenlysrs.com/private-lesson-request-form/" target="_blank">Book a private lesson with me</a>

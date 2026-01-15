@@ -45,6 +45,7 @@ twitter:
   username: "wayneye"
 
 remote_theme: "mmistakes/minimal-mistakes@4.27.3"
+# Comment out remote_theme above and uncomment theme below for local development
 # theme: minimal-mistakes-jekyll
 
 # Uncomment lines below to use a local copy of the Minimal Mistakes theme

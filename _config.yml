@@ -16,7 +16,8 @@ baseurl: ""
 github: [metadata]
 repository: WayneYe/wayneye.github.io
 excerpt_separator: <!--more-->
-show_snow: true
+# Enable this when December starts :)
+show_snow: false
 
 author:
   name: "Wayne Ye"
@@ -80,7 +81,6 @@ defaults:
       toc: true
       #toc_label: "Table of Contents"
       toc_icon: "cog"
-      show_snow: true
   - scope:
       path: ""
       type: "pages"

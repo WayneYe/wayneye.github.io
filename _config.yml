@@ -13,7 +13,6 @@ header-img: assets/images/Banner.jpg
 #- /assets/js/your-custom-head-script.js
 baseurl: ""
 #logo: "assets/images/88x88.png"
-github: [metadata]
 repository: WayneYe/wayneye.github.io
 excerpt_separator: <!--more-->
 # Enable this when December starts :)
@@ -38,23 +37,16 @@ author:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/WayneYe/"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/wayneye"
+    - label: "X"
+      icon: "fab fa-fw fa-x-twitter"
+      url: "https://x.com/wayneye"
 
 twitter:
   username: "wayneye"
 
 remote_theme: "mmistakes/minimal-mistakes@4.27.3"
 # Comment out remote_theme above and uncomment theme below for local development
-# theme: minimal-mistakes-jekyll
-
-# Uncomment lines below to use a local copy of the Minimal Mistakes theme
-# git clone https://github.com/mmistakes/minimal-mistakes.git _theme                                                                                                  ✔ 
-# includes_dir: _theme/_includes
-# layouts_dir: _theme/_layouts
-# sass:
-#   sass_dir: _theme/_sass
+theme: minimal-mistakes-jekyll
 minimal_mistakes_skin: "air" # "default" "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum" "sunrise"
 
 plugins:
@@ -65,6 +57,7 @@ plugins:
   - jekyll-include-cache
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-paginate-v2
 
 defaults:
   - scope:
@@ -189,9 +182,18 @@ sass:
 
 # Outputting
 permalink: /:categories/:title/
-paginate: 10 # amount of posts to show
-paginate_path: /page:num/
 timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+
+# Pagination (jekyll-paginate-v2)
+pagination:
+  enabled: true
+  per_page: 10
+  permalink: "/page/:num/"
+  title: ":title - Page :num"
+  sort_reverse: true
+  trail:
+    before: 2
+    after: 2
 
 footer:
   links:
@@ -201,9 +203,9 @@ footer:
     - label: "Website"
       icon: "fas fa-fw fa-link"
       url: "https://wayneye.me"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/wayneye"
+    - label: "X"
+      icon: "fab fa-fw fa-x-twitter"
+      url: "https://x.com/wayneye"
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
       url: "https://facebook.com/WayneYeDotCom"

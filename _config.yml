@@ -47,7 +47,7 @@ twitter:
 remote_theme: "mmistakes/minimal-mistakes@4.27.3"
 # Comment out remote_theme above and uncomment theme below for local development
 theme: minimal-mistakes-jekyll
-minimal_mistakes_skin: "air" # "default" "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum" "sunrise"
+# minimal_mistakes_skin: "air" # "default" "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum" "sunrise"
 
 plugins:
   - jekyll-sitemap

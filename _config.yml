@@ -57,7 +57,6 @@ plugins:
   - jekyll-include-cache
   - jekyll-feed
   - jekyll-seo-tag
-  - jekyll-paginate-v2
 
 defaults:
   - scope:
@@ -182,18 +181,9 @@ sass:
 
 # Outputting
 permalink: /:categories/:title/
+paginate: 10 # amount of posts to show
+paginate_path: /page:num/
 timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-
-# Pagination (jekyll-paginate-v2)
-pagination:
-  enabled: true
-  per_page: 10
-  permalink: "/page/:num/"
-  title: ":title - Page :num"
-  sort_reverse: true
-  trail:
-    before: 2
-    after: 2
 
 footer:
   links:

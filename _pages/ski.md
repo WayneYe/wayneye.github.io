@@ -118,23 +118,20 @@ I speak fluent English (working proffessional) and Chinese (native speaker).
 - **Fun Fact**: What am I doing while not Skinng⛷️?  I am snowboarding🏂!
 
 ## Videos
-<figure class="half">
-    <a href="https://www.youtube.com/jwbCHYmXixk" target="_blank">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/jwbCHYmXixk?si=CdV9GltWchEPT985" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </a>
-
-    <a href="https://www.youtube.com/VEgXWNplLrs" target="_blank">
-      {% include video id="VEgXWNplLrs" provider="youtube" %}
-    </a>
-
-    <a href="https://www.youtube.com/VEgXWNplLrs" target="_blank">
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/g9UhgjeaZ20?si=BKq0FLyeAIZAWLib" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </a>
-
-    <a href="https://www.youtube.com/VEgXWNplLrs" target="_blank">
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/434XiY2Bjmk?si=D8e4bq35qXlZOF6R" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </a>
-</figure>
+<div class="grid__wrapper">
+  <div class="grid__item half">
+    {% include video id="jwbCHYmXixk" provider="youtube" %}
+  </div>
+  <div class="grid__item half">
+    {% include video id="VEgXWNplLrs" provider="youtube" %}
+  </div>
+  <div class="grid__item half">
+    {% include video id="g9UhgjeaZ20" provider="youtube" %}
+  </div>
+  <div class="grid__item half">
+    {% include video id="434XiY2Bjmk" provider="youtube" %}
+  </div>
+</div>
 
 ## PSIA Certifications
 <figure class="half">

@@ -281,13 +281,21 @@ span {
 </ul>
 
 <h2 id="videos">Videos</h2>
-<figure class="half">
-    <a href="https://www.youtube.com/jwbCHYmXixk" target="_blank">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/jwbCHYmXixk?si=CdV9GltWchEPT985" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
-    </a>
+<div class="grid__wrapper">
+  <div class="grid__item half">
+    
 
-    <a href="https://www.youtube.com/VEgXWNplLrs" target="_blank">
-      
+
+<!-- Courtesy of embedresponsively.com //-->
+<div class="responsive-video-container">
+
+  <iframe src="https://www.youtube-nocookie.com/embed/jwbCHYmXixk" frameborder="0" allowfullscreen=""></iframe>
+
+</div>
+
+  </div>
+  <div class="grid__item half">
+    
 
 
 <!-- Courtesy of embedresponsively.com //-->
@@ -297,16 +305,32 @@ span {
 
 </div>
 
-    </a>
+  </div>
+  <div class="grid__item half">
+    
 
-    <a href="https://www.youtube.com/VEgXWNplLrs" target="_blank">
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/g9UhgjeaZ20?si=BKq0FLyeAIZAWLib" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
-    </a>
 
-    <a href="https://www.youtube.com/VEgXWNplLrs" target="_blank">
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/434XiY2Bjmk?si=D8e4bq35qXlZOF6R" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
-    </a>
-</figure>
+<!-- Courtesy of embedresponsively.com //-->
+<div class="responsive-video-container">
+
+  <iframe src="https://www.youtube-nocookie.com/embed/g9UhgjeaZ20" frameborder="0" allowfullscreen=""></iframe>
+
+</div>
+
+  </div>
+  <div class="grid__item half">
+    
+
+
+<!-- Courtesy of embedresponsively.com //-->
+<div class="responsive-video-container">
+
+  <iframe src="https://www.youtube-nocookie.com/embed/434XiY2Bjmk" frameborder="0" allowfullscreen=""></iframe>
+
+</div>
+
+  </div>
+</div>
 
 <h2 id="psia-certifications">PSIA Certifications</h2>
 <figure class="half">
@@ -479,7 +503,7 @@ span {
     html,
     body {
         background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("/assets/images/christmas-santa-jumps-from-springboard-on-ski.jpg");
-        background-size: 100% auto;
+        background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
         background-attachment: fixed;

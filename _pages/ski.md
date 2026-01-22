@@ -52,7 +52,7 @@ body {
     left: 10px;
     right: 10px;
     background-size: cover;
-    box-shadow:inset 0 0 0 2000px rgba(0,0,0,0.5);
+    /* box-shadow:inset 0 0 0 2000px rgba(0,0,0,0.5); */
     display: flex;
 }
 

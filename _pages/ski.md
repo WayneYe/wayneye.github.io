@@ -4,7 +4,6 @@ permalink: /ski/
 # type: "pages"
 layout: single
 classes: wide
-# layout: raw-page
 author_profile: false
 ---
 
@@ -106,7 +105,24 @@ span {
   to {
     transform: rotateY(-360deg);
       }
+}
 
+@media (min-width: 64em) {
+  .grid__wrapper {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1em;
+  }
+  .grid__wrapper .grid__item {
+    width: 100% !important;
+    max-width: none !important;
+    margin-bottom: 0;
+  }
+
+  .grid__item:nth-child(4n+3) {
+    margin-left: 0;
+  }
+}
 </style>
 
 {% include snow.html %}
@@ -144,19 +160,19 @@ I speak fluent English (working proffessional) and Chinese (native speaker).
 
 ## Videos
 <div class="grid__wrapper">
-  <div class="grid__item half">
+      <div class="grid__item">
     {% include video id="jwbCHYmXixk" provider="youtube" %}
   </div>
-  <div class="grid__item half">
+      <div class="grid__item">
     {% include video id="VEgXWNplLrs" provider="youtube" %}
   </div>
-  <div class="grid__item half">
+      <div class="grid__item">
     {% include video id="g9UhgjeaZ20" provider="youtube" %}
   </div>
-  <div class="grid__item half">
+      <div class="grid__item">
     {% include video id="434XiY2Bjmk" provider="youtube" %}
   </div>
-</div>
+    </div>
 
 ## PSIA Certifications
 <figure class="half">

@@ -40,9 +40,9 @@ layout: raw-page
                 <h3>Mobile: +(1)415-494-1873</h3>
               </div>
             </div>
-            <div class="yui-u">
-              <img src="/assets/images/me.jpg" style="width:180px" alt="Wayne Ye Photo" />
-            </div>
+            <!-- <div class="yui-u"> -->
+            <!--   <img src="/assets/images/me.jpg" style="width:180px" alt="Wayne Ye Photo" /> -->
+            <!-- </div> -->
           </div>
         </div>
       </header>
@@ -52,37 +52,18 @@ layout: raw-page
             <!--Profile-->
             <div class="yui-gf">
               <div class="yui-u first">
-                <h2>
-                  Biography</h2>
+                <h2>Biography</h2>
               </div>
               <div class="yui-u">
                 <p>
-                  Seasoned Staff Software Engineer and Full Stack Developer with over 20 years of experience across diverse programming languages and platforms. Certified AWS Solutions Architect and CodeProject MVP, proficient in Python, JavaScript/TypeScript, Golang, Rust, C#, and Ruby. Passionate team player and innovative problem solver, specializing in delivering highly available, scalable web and cloud services. 
+                  Staff-level Software Engineer with 20+ years of experience designing, delivering, and operating robust, large-scale microservices and multi-cloud platforms.
                 </p>
                 <p>
-                  I thrive in dynamic environments, driving measurable results through collaboration, mentorship, and a proactive approach to technology. I deeply believe ideas/solutions always outnumber challenges, every challenge is an opportunity to innovate and grow, and I’m passionate about helping teams deliver excellence in challenging projects.
+                  Specializes in reliability and observability, with measurable improvements in uptime, Apdex, MTTR, and operational efficiency.
                 </p>
-              </div>
-            </div>
-            <!--Highlights-->
-            <div class="yui-gf">
-              <div class="yui-u first">
-                <h2>
-                  Highlights</h2>
-              </div>
-              <div class="yui-u">
-                <ul>
-                  <li><a href="https://www.certmetrics.com/amazon/public/badge.aspx?i=1&t=c&d=2017-06-16&ci=AWS00280385" target="_blank">AWS Certified Solutions Architect (Associate)</a></li>
-                  <li>Author of <a href="http://www.packtpub.com/cucumber-behaviour-driven-development/book" target="_blank">&lt;Instant Cucumber BDD How-To&gt;</a>
-                    (
-                    <a href="http://www.amazon.com/Instant-Cucumber-BDD-How-Wayne-ebook/dp/B00CIT30YE" target="_blank">Kindle Version</a>,
-                    <a href="http://books.google.com.sg/books?id=gkYY-bnuRGwC&dq=Instant+Cucumber+BDD+How_to&source=gbs_navlinks_s" target="_blank">Google Books</a>
-                    )
-                  </li>
-                  <li><a href="http://www.codeproject.com/script/Awards/MVPWinners.aspx" target="_blank">CodeProject MVP</a>.</li>
-                  <li>First prize winner in <a href="https://www.codeproject.com/script/contests/Winners.aspx?pgnum=4" target="_blank">CodeProject HTML5 &amp; CSS3 Competition</a> in 2011, the award was an iPad 2.</li>
-                  <!-- <li>PSIA Certified Ski instructor (Alpine Level 1)</li> -->
-                </ul>
+                <p>
+                  Applies a calm, pragmatic approach to complex problems, enabling teams to deliver reliable systems through collaboration, mentorship, and sound technical judgment.
+                </p>
               </div>
             </div>
 
@@ -145,15 +126,8 @@ layout: raw-page
                   <h3>Software Consultant</h3>
                   <h4>May 2012 - Apr 2013</h4>
                   <p>
-                    Core Developer of ThoughtWorks China Cloud platform based on Openstack.
+                    Onsite Consultant for the Diamond Subscription Platform at <a href="https://realestate.com.au" target="_blank">Real estate Australia</a> (Ruby On Rails), driving a 30% improvement in website's <a href="https://en.wikipedia.org/wiki/Apdex">Apdex</a> through ORM-layer refactoring and frontend performance optimizations.
                   </p>
-                  <p>
-                    Core Developer of <a href="http://agent.realestate.com.au/product/category/subscriptions/" target="blank">Diamond Subscription website of Real estate Australia</a>, built with Ruby on Rails.
-                  </p>
-                  <ul>
-                    <li>Server side architecture re-design, delivered proven improved resiliency, maintainability and scalability.</li>
-                    <li>Improved client page loading performance by leveraging CDN and fingerprint for static files, the average loading time reduced 40%.</li>
-                  </ul>
                 </div>
                 <div class="job">
                   <h2 id="hp">
@@ -191,6 +165,28 @@ layout: raw-page
                 </div>
               </div>
             </div>
+
+            <!--Certifications & Recognition-->
+            <div class="yui-gf">
+              <div class="yui-u first">
+                <h2>Certifications & Recognition</h2>
+              </div>
+              <div class="yui-u">
+                <ul>
+                  <li><a href="https://www.certmetrics.com/amazon/public/badge.aspx?i=1&t=c&d=2017-06-16&ci=AWS00280385" target="_blank">AWS Certified Solutions Architect (Associate)</a></li>
+                  <li>Author of <a href="http://www.packtpub.com/cucumber-behaviour-driven-development/book" target="_blank">&lt;Instant Cucumber BDD How-To&gt;</a>
+                    (
+                    <a href="http://www.amazon.com/Instant-Cucumber-BDD-How-Wayne-ebook/dp/B00CIT30YE" target="_blank">Kindle Version</a>,
+                    <a href="http://books.google.com.sg/books?id=gkYY-bnuRGwC&dq=Instant+Cucumber+BDD+How_to&source=gbs_navlinks_s" target="_blank">Google Books</a>
+                    )
+                  </li>
+                  <li><a href="http://www.codeproject.com/script/Awards/MVPWinners.aspx" target="_blank">CodeProject MVP</a>.</li>
+                  <li>First prize winner in <a href="https://www.codeproject.com/script/contests/Winners.aspx?pgnum=4" target="_blank">CodeProject HTML5 &amp; CSS3 Competition</a> in 2011, the award was an iPad 2.</li>
+                  <!-- <li>PSIA Certified Ski instructor (Alpine Level 1)</li> -->
+                </ul>
+              </div>
+            </div>
+
             <!--Motto-->
             <!--
             <div class="yui-gf">

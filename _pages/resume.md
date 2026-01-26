@@ -1,5 +1,5 @@
 ---
-title:  Resume
+title: Resume
 permalink: /resume/
 type: "pages"
 author_profile: false
@@ -7,7 +7,6 @@ layout: raw-page
 ---
 
 <html lang="en">
-
 <head>
   <title>Wayne Ye - Resume</title>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -32,7 +31,6 @@ layout: raw-page
             <div class="yui-u first">
               <h1>Wei Ye (Wayne)</h1>
               <h2>Full Stack/Staff Software Engineer</h2>
-              <!--Contact info -->
               <div class="contact-info">
                 <h3>Website: <a href="https://wayneye.me" target="_blank">https://wayneye.me</a></h3>
                 <h3>LinkedIn: <a href="https://www.linkedin.com/in/wayneye/" target="_blank">https://www.linkedin.com/in/wayneye/</a></h3>
@@ -49,7 +47,6 @@ layout: raw-page
       <div id="bd">
         <div id="yui-main">
           <div class="yui-b">
-            <!--Profile-->
             <div class="yui-gf">
               <div class="yui-u first">
                 <h2>Biography</h2>
@@ -67,7 +64,6 @@ layout: raw-page
               </div>
             </div>
 
-            <!--Experience-->
             <div class="yui-gf">
               <div class="yui-u first">
                 <h2>Experience</h2>
@@ -77,49 +73,36 @@ layout: raw-page
                   <h2 id="hpe">Hewlett-Packard Enterprise</h2>
                   <h3>Senior Cloud Engineer</h3>
                   <h4>Nov 2023 - Present</h4>
-                  <p>
                     <ul>
                         <li>Design, develop, and operate the authentication/authorization platform for <a href="https://www.hpe.com/us/en/aruba-central.html" target="_blank">HPE Aruba Central</a>, an industrial leading WIFI network management platform.</li>
-                        <li>Lead monitoring and observability initiatives, driving a 40% reduction in Mean Time to Resolve (MTTR) and achieving 99.95% SLA compliance. </li>
+                        <li>Led monitoring and observability initiatives, driving a 40% reduction in Mean Time to Resolve (MTTR) and achieving 99.95% SLA compliance. </li>
                         <li>Collaborate cross-functionally to improve platform reliability, scalability, and operational excellence in a large-scale cloud environment. </li>
                     </ul>
-                  </p>
-                  <p>
-                    Key technologies: Golang, Python, Terraform, Kubernetes, OpenSearch.
-                  </p>
                 </div>
                 <div class="job">
                   <h2 id="sisu">Sisu Data</h2>
                   <h3>Staff Software Engineer</h3>
                   <h4>Oct 2021 - Oct 2023</h4>
-                  <p>
                     <ul>
                         <li>Led the project of enhancing Sisu cross-cloud infrastructure (AWS and GCP), significantly increased the uptime to 99.98%, and achieved a 40% cost reduction within 6 months!</li>
                         <li>Optimized terabyte data ingestion performance for the KDA (Key Driver Analysis) decision-making engine, reduced average processing time by 15%.</li>
                     </ul>
-                  </p>
-                  <p>
-                    Key technologies: Python, Rust, TypeScript, Kubernetes (EKS/GKE), Snowflake, CircleCI.
-                  </p>
                 </div>
                 <div class="job">
                   <h2 id="adsk">Autodesk</h2>
                   <h3>Senior Principal Engineer/Technical Lead</h3>
                   <h4>May 2013 - Sep 2021</h4>
-                  <p>
                     <ul>
-                        <li>
-                            Designed/co-founded <a href="ttps://health.autodesk.com" target="_blank">Autodesk Health Dashboard</a>, a powerful 7*24 health monitoring/alerting platform, it monitors 800+ Autodesk microservices with real-time alerting features (PagerDuty/Slack/Email), providing SLOs/SLAs and error budget consumption reports, it was well architected and implemented for high availability, fully elastic and scalable.
-                        </li>
-                        <li>
-                            Full-stack engineer for <a href="https://drive.autodesk.com/" _target="_blank">Autodesk Drive</a> and <a href="https://forge.autodesk.com/" target="_blank">Autodesk Forge</a>, <a href="https://accounts.autodesk.com/" _target="blank">Autodesk Accounts</a>
-                        </li>
-                        <li>
-                            Led a development team and built <a href="https://forge.autodesk.com" target="_blank">Autodesk Developer Platform</a> from scratch, it provides SaaS development portal for Autodesk developers around the globe, technical stacks including Python+Django, Nodejs, C#, MongoDB/Cassandra, Docker, Mesos, ZooKeeper, etc.
-                        </li>
+                      <li>
+                          Designed/co-founded <a href="https://health.autodesk.com" target="_blank">Autodesk Health Dashboard</a>, a powerful 7*24 health monitoring/alerting platform, it monitors 800+ Autodesk microservices with real-time alerting features (PagerDuty/Slack/Email), providing SLOs/SLAs and error budget consumption reports, it was well architected and implemented for high availability, fully elastic and scalable.
+                      </li>
+                      <li>
+                          Full-stack engineer for <a href="https://drive.autodesk.com/" target="_blank">Autodesk Drive</a> and <a href="https://forge.autodesk.com/" target="_blank">Autodesk Forge</a>, <a href="https://accounts.autodesk.com/" target="_blank">Autodesk Accounts</a>
+                      </li>
+                      <li>
+                          Led a development team and built <a href="https://forge.autodesk.com" target="_blank">Autodesk Developer Platform</a> from scratch, it provides SaaS development portal for Autodesk developers around the globe, technical stacks including Python+Django, Nodejs, C#, MongoDB/Cassandra, Docker, Mesos, ZooKeeper, etc.
+                      </li>
                     </ul>
-                    <p>Key technologies: Python+Django+Flask, React, AWS ECS/Lambda/Aurora/Elasticache(Redis)/DynamoDB/CloudFront, etc.</p>
-                  </p>
                 </div>
                 <div class="job">
                   <h2 id="tw">ThoughtWorks</h2>
@@ -130,12 +113,9 @@ layout: raw-page
                   </p>
                 </div>
                 <div class="job">
-                  <h2 id="hp">
-                    Hewlett-Packard (PSG - Consumer Experience)</h2>
-                  <h3>
-                    Senior Software Design Engineer/Tech Lead</h3>
-                  <h4>
-                    Mar 2009 - Dec 2011</h4>
+                  <h2 id="hp">Hewlett-Packard</h2>
+                  <h3>Senior Software Design Engineer/Tech Lead</h3>
+                  <h4>Mar 2009 - Dec 2011</h4>
                   <p>
                     As a tech lead, I led a development team in Shanghai and collaborated with US team on delivering several HP Software Products:
                     <a href="http://www8.hp.com/us/en/support-drivers/total-care/hp-advisor.html?_sm_au_=iVVqvRFSZ0S630Hr" target="_blank">HP Total Care Advisor&reg;</a>,
@@ -143,12 +123,9 @@ layout: raw-page
                   </p>
                 </div>
                 <div class="job">
-                  <h2 id="beyondsoft">
-                    Beyondsoft (Onsite to Microsoft)</h2>
-                  <h3>
-                    Onsite Software Engineer</h3>
-                  <h4>
-                    Jan 2008 - Feb 2009</h4>
+                  <h2 id="beyondsoft">Beyondsoft (Onsite to Microsoft)</h2>
+                  <h3>Onsite Software Engineer</h3>
+                  <h4>Jan 2008 - Feb 2009</h4>
                   <p>
                     Worked onsite in Microsoft Redmond Campus for several projects: WM Captaris, MSN Video Catalog Editorial Tool and Visual Studio 2010 MSDN Help Viewer.
                   </p>
@@ -156,7 +133,7 @@ layout: raw-page
                 <div class="job last">
                   <h2>Shanghai-Digital Information Technology Co., Ltd</h2>
                   <h3>ASP/ASP.NET Web Developer</h3>
-                  <h4>Jul 2005 - Nov 2007</h4>
+                  <h4>Sep 2005 - Nov 2007</h4>
                   <p>
                     Developed several web projects for Kintera, including: <a href="http://www.kintera.org/site/pp.asp?c=gqLRI0ODKpF&amp;b=2455257" target="_blank">
                       Import Center</a>, Transaction Platform, Financial Link and <a href="http://www.kintera.org/site/pp.asp?c=gqLRI0ODKpF&amp;b=2455275" target="_blank">
@@ -166,7 +143,28 @@ layout: raw-page
               </div>
             </div>
 
-            <!--Certifications & Recognition-->
+            <div class="yui-gf">
+              <div class="yui-u first">
+                <h2>Technical Expertise</h2>
+              </div>
+              <div class="yui-u">
+                <ul>
+                  <li>
+                    <strong>Programming Languages</strong>: Python, Golang, TypeScript
+                  </li>
+                  <li>
+                    <strong>Cloud & Infrastructure</strong>: AWS, GCP, Kubernetes (EKS/GKE), Lambda, Terraform
+                  </li>
+                  <li>
+                    <strong>Data & Systems</strong>: PostgreSQL, DynamoDB, Snowflake, MongoDB
+                  </li>
+                  <li>
+                    <strong>Reliability & DevOps</strong>: Observability, SLOs, Error Budgets, CI/CD
+                  </li>
+                </ul>
+              </div>
+            </div>
+
             <div class="yui-gf">
               <div class="yui-u first">
                 <h2>Certifications & Recognition</h2>
@@ -181,7 +179,7 @@ layout: raw-page
                     )
                   </li>
                   <li><a href="http://www.codeproject.com/script/Awards/MVPWinners.aspx" target="_blank">CodeProject MVP</a>.</li>
-                  <li>First prize winner in <a href="https://www.codeproject.com/script/contests/Winners.aspx?pgnum=4" target="_blank">CodeProject HTML5 &amp; CSS3 Competition</a> in 2011, the award was an iPad 2.</li>
+                  <li>First prize winner in <a href="https://www.codeproject.com/script/contests/Winners.aspx?pgnum=4" target="_blank">CodeProject HTML5 &amp; CSS3 Competition</a>.</li>
                   <!-- <li>PSIA Certified Ski instructor (Alpine Level 1)</li> -->
                 </ul>
               </div>
@@ -225,7 +223,8 @@ layout: raw-page
           </div>
         </div>
       </div>
-    </div>
+    </div> <!-- #inner -->
+
   </div>
   <!--Resume End-->
   <style>
@@ -351,7 +350,7 @@ layout: raw-page
       color: #333;
     }
 
-    p {
+    p, ul > li {
       font-size: 115%;
       line-height: 18px;
       padding-right: 3em;
@@ -506,6 +505,7 @@ layout: raw-page
         display: none;
       }
     }
+
   </style>
 </body>
 </html>

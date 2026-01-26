@@ -14,6 +14,7 @@ layout: raw-page
   <meta name="description" content="Wayne's resume." />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <link rel="stylesheet" type="text/css" href="/assets/css/resume/yui-reset.css" media="all" />
+  <!-- <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css"> -->
 </head>
 
 <body>
@@ -23,14 +24,14 @@ layout: raw-page
   <div id="downloadPdf" class="func-btn">
     <a class="btn" href="https://github.com/WayneYe/wayneye.github.io/raw/main/resume/Wayne_Ye_Resume.pdf">Download PDF</a>
   </div>
-  <div id="doc2" class="yui-t7">
+  <div id="resume-container" class="yui-t7">
     <div id="inner">
       <header>
         <div id="hd">
           <div class="yui-gc">
             <div class="yui-u first">
               <h1>Wei Ye (Wayne)</h1>
-              <h2>Full Stack/Staff Software Engineer</h2>
+              <h2>Staff Software Engineer</h2>
               <div class="contact-info">
                 <h3>Website: <a href="https://wayneye.me" target="_blank">https://wayneye.me</a></h3>
                 <h3>LinkedIn: <a href="https://www.linkedin.com/in/wayneye/" target="_blank">https://www.linkedin.com/in/wayneye/</a></h3>
@@ -48,12 +49,12 @@ layout: raw-page
         <div id="yui-main">
           <div class="yui-b">
             <div class="yui-gf">
-              <div class="yui-u first">
-                <h2>Biography</h2>
-              </div>
-              <div class="yui-u">
+              <!-- <div class="yui-u first"> -->
+                <h1>Biography</h1>
+              <!-- </div> -->
+              <!-- <div class="yui-u"> -->
                 <p>
-                  Staff-level Software Engineer with 20+ years of experience designing, delivering, and operating robust, large-scale microservices and multi-cloud platforms.
+                  Full Stack/Staff-level Software Engineer with 20+ years of experience designing, delivering, and operating robust, large-scale microservices and multi-cloud platforms.
                 </p>
                 <p>
                   Specializes in reliability and observability, with measurable improvements in uptime, Apdex, MTTR, and operational efficiency.
@@ -61,22 +62,22 @@ layout: raw-page
                 <p>
                   Applies a calm, pragmatic approach to complex problems, enabling teams to deliver reliable systems through collaboration, mentorship, and sound technical judgment.
                 </p>
-              </div>
+              <!-- </div> -->
             </div>
 
             <div class="yui-gf">
-              <div class="yui-u first">
-                <h2>Experience</h2>
-              </div>
-              <div class="yui-u">
+              <!-- <div class="yui-u first"> -->
+                <h1>Experience</h1>
+              <!-- </div> -->
+              <!-- <div class="yui-u"> -->
                 <div class="job">
                   <h2 id="hpe">Hewlett-Packard Enterprise</h2>
-                  <h3>Senior Cloud Engineer</h3>
+                  <h3>Senior Cloud Engineer (Platform & Identity)</h3>
                   <h4>Nov 2023 - Present</h4>
                     <ul>
-                        <li>Design, develop, and operate the authentication/authorization platform for <a href="https://www.hpe.com/us/en/aruba-central.html" target="_blank">HPE Aruba Central</a>, an industrial leading WIFI network management platform.</li>
-                        <li>Led monitoring and observability initiatives, driving a 40% reduction in Mean Time to Resolve (MTTR) and achieving 99.95% SLA compliance. </li>
-                        <li>Collaborate cross-functionally to improve platform reliability, scalability, and operational excellence in a large-scale cloud environment. </li>
+                      <li>Own the design, development, and operation of the authentication and authorization platform for <a href="https://www.hpe.com/us/en/aruba-central.html" target="_blank">HPE Aruba Central</a>, an industrial-leading enterprise WI-FI network management platform.</li>
+                      <li>Led monitoring and observability initiatives across critical platform services, reducing MTTR by 40% and achieving 99.95% SLA compliance.</li>
+                      <li>Drove cross-functional alignment across infrastructure, security, and product teams to improve platform reliability, scalability, and operational excellence.</li>
                     </ul>
                 </div>
                 <div class="job">
@@ -84,23 +85,26 @@ layout: raw-page
                   <h3>Staff Software Engineer</h3>
                   <h4>Oct 2021 - Oct 2023</h4>
                     <ul>
-                        <li>Led the project of enhancing Sisu cross-cloud infrastructure (AWS and GCP), significantly increased the uptime to 99.98%, and achieved a 40% cost reduction within 6 months!</li>
-                        <li>Optimized terabyte data ingestion performance for the KDA (Key Driver Analysis) decision-making engine, reduced average processing time by 15%.</li>
+                      <li>Led cross-cloud (AWS and GCP) infrastructure foundation, achieving system uptime to 99.98% and reducing cloud costs by ~40% within 6 months.</li>
+                      <li>Optimized terabyte-scale data ingestion pipelines for the KDA (Key Driver Analysis) engine, improving average processing performance by 25%.</li>
                     </ul>
                 </div>
                 <div class="job">
                   <h2 id="adsk">Autodesk</h2>
-                  <h3>Senior Principal Engineer/Technical Lead</h3>
+                  <h3>Senior Principal Engineer/Technical Lead (IC)</h3>
                   <h4>May 2013 - Sep 2021</h4>
                     <ul>
                       <li>
-                          Designed/co-founded <a href="https://health.autodesk.com" target="_blank">Autodesk Health Dashboard</a>, a powerful 7*24 health monitoring/alerting platform, it monitors 800+ Autodesk microservices with real-time alerting features (PagerDuty/Slack/Email), providing SLOs/SLAs and error budget consumption reports, it was well architected and implemented for high availability, fully elastic and scalable.
+                        Designed/co-founded <a href="https://health.autodesk.com" target="_blank">Autodesk Health Dashboard</a>, a 7*24 observability and alerting platform monitoring 500+ microservices, providing SLOs, SLAs, and error-budget visibility across the organization.
                       </li>
                       <li>
-                          Full-stack engineer for <a href="https://drive.autodesk.com/" target="_blank">Autodesk Drive</a> and <a href="https://forge.autodesk.com/" target="_blank">Autodesk Forge</a>, <a href="https://accounts.autodesk.com/" target="_blank">Autodesk Accounts</a>
+                        Architected and implemented a highly available, elastic, and scalable monitoring system that became a core reliability platform within Autodesk.
                       </li>
                       <li>
-                          Led a development team and built <a href="https://forge.autodesk.com" target="_blank">Autodesk Developer Platform</a> from scratch, it provides SaaS development portal for Autodesk developers around the globe, technical stacks including Python+Django, Nodejs, C#, MongoDB/Cassandra, Docker, Mesos, ZooKeeper, etc.
+                          Served as a Full-stack engineer for <a href="https://drive.autodesk.com/" target="_blank">Autodesk Drive</a> and <a href="https://forge.autodesk.com/" target="_blank">Autodesk Forge</a>, <a href="https://accounts.autodesk.com/" target="_blank">Autodesk Accounts</a>, contributing to core platform and identity services.
+                      </li>
+                      <li>
+                          Led a development team and built <a href="https://forge.autodesk.com" target="_blank">Autodesk Developer Platform</a> from scratch, delivering a global SaaS developer portal used by Autodesk developers worldwide.
                       </li>
                     </ul>
                 </div>
@@ -108,52 +112,60 @@ layout: raw-page
                   <h2 id="tw">ThoughtWorks</h2>
                   <h3>Software Consultant</h3>
                   <h4>May 2012 - Apr 2013</h4>
-                  <p>
-                    Onsite Consultant for the Diamond Subscription Platform at <a href="https://realestate.com.au" target="_blank">Real estate Australia</a> (Ruby On Rails), driving a 30% improvement in website's <a href="https://en.wikipedia.org/wiki/Apdex">Apdex</a> through ORM-layer refactoring and frontend performance optimizations.
-                  </p>
+                  <ul>
+                    <li>
+                      Onsite Consultant for the Diamond Subscription Platform at <a href="https://realestate.com.au" target="_blank">Real estate Australia</a> (Ruby On Rails), driving a 30% improvement in website's <a href="https://en.wikipedia.org/wiki/Apdex">Apdex</a> through ORM-layer refactoring and frontend performance optimizations.
+                    </li>
+                  </ul>
                 </div>
                 <div class="job">
                   <h2 id="hp">Hewlett-Packard</h2>
                   <h3>Senior Software Design Engineer/Tech Lead</h3>
                   <h4>Mar 2009 - Dec 2011</h4>
-                  <p>
-                    As a tech lead, I led a development team in Shanghai and collaborated with US team on delivering several HP Software Products:
-                    <a href="http://www8.hp.com/us/en/support-drivers/total-care/hp-advisor.html?_sm_au_=iVVqvRFSZ0S630Hr" target="_blank">HP Total Care Advisor&reg;</a>,
-                    <a href="http://h10025.www1.hp.com/ewfrf/wc/document?docname=c02604915&cc=us&dlc=en&lc=en&jumpid=reg_R1002_USEN" target="_blank">HP Customer Experience Enhancement</a>.
-                  </p>
+                  <ul>
+                    <li>
+                      As a tech lead, I led a development team in Shanghai and collaborated with US team on delivering several HP Software Products:
+                      <a href="http://www8.hp.com/us/en/support-drivers/total-care/hp-advisor.html?_sm_au_=iVVqvRFSZ0S630Hr" target="_blank">HP Total Care Advisor&reg;</a>,
+                      <a href="http://h10025.www1.hp.com/ewfrf/wc/document?docname=c02604915&cc=us&dlc=en&lc=en&jumpid=reg_R1002_USEN" target="_blank">HP Customer Experience Enhancement</a>.
+                    </li>
+                  </ul>
                 </div>
                 <div class="job">
                   <h2 id="beyondsoft">Beyondsoft (Onsite to Microsoft)</h2>
                   <h3>Onsite Software Engineer</h3>
                   <h4>Jan 2008 - Feb 2009</h4>
-                  <p>
-                    Worked onsite in Microsoft Redmond Campus for several projects: WM Captaris, MSN Video Catalog Editorial Tool and Visual Studio 2010 MSDN Help Viewer.
-                  </p>
+                  <ul>
+                    <li>
+                      Worked onsite in Microsoft Redmond Campus for several projects: WM Captaris, MSN Video Catalog Editorial Tool and Visual Studio 2010 MSDN Help Viewer.
+                    </li>
+                  </ul>
                 </div>
                 <div class="job last">
                   <h2>Shanghai-Digital Information Technology Co., Ltd</h2>
                   <h3>ASP/ASP.NET Web Developer</h3>
                   <h4>Sep 2005 - Nov 2007</h4>
-                  <p>
-                    Developed several web projects for Kintera, including: <a href="http://www.kintera.org/site/pp.asp?c=gqLRI0ODKpF&amp;b=2455257" target="_blank">
+                  <ul>
+                    <li>
+                      Developed several web projects for Kintera, including: <a href="http://www.kintera.org/site/pp.asp?c=gqLRI0ODKpF&amp;b=2455257" target="_blank">
                       Import Center</a>, Transaction Platform, Financial Link and <a href="http://www.kintera.org/site/pp.asp?c=gqLRI0ODKpF&amp;b=2455275" target="_blank">
                       Single Gift Entry</a>, using technologies including C#, ASP.NET, Ajax, etc.
-                  </p>
+                    </li>
+                  </ul>
                 </div>
-              </div>
+              <!-- </div> -->
             </div>
 
             <div class="yui-gf">
-              <div class="yui-u first">
-                <h2>Technical Expertise</h2>
-              </div>
-              <div class="yui-u">
+              <!-- <div class="yui-u first"> -->
+                <h1>Technical Expertise</h1>
+              <!-- </div> -->
+              <!-- <div class="yui-u"> -->
                 <ul>
                   <li>
-                    <strong>Programming Languages</strong>: Python, Golang, TypeScript
+                    <strong>Programming Languages</strong>: Python, Golang, TypeScript, Terraform
                   </li>
                   <li>
-                    <strong>Cloud & Infrastructure</strong>: AWS, GCP, Kubernetes (EKS/GKE), Lambda, Terraform
+                    <strong>Cloud & Infrastructure</strong>: AWS, GCP, Kubernetes (EKS/GKE), Service Mesh, Docker
                   </li>
                   <li>
                     <strong>Data & Systems</strong>: PostgreSQL, DynamoDB, Snowflake, MongoDB
@@ -162,14 +174,14 @@ layout: raw-page
                     <strong>Reliability & DevOps</strong>: Observability, SLOs, Error Budgets, CI/CD
                   </li>
                 </ul>
-              </div>
+              <!-- </div> -->
             </div>
 
             <div class="yui-gf">
-              <div class="yui-u first">
-                <h2>Certifications & Recognition</h2>
-              </div>
-              <div class="yui-u">
+              <!-- <div class="yui-u first"> -->
+                <h1>Certifications & Recognition</h1>
+              <!-- </div> -->
+              <!-- <div class="yui-u"> -->
                 <ul>
                   <li><a href="https://www.certmetrics.com/amazon/public/badge.aspx?i=1&t=c&d=2017-06-16&ci=AWS00280385" target="_blank">AWS Certified Solutions Architect (Associate)</a></li>
                   <li>Author of <a href="http://www.packtpub.com/cucumber-behaviour-driven-development/book" target="_blank">&lt;Instant Cucumber BDD How-To&gt;</a>
@@ -179,10 +191,10 @@ layout: raw-page
                     )
                   </li>
                   <li><a href="http://www.codeproject.com/script/Awards/MVPWinners.aspx" target="_blank">CodeProject MVP</a>.</li>
-                  <li>First prize winner in <a href="https://www.codeproject.com/script/contests/Winners.aspx?pgnum=4" target="_blank">CodeProject HTML5 &amp; CSS3 Competition</a>.</li>
+                  <li>First prize winner in <a href="https://www.codeproject.com/script/contests/Winners.aspx?pgnum=4" target="_blank">CodeProject HTML5 Competition</a>.</li>
                   <!-- <li>PSIA Certified Ski instructor (Alpine Level 1)</li> -->
                 </ul>
-              </div>
+              <!-- </div> -->
             </div>
 
             <!--Motto-->
@@ -212,13 +224,13 @@ layout: raw-page
             -->
             <!--Education-->
             <div class="yui-gf last">
-              <div class="yui-u first">
-                <h2>Education</h2>
-              </div>
-              <div class="yui-u">
+              <!-- <div class="yui-u first"> -->
+                <h1>Education</h1>
+              <!-- </div> -->
+              <!-- <div class="yui-u"> -->
                 <h2>Wuhan JiangHan University (2001 - 2005)</h2>
                 <h3>Computer Science and Technology | Bachelor Degree</h3>
-              </div>
+              <!-- </div> -->
             </div>
           </div>
         </div>
@@ -234,7 +246,7 @@ layout: raw-page
     }
 
     #inner {
-      padding: 10px 40px;
+      padding: 10px 20px;
       margin: 20px auto;
       background: #f5f5f5;
       border: solid #666;
@@ -243,14 +255,13 @@ layout: raw-page
 
     .yui-gf {
       margin-bottom: 1em;
-      padding-bottom: 1em;
       border-bottom: 1px solid #ccc;
     }
 
     /* //-- header, body, footer -- */
 
     #hd {
-      margin: 2.5em 0 3em 0;
+      margin: 1em 0 1em 0;
       padding-bottom: 1.5em;
       border-bottom: 1px solid #ccc;
     }
@@ -263,6 +274,10 @@ layout: raw-page
     #bd,
     #ft {
       margin-bottom: 2em;
+    }
+
+    #resume-container {
+      width: 88em;
     }
 
     #printBtn {
@@ -334,6 +349,10 @@ layout: raw-page
       letter-spacing: 3px;
     }
 
+    h1 {
+      font-size: 192%;
+      margin-bottom: 0.5em;
+    }
     h2 {
       font-size: 152%;
     }
@@ -373,13 +392,16 @@ layout: raw-page
     }
 
     ul {
-      padding-left: 18px;
+      /* padding-left: 1.2em; */
+      margin: 0.6em 0;
     }
 
     li {
-      line-height: 24px;
-      list-style-image: url("/assets/images/right_arrow_gray.png");
-      margin-bottom: 0.8em;
+      /* line-height: 24px;
+      list-style-image: url("/assets/images/right_arrow_gray.png"); */
+      /* margin-bottom: 0.8em; */
+      margin-bottom: 0.4em;
+      /* list-style: disc; */
     }
 
     p.enlarge {
@@ -399,14 +421,6 @@ layout: raw-page
 
     .contact-info h3 {
       margin-top: 6px;
-    }
-
-    .contact-info a {
-      border: none;
-    }
-
-    .first h2 {
-      font-style: italic;
     }
 
     .last {
@@ -491,11 +505,11 @@ layout: raw-page
     /* --// override to force 1/8th width grids -- */
 
     .yui-gf .yui-u {
-      width: 80.2%;
+      width: 80%;
     }
 
     .yui-gf div.first {
-      width: 12.3%;
+      width: 20%;
     }
 
     @media print {
